@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SmartDots.Service.Entities.File">
+    <Position X="8.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAAAAAwABQAAIAAABA4AAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>File.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sample" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Annotations" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Folder">
+    <Position X="3" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Folder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Line">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAQAAAAADAEAAAIABAAAAAAAAgAAAEAA=</HashCode>
+      <FileName>Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Sample">
+    <Position X="11" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgSAAAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Sample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Dot">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAEAAAAgAAAACAAAAgAAAcAA=</HashCode>
+      <FileName>Dot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.ReadabilityQuality">
+    <Position X="11" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>ReadabilityQuality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.User">
+    <Position X="11" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAABAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Analysis">
+    <Position X="0.5" Y="1" Width="1.75" />
+    <AssociationLine Name="AnalysisParameters" Type="SmartDots.Service.Entities.AnalysisParameter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.578" Y="0.227" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgCACAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAFAAABAA=</HashCode>
+      <FileName>Analysis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Folder" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AnalysisParameters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.Annotation">
+    <Position X="5.25" Y="1" Width="1.75" />
+    <AssociationLine Name="Lines" Type="SmartDots.Service.Entities.Line">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.723" Y="0.195" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Dots" Type="SmartDots.Service.Entities.Dot">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.713" Y="0.195" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACABgEAgAAAAAQAAAAAAQAAACABEAiAIAAAAIAIAA=</HashCode>
+      <FileName>Annotation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Lines" />
+      <Property Name="Dots" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SmartDots.Service.Entities.AnalysisParameter">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnalysisParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
