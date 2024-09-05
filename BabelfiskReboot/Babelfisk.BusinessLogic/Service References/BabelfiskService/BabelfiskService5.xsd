@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="OfflineEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OfflineComparisonEntity" nillable="true" type="xs:anyType" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="OfflineDeletedEntities" nillable="true" type="q1:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="OfflineId" nillable="true" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="OfflineState" type="q2:ObjectState" />
+      <xs:element minOccurs="0" name="OverwritingMethod" nillable="true" type="tns:OverwritingMethod" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="OfflineEntity" nillable="true" type="tns:OfflineEntity" />
+  <xs:simpleType name="OverwritingMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="ClientWins" />
+      <xs:enumeration value="ServerWins" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OverwritingMethod" nillable="true" type="tns:OverwritingMethod" />
+  <xs:complexType name="LavSFTransferItem">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="Ages" nillable="true" type="q3:ArrayOfAge" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="Animal" nillable="true" type="q4:Animal" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="AnimalFiles" nillable="true" type="q5:ArrayOfAnimalFile" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="AnimalInfo" nillable="true" type="q6:AnimalInfo" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="AnimalInfoReferences" nillable="true" type="q7:ArrayOfR_AnimalInfoReference" />
+      <xs:element minOccurs="0" name="SubSampleId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="LavSFTransferItem" nillable="true" type="tns:LavSFTransferItem" />
+  <xs:complexType name="DatabaseOperationResult">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DatabaseOperationStatus" type="tns:DatabaseOperationStatus" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Properties" nillable="true" type="q8:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="UIMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatabaseOperationResult" nillable="true" type="tns:DatabaseOperationResult" />
+  <xs:simpleType name="DatabaseOperationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Successful" />
+      <xs:enumeration value="DuplicateRecordException" />
+      <xs:enumeration value="ConcurrencyException" />
+      <xs:enumeration value="UnexpectedException" />
+      <xs:enumeration value="ValidationError" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DatabaseOperationStatus" nillable="true" type="tns:DatabaseOperationStatus" />
+  <xs:complexType name="DataVersioning">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="_dicVersions" nillable="true" type="q9:ArrayOfKeyValueOfstringlong" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="DataVersioning" nillable="true" type="tns:DataVersioning" />
+  <xs:complexType name="ArrayOfRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Record" nillable="true" type="tns:Record" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecord" nillable="true" type="tns:ArrayOfRecord" />
+  <xs:complexType name="Record">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Record" nillable="true" type="tns:Record" />
+  <xs:complexType name="ArrayOfLavSFTransferItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LavSFTransferItem" nillable="true" type="tns:LavSFTransferItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLavSFTransferItem" nillable="true" type="tns:ArrayOfLavSFTransferItem" />
+  <xs:complexType name="SyncDatabaseOperationResult">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DatabaseOperationResult" type="tns:DatabaseOperationResult" />
+      <xs:element minOccurs="0" name="ExistingEntity" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SyncDatabaseOperationResult" nillable="true" type="tns:SyncDatabaseOperationResult" />
+  <xs:complexType name="ArrayOfReportFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportFile" nillable="true" type="tns:ReportFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportFile" nillable="true" type="tns:ArrayOfReportFile" />
+  <xs:complexType name="ReportFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_arrCompressedData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="_arrDecompressedData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="_strFileName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportFile" nillable="true" type="tns:ReportFile" />
+  <xs:complexType name="ServiceResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="tns:DatabaseOperationStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResult" nillable="true" type="tns:ServiceResult" />
+  <xs:simpleType name="FileSystemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="File">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Directory">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileSystemType" nillable="true" type="tns:FileSystemType" />
+  <xs:complexType name="ArrayOfSDAnimalAgeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDAnimalAgeItem" nillable="true" type="tns:SDAnimalAgeItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSDAnimalAgeItem" nillable="true" type="tns:ArrayOfSDAnimalAgeItem" />
+  <xs:complexType name="SDAnimalAgeItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimalId" type="xs:int" />
+      <xs:element minOccurs="0" name="DFUPersonReaderId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EdgeStructureCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtolithReadingRemarkId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SDAnnotationId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SDSampleId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SDAnimalAgeItem" nillable="true" type="tns:SDAnimalAgeItem" />
+  <xs:complexType name="ArrayOfR_SDReaderStatistics">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_SDReaderStatistics" nillable="true" type="tns:R_SDReaderStatistics" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfR_SDReaderStatistics" nillable="true" type="tns:ArrayOfR_SDReaderStatistics" />
+  <xs:complexType name="R_SDReaderStatistics">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumberOfReadings" type="xs:int" />
+      <xs:element minOccurs="0" name="R_SDReaderId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="R_SDReaderStatistics" nillable="true" type="tns:R_SDReaderStatistics" />
+</xs:schema>

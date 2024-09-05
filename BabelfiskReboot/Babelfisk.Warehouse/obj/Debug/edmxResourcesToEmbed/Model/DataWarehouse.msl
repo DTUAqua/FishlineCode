@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FishLineDWModelStoreContainer" CdmEntityContainer="DataWarehouseContext">
+    <EntitySetMapping Name="Ages">
+      <EntityTypeMapping TypeName="FishLineDWModel.Age">
+        <MappingFragment StoreEntitySet="Age">
+          <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
+          <ScalarProperty Name="sdAnnotationId" ColumnName="sdAnnotationId" />
+          <ScalarProperty Name="sdAgeReadName" ColumnName="sdAgeReadName" />
+          <ScalarProperty Name="sdAgeReadId" ColumnName="sdAgeReadId" />
+          <ScalarProperty Name="sdAgeInfoUpdated" ColumnName="sdAgeInfoUpdated" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="geneticStock" ColumnName="geneticStock" />
+          <ScalarProperty Name="visualStock" ColumnName="visualStock" />
+          <ScalarProperty Name="hatchMonthRemark" ColumnName="hatchMonthRemark" />
+          <ScalarProperty Name="genetics" ColumnName="genetics" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="hatchMonthReaderName" ColumnName="hatchMonthReaderName" />
+          <ScalarProperty Name="hatchMonthReaderId" ColumnName="hatchMonthReaderId" />
+          <ScalarProperty Name="ageReadName" ColumnName="ageReadName" />
+          <ScalarProperty Name="ageReadId" ColumnName="ageReadId" />
+          <ScalarProperty Name="hatchMonth" ColumnName="hatchMonth" />
+          <ScalarProperty Name="otolithReadingRemark" ColumnName="otolithReadingRemark" />
+          <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
+          <ScalarProperty Name="otolithWeight" ColumnName="otolithWeight" />
+          <ScalarProperty Name="agePlusGroup" ColumnName="agePlusGroup" />
+          <ScalarProperty Name="age1" ColumnName="age" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="individNum" ColumnName="individNum" />
+          <ScalarProperty Name="representative" ColumnName="representative" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="speciesList_sexCode" ColumnName="speciesList_sexCode" />
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="ageId" ColumnName="ageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animals">
+      <EntityTypeMapping TypeName="FishLineDWModel.Animal">
+        <MappingFragment StoreEntitySet="Animal">
+          <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="otolithFinScale" ColumnName="otolithFinScale" />
+          <ScalarProperty Name="catchNum" ColumnName="catchNum" />
+          <ScalarProperty Name="animalInfo_remark" ColumnName="animalInfo_remark" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="maturityReader" ColumnName="maturityReader" />
+          <ScalarProperty Name="maturityReaderId" ColumnName="maturityReaderId" />
+          <ScalarProperty Name="numVertebra" ColumnName="numVertebra" />
+          <ScalarProperty Name="fatIndexMethod" ColumnName="fatIndexMethod" />
+          <ScalarProperty Name="fatIndex" ColumnName="fatIndex" />
+          <ScalarProperty Name="parasiteCode" ColumnName="parasiteCode" />
+          <ScalarProperty Name="weightGonads" ColumnName="weightGonads" />
+          <ScalarProperty Name="weightLiver" ColumnName="weightLiver" />
+          <ScalarProperty Name="weightGutted" ColumnName="weightGutted" />
+          <ScalarProperty Name="broodingPhase" ColumnName="broodingPhase" />
+          <ScalarProperty Name="maturityIndexMethod" ColumnName="maturityIndexMethod" />
+          <ScalarProperty Name="maturityIndex" ColumnName="maturityIndex" />
+          <ScalarProperty Name="treatmentFactor" ColumnName="treatmentFactor" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="lengthMeasureUnit" ColumnName="lengthMeasureUnit" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="speciesList_number" ColumnName="speciesList_number" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="individNum" ColumnName="individNum" />
+          <ScalarProperty Name="representative" ColumnName="representative" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="speciesList_sexCode" ColumnName="speciesList_sexCode" />
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="speciesListId" ColumnName="speciesListId" />
+          <ScalarProperty Name="animalInfoId" ColumnName="animalInfoId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnimalRaiseds">
+      <EntityTypeMapping TypeName="FishLineDWModel.AnimalRaised">
+        <MappingFragment StoreEntitySet="AnimalRaised">
+          <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="weightMean" ColumnName="weightMean" />
+          <ScalarProperty Name="numberTotalPerLength" ColumnName="numberTotalPerLength" />
+          <ScalarProperty Name="numberSumSamplePerLength" ColumnName="numberSumSamplePerLength" />
+          <ScalarProperty Name="lengthMeasureUnit" ColumnName="lengthMeasureUnit" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="broodingPhase" ColumnName="broodingPhase" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="speciesList_sexCode" ColumnName="speciesList_sexCode" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="speciesListRaisedId" ColumnName="speciesListRaisedId" />
+          <ScalarProperty Name="animalRaisedId" ColumnName="animalRaisedId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cruises">
+      <EntityTypeMapping TypeName="FishLineDWModel.Cruise">
+        <MappingFragment StoreEntitySet="Cruise">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="participants" ColumnName="participants" />
+          <ScalarProperty Name="responsibleName" ColumnName="responsibleName" />
+          <ScalarProperty Name="responsibleId" ColumnName="responsibleId" />
+          <ScalarProperty Name="cruise1" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_AnimalReference">
+      <EntityTypeMapping TypeName="FishLineDWModel.R_AnimalReference">
+        <MappingFragment StoreEntitySet="R_AnimalReference">
+          <ScalarProperty Name="referenceName" ColumnName="referenceName" />
+          <ScalarProperty Name="referenceId" ColumnName="referenceId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="R_animalReferenceId" ColumnName="R_animalReferenceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Samples">
+      <EntityTypeMapping TypeName="FishLineDWModel.Sample">
+        <MappingFragment StoreEntitySet="Sample">
+          <ScalarProperty Name="selectionDeviceSource" ColumnName="selectionDeviceSource" />
+          <ScalarProperty Name="weekdayWeekend" ColumnName="weekdayWeekend" />
+          <ScalarProperty Name="sgId" ColumnName="sgId" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="analysisPersonName" ColumnName="analysisPersonName" />
+          <ScalarProperty Name="analysisPersonId" ColumnName="analysisPersonId" />
+          <ScalarProperty Name="samplePersonName" ColumnName="samplePersonName" />
+          <ScalarProperty Name="samplePersonId" ColumnName="samplePersonId" />
+          <ScalarProperty Name="salinityBot" ColumnName="salinityBot" />
+          <ScalarProperty Name="salinitySrf" ColumnName="salinitySrf" />
+          <ScalarProperty Name="oxygenBot" ColumnName="oxygenBot" />
+          <ScalarProperty Name="oxygenSrf" ColumnName="oxygenSrf" />
+          <ScalarProperty Name="temperatureBot" ColumnName="temperatureBot" />
+          <ScalarProperty Name="temperatureSrf" ColumnName="temperatureSrf" />
+          <ScalarProperty Name="thermoClineDepth" ColumnName="thermoClineDepth" />
+          <ScalarProperty Name="thermoCline" ColumnName="thermoCline" />
+          <ScalarProperty Name="waveHeigth" ColumnName="waveHeigth" />
+          <ScalarProperty Name="waveDirection" ColumnName="waveDirection" />
+          <ScalarProperty Name="currentSpeedBot" ColumnName="currentSpeedBot" />
+          <ScalarProperty Name="currentDirectionBot" ColumnName="currentDirectionBot" />
+          <ScalarProperty Name="currentSpeedSrf" ColumnName="currentSpeedSrf" />
+          <ScalarProperty Name="currentDirectionSrf" ColumnName="currentDirectionSrf" />
+          <ScalarProperty Name="windSpeed" ColumnName="windSpeed" />
+          <ScalarProperty Name="windDirection" ColumnName="windDirection" />
+          <ScalarProperty Name="bottomType" ColumnName="bottomType" />
+          <ScalarProperty Name="depthAvg" ColumnName="depthAvg" />
+          <ScalarProperty Name="gearRemark" ColumnName="gearRemark" />
+          <ScalarProperty Name="haulSpeedWat" ColumnName="haulSpeedWat" />
+          <ScalarProperty Name="haulSpeedBot" ColumnName="haulSpeedBot" />
+          <ScalarProperty Name="haulDirection" ColumnName="haulDirection" />
+          <ScalarProperty Name="depthAveGear" ColumnName="depthAveGear" />
+          <ScalarProperty Name="lengthBeam" ColumnName="lengthBeam" />
+          <ScalarProperty Name="numberHooks" ColumnName="numberHooks" />
+          <ScalarProperty Name="widthRopeFlyer" ColumnName="widthRopeFlyer" />
+          <ScalarProperty Name="lengthRopeFlyer" ColumnName="lengthRopeFlyer" />
+          <ScalarProperty Name="lengthNets" ColumnName="lengthNets" />
+          <ScalarProperty Name="heightNets" ColumnName="heightNets" />
+          <ScalarProperty Name="lostNets" ColumnName="lostNets" />
+          <ScalarProperty Name="numNets" ColumnName="numNets" />
+          <ScalarProperty Name="wireLength" ColumnName="wireLength" />
+          <ScalarProperty Name="wingSpread" ColumnName="wingSpread" />
+          <ScalarProperty Name="numberTrawls" ColumnName="numberTrawls" />
+          <ScalarProperty Name="otterBoardDist" ColumnName="otterBoardDist" />
+          <ScalarProperty Name="netOpening" ColumnName="netOpening" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="selectionDevice" ColumnName="selectionDevice" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="speciesRegistration" ColumnName="speciesRegistration" />
+          <ScalarProperty Name="catchRegistration" ColumnName="catchRegistration" />
+          <ScalarProperty Name="targetSpecies3" ColumnName="targetSpecies3" />
+          <ScalarProperty Name="targetSpecies2" ColumnName="targetSpecies2" />
+          <ScalarProperty Name="targetSpecies1" ColumnName="targetSpecies1" />
+          <ScalarProperty Name="courseTrack" ColumnName="courseTrack" />
+          <ScalarProperty Name="distanceBottom" ColumnName="distanceBottom" />
+          <ScalarProperty Name="distancePositions" ColumnName="distancePositions" />
+          <ScalarProperty Name="statisticalRectangleEnd" ColumnName="statisticalRectangleEnd" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuAreaEnd" ColumnName="dfuAreaEnd" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="lonPosEndDec" ColumnName="lonPosEndDec" />
+          <ScalarProperty Name="latPosEndDec" ColumnName="latPosEndDec" />
+          <ScalarProperty Name="lonPosStartDec" ColumnName="lonPosStartDec" />
+          <ScalarProperty Name="latPosStartDec" ColumnName="latPosStartDec" />
+          <ScalarProperty Name="lonPosEndText" ColumnName="lonPosEndText" />
+          <ScalarProperty Name="latPosEndText" ColumnName="latPosEndText" />
+          <ScalarProperty Name="lonPosStartText" ColumnName="lonPosStartText" />
+          <ScalarProperty Name="latPosStartText" ColumnName="latPosStartText" />
+          <ScalarProperty Name="fishingtime" ColumnName="fishingtime" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="dateGearEnd" ColumnName="dateGearEnd" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="haulType" ColumnName="haulType" />
+          <ScalarProperty Name="hydroStnRef" ColumnName="hydroStnRef" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="labJournalNum" ColumnName="labJournalNum" />
+          <ScalarProperty Name="stationName" ColumnName="stationName" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpeciesLists">
+      <EntityTypeMapping TypeName="FishLineDWModel.SpeciesList">
+        <MappingFragment StoreEntitySet="SpeciesList">
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="applicationCode" ColumnName="applicationCode" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="wemTotalWeight" ColumnName="wemTotalWeight" />
+          <ScalarProperty Name="totalWeight" ColumnName="totalWeight" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="weightNonRep" ColumnName="weightNonRep" />
+          <ScalarProperty Name="bmsNonRep" ColumnName="bmsNonRep" />
+          <ScalarProperty Name="wemSpeciesList" ColumnName="wemSpeciesList" />
+          <ScalarProperty Name="raisingFactor" ColumnName="raisingFactor" />
+          <ScalarProperty Name="treatmentFactor" ColumnName="treatmentFactor" />
+          <ScalarProperty Name="landingWeightStep1" ColumnName="landingWeightStep1" />
+          <ScalarProperty Name="landingWeightStep0" ColumnName="landingWeightStep0" />
+          <ScalarProperty Name="weightStep3" ColumnName="weightStep3" />
+          <ScalarProperty Name="weightStep2" ColumnName="weightStep2" />
+          <ScalarProperty Name="weightStep1" ColumnName="weightStep1" />
+          <ScalarProperty Name="weightStep0" ColumnName="weightStep0" />
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="speciesListId" ColumnName="speciesListId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpeciesListRaiseds">
+      <EntityTypeMapping TypeName="FishLineDWModel.SpeciesListRaised">
+        <MappingFragment StoreEntitySet="SpeciesListRaised">
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="numberTotal" ColumnName="numberTotal" />
+          <ScalarProperty Name="numberSubSample" ColumnName="numberSubSample" />
+          <ScalarProperty Name="weightTotal" ColumnName="weightTotal" />
+          <ScalarProperty Name="weightSubSample" ColumnName="weightSubSample" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="quarterGearStart" ColumnName="quarterGearStart" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="speciesListRaisedId" ColumnName="speciesListRaisedId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trips">
+      <EntityTypeMapping TypeName="FishLineDWModel.Trip">
+        <MappingFragment StoreEntitySet="Trip">
+          <ScalarProperty Name="sgTripId" ColumnName="sgTripId" />
+          <ScalarProperty Name="respTot" ColumnName="respTot" />
+          <ScalarProperty Name="respNo" ColumnName="respNo" />
+          <ScalarProperty Name="respYes" ColumnName="respYes" />
+          <ScalarProperty Name="numberInPlace" ColumnName="numberInPlace" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="placeCode" ColumnName="placeCode" />
+          <ScalarProperty Name="placeName" ColumnName="placeName" />
+          <ScalarProperty Name="tripNum" ColumnName="tripNum" />
+          <ScalarProperty Name="nationalityHarbourSample" ColumnName="nationalityHarbourSample" />
+          <ScalarProperty Name="harbourSample" ColumnName="harbourSample" />
+          <ScalarProperty Name="dateSample" ColumnName="dateSample" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="dataHandlerName" ColumnName="dataHandlerName" />
+          <ScalarProperty Name="dataHandlerId" ColumnName="dataHandlerId" />
+          <ScalarProperty Name="tripLeaderName" ColumnName="tripLeaderName" />
+          <ScalarProperty Name="tripLeaderId" ColumnName="tripLeaderId" />
+          <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="nationalityHarbourLanding" ColumnName="nationalityHarbourLanding" />
+          <ScalarProperty Name="harbourLanding" ColumnName="harbourLanding" />
+          <ScalarProperty Name="platform2" ColumnName="platform2" />
+          <ScalarProperty Name="nationalityPlatform2" ColumnName="nationalityPlatform2" />
+          <ScalarProperty Name="fDFVesselPlatform1" ColumnName="fDFVesselPlatform1" />
+          <ScalarProperty Name="nationalityPlatform1" ColumnName="nationalityPlatform1" />
+          <ScalarProperty Name="platform1" ColumnName="platform1" />
+          <ScalarProperty Name="fisheryType" ColumnName="fisheryType" />
+          <ScalarProperty Name="samplingMethod" ColumnName="samplingMethod" />
+          <ScalarProperty Name="samplingType" ColumnName="samplingType" />
+          <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+          <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="logBldNr" ColumnName="logBldNr" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="trip1" ColumnName="trip" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="FishLineDWModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="logTime" ColumnName="logTime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="recordTypeId" ColumnName="recordTypeId" />
+          <ScalarProperty Name="recordType" ColumnName="recordType" />
+          <ScalarProperty Name="origin" ColumnName="origin" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="errorType" ColumnName="errorType" />
+          <ScalarProperty Name="transferErrorId" ColumnName="transferErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CruisesToTransfers">
+      <EntityTypeMapping TypeName="FishLineDWModel.CruisesToTransfer">
+        <MappingFragment StoreEntitySet="CruisesToTransfer">
+          <ScalarProperty Name="addedDateTime" ColumnName="addedDateTime" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="cruisesToTransferId" ColumnName="cruisesToTransferId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_AnimalPictureReference">
+      <EntityTypeMapping TypeName="FishLineDWModel.R_AnimalPictureReference">
+        <MappingFragment StoreEntitySet="R_AnimalPictureReference">
+          <ScalarProperty Name="pictureReference" ColumnName="pictureReference" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="R_animalPictureReferenceId" ColumnName="R_animalPictureReferenceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Species">
+      <EntityTypeMapping TypeName="FishLineDWModel.L_Species">
+        <MappingFragment StoreEntitySet="L_Species">
+          <ScalarProperty Name="speciesFAO" ColumnName="speciesFAO" />
+          <ScalarProperty Name="speciesNES" ColumnName="speciesNES" />
+          <ScalarProperty Name="weightMax" ColumnName="weightMax" />
+          <ScalarProperty Name="weightMin" ColumnName="weightMin" />
+          <ScalarProperty Name="ageMax" ColumnName="ageMax" />
+          <ScalarProperty Name="ageMin" ColumnName="ageMin" />
+          <ScalarProperty Name="lengthMax" ColumnName="lengthMax" />
+          <ScalarProperty Name="lengthMin" ColumnName="lengthMin" />
+          <ScalarProperty Name="aphiaID" ColumnName="aphiaID" />
+          <ScalarProperty Name="tsn" ColumnName="tsn" />
+          <ScalarProperty Name="dfuFisk_Code" ColumnName="dfuFisk_Code" />
+          <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
+          <ScalarProperty Name="icesCode" ColumnName="icesCode" />
+          <ScalarProperty Name="latin" ColumnName="latin" />
+          <ScalarProperty Name="nodc" ColumnName="nodc" />
+          <ScalarProperty Name="ukName" ColumnName="ukName" />
+          <ScalarProperty Name="dkName" ColumnName="dkName" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="L_speciesId" ColumnName="L_speciesId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

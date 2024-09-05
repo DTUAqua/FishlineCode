@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.WarningAsterix"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" ToolTipService.ShowDuration="60000"  >
+    <Border VerticalAlignment="Center" Background="Transparent">
+        <TextBlock Text="*" FontSize="14" FontWeight="Bold" Margin="1,5,-9,0" Foreground="Gray" />
+    </Border>
+</UserControl>

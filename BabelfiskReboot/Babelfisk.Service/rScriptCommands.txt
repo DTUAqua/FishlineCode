@@ -1,0 +1,12 @@
+﻿
+//Generate pdf report from Rmd script
+Rscript -e "Sys.setenv(RSTUDIO_PANDOC='C:/Program Files/RStudio/bin/pandoc'); rmarkdown::render('FL_R_extractdata_v2.Rmd', output_file = 'testing.pdf')"
+
+//Generate pdf report from Rmd script with encoding to native ('UTF-8' can also be used)
+C:\Program Files\R\R-3.2.0\bin>Rscript -e "Sys.setenv(RSTUDIO_PANDOC='C:/Program Files/RStudio/bin/pandoc'); rmarkdown::render('FL_R_extractdata_v3.Rmd', encoding = 'native.enc', output_file = 'testing.pdf')"
+
+//Generate word document from Rmd script.
+C:\Program Files\R\R-3.2.0\bin>Rscript -e "Sys.setenv(RSTUDIO_PANDOC='C:/Program Files/RStudio/bin/pandoc'); rmarkdown::render('FL_R_extractdata_v3.Rmd', encoding = 'WINDOWS-1252', 'word_document', output_file = 'testing.docx')"
+
+
+Probably use utf-8 as encoding, since it seems to work with æ, ø and å.

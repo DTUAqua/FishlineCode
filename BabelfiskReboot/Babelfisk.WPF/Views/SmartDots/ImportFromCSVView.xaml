@@ -1,0 +1,1199 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.SmartDots.ImportFromCSVView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:local="clr-namespace:Babelfisk.WPF.Views.SmartDots"
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             xmlns:dGrid="clr-namespace:Babelfisk.WPF.Infrastructure.DataGrid"
+             xmlns:inf="clr-namespace:Babelfisk.WPF.Infrastructure"
+             xmlns:inp="clr-namespace:Babelfisk.WPF.Views.Input"
+             xmlns:cnv="clr-namespace:Babelfisk.WPF.Converters"
+             xmlns:acnv="clr-namespace:Anchor.Core.Converters;assembly=Anchor.Core"
+             xmlns:aBeh="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+             xmlns:aCtrlComp="clr-namespace:Anchor.Core.Comparers;assembly=Anchor.Core"
+             mc:Ignorable="d" x:Name="uc"
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GeneralStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/HeaderButtons.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Anchor.Core.Controls;component/Themes/FlatStyleComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Anchor.Core.Controls;component/Themes/DropDownListBox.xaml" />
+
+                <ResourceDictionary>
+                    <cnv:DataGridColumnMapToVisibilityConverter x:Key="cColumnMapToVisibility" />
+                    <acnv:IndexFromCollectionConverter x:Key="cIndexInCollection" />
+
+                    <LinearGradientBrush x:Key="InputHeaderBackgroundRev" EndPoint="0,0.5" StartPoint="1,0.5">
+                        <GradientStop Color="#FF202020" Offset="0"/>
+                        <GradientStop Color="#FF414141" Offset="1"/>
+                    </LinearGradientBrush>
+                    
+                    <inf:BindingProxy x:Key="proxyContext" Data="{Binding Path=DataContext, ElementName=uc}" />
+
+                    <LinearGradientBrush x:Key="InputHeaderBackgroundRevRev" EndPoint="0,0.5" StartPoint="1,0.5">
+                        <GradientStop Color="#FF202020" Offset="1"/>
+                        <GradientStop Color="#FF414141" Offset="0"/>
+                    </LinearGradientBrush>
+
+                    <Style x:Key="panelButton" TargetType="{x:Type Button}">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="BorderBrush" Value="#6A6969" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="bdr" SnapsToDevicePixels="True" Background="#99454942" KeyboardNavigation.IsTabStop="False" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
+                                        <Grid Margin="{TemplateBinding Padding}" x:Name="btnGrid" KeyboardNavigation.IsTabStop="False" >
+                                            <ContentControl x:Name="content" KeyboardNavigation.IsTabStop="False" Content="{TemplateBinding Content}" Foreground="White" >
+                                            </ContentControl>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Button.IsEnabled" Value="False">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.4" />
+                                        </Trigger>
+                                        <Trigger Property="Button.IsMouseOver" Value="True">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.8" />
+                                        </Trigger>
+                                        <Trigger Property="Button.IsPressed" Value="True">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.5" ></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    
+                    <SolidColorBrush x:Key="GridBorderBrush" Color="LightGray" />
+
+                    <Style x:Key="tvGridCellItem" TargetType="{x:Type TextBlock}">
+                        <Setter Property="TextAlignment" Value="Left" />
+                        <Setter Property="Margin" Value="6,0" />
+                    </Style>
+
+                    <Style x:Key="cellBorderStyle" TargetType="{x:Type Border}">
+                        <Setter Property="BorderBrush" Value="{StaticResource GridBorderBrush}" />
+                        <Setter Property="BorderThickness" Value="1,1,1,0" />
+                        <Setter Property="MaxHeight" Value="32" />
+                        <Setter Property="MinHeight" Value="21" />
+                        <Setter Property="Background" Value="White" />
+                    </Style>
+
+                    <DataTemplate x:Key="GridColumnHeaderDefault" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" 
+                                Height="27" Background="{StaticResource GridBorderBrush}"
+                                SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" Visibility="Collapsed" BorderBrush="{Binding Path=UpperHeaderBorderBrush}" Margin="0,0,0,-1" Panel.ZIndex="10" Background="WhiteSmoke" BorderThickness="{Binding Path=UpperHeaderBorderThickness}" SnapsToDevicePixels="True">
+                                    <TextBlock Text="{Binding Path=UpperHeader}" Margin="4,0,4,0" VerticalAlignment="Center" Foreground="{Binding Path=UpperHeaderForeground}"  />
+                                </Border>
+
+                                <Border Grid.Row="1" Visibility="Collapsed" Height="1" Background="WhiteSmoke" />
+
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" Background="WhiteSmoke" ToolTip="{Binding Path=LowerHeaderToolTip}" Panel.ZIndex="5" SnapsToDevicePixels="True" >
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="{Binding Path=LowerHeaderHorizontalAlignment}" FontWeight="DemiBold" Margin="4,0,4,0" Text="{Binding Path=LowerHeader}" Foreground="#494949" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="GridColumnHeaderCheckBox" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" 
+                                Height="27" Background="WhiteSmoke"
+                                SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" Visibility="Collapsed" BorderBrush="{Binding Path=UpperHeaderBorderBrush}" Background="WhiteSmoke" BorderThickness="{Binding Path=UpperHeaderBorderThickness}" SnapsToDevicePixels="True">
+ 
+                                </Border>
+
+                                <Border Grid.Row="1" Visibility="Collapsed" Height="1" Background="{StaticResource GridBorderBrush}" SnapsToDevicePixels="True" />
+
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" Background="WhiteSmoke" ToolTip="{Binding Path=LowerHeaderToolTip}" Panel.ZIndex="5" SnapsToDevicePixels="True" >
+                                    <CheckBox Style="{StaticResource sCheckBoxDataGrid}"  IsChecked="{Binding Path=DataContext.IsAllSelectedBoxValue, ElementName=uc}" PreviewMouseDown="selectAllCheckBox_PreviewMouseDown"  PreviewMouseUp="selectAllCheckBox_PreviewMouseUp" IsThreeState="True" KeyboardNavigation.IsTabStop="False" KeyboardNavigation.TabNavigation="None" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"></CheckBox>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="GridColumnHeaderImages" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" 
+                                Height="27" Background="{StaticResource GridBorderBrush}"
+                                SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" Visibility="Collapsed" BorderBrush="{Binding Path=UpperHeaderBorderBrush}" Margin="0,0,0,-1" Panel.ZIndex="10" Background="WhiteSmoke" BorderThickness="{Binding Path=UpperHeaderBorderThickness}" SnapsToDevicePixels="True">
+                                    <TextBlock Text="{Binding Path=UpperHeader}" Margin="4,0,4,0" VerticalAlignment="Center" Foreground="{Binding Path=UpperHeaderForeground}"  />
+                                </Border>
+
+                                <Border Grid.Row="1" Visibility="Collapsed" Height="1" Background="WhiteSmoke" />
+
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" Background="WhiteSmoke" ToolTip="{Binding Path=LowerHeaderToolTip}" Panel.ZIndex="5" SnapsToDevicePixels="True" >
+                                    <Image  Margin="1" Width="17" UseLayoutRounding="False" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Image.ico" ></Image>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Border Background="White">
+        <DockPanel>
+            <!-- Top bar -->
+            <Border DockPanel.Dock="Top" BorderBrush="LightGray" BorderThickness="0,0,0,1" Background="{StaticResource InputHeaderBackgroundRev}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  SnapsToDevicePixels="True">
+                <DockPanel Margin="0">
+
+
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" ToolTip="{lan:Translate Section=ImportFromCSVView, Key=SearchOnColumns, UIDesignerValue='Search on columns: animal id, row number, catch date, comment.'}" Margin="8">
+                        <TextBlock Text="{lan:Translate Section=Common, Key=Search, UIDesignerValue='Søg'}" FontSize="12" LineHeight="12" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="0,0,7,0" />
+                        <aCtrls:SubmitTextBox Width="150" VerticalContentAlignment="Center" Padding="2,3" Text="{Binding Path=SearchString, Mode=OneWayToSource}" IsClearTextButtonEnabled="True" ClearButtonToolTip="{lan:Translate Section=Common, Key=ClearText, UIDesignerValue='Clear the text'}"  />
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="8">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="10" Height="10" Fill="#F4FFABAB"></Rectangle>
+                            <TextBlock Text="{lan:Translate Section=ImportFromCSVView, Key=SampleHasErrors, UIDesignerValue=' - sample  has errors. Cannot be imported.'}" FontSize="12" LineHeight="12" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="0,0,7,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                            <Rectangle Width="10" Height="10" Fill="#E9C6EDFF"></Rectangle>
+                            <TextBlock Text="{lan:Translate Section=ImportFromCSVView, Key=SampleHasWarnings, UIDesignerValue=' - sample  has warnings. Can be imported, missing some of the values.'}" FontSize="12" LineHeight="12" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="0,0,7,0" />
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                    <Border HorizontalAlignment="Center">
+                        <TextBlock Text="{lan:Translate Section=SDSelectAnimalsView, Key=InfoImportedRows, UIDesignerValue='Semi-transparant animal rows have already been imported'}" VerticalAlignment="Center" Foreground="#ADADAD" 
+                                               ToolTip="{lan:Translate Section=ImportFromCSVView, Key=InfoImportedRows, UIDesignerValue='Semi-transparant sample rows have already been imported'}"
+                                               TextAlignment="Center" Margin="10,0" TextWrapping="Wrap" MaxHeight="30" TextTrimming="CharacterEllipsis" />
+                    </Border>
+
+                </DockPanel>
+            </Border>
+
+            <!-- Bottom bar - to be populated -->
+            <Border DockPanel.Dock="Bottom" BorderBrush="LightGray" BorderThickness="0,1,0,0" 
+                    Background="{StaticResource InputHeaderBackgroundRev}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  SnapsToDevicePixels="True">
+                <DockPanel Margin="6,6,8,6">
+
+                    <Button DockPanel.Dock="Right" Padding="25,3" Margin="8,3,0,3"
+                            Style="{StaticResource ResourceKey=btnStandard}"
+                            FontSize="14" Content="{lan:Translate Section=Common, Key=Cancel, UIDesignerValue='Cancel'}"
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}"
+                            Command="{Binding Path=CloseCommand}" >
+                        <!-- IsEnabled="{Binding Path=IsDirty}" -->
+                    </Button>
+
+                    
+                    <!-- Save button -->
+                    <Button DockPanel.Dock="Right" Padding="20,3" 
+                            Style="{StaticResource ResourceKey=btnStandard}"
+                            FontSize="14" Content="{lan:Translate Section=ImportFromCSVView, Key=ImportRowsButton, UIDesignerValue='Add'}"
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}"
+                            Command="{Binding Path=SaveCommand}" >
+                            <!-- IsEnabled="{Binding Path=IsDirty}" -->
+                    </Button>
+
+                    <Border DockPanel.Dock="Left">
+                        <Grid Margin="0,-1,0,0" DockPanel.Dock="Left" VerticalAlignment="Center" TextBlock.FontSize="10" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="12" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Text="{lan:Translate Section=ImportFromCSVView, Key=SelectedSamples, UIDesignerValue='Selected samples:'}" VerticalAlignment="Top"  />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Text="{Binding Path=TotalSelectedSamples}" VerticalAlignment="Center"  />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Text="{lan:Translate Section=SDSampleView, Key=VisibleSamples, UIDesignerValue='Visible samples:'}" VerticalAlignment="Center"  />
+                            <TextBlock Grid.Row="1" Grid.Column="1"  Margin="5,0,0,0" Text="{Binding Path=TotalVisibleSamples}" VerticalAlignment="Center"  />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" Text="{lan:Translate Section=SDSampleView, Key=TotalSamples, UIDesignerValue='Total samples:'}" VerticalAlignment="Center"  />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="5,0,0,0" Text="{Binding Path=TotalSamples}" VerticalAlignment="Center" />
+                        </Grid>
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=HasSampleItems}" Value="True" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+
+
+                    <Grid HorizontalAlignment="Center"  Visibility="{Binding Path=HasSampleItems, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}">
+                        <Border  Margin="10,3" BorderBrush="#777777" BorderThickness="1" >
+                            <DockPanel Margin="0,0">
+                                <Border DockPanel.Dock="Left" ToolTip="{lan:Translate Section=SDEventsView, Key=InfoSorting, UIDesignerValue='Use the SHIFT key to sort by mutiple columns.'}" BorderBrush="LightGray" BorderThickness="0,0,1,0" Background="#D1FFFFFF">
+                                    <TextBlock Text="{lan:Translate Section=Common, Key=SortBy, UIDesignerValue='Sort by:'}"   Margin="8,0" FontSize="12" LineHeight="13" LineStackingStrategy="BlockLineHeight" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Background="#489A9A9A" ToolTip="{Binding Path=SortByColumnNamesString, ElementName=uc, UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" 
+                                           FontSize="12" LineHeight="13" LineStackingStrategy="BlockLineHeight"  
+                                           MaxHeight="20" Text="{Binding Path=SortByColumnNamesString, ElementName=uc, UpdateSourceTrigger=PropertyChanged}"
+                                   Margin="8,0,8,0" />
+                                </Border>
+
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                    
+                    
+ 
+
+                </DockPanel>
+            </Border>
+
+            
+
+            <!-- No samples added message -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="150" MinHeight="40" />
+                </Grid.RowDefinitions>
+                <DockPanel x:Name="dpGrid" Grid.Row="0" >
+                    <Border BorderThickness="1" Panel.ZIndex="5" SnapsToDevicePixels="True"
+                                KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+
+                        <aCtrls:AncDataGrid x:Name="dataGrid" ItemsSource="{Binding Path=FilteredSDSampleItems}"
+                                            Style="{StaticResource defaultDataGridLightStyle}"
+                                CanUserAddRows="False" IsSynchronizedWithCurrentItem="False" Background="White"
+                                AutoGenerateColumns="False" RowHeaderWidth="0"
+                                SelectionMode="Extended" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True" FooterVisibility="Collapsed"
+                                CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="Transparent"
+                                VerticalGridLinesBrush="LightGray" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" RowDetailsVisibilityMode="Collapsed"
+                                VirtualizingStackPanel.VirtualizationMode="Recycling" 
+                                Tag="{Binding Path=DataContext, ElementName=uc}"
+                                SelectionChanged="dataGrid_SelectionChanged"
+                                CellFooterVisibility="Collapsed" 
+                                CellFooterBorderStyle="{StaticResource cellBorderStyle}"
+                                ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnLightHeaderStyle}" >
+                            
+                            <aCtrls:AncDataGrid.ContextMenu>
+                                <ContextMenu DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={x:Static RelativeSource.Self}}" 
+                                         Tag="{Binding Path=PlacementTarget.Tag, RelativeSource={x:Static RelativeSource.Self}}">
+                                    <MenuItem Header="Tilføj række" Command="{Binding Path=Tag.AddRowCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Style="{StaticResource defaultMenuItem}" >
+                                        <MenuItem.Icon>
+                                            <Image Width="15" Height="15" Margin="3,1,3,1" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Add.ico" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </aCtrls:AncDataGrid.ContextMenu>
+                            <aCtrls:AncDataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource ResourceKey=OverColor2}" Opacity="0.6"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                                <SolidColorBrush x:Key="disabledField" Color="#FFF0F0F0" />
+
+                                <Style x:Key="lblDisplay" TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=ValidateElementRedBorder}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Padding" Value="2,0,2,0" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="False">
+                                            <Setter Property="ToolTip" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="StandardCellStyle" TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Border x:Name="BorderOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                                    <Border x:Name="BorderInner" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}"  Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter x:Name="content"  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                    </Border>
+                                                </Border>
+
+                                                <ControlTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=IsAdded}" Value="True">
+                                                        <Setter Property="Opacity" TargetName="BorderInner" Value="0.4"></Setter>
+                                                    </DataTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="BorderBrush" Value="LightGray"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                </Style>
+
+                                <Style x:Key="NoTabStopCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                    <Setter Property="BorderBrush" Value="LightGray"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    <Setter Property="Padding" Value="1,0,1,1"/>
+                                </Style>
+
+                                <Style x:Key="DisabledCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                    <Setter Property="Background" Value="#7FE6E6E6" />
+                                    <Setter Property="BorderBrush" Value="#99E6E6E6" />
+                                </Style>
+
+                                <DataTemplate x:Key="SumFooterTemplate">
+                                    <Border ToolTip="Totalvægt (sum)" Background="Transparent">
+                                        <TextBlock Text="{Binding}" Margin="3,1,3,1" HorizontalAlignment="Left" VerticalAlignment="Top" LineStackingStrategy="BlockLineHeight"  FontSize="11" LineHeight="12" />
+                                    </Border>
+                                </DataTemplate>
+                                <DataTemplate x:Key="SumMultiFooterTemplate">
+                                    <Border Background="Transparent">
+                                        <StackPanel Margin="3,1,3,1" Orientation="Vertical" VerticalAlignment="Top" >
+                                            <TextBlock Text="{Binding Path=Item1, StringFormat='{}{0:0.####}'}" ToolTip="Totalvægt (sum)" LineStackingStrategy="BlockLineHeight" FontSize="11" LineHeight="12" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                            <Rectangle Height="1" SnapsToDevicePixels="True" Stroke="Gray" StrokeThickness="0,1,0,0" />
+                                            <TextBlock Text="{Binding Path=Item2, StringFormat='{}{0:0.####}'}" ToolTip="Totalvægt (UR) (sum)" Margin="0,0,0,0" LineStackingStrategy="BlockLineHeight"  FontSize="11" LineHeight="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </aCtrls:AncDataGrid.Resources>
+                            <aCtrls:AncDataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <EventSetter Event="KeyDown" Handler="KeyDownHandler" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="MinHeight" Value="30" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Tag" Value="{Binding Path=DataContext, ElementName=uc}" />
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFFCF4" Offset="0.0"/>
+                                                        <GradientStop Color="#FFFCFAE7" Offset="1.0"/>
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Path=HasErrors}" Value="True">
+                                            <Setter Property="Background" Value="#25FFABAB"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=HasWarnings}" Value="True">
+                                            <Setter Property="Background" Value="#73C6EDFF"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                            </aCtrls:AncDataGrid.RowStyle>
+                            <aCtrls:AncDataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                                    <EventSetter Event="PreviewKeyDown" Handler="PreviewKeyDown_Handler" />
+                                    <EventSetter Event="PreviewKeyUp" Handler="PreviewKeyUp_Handler" />
+                                </Style>
+                            </aCtrls:AncDataGrid.CellStyle>
+
+                            <aCtrls:AncDataGrid.Columns>
+
+                                <!-- CheckBox -->
+                                <aCtrls:AncDataGridTemplateColumn SortMemberPath="IsSelected" CanUserSort="False" CanUserResize="False" CellStyle="{StaticResource StandardCellStyle}"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderCheckBox}" Width="28" MinWidth="28">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Center" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=HasErrors, Converter={StaticResource cBoolToBoolNegation}}" MouseDown="CheckBox_MouseDown" PreviewMouseDown="CheckBox_PreviewMouseDown" IsThreeState="false" Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                                                <CheckBox.Style>
+                                                    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource sCheckBoxDataGrid}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsEnabled" Value="False">
+                                                                <Setter Property="Opacity" Value="0.2" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </CheckBox.Style>
+                                            </CheckBox>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Warning butto -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource NoTabStopCellStyle}"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" MinWidth="30" Width="30" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeader="!" LowerHeaderHorizontalAlignment="Center"  />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Command="{Binding Path=DataContext.SortErrorWarningMessagesCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding .}" SnapsToDevicePixels="True" Margin="2"
+                                                      BorderBrush="LightGray" Background="#66FFFFFF" Visibility="{Binding Path=HasErrorsOrWarnings, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}">
+                                                <Image Opacity="0.9" Margin="0" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                                                    <Image.Style>
+                                                        <Style TargetType="{x:Type Image}">
+                                                            <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Warning.ico" />
+                                                            <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Warning, UIDesignerValue='Warning'}" />
+                                                            <Style.Triggers>
+
+                                                                <DataTrigger Binding="{Binding Path=HasDuplicates}" Value="True">
+                                                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Duplicate.ico" />
+                                                                    <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Warning, UIDesignerValue='Warning'}" />
+                                                                </DataTrigger>
+
+                                                                <DataTrigger Binding="{Binding Path=HasWarnings}" Value="True">
+                                                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Warning.ico" />
+                                                                    <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Warning, UIDesignerValue='Warning'}" />
+                                                                </DataTrigger>
+
+
+                                                                <DataTrigger Binding="{Binding Path=HasErrors}" Value="True">
+                                                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Error.ico" />
+                                                                    <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Error, UIDesignerValue='Error'}" />
+                                                                </DataTrigger>
+
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Row number -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="CSVRowNumber" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}"  Width="50" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=ImportFromCSVView, Key=RowNumber, UIDesignerValue='Row number'}" LowerHeaderToolTip="{lan:Translate Section=ImportFromCSVView, Key=RowNumber, UIDesignerValue='Row number'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=CSVRowNumber, Mode=OneWay}"
+                                                       Style="{StaticResource tvGridCellItem}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" ></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                
+                                <!-- File count (Images) -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" CanUserResize="False" SortMemberPath="Sample.SDFile.Count" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderImages}" Width="30" MinWidth="30">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Center" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Images, UIDesignerValue='Images'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border  Background="Transparent" DataContext="{Binding}" ToolTipService.ShowDuration="30000" MouseLeftButtonDown="ImagesBorder_MouseLeftButtonDown" >
+                                                <Border.ToolTip>
+                                                    <ToolTip DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}" Background="White" Padding="0" MaxHeight="700" MaxWidth="800">
+                                                        <local:OtolithImagesPreview SDFiles="{Binding Path=Sample.SDFile, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </ToolTip>
+                                                </Border.ToolTip>
+                                                <TextBlock Text="{Binding Path=Sample.SDFile.Count}" DataContext="{Binding}" Background="Transparent" ToolTipService.ShowDuration="30000" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                
+                                <!-- Animal Id -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.animalId" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}"  Width="80" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=ImportFromCSVView, Key=Id, UIDesignerValue='Sample Id'}" LowerHeaderToolTip="{lan:Translate Section=ImportFromCSVView, Key=Id, UIDesignerValue='Sample Id'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.animalId, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- From fishline -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.readOnly" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}"  Width="90" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=ImportFromCSVView, Key=FromFishline, UIDesignerValue='From Fishline'}" LowerHeaderToolTip="{lan:Translate Section=ImportFromCSVView, Key=FromFishline, UIDesignerValue='From Fishline'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center"   >
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource tvGridCellItem}">
+                                                        <Setter Property="Text" Value="{lan:Translate Section=Common, Key=No, UIDesignerValue='No'}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Sample.readOnly}" Value="True" >
+                                                                <Setter Property="Text" Value="{lan:Translate Section=Common, Key=Yes, UIDesignerValue='Yes'}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+
+                                <!-- Cruise -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.cruise" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="75" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSelectAnimalsView, Key=Cruise, UIDesignerValue='Cruise'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=Cruise, UIDesignerValue='Cruise'}"  />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.cruise, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                                
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Trip -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.trip" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="75" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSelectAnimalsView, Key=Trip, UIDesignerValue='Trip'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=Trip, UIDesignerValue='Trip'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.trip, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Station -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.station" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="75">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSelectAnimalsView, Key=Station, UIDesignerValue='Station'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=Station, UIDesignerValue='Station'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.station, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Catch Date -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.catchDate" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=CatchDate, UIDesignerValue='Catch date'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=CatchDate, UIDesignerValue='Catch date'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.catchDate, StringFormat='{}{0:dd-MM-yyyy}'}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Content="{Binding Path=Sample.catchDate}" ContentStringFormat="{}{0:dd-MM-yyyy HH:mm:ss}" />
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- DFU Area-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.DFUArea"   HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="60">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=Area, UIDesignerValue='Area'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=DFUAre, UIDesignerValue='DFU Are'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.DFUArea, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock> 
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Statistical Rectangle-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.statisticalRectangle" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="80">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=StatisticalRectangleShort, UIDesignerValue='Stat. Rec.'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=StatisticalRectangle, UIDesignerValue='Statistical Rectangle'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.statisticalRectangle, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Species-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.speciesCode" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="80" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=Species, UIDesignerValue='Species'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=Species, UIDesignerValue='Stock'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.speciesCode, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Stock-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.L_Stock.stockCode" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="80" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=Stock, UIDesignerValue='Stock'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=Stock, UIDesignerValue='Stock'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.L_Stock.stockCode, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Fish length -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.fishLengthMM"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=ColumnLength, UIDesignerValue='Length'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=ColumnLength, UIDesignerValue='Length'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.fishLengthMM, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+
+                                </aCtrls:AncDataGridTemplateColumn>
+                                <!-- Fish Weight -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.fishWeightG"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="65" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=ColumnWeight, UIDesignerValue='Weight'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=ColumnWeight, UIDesignerValue='Weight'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.fishWeightG, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Sex Code -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.sexCode" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="50" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=Sex, UIDesignerValue='Sex'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=SexCode, UIDesignerValue='Sex Code'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.sexCode, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Maturity -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.Maturity.UIDisplay"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="60" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=MaturityID, UIDesignerValue='Maturity'}" LowerHeader="{lan:Translate Section=SDSampleView, Key=MatId, UIDesignerValue='Mat.'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.Maturity.UIDisplay, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                   
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Otolith Reading Remark-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.L_OtolithReadingRemark.otolithReadingRemark"   HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="60" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSelectAnimalsView, Key=OtolithReadingRemarkShort, UIDesignerValue='Otolith'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=OtolithReadingRemark, UIDesignerValue='Otolith reading remark'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.L_OtolithReadingRemark.otolithReadingRemark, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Preparation Method -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.L_SDPreparationMethod.preparationMethod"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="50">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=PreparationMethodShort, UIDesignerValue='Prep.'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=PreparationMethod, UIDesignerValue='Preparation Method'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.L_SDPreparationMethod.preparationMethod, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Light Type -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.L_SDLightType.lightType"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="50">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=LightTypeShort, UIDesignerValue='Light'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=LightType, UIDesignerValue='Light Type'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.L_SDLightType.lightType, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Otolith Description-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.L_SDOtolithDescription.otolithDescription"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="60" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=OtolithDescriptionShort, UIDesignerValue='Otolith D.'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=OtolithDescription, UIDesignerValue='Otolith Description'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.L_SDOtolithDescription.otolithDescription, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Edge Structure-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.edgeStructure"   HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="60">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSelectAnimalsView, Key=EdgeStructureShort, UIDesignerValue='Edge'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=EdgeStructure, UIDesignerValue='Edge structure'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.edgeStructure, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Longitude-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.longitude"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="80">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=Common, Key=Longitude, UIDesignerValue='Longitude'}" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Longitude, UIDesignerValue='Longitude'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Sample.longitude}" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}" ToolTip="{Binding Path=Sample.longitude}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Latitude-->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.latitude"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="80">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=Common, Key=Latitude, UIDesignerValue='Latitude'}" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Latitude, UIDesignerValue='Latitude'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Sample.latitude}" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}" ToolTip="{Binding Path=Sample.latitude}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Created By -->
+                                <aCtrls:AncDataGridTemplateColumn  CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.createdByUserName"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=SDSampleView, Key=CreatedBy, UIDesignerValue='Created By'}" LowerHeaderToolTip="{lan:Translate Section=SDSampleView, Key=CreatedBy, UIDesignerValue='Created By'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.createdByUserName, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                <!-- Created Time -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.createdTime" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=Common, Key=Created, UIDesignerValue='Created'}" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Created, UIDesignerValue='Created'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.CreatedTimeLocal, StringFormat='{}{0:dd-MM-yyyy}'}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Content="{Binding Path=Sample.CreatedTimeLocal}" ContentStringFormat="{}{0:dd-MM-yyyy HH:mm:ss}" />
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                
+                                <!-- Modified Time -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.modifiedTime" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=Common, Key=Modified, UIDesignerValue='Modified'}" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Modified, UIDesignerValue='Modified'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.ModifiedTimeLocal, StringFormat='{}{0:dd-MM-yyyy}'}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Content="{Binding Path=Sample.ModifiedTimeLocal}" ContentStringFormat="{}{0:dd-MM-yyyy HH:mm:ss}" />
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                    
+                                <!-- Comments -->
+                                <aCtrls:AncDataGridTemplateColumn CellStyle="{StaticResource StandardCellStyle}" SortMemberPath="Sample.comments"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="150">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Left" LowerHeader="{lan:Translate Section=Common, Key=Comments, UIDesignerValue='Comments'}" LowerHeaderToolTip="{lan:Translate Section=Common, Key=Comments, UIDesignerValue='Comments'}"/>
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=Sample.comments, Mode=OneWay}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchString, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Style="{StaticResource tvGridCellItem}" ToolTip="{Binding Path=Sample.comments}"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+
+                                </aCtrls:AncDataGridTemplateColumn>
+
+                                
+                            </aCtrls:AncDataGrid.Columns>
+                        </aCtrls:AncDataGrid>
+
+                    </Border>
+                </DockPanel>
+
+                <Border DockPanel.Dock="Top" Visibility="{Binding Path=IsLoading, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" Margin="0,70,0,0"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" BorderBrush="LightGray" BorderThickness="1" SnapsToDevicePixels="True">
+                    <StackPanel Orientation="Vertical" Margin="15,7,15,10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="{lan:Translate Section=Common, Key=Loading, UIDesignerValue='Loading...'}" FontWeight="Medium" FontSize="14" Margin="0,0,0,4" />
+                        </StackPanel>
+                        <ProgressBar IsIndeterminate="True" Height="10" />
+                    </StackPanel>
+
+                </Border>
+
+                <GridSplitter Grid.Row="1" KeyboardNavigation.TabNavigation="None" Panel.ZIndex="1000" KeyboardNavigation.IsTabStop="False" Height="1" 
+                              Margin="0,-3" BorderThickness="0,3" BorderBrush="Transparent" Background="Transparent"  SnapsToDevicePixels="True" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
+
+                <Border x:Name="bdGrid" Grid.Row="2"  DockPanel.Dock="Bottom"  >
+                    <aCtrls:AncDataGrid x:Name="dataGridMessages" ItemsSource="{Binding Path=WarningAndErrorMessages}" 
+                        CanUserAddRows="False" IsSynchronizedWithCurrentItem="False"
+                        Width="{Binding Path=ActualWidth, ElementName=uc}" 
+                        AutoGenerateColumns="False" RowHeaderWidth="0" 
+                        Background="{StaticResource ResourceKey=GeneralBackground}"
+                        SelectionMode="Extended" SelectionUnit="FullRow" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True"
+                        CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="LightGray"
+                        VerticalGridLinesBrush="#E1E1E1" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" 
+                        RowDetailsVisibilityMode="Collapsed" ClipboardCopyMode="None"
+                        VirtualizingStackPanel.VirtualizationMode="Recycling" PreviewKeyDown="dataGridMessages_PreviewKeyDown"
+                        Tag="{Binding Path=DataContext, ElementName=uc}"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        CellFooterVisibility="Visible"
+                        ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnHeaderStyle}">
+                        <aCtrls:AncDataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Style="{StaticResource defaultMenuItem}">
+                                    <MenuItem.Icon>
+                                        <Image Width="18" Height="18" Margin="3,1,3,1" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Copy.ico" />
+                                    </MenuItem.Icon>
+                                    <MenuItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Kopier valgte rækker til udklipsholderen." />
+                                        </StackPanel>
+                                    </MenuItem.Header>
+                                </MenuItem>
+                            </ContextMenu>
+                        </aCtrls:AncDataGrid.ContextMenu>
+                        <aCtrls:AncDataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                            <SolidColorBrush x:Key="disabledField" Color="#FFC8C8C8" />
+
+                            <Style x:Key="lblDisplay" TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=ValidateElementRedBorder}">
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="3,1,3,1" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+                                <Setter Property="TextBlock.FontSize" Value="12" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Label">
+                                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="False"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="false">
+                                        <Setter Property="ToolTip" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <Style TargetType="{x:Type DataGridCell}" >
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border x:Name="Border" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0,3" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <Style x:Key="defaultHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Padding" Value="6,2,6,4" />
+                                <Setter Property="BorderBrush" Value="Gray" />
+                                <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="TextBlock.FontSize" Value="13" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True" >
+                                        <Setter Property="Background" Value="#28E0E0E0" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True" >
+                                        <Setter Property="Background" Value="#19E0E0E0" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <Style x:Key="defaultHeaderStyleNoBorder" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+
+                            <Style x:Key="centeredHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#FF414141" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderBrush" Value="#717171" />
+                            </Style>
+
+                            <Style x:Key="leftHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="Background" Value="#FF414141" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderBrush" Value="#717171" />
+                            </Style>
+
+                        </aCtrls:AncDataGrid.Resources>
+                        <aCtrls:AncDataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Setter Property="Tag" Value="{Binding Path=DataContext, ElementName=uc}" />
+                            </Style>
+                        </aCtrls:AncDataGrid.RowStyle>
+                        <aCtrls:AncDataGrid.Columns>
+                            <!-- warning icon-->
+                            <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="!" ClipboardContentBinding="{Binding Path=TypeString}" SortMemberPath="TypeString" CanUserResize="False" HeaderStyle="{StaticResource ResourceKey=centeredHeaderStyle}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Image Width="14" VerticalAlignment="Center" Margin="4,1" HorizontalAlignment="Center">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Warning.ico" />
+                                                        <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Warning, UIDesignerValue='Warning'}" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=TypeString}" Value="Error">
+                                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Error.ico" />
+                                                                <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Error, UIDesignerValue='Error'}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=TypeString}" Value="Warning">
+                                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Warning.ico" />
+                                                                <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Warning, UIDesignerValue='Warning'}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=TypeString}" Value="Duplicate">
+                                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Duplicate.ico" />
+                                                                <Setter Property="ToolTip" Value="{lan:Translate Section=ImportFromCSVView, Key=Duplicate, UIDesignerValue='Duplicate'}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </Grid>
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                            <!-- line-->
+                            <aCtrls:AncDataGridTemplateColumn Width="Auto" ClipboardContentBinding="{Binding Path=SampleItem.CSVRowNumber}" Header="{lan:Translate Section=ImportFromCSVView, Key=RowNumber, UIDesignerValue='Row number'}" SortMemberPath="SampleItem.CSVRowNumber" HeaderStyle="{StaticResource ResourceKey=leftHeaderStyle}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=SampleItem.CSVRowNumber}" Foreground="Black" Style="{StaticResource tvGridCellItem}" />
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                            <!-- animal id-->
+                            <aCtrls:AncDataGridTemplateColumn Width="auto" ClipboardContentBinding="{Binding Path=SampleItem.Sample.animalId}" Header="{lan:Translate Section=ImportFromCSVView, Key=Id, UIDesignerValue='Sample Id'}" SortMemberPath="SampleItem.Sample.animalId" HeaderStyle="{StaticResource ResourceKey=leftHeaderStyle}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=SampleItem.Sample.animalId}" Foreground="Black" Style="{StaticResource tvGridCellItem}" />
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                            <!-- Description -->
+                            <aCtrls:AncDataGridTemplateColumn Width="*" ClipboardContentBinding="{Binding Path=Message}" >
+                                <aCtrls:AncDataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Background" Value="#FF414141"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="TextBlock.FontSize" Value="13" />
+                                    </Style>
+                                </aCtrls:AncDataGridTemplateColumn.HeaderStyle>
+                                <aCtrls:AncDataGridTemplateColumn.Header >
+                                    <Grid Margin="5,0,3,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,-1,0,0"  Text="{lan:Translate Section=ImportFromCSVView, Key=Description, UIDesignerValue='Description'}" />
+
+                                        <!-- Command="{Binding Path=Data.ResetMessageCommand, Source={StaticResource proxyContext}}" --> 
+                                        <Button Grid.Column="1" x:Name="btnCopyToClipboard" 
+                                                Margin="3,3,0,3"  Height="23" Style="{StaticResource panelButton}" BorderBrush="#8A8A8A" BorderThickness="1"
+                                                VerticalContentAlignment="Center" HorizontalAlignment="Right" Click="btnCopyToClipboard_Click" >
+                                            <DockPanel>
+                                                <Image Width="14" DockPanel.Dock="Left" Source="pack://application:,,,/Resources/Images/Common/CopyToClipboard.ico" VerticalAlignment="Center" Margin="6,0,6,0" HorizontalAlignment="Center">
+                                                </Image>
+                                                <TextBlock Text="{lan:Translate Section=ImportFromCSVView, Key=CopyToClipboardButton,UIDesignerValue='Copy all messages to clipboard'}"
+                                                       Foreground="White" Margin="0,2,8,0" FontSize="11" />
+                                            </DockPanel>
+                                          
+                                        </Button>
+                                    </Grid>
+                                </aCtrls:AncDataGridTemplateColumn.Header>
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Message}" Foreground="Black" Style="{StaticResource tvGridCellItem}" />
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                        </aCtrls:AncDataGrid.Columns>
+
+                    </aCtrls:AncDataGrid>
+
+                    <!-- Show hide grid 
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=HasWarningAndErrorMessages}" Value="True" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+-->
+                </Border>
+
+                <Border Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=IsLoading}" Value="False" />
+                                        <Condition Binding="{Binding Path=HasWarningAndErrorMessages}" Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="{lan:Translate Section=ImportFromCSVView, Key=NoErrorsFound, UIDesignerValue='No errors, warnings, or duplicates found.'}" Margin="0,25,0,0" Foreground="#565656" />
+                </Border>
+            </Grid>
+           
+        </DockPanel>
+    </Border>
+</UserControl>

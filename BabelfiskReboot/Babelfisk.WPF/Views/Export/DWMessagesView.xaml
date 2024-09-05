@@ -1,0 +1,208 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Export.DWMessagesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:aCtrlsInf="clr-namespace:Anchor.Core.Controls.Infrastructure;assembly=Anchor.Core.Controls"
+             xmlns:acom="clr-namespace:Anchor.Core.Common;assembly=Anchor.Core"
+             xmlns:dGrid="clr-namespace:Babelfisk.WPF.Infrastructure.DataGrid"
+             xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+             xmlns:vm="clr-namespace:Babelfisk.ViewModels;assembly=Babelfisk.ViewModels"
+             mc:Ignorable="d" x:Name="uCtrl" PreviewKeyDown="dataGrid_PreviewKeyDown_1"
+             d:DesignHeight="200" d:DesignWidth="500">
+    <UserControl.Resources>
+        <aCtrlsInf:ProxyBinding x:Key="proxyCtrl" Data="{Binding Path=., ElementName=uCtrl}" />
+    </UserControl.Resources>
+    <Grid x:Name="grid">
+        <aCtrls:AncDataGrid x:Name="dataGrid" ItemsSource="{Binding Path=Messages}" 
+                        CanUserAddRows="False" IsSynchronizedWithCurrentItem="False"
+                        Width="{Binding Path=ActualWidth, ElementName=grid}" 
+                        AutoGenerateColumns="False" RowHeaderWidth="0" 
+                        Background="{StaticResource ResourceKey=GeneralBackground}"
+                        SelectionMode="Extended" SelectionUnit="FullRow" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True"
+                        CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="LightGray"
+                        VerticalGridLinesBrush="LightGray" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" 
+                        RowDetailsVisibilityMode="Collapsed"
+                        VirtualizingStackPanel.VirtualizationMode="Recycling"
+                        Tag="{Binding Path=DataContext, ElementName=uCtrl}"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" ClipboardCopyMode="None"
+                        CellFooterVisibility="Visible"
+                        ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnHeaderStyle}">
+            <aCtrls:AncDataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Style="{StaticResource defaultMenuItem}" Click="CopyMenuItem_Click">
+                        <MenuItem.Icon>
+                            <Image Width="18" Height="18" Margin="3,1,3,1" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Copy.ico" />
+                        </MenuItem.Icon>
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Kopier valgte rækker til udklipsholderen." />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </ContextMenu>
+            </aCtrls:AncDataGrid.ContextMenu>
+                <aCtrls:AncDataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                    <SolidColorBrush x:Key="disabledField" Color="#FFF0F0F0" />
+
+                <Style x:Key="lblDisplay" TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=ValidateElementRedBorder}">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="3,1,3,1" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+                    <Setter Property="TextBlock.FontSize" Value="14" />
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Label">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="False"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="false">
+                            <Setter Property="ToolTip" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key="StandardCellStyle" TargetType="{x:Type DataGridCell}" >
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border x:Name="Border" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="2" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <Style x:Key="NoTabStopCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                        <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                    </Style>
+
+                <Style x:Key="DisabledCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                    <Setter Property="Background" Value="#7FE6E6E6" />
+                    <Setter Property="BorderBrush" Value="#99E6E6E6" />
+                </Style>
+
+                <Style x:Key="defaultHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="6,2,6,4" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="0,0,1,0" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="TextBlock.FontSize" Value="15" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True" >
+                            <Setter Property="Background" Value="#28E0E0E0" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True" >
+                            <Setter Property="Background" Value="#19E0E0E0" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key="defaultHeaderStyleNoBorder" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                    </Style>
+
+                <Style x:Key="centeredHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                    </Style>
+
+                </aCtrls:AncDataGrid.Resources>
+                <aCtrls:AncDataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Tag" Value="{Binding Path=DataContext, ElementName=uCtrl}" />
+                    </Style>
+                </aCtrls:AncDataGrid.RowStyle>
+            <aCtrls:AncDataGrid.Columns>
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="#" SortMemberPath="Index" CanUserResize="False" HeaderStyle="{StaticResource ResourceKey=centeredHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=Index}" Style="{StaticResource lblDisplay}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" />
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="!" SortMemberPath="MessageTypeString" CanUserResize="False" HeaderStyle="{StaticResource ResourceKey=centeredHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Width="14" VerticalAlignment="Center" Margin="3,0,3,0" HorizontalAlignment="Center">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Warning.ico" />
+                                            <Setter Property="ToolTip" Value="Advarsel" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=MessageTypeString}" Value="Error">
+                                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/DataGrid/Error.ico" />
+                                                    <Setter Property="ToolTip" Value="Fejl" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="Oprindelse" SortMemberPath="Origin" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=Origin}" Style="{StaticResource lblDisplay}" />
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="Kilde" SortMemberPath="RecordType" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=RecordType}" Style="{StaticResource lblDisplay}" />
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="KildeId" Visibility="{Binding Path=Data.IsSourceIdColumnVisible, Source={StaticResource proxyCtrl}, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}" SortMemberPath="RecordTypeId" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=RecordTypeId}" Style="{StaticResource lblDisplay}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" />
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+                <aCtrls:AncDataGridTemplateColumn Width="Auto" x:Name="Col2" SortMemberPath="Description" Header="Beskrivelse" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Path=Description}" Style="{StaticResource lblDisplay}" />
+                        </DataTemplate>
+                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                </aCtrls:AncDataGridTemplateColumn>
+
+            </aCtrls:AncDataGrid.Columns>
+
+        </aCtrls:AncDataGrid>
+    </Grid>
+</UserControl>

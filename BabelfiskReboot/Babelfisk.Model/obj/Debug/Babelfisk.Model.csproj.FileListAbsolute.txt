@@ -1,0 +1,21 @@
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.AssemblyReference.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.CoreCompileInputs.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\bin\Debug\Babelfisk.Model.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.Model\obj\Debug\Babelfisk.Model.pdb

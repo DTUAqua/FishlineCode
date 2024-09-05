@@ -1,0 +1,395 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Input.CruiseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+             xmlns:ancBe="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+             xmlns:infBe="clr-namespace:Babelfisk.WPF.Infrastructure.Behaviors"
+             xmlns:map="clr-namespace:Babelfisk.WPF.Views.Map"
+             xmlns:set="clr-namespace:Babelfisk.BusinessLogic.Settings;assembly=Babelfisk.BusinessLogic"
+             xmlns:ancSl="clr-namespace:Anchor.Core.Controls.Sliders;assembly=Anchor.Core.Controls"
+             mc:Ignorable="d" x:Name="uCtrl"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/HeaderButtons.xaml"/>
+                
+                <ResourceDictionary>
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Grid Background="White" KeyboardNavigation.TabNavigation="Cycle" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}" SnapsToDevicePixels="True">
+                <Grid DockPanel.Dock="Bottom" Margin="10,10,10,10" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="Togt" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="26" />
+                    </DockPanel>
+
+                    <DockPanel HorizontalAlignment="Center"
+                               Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=False}"
+                               >
+
+                        <aCtrls:HeaderButton DockPanel.Dock="Right" ToolTip="År" Tag="Disabled" HorizontalAlignment="Right" 
+                                             KeyboardNavigation.IsTabStop="False"
+                                             Style="{StaticResource ResourceKey=headerInfoButton}" >
+                            <aCtrls:HeaderButton.Header>
+                                <Image Source="pack://application:,,,/Resources/Images/Treeview/Year4.ico" Height="18" Margin="0,0,0,0" />
+                            </aCtrls:HeaderButton.Header>
+                            <aCtrls:HeaderButton.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="6">
+                                    <TextBlock Text="{Binding Path=SelectedYear}" />
+                                </StackPanel>
+                            </aCtrls:HeaderButton.Content>
+                        </aCtrls:HeaderButton>
+
+                    </DockPanel>
+
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <!-- Content -->
+        <aCtrls:ScrollViewerStaticContent Grid.Row="1" x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <DockPanel Margin="10" Width="600" HorizontalAlignment="Center" >
+                <DockPanel.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelCruise, Converter={StaticResource ResourceKey=cDivideBy}, ConverterParameter=100}" 
+                                        ScaleX="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelCruise, Converter={StaticResource ResourceKey=cDivideBy}, ConverterParameter=100}"/>
+                    </TransformGroup>
+                </DockPanel.LayoutTransform>
+
+                <!-- Cruise details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Togt"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        <!-- Year information -->
+                        <DockPanel Margin="0" IsEnabled="{Binding Path=IsEdit, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}" >
+                            <Label Content="Togt år" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            
+                            <DockPanel HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource txtMandatoryField}" DockPanel.Dock="Right" HorizontalAlignment="Right"  />
+                                <aCtrls:SuggestionTextbox x:Name="tbYear" Width="100"
+                                                          SuggestionsButtonToolTip="Se liste over eksisterende år"
+                                                          ancBe:SetControlFocus.SetFocus="{Binding Path=IsCruiseYearFocused, Mode=TwoWay}"
+                                                          Text="{Binding Path=SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" NewSuggestionText="Nyt år angivet" Margin="3" ItemsSource="{Binding Path=Years}" 
+                                                          Style="{StaticResource ResourceKey=txtStandard}"   />
+
+                            </DockPanel>
+                        </DockPanel>
+
+                        <!-- Cruise titel and description information -->
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="Togt titel"  DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <Grid HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource txtMandatoryField}" DockPanel.Dock="Right" HorizontalAlignment="Right"  />
+                                <aCtrls:SuggestionTextbox Text="{Binding Path=SelectedTitle, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                                      SuggestionsButtonToolTip="Se liste over eksisterende titler"
+                                                      ancBe:SetControlFocus.SetFocus="{Binding Path=IsCruiseTitleFocused, Mode=TwoWay}"
+                                                      Width="230" SuggestionsMaxHeight="300"  NewSuggestionText="Ny titel angivet"  
+                                                      Style="{StaticResource ResourceKey=txtStandard}"  SuggestionsWidth="230" Margin="3" ItemsSource="{Binding Path=CruiseNames}"  />
+                            </Grid>
+                            
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="Togt beskrivelse" DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <TextBox Text="{Binding Path=SelectedDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="3" Height="70" Style="{StaticResource ResourceKey=txtStandard}" 
+                                     AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" />
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Person details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Personer"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        <!-- Project leader information -->
+                        <DockPanel Margin="0" >
+                            <Label Content="Projektleder" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <aCtrls:FilteredComboBox Width="270" FilterFromStart="True"
+                                                         SelectionChanged="FilteredComboBox_SelectionChanged"
+                                                         ItemsSource="{Binding Path=DFUPersons}" OpenOnFocus="False"
+                                                         SelectedItem="{Binding Path=SelectedProjectLeader, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" DropDownWidth="300"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                
+                                <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditProjectLeadersCommand}"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér projektledere"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                    <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                </Button>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="Deltager(e)" DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <TextBox Text="{Binding Path=Participants, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Height="50"
+                                     AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"
+                                     Style="{StaticResource ResourceKey=txtStandard}"  />
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Other details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Andet"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="Bemærkninger" DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <TextBox Text="{Binding Path=Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="3" Height="90" 
+                                     Style="{StaticResource ResourceKey=txtStandard}" 
+                                     AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" />
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+
+                <StackPanel />
+            </DockPanel>
+            
+            <aCtrls:ScrollViewerStaticContent.StaticContent>
+                <Grid x:Name="gridMap">
+
+                    <map:BingMapsView x:Name="map" DataContext="{Binding Path=MapViewModel}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                 KeyboardNavigation.IsTabStop="False" KeyboardNavigation.TabNavigation="None" Focusable="False"
+                                 MaxWidth="{Binding Path=ActualWidth, ElementName=gridMap}" MaxHeight="{Binding Path=ActualHeight, ElementName=gridMap}" />
+                    
+                    <!-- Zoom slider -->
+                   
+                    <ancSl:ZoomSlider Grid.Row="1" Margin="4,0,0,0" Value="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelCruise}" Width="160" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                        <ancSl:ZoomSlider.Style>
+                            <Style TargetType="{x:Type ancSl:ZoomSlider}">
+                                <Setter Property="Opacity" Value="0.2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.2" To="1.0" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1.0" To="0.2" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ancSl:ZoomSlider.Style>
+                    </ancSl:ZoomSlider>
+                    
+                </Grid>
+            </aCtrls:ScrollViewerStaticContent.StaticContent>
+        </aCtrls:ScrollViewerStaticContent>
+
+        <StackPanel Grid.Row="1" Visibility="Collapsed" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Slider x:Name="ZoomSlider" Value="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelCruise}" Width="120" Minimum="60" Maximum="140" SmallChange="1" LargeChange="15" TickFrequency="10" Style="{StaticResource ResourceKey=ZoomSplitterStyle}" ></Slider>
+            <TextBox x:Name="tbPercent" FontStretch="Condensed" VerticalAlignment="Center" Width="26"
+                             TextBlock.LineHeight="12" TextBlock.LineStackingStrategy="BlockLineHeight" 
+                             BorderBrush="Transparent" GotFocus="tbPercent_GotFocus_1" LostFocus="tbPercent_LostFocus_1"
+                             infBe:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"
+                             Foreground="Black" TextAlignment="Right"
+                             Text="{Binding Path=Value, ElementName=ZoomSlider, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat={}{0:N0}}" 
+                             Margin="0,2,0,0" >
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <SolidColorBrush Color="Transparent" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True" >
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Margin" Value="0,1,1,0" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="%" Margin="0,2,4,0" FontSize="12"  />
+            
+        </StackPanel>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="2">
+            <Border Height="50" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{StaticResource InputHeaderForeground}" BorderBrush="LightGray" BorderThickness="0,1,0,0" Background="{StaticResource InputHeaderBackground}" SnapsToDevicePixels="True">
+                <DockPanel DockPanel.Dock="Bottom" Margin="10,5,10,5" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+
+                    <!-- Buttons -->
+                    <DockPanel DockPanel.Dock="Left"  VerticalAlignment="Center">
+                        <!-- Save button -->
+                        <Button Command="{Binding Path=SaveCommand}" SnapsToDevicePixels="True" Content="Gem" DockPanel.Dock="Left"
+                             KeyboardNavigation.TabIndex="1"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" ToolTip="Gem ændringer (ctrl+s)" ToolTipService.ShowDuration="30000"
+                            Template="{StaticResource ResourceKey=standardButton}"
+                            Width="120" FontSize="15" >
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="IsEnabled" Value="{Binding Path=HasEditingRights}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Cruise.ChangeTracker.State}">
+                                            <DataTrigger.Value>
+                                                <ent:ObjectState>Unchanged</ent:ObjectState>
+                                            </DataTrigger.Value>
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Close button -->
+                        <Button Command="{Binding Path=CloseCommand}" SnapsToDevicePixels="True" Content="Luk" DockPanel.Dock="Right"
+                            KeyboardNavigation.TabIndex="2"
+                            HorizontalAlignment="Right" Margin="10,0,0,0"
+                            Template="{StaticResource ResourceKey=standardButton}"
+                            Width="100" FontSize="15" >
+                        </Button>
+
+                        <DockPanel DockPanel.Dock="Right" IsEnabled="{Binding Path=IsEdit}">
+                            <Button Command="{Binding Path=NewTripCommand}" CommandParameter="VID" SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,0,0" IsEnabled="{Binding Path=HasEditingRights}"
+                                KeyboardNavigation.TabIndex="5"
+                            Template="{StaticResource ResourceKey=standardButtonBright}"
+                            Width="115" FontSize="15" >
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="pack://application:,,,/Resources/Images/Treeview/vid.png" Margin="0,2,7,0"  Width="17" />
+                                        <TextBlock Text="Ny tur (VID)" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+
+                            <Button  Command="{Binding Path=NewTripCommand}" CommandParameter="SØS" SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" IsEnabled="{Binding Path=HasEditingRights}"
+                                 KeyboardNavigation.TabIndex="4"
+                            Template="{StaticResource ResourceKey=standardButtonBright}"
+                            Width="115" FontSize="15" >
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="pack://application:,,,/Resources/Images/Treeview/søs.png" 
+                                           Margin="0,2,6,0"  Width="17" />
+                                        <TextBlock Text="Ny tur (SØS)" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+
+                            <Button  Command="{Binding Path=NewTripCommand}" CommandParameter="HVN" SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" IsEnabled="{Binding Path=HasEditingRights}"
+                                 KeyboardNavigation.TabIndex="3"
+                            Template="{StaticResource ResourceKey=standardButtonBright}"
+                            Width="115" FontSize="15" >
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="pack://application:,,,/Resources/Images/Treeview/hvn.png"
+                                           Margin="1,2,5,0"  Width="17" />
+                                        <TextBlock Text="Ny tur (HVN)" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </DockPanel>
+                        
+
+                        <StackPanel />
+                    </DockPanel>
+    
+
+                    <Border>
+                        <TextBlock Margin="8,1,8,1" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"
+                                   FontSize="14" TextAlignment="Justify" Foreground="{StaticResource ErrorForeground}" Text="{Binding Path=GetUIErrorMessage}" ToolTip="{Binding Path=GetUIErrorMessage}" ToolTipService.ShowDuration="60000" />
+                    </Border>
+
+                    <!-- Message shown between buttons -->
+                    <Border Margin="14,1,14,1" >
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=HasEditingRights}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" LineHeight="15" LineStackingStrategy="BlockLineHeight"
+                                   FontSize="14" TextAlignment="Center" Foreground="{StaticResource ErrorForeground}" >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Text" Value="Du har ikke rettigheder til at gemme eventuelle ændringer" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                            <Setter Property="Text" Value="Ændringer til hentet offline data kan ikke gemmes" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Border>
+                </DockPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True, FallbackValue=Hidden}">
+            <Border Background="#CCFFFFFF" HorizontalAlignment="Center" SnapsToDevicePixels="True" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="Gray" BorderThickness="1" CornerRadius="0" >
+                <DockPanel Margin="15,10,15,10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Path=LoadingMessage}"  FontSize="17"  />
+                    </StackPanel>
+
+                    <ProgressBar IsIndeterminate="True" Height="10" Margin="0,3,0,0" />
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

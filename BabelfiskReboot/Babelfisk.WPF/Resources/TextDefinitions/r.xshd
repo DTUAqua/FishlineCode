@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SyntaxDefinition name="SQL" extensions=".sql"
+                  xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+
+  <!-- T-SQL Reference: http://msdn.microsoft.com/de-de/library/ms189826%28v=sql.90%29.aspx -->
+
+  <Color name="Digits"     foreground="Red" exampleText="3.1415f"/>
+  <Color name="Comment" foreground="#FF008000" exampleText="string text = &quot;Hello, World!&quot;"/>
+  <Color name="Punctuation" foreground="Black" exampleText="string text = &quot;Hello, World!&quot;"/>
+
+  <Color name="String" foreground="#FFA31515" exampleText="string text = &quot;Hello, World!&quot;"/>
+  <Color name="String2" foreground="#993" exampleText="string text = &quot;Hello, World!&quot;"/>
+
+  <Color name="Keyword" fontWeight="normal" foreground="Blue" exampleText="SELECT"/>
+  <Color name="Keyword1" fontWeight="normal" foreground="#FFFF00FF" exampleText="cast"/>
+  <Color name="Keyword4" fontWeight="normal" foreground="Black" exampleText="in"/>
+  <Color name="GoKeyword" fontWeight="normal" foreground="Red" exampleText="GO"/>
+
+  <Color name="MethodCall" foreground="MidnightBlue" fontWeight="normal" />
+
+  <Color name="WhiteSmoke" foreground="LightGray" background="WhiteSmoke" fontWeight="normal" />
+
+  <Color name="Variable" foreground="Red"  exampleText="@Variable" />
+  <Color name="Variable1" foreground="Red" exampleText="@@Variable" />
+
+  <Color name="ObjectReference" foreground="Teal" exampleText="Customer.Name" />
+  <Color name="ObjectReference1" foreground="Teal" exampleText="dbo.Customer.Name" />
+
+  <Color name="ObjectReferenceInBrackets" foreground="Teal" exampleText="[Customer].[Name]" />
+  <Color name="ObjectReferenceInBrackets1" foreground="Teal" exampleText="[dbo].[Customer].[Name]" />
+
+  <Color name="CommentMarkerSetTodo"       foreground="Red"     fontWeight="normal" />
+  <Color name="CommentMarkerSetHackUndone" foreground="#E0E000" fontWeight="normal" />
+  
+  <Color name="Black" foreground="Black" fontWeight="normal" />
+
+  <RuleSet name="CommentMarkerSet">
+    <Keywords color="CommentMarkerSetTodo">
+      <Word>TODO</Word>
+      <Word>FIXME</Word>
+    </Keywords>
+    <Keywords color="CommentMarkerSetHackUndone">
+      <Word>HACK</Word>
+      <Word>UNDONE</Word>
+    </Keywords>
+  </RuleSet>
+
+  
+  <RuleSet ignoreCase="true">
+    <Span color="String" multiline="true" >
+      <Begin>'</Begin>
+      <End>'</End>
+    </Span>
+
+    <Span color="String2" multiline="true"  >
+      <Begin>"</Begin>
+      <End>"</End>
+    </Span>
+
+    <!-- span for escape sequences -->
+    <Span  color="Comment" begin="\#" end="\n" ruleSet="CommentMarkerSet"/>
+    <Span color="Comment"  multiline="true" ruleSet="CommentMarkerSet">
+      <Begin>&lt;!--</Begin>
+      <End>--&gt;</End>
+    </Span>
+
+    <Span color="Keyword" multiline="false"  >
+      <Begin>\\</Begin>
+      <End color="Keyword4" >(\{|\}|\*|\n)</End>
+    </Span>
+    
+    <Keywords color="Keyword" >
+      <Word>library</Word>
+      <Word>if</Word>
+      <Word>require</Word>
+      <Word>function</Word>
+      <Word>false</Word>
+      <Word>true</Word>
+      <Word>in</Word>
+      <Word>source</Word>
+      <Word>for</Word>
+      <Word>na</Word>
+    </Keywords>
+
+    <Rule color="ObjectReference1">([\d\w]+)\.([\d\w]+)\.([\d\w]+)</Rule>
+    <Rule color="ObjectReference">([\d\w]+)\.([\d\w]+)</Rule>
+
+    <Rule color="ObjectReferenceInBrackets1">([\d\w]+)\.([\d\w]+)\.([\d\w]+)</Rule>
+    <Rule color="ObjectReferenceInBrackets">\[([\d\w]+)\]\.\[([\d\w]+)\]\.\[([\d\w]+)\]</Rule>
+    <Rule color="ObjectReferenceInBrackets">\[([\d\w]+)\]\.\[([\d\w]+)\]</Rule>
+
+    <Rule color="Variable1">@@([\w]+)</Rule>
+    <Rule color="Variable">@([\w]+)</Rule>
+
+    <!-- Digits -->
+    <Rule color="Digits">
+      \b0[xX][0-9a-fA-F]+  # hex number
+      |
+      (    \b\d+(\.[0-9]+)?   #number with optional floating point
+      |    \.[0-9]+           #or just starting with floating point
+      )
+      ([eE][+-]?[0-9]+)? # optional exponent
+    </Rule>
+
+  </RuleSet>
+
+</SyntaxDefinition>

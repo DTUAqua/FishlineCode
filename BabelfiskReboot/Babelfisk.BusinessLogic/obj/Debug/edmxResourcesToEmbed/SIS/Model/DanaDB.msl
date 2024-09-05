@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SISModelStoreContainer" CdmEntityContainer="DanaDBContext">
+    <EntitySetMapping Name="CruiseInformation">
+      <EntityTypeMapping TypeName="SIS.Model.CruiseInformation">
+        <MappingFragment StoreEntitySet="CruiseInformation">
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="shipCode" ColumnName="shipCode" />
+          <ScalarProperty Name="cruiseYear" ColumnName="cruiseYear" />
+          <ScalarProperty Name="cruiseNo" ColumnName="cruiseNo" />
+          <ScalarProperty Name="cruiseDays" ColumnName="cruiseDays" />
+          <ScalarProperty Name="cruiseName" ColumnName="cruiseName" />
+          <ScalarProperty Name="projectType" ColumnName="projectType" />
+          <ScalarProperty Name="cruiseLeader" ColumnName="cruiseLeader" />
+          <ScalarProperty Name="assistCruiseLeader" ColumnName="assistCruiseLeader" />
+          <ScalarProperty Name="captain" ColumnName="captain" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="cruiseArea" ColumnName="cruiseArea" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="institution" ColumnName="institution" />
+          <ScalarProperty Name="institute" ColumnName="institute" />
+          <ScalarProperty Name="projectArea" ColumnName="projectArea" />
+          <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GearData">
+      <EntityTypeMapping TypeName="SIS.Model.GearData">
+        <MappingFragment StoreEntitySet="GearData">
+          <ScalarProperty Name="gearDataID" ColumnName="gearDataID" />
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="gearNo" ColumnName="gearNo" />
+          <ScalarProperty Name="haulNo" ColumnName="haulNo" />
+          <ScalarProperty Name="stationNo" ColumnName="stationNo" />
+          <ScalarProperty Name="gearCode" ColumnName="gearCode" />
+          <ScalarProperty Name="transNo" ColumnName="transNo" />
+          <ScalarProperty Name="tape1" ColumnName="tape1" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="offIni" ColumnName="offIni" />
+          <ScalarProperty Name="timeStart" ColumnName="timeStart" />
+          <ScalarProperty Name="posLatStart" ColumnName="posLatStart" />
+          <ScalarProperty Name="posLonStart" ColumnName="posLonStart" />
+          <ScalarProperty Name="posLatStartDec" ColumnName="posLatStartDec" />
+          <ScalarProperty Name="posLonStartDec" ColumnName="posLonStartDec" />
+          <ScalarProperty Name="logStart" ColumnName="logStart" />
+          <ScalarProperty Name="courseStart" ColumnName="courseStart" />
+          <ScalarProperty Name="botDepStart" ColumnName="botDepStart" />
+          <ScalarProperty Name="speedWatStart" ColumnName="speedWatStart" />
+          <ScalarProperty Name="speedBotStart" ColumnName="speedBotStart" />
+          <ScalarProperty Name="navSysStart" ColumnName="navSysStart" />
+          <ScalarProperty Name="squareStart" ColumnName="squareStart" />
+          <ScalarProperty Name="gearDistLog" ColumnName="gearDistLog" />
+          <ScalarProperty Name="gearDistPos" ColumnName="gearDistPos" />
+          <ScalarProperty Name="gearDur" ColumnName="gearDur" />
+          <ScalarProperty Name="wireLength" ColumnName="wireLength" />
+          <ScalarProperty Name="gearDepth" ColumnName="gearDepth" />
+          <ScalarProperty Name="trawlGap" ColumnName="trawlGap" />
+          <ScalarProperty Name="trawlSlack" ColumnName="trawlSlack" />
+          <ScalarProperty Name="timeStop" ColumnName="timeStop" />
+          <ScalarProperty Name="posLatStop" ColumnName="posLatStop" />
+          <ScalarProperty Name="posLonStop" ColumnName="posLonStop" />
+          <ScalarProperty Name="posLatStopDec" ColumnName="posLatStopDec" />
+          <ScalarProperty Name="posLonStopDec" ColumnName="posLonStopDec" />
+          <ScalarProperty Name="logStop" ColumnName="logStop" />
+          <ScalarProperty Name="courseStop" ColumnName="courseStop" />
+          <ScalarProperty Name="botDepStop" ColumnName="botDepStop" />
+          <ScalarProperty Name="speedWatStop" ColumnName="speedWatStop" />
+          <ScalarProperty Name="speedBotStop" ColumnName="speedBotStop" />
+          <ScalarProperty Name="navSysStop" ColumnName="navSysStop" />
+          <ScalarProperty Name="squareStop" ColumnName="squareStop" />
+          <ScalarProperty Name="atmPres" ColumnName="atmPres" />
+          <ScalarProperty Name="airTemp" ColumnName="airTemp" />
+          <ScalarProperty Name="windDir" ColumnName="windDir" />
+          <ScalarProperty Name="windSpeed" ColumnName="windSpeed" />
+          <ScalarProperty Name="seaHeaviness" ColumnName="seaHeaviness" />
+          <ScalarProperty Name="seaCurrent" ColumnName="seaCurrent" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="dataRemarks" ColumnName="dataRemarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instruments">
+      <EntityTypeMapping TypeName="SIS.Model.Instruments">
+        <MappingFragment StoreEntitySet="Instruments">
+          <ScalarProperty Name="machineNo" ColumnName="machineNo" />
+          <ScalarProperty Name="instrNo" ColumnName="instrNo" />
+          <ScalarProperty Name="instrName" ColumnName="instrName" />
+          <ScalarProperty Name="onOff" ColumnName="onOff" />
+          <ScalarProperty Name="timeUpdate" ColumnName="timeUpdate" />
+          <ScalarProperty Name="maxTime" ColumnName="maxTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearCodeList">
+      <EntityTypeMapping TypeName="SIS.Model.L_GearCodeList">
+        <MappingFragment StoreEntitySet="L_GearCodeList">
+          <ScalarProperty Name="gearID" ColumnName="gearID" />
+          <ScalarProperty Name="gearCode" ColumnName="gearCode" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearDate" ColumnName="gearDate" />
+          <ScalarProperty Name="gearName" ColumnName="gearName" />
+          <ScalarProperty Name="init" ColumnName="init" />
+          <ScalarProperty Name="gearText" ColumnName="gearText" />
+          <ScalarProperty Name="sampleFreq" ColumnName="sampleFreq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearTypeList">
+      <EntityTypeMapping TypeName="SIS.Model.L_GearTypeList">
+        <MappingFragment StoreEntitySet="L_GearTypeList">
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="gearTypeText" ColumnName="gearTypeText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_ParamListe">
+      <EntityTypeMapping TypeName="SIS.Model.L_ParamListe">
+        <MappingFragment StoreEntitySet="L_ParamListe">
+          <ScalarProperty Name="paramID" ColumnName="paramID" />
+          <ScalarProperty Name="paramCode" ColumnName="paramCode" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SampleType">
+      <EntityTypeMapping TypeName="SIS.Model.L_SampleType">
+        <MappingFragment StoreEntitySet="L_SampleType">
+          <ScalarProperty Name="sampleTypeID" ColumnName="sampleTypeID" />
+          <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_ShipInformation">
+      <EntityTypeMapping TypeName="SIS.Model.L_ShipInformation">
+        <MappingFragment StoreEntitySet="L_ShipInformation">
+          <ScalarProperty Name="shipCode" ColumnName="shipCode" />
+          <ScalarProperty Name="shipName" ColumnName="shipName" />
+          <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+          <ScalarProperty Name="institutionName" ColumnName="institutionName" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SampleLog">
+      <EntityTypeMapping TypeName="SIS.Model.SampleLog">
+        <MappingFragment StoreEntitySet="SampleLog">
+          <ScalarProperty Name="sampleID" ColumnName="sampleID" />
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="logTime" ColumnName="logTime" />
+          <ScalarProperty Name="posLat" ColumnName="posLat" />
+          <ScalarProperty Name="posLon" ColumnName="posLon" />
+          <ScalarProperty Name="posLatDec" ColumnName="posLatDec" />
+          <ScalarProperty Name="posLonDec" ColumnName="posLonDec" />
+          <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensor">
+      <EntityTypeMapping TypeName="SIS.Model.Sensor">
+        <MappingFragment StoreEntitySet="Sensor">
+          <ScalarProperty Name="sensorId" ColumnName="sensorId" />
+          <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+          <ScalarProperty Name="paramCode" ColumnName="paramCode" />
+          <ScalarProperty Name="sensorName" ColumnName="sensorName" />
+          <ScalarProperty Name="sensorType" ColumnName="sensorType" />
+          <ScalarProperty Name="SerielNo" ColumnName="SerielNo" />
+          <ScalarProperty Name="sensorPrecision" ColumnName="sensorPrecision" />
+          <ScalarProperty Name="Sensitivity" ColumnName="Sensitivity" />
+          <ScalarProperty Name="kalibDate" ColumnName="kalibDate" />
+          <ScalarProperty Name="kalibInit" ColumnName="kalibInit" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="changedInit" ColumnName="changedInit" />
+          <ScalarProperty Name="changedDate" ColumnName="changedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipData">
+      <EntityTypeMapping TypeName="SIS.Model.ShipData">
+        <MappingFragment StoreEntitySet="ShipData">
+          <ScalarProperty Name="sampleID" ColumnName="sampleID" />
+          <ScalarProperty Name="ParamCode" ColumnName="ParamCode" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrawlData">
+      <EntityTypeMapping TypeName="SIS.Model.TrawlData">
+        <MappingFragment StoreEntitySet="TrawlData">
+          <ScalarProperty Name="sampleID" ColumnName="sampleID" />
+          <ScalarProperty Name="paramCode" ColumnName="paramCode" />
+          <ScalarProperty Name="sensorNumber" ColumnName="sensorNumber" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="quality" ColumnName="quality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrawlLog">
+      <EntityTypeMapping TypeName="SIS.Model.TrawlLog">
+        <MappingFragment StoreEntitySet="TrawlLog">
+          <ScalarProperty Name="sampleID" ColumnName="sampleID" />
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="logTime" ColumnName="logTime" />
+          <ScalarProperty Name="posLat" ColumnName="posLat" />
+          <ScalarProperty Name="posLon" ColumnName="posLon" />
+          <ScalarProperty Name="posLatDec" ColumnName="posLatDec" />
+          <ScalarProperty Name="posLonDec" ColumnName="posLonDec" />
+          <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="R_SampleParamListe" TypeName="SIS.Model.R_SampleParamListe" StoreEntitySet="R_SampleParamListe">
+      <EndProperty Name="L_ParamListe">
+        <ScalarProperty Name="paramCode" ColumnName="paramCode" />
+      </EndProperty>
+      <EndProperty Name="L_SampleType">
+        <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

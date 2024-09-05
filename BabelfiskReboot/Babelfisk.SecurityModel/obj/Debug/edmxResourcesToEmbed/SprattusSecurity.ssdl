@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sprattusSecurityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="sprattusSecurityModelStoreContainer">
+    <EntitySet Name="ActivityLog" EntityType="sprattusSecurityModel.Store.ActivityLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExceptionLog" EntityType="sprattusSecurityModel.Store.ExceptionLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FishLineTaskRole" EntityType="sprattusSecurityModel.Store.FishLineTaskRole" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FishLineTasks" EntityType="sprattusSecurityModel.Store.FishLineTasks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="L_Country" EntityType="sprattusSecurityModel.Store.L_Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="sprattusSecurityModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleUser" EntityType="sprattusSecurityModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="sprattusSecurityModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ActivityLog_Role" Association="sprattusSecurityModel.Store.FK_ActivityLog_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="ActivityLog" EntitySet="ActivityLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FishLineTaskRole_FishLineTasks" Association="sprattusSecurityModel.Store.FK_FishLineTaskRole_FishLineTasks">
+      <End Role="FishLineTasks" EntitySet="FishLineTasks" />
+      <End Role="FishLineTaskRole" EntitySet="FishLineTaskRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FishLineTaskRole_Role" Association="sprattusSecurityModel.Store.FK_FishLineTaskRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="FishLineTaskRole" EntitySet="FishLineTaskRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleUserRole" Association="sprattusSecurityModel.Store.FK_RoleUserRole">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleUserUser" Association="sprattusSecurityModel.Store.FK_RoleUserUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ActivityLog">
+    <Key>
+      <PropertyRef Name="ActivityLogId" />
+    </Key>
+    <Property Name="ActivityLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Page" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExceptionLog">
+    <Key>
+      <PropertyRef Name="errorLogId" />
+    </Key>
+    <Property Name="errorLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="source" Type="nvarchar" MaxLength="200" />
+    <Property Name="systemtext" Type="nvarchar" MaxLength="500" />
+    <Property Name="userText" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="FishLineTaskRole">
+    <Key>
+      <PropertyRef Name="FishLineTaskId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="FishLineTaskId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FishLineTasks">
+    <Key>
+      <PropertyRef Name="FishLineTaskId" />
+    </Key>
+    <Property Name="FishLineTaskId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="L_Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryID_PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CountryCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Country" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId_PK" />
+    </Key>
+    <Property Name="RoleId_PK" Type="int" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RoleUser">
+    <Key>
+      <PropertyRef Name="RolesId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="RolesId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="country_FK" Type="int" Nullable="false" />
+    <Property Name="groupId_FK" Type="int" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordHint" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LoginAttempts" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActivityLog_Role">
+    <End Role="Role" Type="sprattusSecurityModel.Store.Role" Multiplicity="1" />
+    <End Role="ActivityLog" Type="sprattusSecurityModel.Store.ActivityLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId_PK" />
+      </Principal>
+      <Dependent Role="ActivityLog">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FishLineTaskRole_FishLineTasks">
+    <End Role="FishLineTasks" Type="sprattusSecurityModel.Store.FishLineTasks" Multiplicity="1" />
+    <End Role="FishLineTaskRole" Type="sprattusSecurityModel.Store.FishLineTaskRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FishLineTasks">
+        <PropertyRef Name="FishLineTaskId" />
+      </Principal>
+      <Dependent Role="FishLineTaskRole">
+        <PropertyRef Name="FishLineTaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FishLineTaskRole_Role">
+    <End Role="Role" Type="sprattusSecurityModel.Store.Role" Multiplicity="1" />
+    <End Role="FishLineTaskRole" Type="sprattusSecurityModel.Store.FishLineTaskRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId_PK" />
+      </Principal>
+      <Dependent Role="FishLineTaskRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleUserRole">
+    <End Role="Role" Type="sprattusSecurityModel.Store.Role" Multiplicity="1" />
+    <End Role="RoleUser" Type="sprattusSecurityModel.Store.RoleUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId_PK" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="RolesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleUserUser">
+    <End Role="Users" Type="sprattusSecurityModel.Store.Users" Multiplicity="1" />
+    <End Role="RoleUser" Type="sprattusSecurityModel.Store.RoleUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

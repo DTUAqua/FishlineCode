@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FishLineDWModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="DataWarehouseContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ages" EntityType="FishLineDWModel.Age" />
+    <EntitySet Name="Animals" EntityType="FishLineDWModel.Animal" />
+    <EntitySet Name="AnimalRaiseds" EntityType="FishLineDWModel.AnimalRaised" />
+    <EntitySet Name="Cruises" EntityType="FishLineDWModel.Cruise" />
+    <EntitySet Name="R_AnimalReference" EntityType="FishLineDWModel.R_AnimalReference" />
+    <EntitySet Name="Samples" EntityType="FishLineDWModel.Sample" />
+    <EntitySet Name="SpeciesLists" EntityType="FishLineDWModel.SpeciesList" />
+    <EntitySet Name="SpeciesListRaiseds" EntityType="FishLineDWModel.SpeciesListRaised" />
+    <EntitySet Name="Trips" EntityType="FishLineDWModel.Trip" />
+    <AssociationSet Name="FK_Age_Animal" Association="FishLineDWModel.FK_Age_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Age" EntitySet="Ages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animal_SpeciesList1" Association="FishLineDWModel.FK_Animal_SpeciesList1">
+      <End Role="SpeciesList" EntitySet="SpeciesLists" />
+      <End Role="Animal" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_R_AnimalReference_Animal" Association="FishLineDWModel.FK_R_AnimalReference_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="R_AnimalReference" EntitySet="R_AnimalReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnimalRaised_SpeciesListRaised" Association="FishLineDWModel.FK_AnimalRaised_SpeciesListRaised">
+      <End Role="SpeciesListRaised" EntitySet="SpeciesListRaiseds" />
+      <End Role="AnimalRaised" EntitySet="AnimalRaiseds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trip_Cruise" Association="FishLineDWModel.FK_Trip_Cruise">
+      <End Role="Cruise" EntitySet="Cruises" />
+      <End Role="Trip" EntitySet="Trips" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sample_Trip" Association="FishLineDWModel.FK_Sample_Trip">
+      <End Role="Trip" EntitySet="Trips" />
+      <End Role="Sample" EntitySet="Samples" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpeciesList_Sample" Association="FishLineDWModel.FK_SpeciesList_Sample">
+      <End Role="Sample" EntitySet="Samples" />
+      <End Role="SpeciesList" EntitySet="SpeciesLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpeciesListRaised_Sample" Association="FishLineDWModel.FK_SpeciesListRaised_Sample">
+      <End Role="Sample" EntitySet="Samples" />
+      <End Role="SpeciesListRaised" EntitySet="SpeciesListRaiseds" />
+    </AssociationSet>
+    <EntitySet Name="ErrorLogs" EntityType="FishLineDWModel.ErrorLog" />
+    <EntitySet Name="CruisesToTransfers" EntityType="FishLineDWModel.CruisesToTransfer" />
+    <EntitySet Name="R_AnimalPictureReference" EntityType="FishLineDWModel.R_AnimalPictureReference" />
+    <AssociationSet Name="FK_R_AnimalPictureReference_Animal" Association="FishLineDWModel.FK_R_AnimalPictureReference_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="R_AnimalPictureReference" EntitySet="R_AnimalPictureReference" />
+    </AssociationSet>
+    <EntitySet Name="L_Species" EntityType="FishLineDWModel.L_Species" />
+  </EntityContainer>
+  <EntityType Name="Age">
+    <Key>
+      <PropertyRef Name="ageId" />
+    </Key>
+    <Property Type="Int32" Name="ageId" Nullable="false" />
+    <Property Type="Int32" Name="animalId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="landingCategory" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuBase_Category" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="sizeSortingEU" />
+    <Property Type="String" Name="sizeSortingDFU" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ovigorous" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="cuticulaHardness" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="treatment" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="speciesList_sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="representative" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="individNum" />
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="Int32" Name="length" />
+    <Property Name="lengthMeasureType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="age1" />
+    <Property Type="Int32" Name="agePlusGroup" />
+    <Property Type="Decimal" Name="otolithWeight" Precision="7" Scale="5" />
+    <Property Type="String" Name="edgeStructure" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="otolithReadingRemark" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="hatchMonth" />
+    <Property Type="String" Name="hatchMonthRemark" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ageReadId" />
+    <Property Type="String" Name="ageReadName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="hatchMonthReaderId" />
+    <Property Type="String" Name="hatchMonthReaderName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animal" Relationship="FishLineDWModel.FK_Age_Animal" FromRole="Age" ToRole="Animal" />
+    <Property Type="Boolean" Name="genetics" Nullable="true" />
+    <Property Type="String" Name="visualStock" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="geneticStock" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sdAgeInfoUpdated" Type="Boolean" />
+    <Property Name="sdAgeReadId" Type="Int32" />
+    <Property Name="sdAgeReadName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="sdAnnotationId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="animalId" />
+    </Key>
+    <Property Type="Int32" Name="animalId" Nullable="false" />
+    <Property Type="Int32" Name="animalInfoId" />
+    <Property Type="Int32" Name="speciesListId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="landingCategory" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuBase_Category" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="sizeSortingEU" />
+    <Property Type="String" Name="sizeSortingDFU" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ovigorous" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="cuticulaHardness" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="treatment" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="speciesList_sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="representative" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="individNum" />
+    <Property Type="Int32" Name="number" Nullable="false" />
+    <Property Type="Int32" Name="speciesList_number" />
+    <Property Type="Int32" Name="length" />
+    <Property Type="String" Name="lengthMeasureUnit" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="lengthMeasureType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="weight" Precision="10" Scale="5" />
+    <Property Type="Decimal" Name="treatmentFactor" Precision="6" Scale="3" />
+    <Property Type="Int32" Name="maturityIndex" />
+    <Property Type="String" Name="maturityIndexMethod" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="broodingPhase" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="weightGutted" Precision="10" Scale="5" />
+    <Property Type="Decimal" Name="weightLiver" Precision="9" Scale="5" />
+    <Property Type="Decimal" Name="weightGonads" Precision="9" Scale="5" />
+    <Property Type="Int32" Name="parasiteCode" />
+    <Property Type="String" Name="fatIndex" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="fatIndexMethod" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="numVertebra" />
+    <Property Type="Int32" Name="maturityReaderId" />
+    <Property Type="String" Name="maturityReader" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="animalInfo_remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ages" Relationship="FishLineDWModel.FK_Age_Animal" FromRole="Animal" ToRole="Age" />
+    <NavigationProperty Name="SpeciesList" Relationship="FishLineDWModel.FK_Animal_SpeciesList1" FromRole="Animal" ToRole="SpeciesList" />
+    <NavigationProperty Name="R_AnimalReference" Relationship="FishLineDWModel.FK_R_AnimalReference_Animal" FromRole="Animal" ToRole="R_AnimalReference" />
+    <NavigationProperty Name="R_AnimalPictureReference" Relationship="FishLineDWModel.FK_R_AnimalPictureReference_Animal" FromRole="Animal" ToRole="R_AnimalPictureReference" />
+    <Property Type="Int32" Name="catchNum" />
+    <Property Type="Boolean" Name="otolithFinScale" />
+  </EntityType>
+  <EntityType Name="AnimalRaised">
+    <Key>
+      <PropertyRef Name="animalRaisedId" />
+    </Key>
+    <Property Type="Int32" Name="animalRaisedId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="speciesListRaisedId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="landingCategory" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuBase_Category" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="sizeSortingEU" Nullable="true" />
+    <Property Type="String" Name="sizeSortingDFU" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="speciesList_sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="cuticulaHardness" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ovigorous" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="broodingPhase" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="length" />
+    <Property Type="String" Name="lengthMeasureUnit" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="lengthMeasureType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="numberSumSamplePerLength" Precision="19" Scale="3" />
+    <Property Type="Decimal" Name="numberTotalPerLength" Precision="19" Scale="3" />
+    <Property Type="Decimal" Name="weightMean" Precision="10" Scale="5" />
+    <NavigationProperty Name="SpeciesListRaised" Relationship="FishLineDWModel.FK_AnimalRaised_SpeciesListRaised" FromRole="AnimalRaised" ToRole="SpeciesListRaised" />
+  </EntityType>
+  <EntityType Name="Cruise">
+    <Key>
+      <PropertyRef Name="cruiseId" />
+    </Key>
+    <Property Type="Int32" Name="cruiseId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise1" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="responsibleId" />
+    <Property Type="String" Name="responsibleName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="participants" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="summary" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Trips" Relationship="FishLineDWModel.FK_Trip_Cruise" FromRole="Cruise" ToRole="Trip" />
+  </EntityType>
+  <EntityType Name="R_AnimalReference">
+    <Key>
+      <PropertyRef Name="R_animalReferenceId" />
+    </Key>
+    <Property Type="Int32" Name="R_animalReferenceId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="animalId" Nullable="false" />
+    <Property Type="Int32" Name="referenceId" Nullable="false" />
+    <Property Type="String" Name="referenceName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animal" Relationship="FishLineDWModel.FK_R_AnimalReference_Animal" FromRole="R_AnimalReference" ToRole="Animal" />
+  </EntityType>
+  <EntityType Name="Sample">
+    <Key>
+      <PropertyRef Name="sampleId" />
+    </Key>
+    <Property Type="Int32" Name="sampleId" Nullable="false" />
+    <Property Type="Int32" Name="tripId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="stationName" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="labJournalNum" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="hydroStnRef" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="haulType" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="dateGearEnd" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="timeZone" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="Decimal" Name="fishingtime" Precision="11" Scale="4" Nullable="true" />
+    <Property Type="String" Name="latPosStartText" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="lonPosStartText" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="latPosEndText" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="lonPosEndText" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="latPosStartDec" Precision="9" Scale="6" />
+    <Property Type="Decimal" Name="lonPosStartDec" Precision="9" Scale="6" />
+    <Property Type="Decimal" Name="latPosEndDec" Precision="9" Scale="6" />
+    <Property Type="Decimal" Name="lonPosEndDec" Precision="9" Scale="6" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuAreaEnd" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangleEnd" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="distancePositions" Precision="6" Scale="3" />
+    <Property Type="Decimal" Name="distanceBottom" Precision="6" Scale="3" />
+    <Property Type="Int32" Name="courseTrack" />
+    <Property Type="String" Name="targetSpecies1" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="targetSpecies2" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="targetSpecies3" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="catchRegistration" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="speciesRegistration" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="selectionDevice" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="selectionDeviceSource" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="netOpening" Precision="3" Scale="1" />
+    <Property Type="Decimal" Name="otterBoardDist" Nullable="true" Precision="5" Scale="1" />
+    <Property Type="Int32" Name="numberTrawls" />
+    <Property Type="Int32" Name="wireLength" />
+    <Property Type="Decimal" Name="wingSpread" Precision="3" Scale="1" />
+    <Property Type="Int32" Name="numNets" />
+    <Property Type="Int32" Name="lostNets" />
+    <Property Type="Decimal" Name="heightNets" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="lengthNets" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="lengthRopeFlyer" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="widthRopeFlyer" Precision="5" Scale="1" />
+    <Property Type="Int32" Name="numberHooks" />
+    <Property Type="Decimal" Name="lengthBeam" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="depthAveGear" Precision="5" Scale="1" />
+    <Property Type="Int16" Name="haulDirection" />
+    <Property Type="Decimal" Name="haulSpeedBot" Precision="3" Scale="1" />
+    <Property Type="Decimal" Name="haulSpeedWat" Precision="3" Scale="1" />
+    <Property Type="String" Name="gearRemark" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="depthAvg" Precision="5" Scale="1" />
+    <Property Type="String" Name="bottomType" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="windDirection" />
+    <Property Type="Int32" Name="windSpeed" />
+    <Property Type="Int16" Name="currentDirectionSrf" />
+    <Property Type="Decimal" Name="currentSpeedSrf" Precision="4" Scale="1" />
+    <Property Type="Int16" Name="currentDirectionBot" />
+    <Property Type="Decimal" Name="currentSpeedBot" Precision="4" Scale="1" />
+    <Property Type="Int16" Name="waveDirection" />
+    <Property Type="Decimal" Name="waveHeigth" Precision="3" Scale="1" />
+    <Property Type="String" Name="thermoCline" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="thermoClineDepth" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="temperatureSrf" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="temperatureBot" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="oxygenSrf" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="oxygenBot" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="salinitySrf" Precision="6" Scale="2" />
+    <Property Type="Decimal" Name="salinityBot" Precision="6" Scale="2" />
+    <Property Type="Int32" Name="samplePersonId" />
+    <Property Type="String" Name="samplePersonName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="analysisPersonId" />
+    <Property Type="String" Name="analysisPersonName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Trip1" Relationship="FishLineDWModel.FK_Sample_Trip" FromRole="Sample" ToRole="Trip" />
+    <NavigationProperty Name="SpeciesLists" Relationship="FishLineDWModel.FK_SpeciesList_Sample" FromRole="Sample" ToRole="SpeciesList" />
+    <NavigationProperty Name="SpeciesListRaiseds" Relationship="FishLineDWModel.FK_SpeciesListRaised_Sample" FromRole="Sample" ToRole="SpeciesListRaised" />
+    <Property Type="String" Name="sgId" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="weekdayWeekend" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SpeciesList">
+    <Key>
+      <PropertyRef Name="speciesListId" />
+    </Key>
+    <Property Type="Int32" Name="speciesListId" Nullable="false" />
+    <Property Type="Int32" Name="sampleId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="landingCategory" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuBase_Category" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="sizeSortingEU" />
+    <Property Type="String" Name="sizeSortingDFU" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ovigorous" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="cuticulaHardness" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="treatment" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="weightStep0" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="weightStep1" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="weightStep2" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="weightStep3" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="landingWeightStep0" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="landingWeightStep1" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="treatmentFactor" Precision="6" Scale="3" />
+    <Property Type="Decimal" Name="raisingFactor" Precision="9" Scale="3" />
+    <Property Type="String" Name="wemSpeciesList" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="weightNonRep" Precision="10" Scale="3" />
+    <Property Type="Decimal" Name="bmsNonRep" Precision="11" Scale="4" />
+    <Property Type="Int32" Name="number" />
+    <Property Type="Decimal" Name="totalWeight" Precision="11" Scale="4" />
+    <Property Type="String" Name="wemTotalWeight" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animals" Relationship="FishLineDWModel.FK_Animal_SpeciesList1" FromRole="SpeciesList" ToRole="Animal" />
+    <NavigationProperty Name="Sample" Relationship="FishLineDWModel.FK_SpeciesList_Sample" FromRole="SpeciesList" ToRole="Sample" />
+    <Property Type="String" Name="applicationCode" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SpeciesListRaised">
+    <Key>
+      <PropertyRef Name="speciesListRaisedId" />
+    </Key>
+    <Property Type="Int32" Name="speciesListRaisedId" Nullable="false" />
+    <Property Type="Int32" Name="sampleId" Nullable="false" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="station" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateGearStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="quarterGearStart" />
+    <Property Type="String" Name="dfuArea" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="statisticalRectangle" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearQuality" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gearType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="meshSize" Precision="5" Scale="1" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="landingCategory" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuBase_Category" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="sizeSortingEU" Nullable="true" />
+    <Property Type="String" Name="sizeSortingDFU" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sexCode" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="cuticulaHardness" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ovigorous" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="weightSubSample" Precision="11" Scale="5" />
+    <Property Type="Decimal" Name="weightTotal" Precision="11" Scale="5" />
+    <Property Type="Decimal" Name="numberSubSample" Precision="19" Scale="3" />
+    <Property Type="Decimal" Name="numberTotal" Precision="19" Scale="3" />
+    <NavigationProperty Name="AnimalRaiseds" Relationship="FishLineDWModel.FK_AnimalRaised_SpeciesListRaised" FromRole="SpeciesListRaised" ToRole="AnimalRaised" />
+    <NavigationProperty Name="Sample" Relationship="FishLineDWModel.FK_SpeciesListRaised_Sample" FromRole="SpeciesListRaised" ToRole="Sample" />
+  </EntityType>
+  <EntityType Name="Trip">
+    <Key>
+      <PropertyRef Name="tripId" />
+    </Key>
+    <Property Type="Int32" Name="tripId" Nullable="false" />
+    <Property Type="Int32" Name="cruiseId" />
+    <Property Type="Int32" Name="year" Nullable="false" />
+    <Property Type="String" Name="cruise" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="trip1" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="logBldNr" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="timeZone" />
+    <Property Type="DateTime" Name="dateStart" Precision="3" />
+    <Property Type="DateTime" Name="dateEnd" Precision="3" />
+    <Property Type="String" Name="samplingType" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="samplingMethod" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="fisheryType" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="platform1" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nationalityPlatform1" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="fDFVesselPlatform1" />
+    <Property Type="String" Name="nationalityPlatform2" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="platform2" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="dateSample" Precision="3" />
+    <Property Type="String" Name="harbourSample" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nationalityHarbourSample" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="harbourLanding" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nationalityHarbourLanding" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="contactPersonId" />
+    <Property Type="String" Name="contactPersonName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="tripLeaderId" />
+    <Property Type="String" Name="tripLeaderName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="dataHandlerId" />
+    <Property Type="String" Name="dataHandlerName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cruise1" Relationship="FishLineDWModel.FK_Trip_Cruise" FromRole="Trip" ToRole="Cruise" />
+    <NavigationProperty Name="Samples" Relationship="FishLineDWModel.FK_Sample_Trip" FromRole="Trip" ToRole="Sample" />
+    <Property Type="String" Name="sgTripId" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tripNum" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="placeName" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="placeCode" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="postalCode" />
+    <Property Type="Int32" Name="numberInPlace" />
+    <Property Type="Int32" Name="respYes" />
+    <Property Type="Int32" Name="respNo" />
+    <Property Type="Int32" Name="respTot" />
+  </EntityType>
+  <Association Name="FK_Age_Animal">
+    <End Type="FishLineDWModel.Animal" Role="Animal" Multiplicity="1" />
+    <End Type="FishLineDWModel.Age" Role="Age" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="Age">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animal_SpeciesList1">
+    <End Type="FishLineDWModel.SpeciesList" Role="SpeciesList" Multiplicity="1" />
+    <End Type="FishLineDWModel.Animal" Role="Animal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeciesList">
+        <PropertyRef Name="speciesListId" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="speciesListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_R_AnimalReference_Animal">
+    <End Type="FishLineDWModel.Animal" Role="Animal" Multiplicity="1" />
+    <End Type="FishLineDWModel.R_AnimalReference" Role="R_AnimalReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="R_AnimalReference">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnimalRaised_SpeciesListRaised">
+    <End Type="FishLineDWModel.SpeciesListRaised" Role="SpeciesListRaised" Multiplicity="1" />
+    <End Type="FishLineDWModel.AnimalRaised" Role="AnimalRaised" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeciesListRaised">
+        <PropertyRef Name="speciesListRaisedId" />
+      </Principal>
+      <Dependent Role="AnimalRaised">
+        <PropertyRef Name="speciesListRaisedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trip_Cruise">
+    <End Type="FishLineDWModel.Cruise" Role="Cruise" Multiplicity="0..1" />
+    <End Type="FishLineDWModel.Trip" Role="Trip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cruise">
+        <PropertyRef Name="cruiseId" />
+      </Principal>
+      <Dependent Role="Trip">
+        <PropertyRef Name="cruiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sample_Trip">
+    <End Type="FishLineDWModel.Trip" Role="Trip" Multiplicity="1" />
+    <End Type="FishLineDWModel.Sample" Role="Sample" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trip">
+        <PropertyRef Name="tripId" />
+      </Principal>
+      <Dependent Role="Sample">
+        <PropertyRef Name="tripId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpeciesList_Sample">
+    <End Type="FishLineDWModel.Sample" Role="Sample" Multiplicity="1" />
+    <End Type="FishLineDWModel.SpeciesList" Role="SpeciesList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sample">
+        <PropertyRef Name="sampleId" />
+      </Principal>
+      <Dependent Role="SpeciesList">
+        <PropertyRef Name="sampleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpeciesListRaised_Sample">
+    <End Type="FishLineDWModel.Sample" Role="Sample" Multiplicity="1" />
+    <End Type="FishLineDWModel.SpeciesListRaised" Role="SpeciesListRaised" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sample">
+        <PropertyRef Name="sampleId" />
+      </Principal>
+      <Dependent Role="SpeciesListRaised">
+        <PropertyRef Name="sampleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="transferErrorId" />
+      <PropertyRef Name="errorType" />
+      <PropertyRef Name="origin" />
+    </Key>
+    <Property Type="Int32" Name="transferErrorId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="errorType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="cruiseId" />
+    <Property Type="String" Name="origin" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="recordType" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="recordTypeId" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="description" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="logTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CruisesToTransfer">
+    <Key>
+      <PropertyRef Name="cruisesToTransferId" />
+    </Key>
+    <Property Type="Int32" Name="cruisesToTransferId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="cruiseId" Nullable="false" />
+    <Property Type="DateTime" Name="addedDateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="R_AnimalPictureReference">
+    <Key>
+      <PropertyRef Name="R_animalPictureReferenceId" />
+    </Key>
+    <Property Type="Int32" Name="R_animalPictureReferenceId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="animalId" Nullable="false" />
+    <Property Type="String" Name="pictureReference" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Animal" Relationship="FishLineDWModel.FK_R_AnimalPictureReference_Animal" FromRole="R_AnimalPictureReference" ToRole="Animal" />
+  </EntityType>
+  <Association Name="FK_R_AnimalPictureReference_Animal">
+    <End Type="FishLineDWModel.Animal" Role="Animal" Multiplicity="1" />
+    <End Type="FishLineDWModel.R_AnimalPictureReference" Role="R_AnimalPictureReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="R_AnimalPictureReference">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="L_Species">
+    <Key>
+      <PropertyRef Name="speciesCode" />
+    </Key>
+    <Property Type="Int32" Name="L_speciesId" Nullable="false" />
+    <Property Type="String" Name="speciesCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dkName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ukName" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="nodc" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="latin" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="icesCode" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="treatmentFactorGroup" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="dfuFisk_Code" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tsn" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="aphiaID" />
+    <Property Type="Int32" Name="lengthMin" />
+    <Property Type="Int32" Name="lengthMax" />
+    <Property Type="Int32" Name="ageMin" />
+    <Property Type="Int32" Name="ageMax" />
+    <Property Type="Int32" Name="weightMin" />
+    <Property Type="Int32" Name="weightMax" />
+    <Property Type="String" Name="speciesNES" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="speciesFAO" MaxLength="3" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,183 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Lookup.LookupManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             xmlns:vm="clr-namespace:Babelfisk.ViewModels;assembly=Babelfisk.ViewModels"
+             xmlns:vLookup="clr-namespace:Babelfisk.WPF.Views.Lookup"
+             xmlns:acom="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             mc:Ignorable="d"  x:Name="uCtrl"
+             
+             d:DesignHeight="350" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="TabItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="0" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#595959"/>
+
+        <SolidColorBrush x:Key="TabItemSelectedBackground2" Color="#CCA8A8A8"/>
+        <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+        <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+        <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+
+        <!--<SolidColorBrush x:Key="TabItemBackground" Color="#FFD0DEDE"/>-->
+        <!-- #FFABC4C4 -->
+
+        <LinearGradientBrush x:Key="TabItemSelectedBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFDCEAFF" Offset="0"/>
+            <GradientStop Color="#FFEDF4FF" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="TabItemBackground" StartPoint="0.0,0.0" EndPoint="1.0,0.5">
+            <GradientStop Color="White" Offset="0.1" />
+            <GradientStop Color="White" Offset="1.0" />
+        </LinearGradientBrush>
+
+        <Style x:Key="TabItemStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+            <Setter Property="Background" Value="{StaticResource TabItemBackground}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="IsChecked">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource ResourceKey=cObjectEqualsObject}" Mode="OneWay" >
+                        <Binding Path="DataContext.SelectedLookupType" ElementName="uCtrl" />
+                        <Binding Path="." />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
+                            <Border x:Name="Bd" BorderBrush="LightGray" BorderThickness="0,0,0,1"  Padding="{TemplateBinding Padding}" Margin="0" SnapsToDevicePixels="True">
+                                <ContentPresenter x:Name="Content" RecognizesAccessKey="True" SnapsToDevicePixels="True" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" Value="1.0" />
+                                <!--<Setter Property="Margin" TargetName="Bd" Value="3,-1"/> -->
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Panel.ZIndex" Value="1"/>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource OverBrush}"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <!--  <Setter Property="Margin" TargetName="Bd" Value="-2,-1"/>
+                                <Setter Property="Margin" TargetName="Content" Value="3,0"/> 
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="1,1,0,1"/> -->
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="false"/>
+                                    <Condition Property="IsMouseOver" Value="true"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Opacity" Value="0.6" />
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemDisabledBackground}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate DataType="{x:Type vm:AViewModel}" >
+            <vLookup:LookupView DataContext="{Binding .}" />
+        </DataTemplate>
+
+
+    </UserControl.Resources>
+
+    <Grid >
+        <Grid x:Name="LayoutRoot" Margin="0" Background="#FFF7F7F7"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270" />
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Lookup types -->
+            <Border Grid.Column="0" SnapsToDevicePixels="True" Background="White" BorderBrush="{StaticResource ResourceKey=GridBorderBrush}" BorderThickness="0,0,1,0" CornerRadius="0,0,0,0">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" BorderBrush="LightGray" BorderThickness="0,0,0,1" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}" Height="36" >
+                        <DockPanel Margin="5">
+                            <TextBlock DockPanel.Dock="Left" Text="Søg"  VerticalAlignment="Center" />
+                            <acom:SubmitTextBox x:Name="searchTextbox" Margin="10,0,3,0" VerticalContentAlignment="Center" FontSize="13" IsClearTextButtonEnabled="True" ClearButtonToolTip="{lan:Translate Section=Common, Key=ClearText, UIDesignerValue='Clear the text'}"
+                                                Text="{Binding Path=SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                        </DockPanel>
+                    </Border>
+                    
+                    <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="itemsControl" ItemsSource="{Binding Path=LookupTypesCollection}" Margin="0,0,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <ToggleButton Style="{StaticResource ResourceKey=TabItemStyle}" Content="{Binding Path=Name}" DockPanel.Dock="Top" 
+                                                      Command="{Binding Path=DataContext.LookupTypeSelectedCommand, ElementName=uCtrl}" CommandParameter="{Binding .}" />
+                                        <Border Background="#698DBE53" HorizontalAlignment="Left" IsHitTestVisible="False" Width="6" ToolTip="Du har rettigheder til at editere den pågældende kodeliste.">
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=HasEditingRights}" Value="False">
+                                                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                                        </DataTrigger>
+                                                        <MultiDataTrigger >
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Path=IsOffline}" Value="True" />
+                                                                <Condition Binding="{Binding Path=CanEditOffline}" Value="False" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Margin="0,-2,0,0">
+
+            </Border>
+
+            <!-- Selected lookup type control -->
+            <Border Grid.Column="2" BorderThickness="0" CornerRadius="0,0,0,0" Background="{StaticResource WindowBackground}"  >
+                <DockPanel Margin="0,0" Panel.ZIndex="2">
+                    <ContentControl Content="{Binding Path=SelectedLookupViewModel}" />
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="2" BorderThickness="0" CornerRadius="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="{StaticResource InputHeaderForeground}"
+                    Visibility="{Binding Path=IsLookupSelected, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=False}"
+                    >
+                <TextBlock Text="Ingen kodelister valgt" FontSize="14" />
+            </Border>
+
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3319F513-9EE8-47BB-A8BB-AF941897ACF6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Babelfisk.DataTransfer</RootNamespace>
+    <AssemblyName>Babelfisk.DataTransfer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Anchor.Core">
+      <HintPath>..\..\ExternalLibraries\Anchor.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Babelfisk.BusinessLogic\Babelfisk.BusinessLogic.csproj">
+      <Project>{D9DAFD0E-3746-41A5-9C0A-8BC1AD1C24FE}</Project>
+      <Name>Babelfisk.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Babelfisk.Entities\Babelfisk.Entities.csproj">
+      <Project>{BBCBBCBC-5BD8-43EA-BE7A-1B6C977208AA}</Project>
+      <Name>Babelfisk.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Babelfisk.Model\Babelfisk.Model.csproj">
+      <Project>{0C533728-CE2E-4C0C-8058-0B4541C1FF84}</Project>
+      <Name>Babelfisk.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Babelfisk.SecurityModel\Babelfisk.SecurityModel.csproj">
+      <Project>{70361B8A-C2C5-473A-8E48-94528A658409}</Project>
+      <Name>Babelfisk.SecurityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Babelfisk.Service\Babelfisk.Service.csproj">
+      <Project>{123C6D72-F1E0-4B69-B2A7-C0C0055BBB62}</Project>
+      <Name>Babelfisk.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Babelfisk.Warehouse\Babelfisk.Warehouse.csproj">
+      <Project>{FB35F7BF-95DE-4050-8021-30725EAE3FED}</Project>
+      <Name>Babelfisk.Warehouse</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

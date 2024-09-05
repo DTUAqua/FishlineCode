@@ -1,0 +1,746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBCBBCBC-5BD8-43EA-BE7A-1B6C977208AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Babelfisk.Entities</RootNamespace>
+    <AssemblyName>Babelfisk.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Anchor.Core">
+      <HintPath>..\..\ExternalLibraries\Anchor.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\Babelfisk.BusinessLogic\Components\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\Babelfisk.BusinessLogic\Components\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Babelfisk.Model\ActivityLog.cs">
+      <Link>Sprattus\ActivityLog.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Age.cs">
+      <Link>Sprattus\Age.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Animal.cs">
+      <Link>Sprattus\Animal.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\AnimalFile.cs">
+      <Link>Sprattus\AnimalFile.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\AnimalInfo.cs">
+      <Link>Sprattus\AnimalInfo.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Cruise.cs">
+      <Link>Sprattus\Cruise.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\DFUPerson.cs">
+      <Link>Sprattus\DFUPerson.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\DFUSubArea.cs">
+      <Link>Sprattus\DFUSubArea.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Est_Method.cs">
+      <Link>Sprattus\Est_Method.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Est_MethodStep.cs">
+      <Link>Sprattus\Est_MethodStep.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Est_Strata.cs">
+      <Link>Sprattus\Est_Strata.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Fat.cs">
+      <Link>Sprattus\Fat.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\FishingActivityOnSample.cs">
+      <Link>Sprattus\FishingActivityOnSample.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\ICES_DFU_Relation_FF.cs">
+      <Link>Sprattus\ICES_DFU_Relation_FF.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Activity.cs">
+      <Link>Sprattus\L_Activity.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_AgeMeasureMethod.cs">
+      <Link>Sprattus\L_AgeMeasureMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Application.cs">
+      <Link>Sprattus\L_Application.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_BITS_cruises.cs">
+      <Link>Sprattus\L_BITS_cruises.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Bottomtype.cs">
+      <Link>Sprattus\L_Bottomtype.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_BroodingPhase.cs">
+      <Link>Sprattus\L_BroodingPhase.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_CatchRegistration.cs">
+      <Link>Sprattus\L_CatchRegistration.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_CruiseStatus.cs">
+      <Link>Sprattus\L_CruiseStatus.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_CruiseType.cs">
+      <Link>Sprattus\L_CruiseType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_CuticulaHardness.cs">
+      <Link>Sprattus\L_CuticulaHardness.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_DFUArea.cs">
+      <Link>Sprattus\L_DFUArea.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_DFUBase_Category.cs">
+      <Link>Sprattus\L_DFUBase_Category.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_DFUDepartment.cs">
+      <Link>Sprattus\L_DFUDepartment.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_EdgeStructure.cs">
+      <Link>Sprattus\L_EdgeStructure.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_FatIndexMethod.cs">
+      <Link>Sprattus\L_FatIndexMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Fejlkategorier.cs">
+      <Link>Sprattus\L_Fejlkategorier.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_FisheryType.cs">
+      <Link>Sprattus\L_FisheryType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_FishingActivityCategory.cs">
+      <Link>Sprattus\L_FishingActivityCategory.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_FishingActivityCategory_temp.cs">
+      <Link>Sprattus\L_FishingActivityCategory_temp.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_FishingActivityNational.cs">
+      <Link>Sprattus\L_FishingActivityNational.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Gear.cs">
+      <Link>Sprattus\L_Gear.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_GearInfoType.cs">
+      <Link>Sprattus\L_GearInfoType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_GearQuality.cs">
+      <Link>Sprattus\L_GearQuality.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_GearType.cs">
+      <Link>Sprattus\L_GearType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_GeneticStock.cs">
+      <Link>Sprattus\L_GeneticStock.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Harbour.cs">
+      <Link>Sprattus\L_Harbour.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Harbour2.cs">
+      <Link>Sprattus\L_Harbour2.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_HatchMonthReadability.cs">
+      <Link>Sprattus\L_HatchMonthReadability.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_HaulType.cs">
+      <Link>Sprattus\L_HaulType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_IBTS_cruises.cs">
+      <Link>Sprattus\L_IBTS_cruises.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_LandingCategory.cs">
+      <Link>Sprattus\L_LandingCategory.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_LengthMeasureType.cs">
+      <Link>Sprattus\L_LengthMeasureType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_LengthMeasureUnit.cs">
+      <Link>Sprattus\L_LengthMeasureUnit.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_MaturityIndexMethod.cs">
+      <Link>Sprattus\L_MaturityIndexMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_MissingLookup.cs">
+      <Link>Sprattus\L_MissingLookup.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Nationality.cs">
+      <Link>Sprattus\L_Nationality.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_NavigationSystem.cs">
+      <Link>Sprattus\L_NavigationSystem.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_OtolithReadingRemark.cs">
+      <Link>Sprattus\L_OtolithReadingRemark.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Parasite.cs">
+      <Link>Sprattus\L_Parasite.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Platform.cs">
+      <Link>Sprattus\L_Platform.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_PlatformType.cs">
+      <Link>Sprattus\L_PlatformType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_PlatformVersion.cs">
+      <Link>Sprattus\L_PlatformVersion.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Reference.cs">
+      <Link>Sprattus\L_Reference.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SampleStatus.cs">
+      <Link>Sprattus\L_SampleStatus.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SampleType.cs">
+      <Link>Sprattus\L_SampleType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SamplingMethod.cs">
+      <Link>Sprattus\L_SamplingMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SamplingType.cs">
+      <Link>Sprattus\L_SamplingType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDAnalysisParameter.cs">
+      <Link>Sprattus\L_SDAnalysisParameter.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDEventType.cs">
+      <Link>Sprattus\L_SDEventType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDLightType.cs">
+      <Link>Sprattus\L_SDLightType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDOtolithDescription.cs">
+      <Link>Sprattus\L_SDOtolithDescription.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDPreparationMethod.cs">
+      <Link>Sprattus\L_SDPreparationMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDPurpose.cs">
+      <Link>Sprattus\L_SDPurpose.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDReaderExperience.cs">
+      <Link>Sprattus\L_SDReaderExperience.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SDSampleType.cs">
+      <Link>Sprattus\L_SDSampleType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SelectionDevice.cs">
+      <Link>Sprattus\L_SelectionDevice.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SelectionDeviceSource.cs">
+      <Link>Sprattus\L_SelectionDeviceSource.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SelectPanel.cs">
+      <Link>Sprattus\L_SelectPanel.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SexCode.cs">
+      <Link>Sprattus\L_SexCode.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_ShovelType.cs">
+      <Link>Sprattus\L_ShovelType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SizeSortingDFU.cs">
+      <Link>Sprattus\L_SizeSortingDFU.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SizeSortingEU.cs">
+      <Link>Sprattus\L_SizeSortingEU.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Species.cs">
+      <Link>Sprattus\L_Species.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SpeciesRegistration.cs">
+      <Link>Sprattus\L_SpeciesRegistration.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_StatisticalRectangle.cs">
+      <Link>Sprattus\L_StatisticalRectangle.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Stock.cs">
+      <Link>Sprattus\L_Stock.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SubAreaType.cs">
+      <Link>Sprattus\L_SubAreaType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_ThermoCline.cs">
+      <Link>Sprattus\L_ThermoCline.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_TimeZone.cs">
+      <Link>Sprattus\L_TimeZone.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_TreadMaterial.cs">
+      <Link>Sprattus\L_TreadMaterial.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_TreadType.cs">
+      <Link>Sprattus\L_TreadType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_Treatment.cs">
+      <Link>Sprattus\L_Treatment.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_TreatmentFactorGroup.cs">
+      <Link>Sprattus\L_TreatmentFactorGroup.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_TripType.cs">
+      <Link>Sprattus\L_TripType.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_UsabilityParam.cs">
+      <Link>Sprattus\L_UsabilityParam.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_UsabilityParamGrp.cs">
+      <Link>Sprattus\L_UsabilityParamGrp.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_VisualStock.cs">
+      <Link>Sprattus\L_VisualStock.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_WeightEstimationMethod.cs">
+      <Link>Sprattus\L_WeightEstimationMethod.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\L_YesNo.cs">
+      <Link>Sprattus\L_YesNo.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Maturity.cs">
+      <Link>Sprattus\Maturity.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\NumberOfStationsPerTrip.cs">
+      <Link>Sprattus\NumberOfStationsPerTrip.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Person.cs">
+      <Link>Sprattus\Person.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Queries.cs">
+      <Link>Sprattus\Queries.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\QueryTypes.cs">
+      <Link>Sprattus\QueryTypes.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\replicationLog.cs">
+      <Link>Sprattus\replicationLog.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Report.cs">
+      <Link>Sprattus\Report.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\ReportingTreeNode.cs">
+      <Link>Sprattus\ReportingTreeNode.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_AnimalInfoReference.cs">
+      <Link>Sprattus\R_AnimalInfoReference.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_CruiseUsabilityParam.cs">
+      <Link>Sprattus\R_CruiseUsabilityParam.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_GearInfo.cs">
+      <Link>Sprattus\R_GearInfo.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_GearTypeSelectionDevice.cs">
+      <Link>Sprattus\R_GearTypeSelectionDevice.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_Maturity.cs">
+      <Link>Sprattus\R_Maturity.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_SampleUsabilityParam.cs">
+      <Link>Sprattus\R_SampleUsabilityParam.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_SDEventSDReader.cs">
+      <Link>Sprattus\R_SDEventSDReader.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_SDReader.cs">
+      <Link>Sprattus\R_SDReader.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_StockSpeciesArea.cs">
+      <Link>Sprattus\R_StockSpeciesArea.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_TargetSpecies.cs">
+      <Link>Sprattus\R_TargetSpecies.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_TripPlatformVersion.cs">
+      <Link>Sprattus\R_TripPlatformVersion.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_TripUsabilityParam.cs">
+      <Link>Sprattus\R_TripUsabilityParam.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\R_UsabilityParamUsabilityGrp.cs">
+      <Link>Sprattus\R_UsabilityParamUsabilityGrp.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Sample.cs">
+      <Link>Sprattus\Sample.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDAnnotation.cs">
+      <Link>Sprattus\SDAnnotation.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDEvent.cs">
+      <Link>Sprattus\SDEvent.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDFile.cs">
+      <Link>Sprattus\SDFile.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDLine.cs">
+      <Link>Sprattus\SDLine.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDPoint.cs">
+      <Link>Sprattus\SDPoint.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SDSample.cs">
+      <Link>Sprattus\SDSample.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SIA_GetSampleGrandChildren_Result.cs">
+      <Link>Sprattus\SIA_GetSampleGrandChildren_Result.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SpeciesList.cs">
+      <Link>Sprattus\SpeciesList.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Sprattus.cs">
+      <Link>Sprattus\Sprattus.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\SubSample.cs">
+      <Link>Sprattus\SubSample.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Test_Niels.cs">
+      <Link>Sprattus\Test_Niels.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\TrawlOperation.cs">
+      <Link>Sprattus\TrawlOperation.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\TreatmentFactor.cs">
+      <Link>Sprattus\TreatmentFactor.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.Model\Trip.cs">
+      <Link>Sprattus\Trip.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\ActivityLog.cs">
+      <Link>SprattusSecurity\ActivityLog.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\ExceptionLog.cs">
+      <Link>SprattusSecurity\ExceptionLog.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\FishLineTasks.cs">
+      <Link>SprattusSecurity\FishLineTasks.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\L_Country.cs">
+      <Link>SprattusSecurity\L_Country.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\Role.cs">
+      <Link>SprattusSecurity\Role.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\SprattusSecurity.cs">
+      <Link>SprattusSecurity\SprattusSecurity.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Babelfisk.SecurityModel\Users.cs">
+      <Link>SprattusSecurity\Users.cs</Link>
+      <DependentUpon>SprattusSecurity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseOperationResult.cs" />
+    <Compile Include="DataVersioning.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FileEntities\FileSystemDirectory.cs" />
+    <Compile Include="FileEntities\FileSystemFile.cs" />
+    <Compile Include="FileEntities\FileSystemItem.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="Interfaces\ILookupEntity.cs" />
+    <Compile Include="LavSFTransferItem.cs" />
+    <Compile Include="OfflineEntity.cs" />
+    <Compile Include="OfflineSelectionRecord.cs" />
+    <Compile Include="OfflineTripTransfer.cs" />
+    <Compile Include="OtolithFileInformation.cs" />
+    <Compile Include="ParameterListItem.cs" />
+    <Compile Include="QueryListItem.cs" />
+    <Compile Include="ReportFile.cs" />
+    <Compile Include="ReportParameter.cs" />
+    <Compile Include="R_SDReaderStatistics.cs" />
+    <Compile Include="SDAnimalAgeItem.cs" />
+    <Compile Include="ServiceResult.cs" />
+    <Compile Include="SprattusEntityExtensions\Age.cs" />
+    <Compile Include="SprattusEntityExtensions\Animal.cs" />
+    <Compile Include="SprattusEntityExtensions\AnimalFile.cs" />
+    <Compile Include="SprattusEntityExtensions\AnimalInfo.cs" />
+    <Compile Include="SprattusEntityExtensions\ICES_DFU_Relation_FF.cs" />
+    <Compile Include="Interfaces\INodeItem.cs" />
+    <Compile Include="SprattusEntityExtensions\L_AgeMeasureMethod.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Application.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Bottomtype.cs" />
+    <Compile Include="SprattusEntityExtensions\L_BroodingPhase.cs" />
+    <Compile Include="SprattusEntityExtensions\L_CatchRegistration.cs" />
+    <Compile Include="SprattusEntityExtensions\L_EdgeStructure.cs" />
+    <Compile Include="SprattusEntityExtensions\L_FisheryType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_GeneticStock.cs" />
+    <Compile Include="SprattusEntityExtensions\L_HatchMonthReadability.cs" />
+    <Compile Include="SprattusEntityExtensions\L_HaulType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_LandingCategory.cs" />
+    <Compile Include="SprattusEntityExtensions\L_LengthMeasureType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_MaturityIndexMethod.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="SprattusEntityExtensions\Cruise.cs" />
+    <Compile Include="SprattusEntityExtensions\DFUPerson.cs" />
+    <Compile Include="SprattusEntityExtensions\L_DFUArea.cs" />
+    <Compile Include="SprattusEntityExtensions\L_DFUDepartment.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Gear.cs" />
+    <Compile Include="SprattusEntityExtensions\L_GearInfoType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_GearQuality.cs" />
+    <Compile Include="SprattusEntityExtensions\L_GearType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Harbour.cs" />
+    <Compile Include="SprattusEntityExtensions\L_LengthMeasureUnit.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Nationality.cs" />
+    <Compile Include="SprattusEntityExtensions\L_NavigationSystem.cs" />
+    <Compile Include="SprattusEntityExtensions\L_OtolithReadingRemark.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Parasite.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Platform.cs" />
+    <Compile Include="SprattusEntityExtensions\L_PlatformType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_PlatformVersion.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Reference.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDEventType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDLightType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDOtolithDescription.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDPreparationMethod.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDPurpose.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDReaderExperience.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SDSampleType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SelectionDevice.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SampleType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SamplingMethod.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SamplingType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SelectionDeviceSource.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SexCode.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SizeSortingDFU.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SizeSortingEU.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Species.cs" />
+    <Compile Include="SprattusEntityExtensions\L_SpeciesRegistration.cs" />
+    <Compile Include="SprattusEntityExtensions\L_StatisticalRectangle.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Stock.cs" />
+    <Compile Include="SprattusEntityExtensions\L_ThermoCline.cs" />
+    <Compile Include="SprattusEntityExtensions\L_TimeZone.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Treatment.cs" />
+    <Compile Include="SprattusEntityExtensions\L_TreatmentFactorGroup.cs" />
+    <Compile Include="SprattusEntityExtensions\L_VisualStock.cs" />
+    <Compile Include="SprattusEntityExtensions\L_WeightEstimationMethod.cs" />
+    <Compile Include="SprattusEntityExtensions\L_Year.cs" />
+    <Compile Include="SprattusEntityExtensions\MapPoint.cs" />
+    <Compile Include="SprattusEntityExtensions\Maturity.cs" />
+    <Compile Include="SprattusEntityExtensions\Person.cs" />
+    <Compile Include="SprattusEntityExtensions\Report.cs" />
+    <Compile Include="SprattusEntityExtensions\ReportingTreeNode.cs" />
+    <Compile Include="SprattusEntityExtensions\R_AnimalInfoReference.cs" />
+    <Compile Include="SprattusEntityExtensions\R_GearInfo.cs" />
+    <Compile Include="SprattusEntityExtensions\R_GearTypeSelectionDevice.cs" />
+    <Compile Include="SprattusEntityExtensions\R_SDReader.cs" />
+    <Compile Include="SprattusEntityExtensions\R_StockSpeciesArea.cs" />
+    <Compile Include="SprattusEntityExtensions\R_TargetSpecies.cs" />
+    <Compile Include="SprattusEntityExtensions\Sample.cs" />
+    <Compile Include="SprattusEntityExtensions\SDAnnotation.cs" />
+    <Compile Include="SprattusEntityExtensions\SDEvent.cs" />
+    <Compile Include="SprattusEntityExtensions\SDFile.cs" />
+    <Compile Include="SprattusEntityExtensions\SDSample.cs" />
+    <Compile Include="SprattusEntityExtensions\SDSampleAnimalData.cs" />
+    <Compile Include="SprattusEntityExtensions\SelectionAnimal.cs" />
+    <Compile Include="SprattusEntityExtensions\SpeciesList.cs" />
+    <Compile Include="SprattusEntityExtensions\SubSample.cs" />
+    <Compile Include="SprattusEntityExtensions\TreatmentFactor.cs" />
+    <Compile Include="SprattusEntityExtensions\Trip.cs" />
+    <Compile Include="SprattusSecurityEntityExtensions\FishLineTasks.cs" />
+    <Compile Include="SprattusSecurityEntityExtensions\Role.cs" />
+    <Compile Include="SprattusSecurityEntityExtensions\Users.cs" />
+    <Compile Include="SyncDatabaseOperationResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Babelfisk.Model\Sprattus.tt">
+      <Link>Sprattus\Sprattus.tt</Link>
+      <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>Sprattus.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.tt">
+      <Link>SprattusSecurity\SprattusSecurity.tt</Link>
+      <CustomToolNamespace>Babelfisk.Entities.SprattusSecurity</CustomToolNamespace>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SprattusSecurity.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

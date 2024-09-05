@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Offline.CompareEntitiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:acom="clr-namespace:Anchor.Core.Common;assembly=Anchor.Core"
+             xmlns:dGrid="clr-namespace:Babelfisk.WPF.Infrastructure.DataGrid"
+             xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+             xmlns:vm="clr-namespace:Babelfisk.ViewModels;assembly=Babelfisk.ViewModels"
+             mc:Ignorable="d" x:Name="uCtrl"
+             d:DesignHeight="300" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+
+                    <Style x:Key="txtColumnHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="10" />
+                    </Style>
+
+                    <Style x:Key="txtCellText" TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="10,3,10,3" />
+                    </Style>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Top message -->
+        <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" Background="#FFEEEEEE">
+            <DockPanel >
+                <Border Margin="0" BorderBrush="#FFD6D6D6" Background="White" BorderThickness="0,0,0,0" SnapsToDevicePixels="True">
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Treeview/Vessel.ico" />
+
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=EntityImageType}" Value="HVN" >
+                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Treeview/hvn.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=EntityImageType}" Value="SØS" >
+                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Treeview/søs.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=EntityImageType}" Value="SØS" >
+                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Treeview/vid.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=EntityImageType}" Value="Sample" >
+                                                <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Treeview/sample.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            
+                            <TextBlock FontSize="15" Margin="5,0,0,3" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=Header}"  />
+                        </StackPanel>
+                        
+                        <TextBlock FontSize="15" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                </Border>
+            </DockPanel>
+        </Border>
+
+        <Border x:Name="dpGrid" Grid.Row="1">
+            <Grid >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="35*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+
+                <!-- Grid -->
+                <Border Grid.Row="1" Grid.ColumnSpan="3" >
+                    <aCtrls:AncDataGrid x:Name="dataGrid" ItemsSource="{Binding Path=CompareItems}" 
+                        CanUserAddRows="False" IsSynchronizedWithCurrentItem="False"
+                        AutoGenerateColumns="False" RowHeaderWidth="0" 
+                        Background="{StaticResource ResourceKey=GeneralBackground}"
+                        SelectionMode="Single" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True"
+                        CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="LightGray"
+                        VerticalGridLinesBrush="LightGray" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" 
+                        RowDetailsVisibilityMode="Collapsed"
+                        VirtualizingStackPanel.VirtualizationMode="Recycling"
+                        Tag="{Binding Path=DataContext, ElementName=uCtrl}"
+                        CellFooterVisibility="Visible"
+                        ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnHeaderStyle}">
+                        <aCtrls:AncDataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Gray"/>
+                            <SolidColorBrush x:Key="disabledField" Color="#FFF0F0F0" />
+
+                            <Style x:Key="lblDisplay" TargetType="{x:Type Label}">
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="4,2,4,2" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+                                <Setter Property="TextBlock.FontSize" Value="14" />
+                            </Style>
+
+                            <Style x:Key="DisabledCellStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource lblDisplay}" >
+                                <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                <Setter Property="Background" Value="#FFE6E6E6" />
+                                <Setter Property="BorderBrush" Value="#FFE6E6E6" />
+                            </Style>
+
+                            <Style x:Key="defaultHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Padding" Value="4,4,4,4" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="BorderBrush" Value="Gray" />
+                                <Setter Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+
+                            <Style x:Key="defaultHeaderStyleNoBorder" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource defaultHeaderStyle}">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <SolidColorBrush x:Key="clrChange" Color="#81D6E8A2"/>
+
+                        </aCtrls:AncDataGrid.Resources>
+                        <aCtrls:AncDataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=HasDifferences}" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource clrChange}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </aCtrls:AncDataGrid.RowStyle>
+                        <aCtrls:AncDataGrid.Columns>
+                            <aCtrls:AncDataGridTemplateColumn Width="180" Header="Feltnavn" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Style="{StaticResource DisabledCellStyle}" >
+                                            <TextBlock Text="{Binding Path=Header}" FontWeight="Bold" TextWrapping="Wrap" />
+                                        </Label>
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                            <aCtrls:AncDataGridTemplateColumn Width="50*" Header="Server-værdi (land)" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Style="{StaticResource lblDisplay}" >
+                                            <TextBlock Text="{Binding Path=ServerValue}" TextWrapping="Wrap" />
+                                        </Label>
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+
+                            <aCtrls:AncDataGridTemplateColumn Width="50*" Header="Lokal-værdi (offline)" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyleNoBorder}">
+                                <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Style="{StaticResource lblDisplay}" >
+                                            <TextBlock Text="{Binding Path=ClientValue}" TextWrapping="Wrap" />
+                                        </Label>
+                                    </DataTemplate>
+                                </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            </aCtrls:AncDataGridTemplateColumn>
+                        </aCtrls:AncDataGrid.Columns>
+
+                    </aCtrls:AncDataGrid>
+                </Border>
+                
+                <Border Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="White" BorderBrush="Gray" BorderThickness="1" SnapsToDevicePixels="True" Padding="5" Margin="0,0,0,10"
+                        Visibility="{Binding Path=IsTripTypeDifferent, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}"
+                        >
+                    <TextBlock TextWrapping="Wrap" Width="600" Foreground="Black" FontSize="14" Text="Turene har samme turnummer, men forskellige turtyper. For at fortsætte, må du enten vælge ikke at synkronisere turen (hvilket er det samme som at slette den) eller rette turnummeret til noget andet og starte synkroniseringen igen." />
+                </Border>
+            </Grid>
+        </Border>
+
+
+        <!-- Button controls -->
+        <Border DockPanel.Dock="Bottom" Grid.Row="2" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  BorderBrush="LightGray" BorderThickness="0,0,0,0" >
+            <DockPanel Margin="0,2,0,2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,0,3,0">
+
+                    <StackPanel IsEnabled="{Binding Path=IsWinsEnabled}" Orientation="Horizontal">
+                        <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}"  
+                                IsEnabled="{Binding Path=IsTripTypeDifferent, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}"
+                                Margin="3" Command="{Binding Path=ClientWinsCommand}" ToolTip="Overskriv server-værdier med de lokale (offline) værdier" >
+                            <TextBlock Text="Overskriv server-værdier" FontSize="15" FontWeight="Medium" Margin="5,3,5,3" />
+                        </Button>
+
+                        <Grid Margin="3"   IsEnabled="{Binding Path=IsTripTypeDifferent, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+                            <Button ToolTip="Behold server-værdier og ignorer de lokale (offline) værdier" IsDefault="True"
+                                Template="{StaticResource ResourceKey=standardButtonBright}" 
+                                Command="{Binding Path=ServerWinsCommand}" >
+                                <TextBlock Text="Behold server-værdier" FontSize="15" FontWeight="Medium" Margin="5,3,5,3" />
+                            </Button>
+
+                            <Border BorderBrush="#FFC5E48E" BorderThickness="2">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsTripTypeDifferent}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsWinsEnabled}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                    
+
+                    <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}"  
+                            Margin="3" Command="{Binding Path=StopSyncCommand}" ToolTip="Stop synkroniseringen." >
+                        <TextBlock Text="Stop" FontSize="15" FontWeight="Medium" Margin="5,3,5,3" />
+                    </Button>
+
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Left">
+                    <!-- Below is not implemented yet (and sure it ever will be) -->
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0"  VerticalAlignment="Center" Visibility="Collapsed"
+                                 IsEnabled="{Binding Path=IsTripTypeDifferent, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}"
+                                >
+                        <CheckBox Style="{StaticResource ResourceKey=sCheckBox2}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Path=RepeatForFutureConflicts}" >
+
+                        </CheckBox>
+                        <TextBlock Text="Foretag automatisk samme valg for eventuelle senere konflikter." Background="Transparent" MouseUp="TextBlock_MouseUp" LineStackingStrategy="BlockLineHeight" LineHeight="16" Margin="5,0,0,0" Width="300" TextWrapping="Wrap" FontSize="14" >
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

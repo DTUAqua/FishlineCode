@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FishLineDWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="Age">
+    <Key>
+      <PropertyRef Name="ageId" />
+    </Key>
+    <Property Name="ageId" Type="int" Nullable="false" />
+    <Property Name="animalId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="stock" Type="nvarchar" MaxLength="50" />
+    <Property Name="landingCategory" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuBase_Category" Type="nvarchar" MaxLength="3" />
+    <Property Name="sizeSortingEU" Type="int" />
+    <Property Name="sizeSortingDFU" Type="nvarchar" MaxLength="3" />
+    <Property Name="ovigorous" Type="nvarchar" MaxLength="3" />
+    <Property Name="cuticulaHardness" Type="nvarchar" MaxLength="4" />
+    <Property Name="treatment" Type="nvarchar" MaxLength="2" />
+    <Property Name="speciesList_sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="representative" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="individNum" Type="int" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="length" Type="int" />
+    <Property Name="lengthMeasureType" Type="nvarchar" MaxLength="5" />
+    <Property Name="age" Type="int" />
+    <Property Name="agePlusGroup" Type="int" />
+    <Property Name="otolithWeight" Type="numeric" Precision="7" Scale="5" />
+    <Property Name="edgeStructure" Type="nvarchar" MaxLength="5" />
+    <Property Name="otolithReadingRemark" Type="nvarchar" MaxLength="50" />
+    <Property Name="hatchMonth" Type="int" />
+    <Property Name="hatchMonthRemark" Type="nvarchar" MaxLength="10" />
+    <Property Name="ageReadId" Type="int" />
+    <Property Name="ageReadName" Type="nvarchar" MaxLength="80" />
+    <Property Name="hatchMonthReaderId" Type="int" />
+    <Property Name="hatchMonthReaderName" Type="nvarchar" MaxLength="80" />
+    <Property Name="remark" Type="ntext" />
+    <Property Name="genetics" Type="bit" />
+    <Property Name="visualStock" Type="nvarchar" MaxLength="50" />
+    <Property Name="geneticStock" Type="nvarchar" MaxLength="50" />
+    <Property Name="sdAgeInfoUpdated" Type="bit" />
+    <Property Name="sdAgeReadId" Type="int" />
+    <Property Name="sdAgeReadName" Type="nvarchar" MaxLength="80" />
+    <Property Name="sdAnnotationId" Type="int" />
+  </EntityType>
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="animalId" />
+    </Key>
+    <Property Name="animalId" Type="int" Nullable="false" />
+    <Property Name="animalInfoId" Type="int" />
+    <Property Name="speciesListId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="stock" Type="nvarchar" MaxLength="50" />
+    <Property Name="landingCategory" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuBase_Category" Type="nvarchar" MaxLength="3" />
+    <Property Name="sizeSortingEU" Type="int" />
+    <Property Name="sizeSortingDFU" Type="nvarchar" MaxLength="3" />
+    <Property Name="ovigorous" Type="nvarchar" MaxLength="3" />
+    <Property Name="cuticulaHardness" Type="nvarchar" MaxLength="4" />
+    <Property Name="treatment" Type="nvarchar" MaxLength="2" />
+    <Property Name="speciesList_sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="representative" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="individNum" Type="int" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="speciesList_number" Type="int" />
+    <Property Name="length" Type="int" />
+    <Property Name="lengthMeasureUnit" Type="nvarchar" MaxLength="2" />
+    <Property Name="lengthMeasureType" Type="nvarchar" MaxLength="5" />
+    <Property Name="weight" Type="numeric" Precision="10" Scale="5" />
+    <Property Name="treatmentFactor" Type="numeric" Precision="6" Scale="3" />
+    <Property Name="maturityIndex" Type="int" />
+    <Property Name="maturityIndexMethod" Type="nvarchar" MaxLength="1" />
+    <Property Name="broodingPhase" Type="nvarchar" MaxLength="4" />
+    <Property Name="weightGutted" Type="numeric" Precision="10" Scale="5" />
+    <Property Name="weightLiver" Type="numeric" Precision="9" Scale="5" />
+    <Property Name="weightGonads" Type="numeric" Precision="9" Scale="5" />
+    <Property Name="parasiteCode" Type="int" />
+    <Property Name="fatIndex" Type="nvarchar" MaxLength="3" />
+    <Property Name="fatIndexMethod" Type="nvarchar" MaxLength="1" />
+    <Property Name="numVertebra" Type="int" />
+    <Property Name="maturityReaderId" Type="int" />
+    <Property Name="maturityReader" Type="nvarchar" MaxLength="80" />
+    <Property Name="remark" Type="ntext" />
+    <Property Name="animalInfo_remark" Type="ntext" />
+    <Property Name="catchNum" Type="int" />
+    <Property Name="otolithFinScale" Type="bit" />
+  </EntityType>
+  <EntityType Name="AnimalRaised">
+    <Key>
+      <PropertyRef Name="animalRaisedId" />
+    </Key>
+    <Property Name="animalRaisedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="speciesListRaisedId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="stock" Type="nvarchar" MaxLength="50" />
+    <Property Name="landingCategory" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuBase_Category" Type="nvarchar" MaxLength="3" />
+    <Property Name="sizeSortingEU" Type="int" />
+    <Property Name="sizeSortingDFU" Type="nvarchar" MaxLength="3" />
+    <Property Name="speciesList_sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="cuticulaHardness" Type="nvarchar" MaxLength="4" />
+    <Property Name="ovigorous" Type="nvarchar" MaxLength="3" />
+    <Property Name="broodingPhase" Type="nvarchar" MaxLength="4" />
+    <Property Name="length" Type="int" />
+    <Property Name="lengthMeasureUnit" Type="nvarchar" MaxLength="2" />
+    <Property Name="lengthMeasureType" Type="nvarchar" MaxLength="5" />
+    <Property Name="numberSumSamplePerLength" Type="numeric" Precision="19" Scale="3" />
+    <Property Name="numberTotalPerLength" Type="numeric" Precision="19" Scale="3" />
+    <Property Name="weightMean" Type="numeric" Precision="10" Scale="5" />
+  </EntityType>
+  <EntityType Name="Cruise">
+    <Key>
+      <PropertyRef Name="cruiseId" />
+    </Key>
+    <Property Name="cruiseId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="responsibleId" Type="int" />
+    <Property Name="responsibleName" Type="nvarchar" MaxLength="80" />
+    <Property Name="participants" Type="nvarchar" MaxLength="256" />
+    <Property Name="summary" Type="nvarchar" MaxLength="1024" />
+    <Property Name="remark" Type="ntext" />
+  </EntityType>
+  <EntityType Name="CruisesToTransfer">
+    <Key>
+      <PropertyRef Name="cruisesToTransferId" />
+    </Key>
+    <Property Name="cruisesToTransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cruiseId" Type="int" Nullable="false" />
+    <Property Name="addedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FishLineDW.dbo.ErrorLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="transferErrorId" />
+      <PropertyRef Name="errorType" />
+      <PropertyRef Name="origin" />
+    </Key>
+    <Property Name="transferErrorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="errorType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cruiseId" Type="int" />
+    <Property Name="origin" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="recordType" Type="nvarchar" MaxLength="200" />
+    <Property Name="recordTypeId" Type="nvarchar" MaxLength="100" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="logTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="L_Species">
+    <Key>
+      <PropertyRef Name="speciesCode" />
+    </Key>
+    <Property Name="L_speciesId" Type="int" Nullable="false" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="dkName" Type="nvarchar" MaxLength="80" />
+    <Property Name="ukName" Type="nvarchar" MaxLength="80" />
+    <Property Name="nodc" Type="nvarchar" MaxLength="80" />
+    <Property Name="latin" Type="nvarchar" MaxLength="80" />
+    <Property Name="icesCode" Type="nvarchar" MaxLength="3" />
+    <Property Name="treatmentFactorGroup" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuFisk_Code" Type="nvarchar" MaxLength="3" />
+    <Property Name="tsn" Type="nvarchar" MaxLength="6" />
+    <Property Name="aphiaID" Type="int" />
+    <Property Name="lengthMin" Type="int" />
+    <Property Name="lengthMax" Type="int" />
+    <Property Name="ageMin" Type="int" />
+    <Property Name="ageMax" Type="int" />
+    <Property Name="weightMin" Type="int" />
+    <Property Name="weightMax" Type="int" />
+    <Property Name="speciesNES" Type="nvarchar" MaxLength="3" />
+    <Property Name="speciesFAO" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="R_AnimalPictureReference">
+    <Key>
+      <PropertyRef Name="R_animalPictureReferenceId" />
+    </Key>
+    <Property Name="R_animalPictureReferenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="animalId" Type="int" Nullable="false" />
+    <Property Name="pictureReference" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="R_AnimalReference">
+    <Key>
+      <PropertyRef Name="R_animalReferenceId" />
+    </Key>
+    <Property Name="R_animalReferenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="animalId" Type="int" Nullable="false" />
+    <Property Name="referenceId" Type="int" Nullable="false" />
+    <Property Name="referenceName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sample">
+    <Key>
+      <PropertyRef Name="sampleId" />
+    </Key>
+    <Property Name="sampleId" Type="int" Nullable="false" />
+    <Property Name="tripId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="stationName" Type="nvarchar" MaxLength="10" />
+    <Property Name="labJournalNum" Type="nvarchar" MaxLength="6" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="hydroStnRef" Type="nvarchar" MaxLength="6" />
+    <Property Name="haulType" Type="nvarchar" MaxLength="1" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="dateGearEnd" Type="datetime" Nullable="false" />
+    <Property Name="timeZone" Type="int" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="fishingtime" Type="numeric" Precision="11" Scale="4" />
+    <Property Name="latPosStartText" Type="nvarchar" MaxLength="12" />
+    <Property Name="lonPosStartText" Type="nvarchar" MaxLength="13" />
+    <Property Name="latPosEndText" Type="nvarchar" MaxLength="12" />
+    <Property Name="lonPosEndText" Type="nvarchar" MaxLength="13" />
+    <Property Name="latPosStartDec" Type="numeric" Precision="9" Scale="6" />
+    <Property Name="lonPosStartDec" Type="numeric" Precision="9" Scale="6" />
+    <Property Name="latPosEndDec" Type="numeric" Precision="9" Scale="6" />
+    <Property Name="lonPosEndDec" Type="numeric" Precision="9" Scale="6" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="dfuAreaEnd" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="statisticalRectangleEnd" Type="nvarchar" MaxLength="4" />
+    <Property Name="distancePositions" Type="numeric" Precision="6" Scale="3" />
+    <Property Name="distanceBottom" Type="numeric" Precision="6" Scale="3" />
+    <Property Name="courseTrack" Type="int" />
+    <Property Name="targetSpecies1" Type="nvarchar" MaxLength="3" />
+    <Property Name="targetSpecies2" Type="nvarchar" MaxLength="3" />
+    <Property Name="targetSpecies3" Type="nvarchar" MaxLength="3" />
+    <Property Name="catchRegistration" Type="nvarchar" MaxLength="3" />
+    <Property Name="speciesRegistration" Type="nvarchar" MaxLength="3" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="selectionDevice" Type="nvarchar" MaxLength="30" />
+    <Property Name="selectionDeviceSource" Type="nvarchar" MaxLength="2" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="netOpening" Type="numeric" Precision="3" Scale="1" />
+    <Property Name="otterBoardDist" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="numberTrawls" Type="int" />
+    <Property Name="wireLength" Type="int" />
+    <Property Name="wingSpread" Type="numeric" Precision="3" Scale="1" />
+    <Property Name="numNets" Type="int" />
+    <Property Name="lostNets" Type="int" />
+    <Property Name="heightNets" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="lengthNets" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="lengthRopeFlyer" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="widthRopeFlyer" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="numberHooks" Type="int" />
+    <Property Name="lengthBeam" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="depthAveGear" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="haulDirection" Type="smallint" />
+    <Property Name="haulSpeedBot" Type="numeric" Precision="3" Scale="1" />
+    <Property Name="haulSpeedWat" Type="numeric" Precision="3" Scale="1" />
+    <Property Name="gearRemark" Type="nvarchar" MaxLength="450" />
+    <Property Name="depthAvg" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="bottomType" Type="nvarchar" MaxLength="3" />
+    <Property Name="windDirection" Type="smallint" />
+    <Property Name="windSpeed" Type="int" />
+    <Property Name="currentDirectionSrf" Type="smallint" />
+    <Property Name="currentSpeedSrf" Type="numeric" Precision="4" Scale="1" />
+    <Property Name="currentDirectionBot" Type="smallint" />
+    <Property Name="currentSpeedBot" Type="numeric" Precision="4" Scale="1" />
+    <Property Name="waveDirection" Type="smallint" />
+    <Property Name="waveHeigth" Type="numeric" Precision="3" Scale="1" />
+    <Property Name="thermoCline" Type="nvarchar" MaxLength="50" />
+    <Property Name="thermoClineDepth" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="temperatureSrf" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="temperatureBot" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="oxygenSrf" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="oxygenBot" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="salinitySrf" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="salinityBot" Type="numeric" Precision="6" Scale="2" />
+    <Property Name="samplePersonId" Type="int" />
+    <Property Name="samplePersonName" Type="nvarchar" MaxLength="80" />
+    <Property Name="analysisPersonId" Type="int" />
+    <Property Name="analysisPersonName" Type="nvarchar" MaxLength="80" />
+    <Property Name="remark" Type="ntext" />
+    <Property Name="sgId" Type="nvarchar" MaxLength="200" />
+    <Property Name="weekdayWeekend" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SpeciesList">
+    <Key>
+      <PropertyRef Name="speciesListId" />
+    </Key>
+    <Property Name="speciesListId" Type="int" Nullable="false" />
+    <Property Name="sampleId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="stock" Type="nvarchar" MaxLength="50" />
+    <Property Name="landingCategory" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuBase_Category" Type="nvarchar" MaxLength="3" />
+    <Property Name="sizeSortingEU" Type="int" />
+    <Property Name="sizeSortingDFU" Type="nvarchar" MaxLength="3" />
+    <Property Name="sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="ovigorous" Type="nvarchar" MaxLength="3" />
+    <Property Name="cuticulaHardness" Type="nvarchar" MaxLength="4" />
+    <Property Name="treatment" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="weightStep0" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="weightStep1" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="weightStep2" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="weightStep3" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="landingWeightStep0" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="landingWeightStep1" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="treatmentFactor" Type="numeric" Precision="6" Scale="3" />
+    <Property Name="raisingFactor" Type="numeric" Precision="9" Scale="3" />
+    <Property Name="wemSpeciesList" Type="nvarchar" MaxLength="1" />
+    <Property Name="weightNonRep" Type="numeric" Precision="10" Scale="3" />
+    <Property Name="bmsNonRep" Type="numeric" Precision="11" Scale="4" />
+    <Property Name="number" Type="int" />
+    <Property Name="totalWeight" Type="numeric" Precision="11" Scale="4" />
+    <Property Name="wemTotalWeight" Type="nvarchar" MaxLength="1" />
+    <Property Name="remark" Type="ntext" />
+    <Property Name="applicationCode" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SpeciesListRaised">
+    <Key>
+      <PropertyRef Name="speciesListRaisedId" />
+    </Key>
+    <Property Name="speciesListRaisedId" Type="int" Nullable="false" />
+    <Property Name="sampleId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="station" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="dateGearStart" Type="datetime" Nullable="false" />
+    <Property Name="quarterGearStart" Type="int" />
+    <Property Name="dfuArea" Type="nvarchar" MaxLength="200" />
+    <Property Name="statisticalRectangle" Type="nvarchar" MaxLength="4" />
+    <Property Name="gearQuality" Type="nvarchar" MaxLength="1" />
+    <Property Name="gearType" Type="nvarchar" MaxLength="50" />
+    <Property Name="meshSize" Type="numeric" Precision="5" Scale="1" />
+    <Property Name="speciesCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="stock" Type="nvarchar" MaxLength="50" />
+    <Property Name="landingCategory" Type="nvarchar" MaxLength="3" />
+    <Property Name="dfuBase_Category" Type="nvarchar" MaxLength="3" />
+    <Property Name="sizeSortingEU" Type="int" />
+    <Property Name="sizeSortingDFU" Type="nvarchar" MaxLength="3" />
+    <Property Name="sexCode" Type="nvarchar" MaxLength="1" />
+    <Property Name="cuticulaHardness" Type="nvarchar" MaxLength="4" />
+    <Property Name="ovigorous" Type="nvarchar" MaxLength="3" />
+    <Property Name="weightSubSample" Type="numeric" Precision="11" Scale="5" />
+    <Property Name="weightTotal" Type="numeric" Precision="11" Scale="5" />
+    <Property Name="numberSubSample" Type="numeric" Precision="19" Scale="3" />
+    <Property Name="numberTotal" Type="numeric" Precision="19" Scale="3" />
+  </EntityType>
+  <EntityType Name="Trip">
+    <Key>
+      <PropertyRef Name="tripId" />
+    </Key>
+    <Property Name="tripId" Type="int" Nullable="false" />
+    <Property Name="cruiseId" Type="int" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="cruise" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="trip" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tripType" Type="nvarchar" MaxLength="6" />
+    <Property Name="logBldNr" Type="nvarchar" MaxLength="50" />
+    <Property Name="timeZone" Type="int" />
+    <Property Name="dateStart" Type="datetime" />
+    <Property Name="dateEnd" Type="datetime" />
+    <Property Name="samplingType" Type="nvarchar" MaxLength="1" />
+    <Property Name="samplingMethod" Type="nvarchar" MaxLength="12" />
+    <Property Name="fisheryType" Type="nvarchar" MaxLength="6" />
+    <Property Name="platform1" Type="nvarchar" MaxLength="20" />
+    <Property Name="nationalityPlatform1" Type="nvarchar" MaxLength="3" />
+    <Property Name="fDFVesselPlatform1" Type="bit" />
+    <Property Name="nationalityPlatform2" Type="nvarchar" MaxLength="3" />
+    <Property Name="platform2" Type="nvarchar" MaxLength="20" />
+    <Property Name="dateSample" Type="datetime" />
+    <Property Name="harbourSample" Type="nvarchar" MaxLength="4" />
+    <Property Name="nationalityHarbourSample" Type="nvarchar" MaxLength="3" />
+    <Property Name="harbourLanding" Type="nvarchar" MaxLength="4" />
+    <Property Name="nationalityHarbourLanding" Type="nvarchar" MaxLength="3" />
+    <Property Name="contactPersonId" Type="int" />
+    <Property Name="contactPersonName" Type="nvarchar" MaxLength="80" />
+    <Property Name="tripLeaderId" Type="int" />
+    <Property Name="tripLeaderName" Type="nvarchar" MaxLength="80" />
+    <Property Name="dataHandlerId" Type="int" />
+    <Property Name="dataHandlerName" Type="nvarchar" MaxLength="80" />
+    <Property Name="remark" Type="ntext" />
+    <Property Name="sgTripId" Type="nvarchar" MaxLength="200" />
+    <Property Name="tripNum" Type="nvarchar" MaxLength="200" />
+    <Property Name="placeName" Type="nvarchar" MaxLength="200" />
+    <Property Name="placeCode" Type="nvarchar" MaxLength="200" />
+    <Property Name="postalCode" Type="int" />
+    <Property Name="numberInPlace" Type="int" />
+    <Property Name="respYes" Type="int" />
+    <Property Name="respNo" Type="int" />
+    <Property Name="respTot" Type="int" />
+  </EntityType>
+  <Association Name="FK_AnimalRaised_SpeciesListRaised">
+    <End Role="SpeciesListRaised" Type="Self.SpeciesListRaised" Multiplicity="1" />
+    <End Role="AnimalRaised" Type="Self.AnimalRaised" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpeciesListRaised">
+        <PropertyRef Name="speciesListRaisedId" />
+      </Principal>
+      <Dependent Role="AnimalRaised">
+        <PropertyRef Name="speciesListRaisedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_R_AnimalPictureReference_Animal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="R_AnimalPictureReference" Type="Self.R_AnimalPictureReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="R_AnimalPictureReference">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_R_AnimalReference_Animal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="R_AnimalReference" Type="Self.R_AnimalReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="R_AnimalReference">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sample_Trip">
+    <End Role="Trip" Type="Self.Trip" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sample" Type="Self.Sample" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trip">
+        <PropertyRef Name="tripId" />
+      </Principal>
+      <Dependent Role="Sample">
+        <PropertyRef Name="tripId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpeciesList_Sample">
+    <End Role="Sample" Type="Self.Sample" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SpeciesList" Type="Self.SpeciesList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sample">
+        <PropertyRef Name="sampleId" />
+      </Principal>
+      <Dependent Role="SpeciesList">
+        <PropertyRef Name="sampleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpeciesListRaised_Sample">
+    <End Role="Sample" Type="Self.Sample" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SpeciesListRaised" Type="Self.SpeciesListRaised" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sample">
+        <PropertyRef Name="sampleId" />
+      </Principal>
+      <Dependent Role="SpeciesListRaised">
+        <PropertyRef Name="sampleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trip_Cruise">
+    <End Role="Cruise" Type="Self.Cruise" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trip" Type="Self.Trip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cruise">
+        <PropertyRef Name="cruiseId" />
+      </Principal>
+      <Dependent Role="Trip">
+        <PropertyRef Name="cruiseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FishLineDWModelStoreContainer">
+    <EntitySet Name="Age" EntityType="Self.Age" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnimalRaised" EntityType="Self.AnimalRaised" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cruise" EntityType="Self.Cruise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CruisesToTransfer" EntityType="Self.CruisesToTransfer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="L_Species" EntityType="Self.L_Species" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="R_AnimalPictureReference" EntityType="Self.R_AnimalPictureReference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="R_AnimalReference" EntityType="Self.R_AnimalReference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sample" EntityType="Self.Sample" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpeciesList" EntityType="Self.SpeciesList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpeciesListRaised" EntityType="Self.SpeciesListRaised" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trip" EntityType="Self.Trip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ErrorLog].[transferErrorId] AS [transferErrorId], 
+[ErrorLog].[errorType] AS [errorType], 
+[ErrorLog].[cruiseId] AS [cruiseId], 
+[ErrorLog].[origin] AS [origin], 
+[ErrorLog].[recordType] AS [recordType], 
+[ErrorLog].[recordTypeId] AS [recordTypeId], 
+[ErrorLog].[description] AS [description], 
+[ErrorLog].[logTime] AS [logTime]
+FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AnimalRaised_SpeciesListRaised" Association="Self.FK_AnimalRaised_SpeciesListRaised">
+      <End Role="SpeciesListRaised" EntitySet="SpeciesListRaised" />
+      <End Role="AnimalRaised" EntitySet="AnimalRaised" />
+    </AssociationSet>
+    <AssociationSet Name="FK_R_AnimalPictureReference_Animal" Association="Self.FK_R_AnimalPictureReference_Animal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="R_AnimalPictureReference" EntitySet="R_AnimalPictureReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_R_AnimalReference_Animal" Association="Self.FK_R_AnimalReference_Animal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="R_AnimalReference" EntitySet="R_AnimalReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sample_Trip" Association="Self.FK_Sample_Trip">
+      <End Role="Trip" EntitySet="Trip" />
+      <End Role="Sample" EntitySet="Sample" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpeciesList_Sample" Association="Self.FK_SpeciesList_Sample">
+      <End Role="Sample" EntitySet="Sample" />
+      <End Role="SpeciesList" EntitySet="SpeciesList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpeciesListRaised_Sample" Association="Self.FK_SpeciesListRaised_Sample">
+      <End Role="Sample" EntitySet="Sample" />
+      <End Role="SpeciesListRaised" EntitySet="SpeciesListRaised" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trip_Cruise" Association="Self.FK_Trip_Cruise">
+      <End Role="Cruise" EntitySet="Cruise" />
+      <End Role="Trip" EntitySet="Trip" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

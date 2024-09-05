@@ -1,0 +1,63 @@
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.AssemblyReference.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Sprattus\Sprattus.tt
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.Language.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Globe.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\protobuf-net.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\GeometricLibrary.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.CopyComplete
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Sprattus\Sprattus.tt
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.Language.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Globe.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\protobuf-net.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\GeometricLibrary.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfis.C9DB8BE6.Up2Date
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Sprattus\Sprattus.tt
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Anchor.Core.Language.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Globe.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\protobuf-net.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\GeometricLibrary.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Entities.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfis.C9DB8BE6.Up2Date
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.BusinessLogic\obj\Debug\Babelfisk.BusinessLogic.pdb

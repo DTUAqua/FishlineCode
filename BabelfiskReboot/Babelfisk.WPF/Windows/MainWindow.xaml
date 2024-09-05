@@ -1,0 +1,60 @@
+﻿<Window x:Class="Babelfisk.WPF.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+        xmlns:behavior="clr-namespace:Babelfisk.WPF.Infrastructure.Behaviors"
+        behavior:RegionPopupBehaviors.CreatePopupRegionWithName="WindowRegion"
+        behavior:RegionPopupBehaviors.ContainerWindowStyle="{DynamicResource WindowRegionStyle}"
+        xmlns:set="clr-namespace:Babelfisk.BusinessLogic.Settings;assembly=Babelfisk.BusinessLogic"
+        xmlns:lan="urn:anchorcore-language-localization-ui"
+         xmlns:sec="clr-namespace:Babelfisk.WPF.Views.Security"
+        x:Name="window" MinWidth="900" MinHeight="500"
+        Title="Fiskeline" 
+        UseLayoutRounding="True"
+        
+        Icon="pack://application:,,,/Resources/Images/Fish/FishYellow2.ico"
+        Height="{Binding Source={x:Static set:Settings.Instance}, Path=MainWindowStartupHeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+        Width="{Binding Source={x:Static set:Settings.Instance}, Path=MainWindowStartupWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        WindowState="{Binding Source={x:Static set:Settings.Instance}, Path=MainWindowStartupState, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  >
+    <Grid >
+        <DockPanel Background="{StaticResource ResourceKey=brushBackColor}">
+            <ContentControl DockPanel.Dock="Top" Panel.ZIndex="1" prism:RegionManager.RegionName="MenuRegion" KeyboardNavigation.IsTabStop="False">
+                
+            </ContentControl>
+
+            <Border Panel.ZIndex="10" Background="{StaticResource WindowBackground}" >
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="15" MaxWidth="700" Width="270"  />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ContentControl Grid.Column="0" prism:RegionManager.RegionName="LeftRegion" Panel.ZIndex="1" KeyboardNavigation.IsTabStop="False" >
+
+                    </ContentControl>
+
+                    <GridSplitter Grid.Column="1" KeyboardNavigation.TabNavigation="None" Panel.ZIndex="1000" KeyboardNavigation.IsTabStop="False" Margin="-3,0" BorderThickness="3,0" BorderBrush="Transparent"  SnapsToDevicePixels="True" ResizeDirection="Columns" HorizontalAlignment="Stretch" Background="{StaticResource ResourceKey=SplitterBorderBackgroundDark}"></GridSplitter>
+
+                    <ContentControl Grid.Column="2" prism:RegionManager.RegionName="MainRegion" Panel.ZIndex="1"  KeyboardNavigation.IsTabStop="False" >
+
+                    </ContentControl>
+
+                    <GridSplitter Visibility="Collapsed"  KeyboardNavigation.TabNavigation="None" KeyboardNavigation.IsTabStop="False" Grid.Column="3" Width="1" SnapsToDevicePixels="True" ResizeDirection="Columns" HorizontalAlignment="Stretch" Background="{StaticResource ResourceKey=SplitterBorderBackgroundDark}"></GridSplitter>
+
+                    <ContentControl Visibility="Collapsed" Grid.Column="4" prism:RegionManager.RegionName="RightRegion" KeyboardNavigation.IsTabStop="False" >
+
+                    </ContentControl>
+                </Grid>
+                
+                
+            </Border>
+            
+        </DockPanel>
+
+        <sec:LogOnView x:Name="logOnCtrl" Visibility="Collapsed" />
+    </Grid>
+</Window>

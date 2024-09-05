@@ -1,0 +1,87 @@
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.AssemblyReference.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.CoreCompileInputs.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Sprattus\Sprattus.tt
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Controls.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Language.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\GeometricLibrary.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Ionic.Zip.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\protobuf-net.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Globe.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.CopyComplete
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Sprattus\Sprattus.tt
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Controls.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Language.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\GeometricLibrary.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Ionic.Zip.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\protobuf-net.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Globe.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfis.18B2EA00.Up2Date
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Sprattus\Sprattus.tt
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.ViewModels.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Controls.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Anchor.Core.Language.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\GeometricLibrary.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Ionic.Zip.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\protobuf-net.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Globe.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.BusinessLogic.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Entities.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfis.18B2EA00.Up2Date
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.ViewModels\obj\Debug\Babelfisk.ViewModels.pdb

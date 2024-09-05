@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language type="da-DK" name="Dansk" nameEng="Danish">
+  <UIText>
+    <Section key="LogOnView">
+      <Entry key="ErrorEnterUsrname">Angiv venligst et brugernavn</Entry>
+      <Entry key="ErrorEnterPassword">Angiv venligst kodeord</Entry>
+      <Entry key="ErrorDeactivatedUSer">Brugeren er deaktiveret, kontakt venligst en administrator for hjælp.</Entry>
+      <Entry key="ErrorUsernameOrPassword">Brugernavn eller adgangskode var forkert, prøv venligst igen.</Entry>
+      <Entry key="ErrorWrongPassword">Adgangskoden var forkert. Resterende forsøg:</Entry>
+      <Entry key="WarningProgramOfline">Programmet er offline</Entry>
+      <Entry key="WarningPaswordLength">Der er implementeret nye sikkerhedsforanstaltninger i FiskeLine som kræver at kodeord skal have en længde på mindst 6 karakterer. Da dit kodeord ikke opfylder dette, bedes du ændre det i vinduet som vises efter denne besked lukkes.</Entry>
+      <Entry key="InfoLoggingIn">Logger ind, vent venligst...</Entry>
+      <Entry key="ErrorNoReadDataTask">Du har ikke rettigheder til at se data i Fiskeline og kan dermed ikke logge ind, kontakt venligst en administrator.</Entry>
+    </Section>
+    
+    <Section key="MainWindow" >
+      <Entry key="Apply" >Tilføj</Entry>
+      <Entry key="Close" >Luk</Entry>
+    </Section>
+    
+    <Section key="MainMenu">
+      <Entry key="Start" >Start</Entry>
+      <Entry key="LogOut">Log ud</Entry>
+      <Entry key="Settings">Indstillinger</Entry>
+      <Entry key="Users">Brugere</Entry>
+      <Entry key="GoOffline">Gå offline</Entry>
+      <Entry key="GoOnline">Gå online</Entry>
+      <Entry key="ExportData">Eksporter data</Entry>
+      <Entry key="Reports">Rapporter</Entry>
+      <Entry key="LoadingUserDetails">Henter bruger detaljer, vent venligst...</Entry>
+      <Entry key="WarningAddEditUsersOffline">Det er ikke muligt at tilføje eller redigere brugere mens du er offline.</Entry>
+      <Entry key="WarningEditUsersOffline">Det er ikke muligt at redigere brugerinformation mens du er offline.</Entry>
+      <Entry key="WarningManageAquaDotsOffline">Det er ikke muligt at administrere AquaDots mens FiskeLine er offline.</Entry>
+      <Entry key="WarningNoRightsToGoOffline">Du har ikke rettigheder til at gå offline.</Entry>
+      <Entry key="WarningNoRightsToExportData">Du har ikke rettigheder til at eksportere data.</Entry>
+      <Entry key="WarningNoRightsToDownloadReport">Du har ikke rettigheder til at hente rapporter.</Entry>
+      <Entry key="WarningNoSelectedSamples">Ingen individer valgt. Vælg venligst mindst ét individ for at fortsætte.</Entry>
+      <Entry key="WarningNoDFUPerson">Det blev ikke fundet nogen aqua-personer, der matcher dit login-brugernavn. Sørg for at der findes en aqua-person i Fiskeline-kodelisten 'Personer (Aqua)' med initialer, der matcher dit login-brugernavn og prøv igen.</Entry>
+      <Entry key="AquadotsManagementHeader">Aquadots administration</Entry>
+      <Entry key="AquadotsManagementToolTip">Åben aquadots administrationsområde</Entry>
+    </Section>
+   
+    <Section key="Common">
+      <Entry key="Add" >Tilføj</Entry>
+      <Entry key="Exit" >Luk</Entry>
+      <Entry key="OK">OK</Entry>
+      <Entry key="Cancel">Fortryd</Entry>
+      <Entry key="Yes">Ja</Entry>
+      <Entry key="No">Nej</Entry>
+      <Entry key="Save">Gem</Entry>
+      <Entry key="Close">Luk</Entry>
+      <Entry key="Loading">Arbejder, vent venligst</Entry>
+      <Entry key="Edit">Redigér</Entry>
+      <Entry key="Remove">Fjern</Entry>
+      <Entry key="Delete">Slet</Entry>
+      <Entry key="Error" >En uventet fejl opstod. {0}</Entry>
+      <Entry key="Search">Søg</Entry>
+      <Entry key="SpeciesSingle">Art:</Entry>
+      <Entry key="Filter">Filter:</Entry>
+      <Entry key="SelectYear">Vælg år</Entry>
+      <Entry key="NoChanges">Ingen ændringer fundet</Entry>
+      <Entry key="GearStartDate">Redskab Start Dato</Entry>
+      <Entry key="Name">Navn</Entry>
+      <Entry key="Age">Alder</Entry>
+      <Entry key="Weight">Vægt</Entry>
+      <Entry key="Length">Længde</Entry>
+      <Entry key="Modified">Ændret</Entry>
+      <Entry key="Created">Oprettet</Entry>
+      <Entry key="Comments">Kommentarer</Entry>
+      <Entry key="Latitude">Breddegrad</Entry>
+      <Entry key="Longitude">Længdegrad</Entry>
+      <Entry key="AddRow">Tilføj række</Entry>
+      <Entry key="Images">Billeder</Entry>
+      <Entry key="Descending">Bevæger</Entry>
+      <Entry key="Sorting">Sortering</Entry>
+      <Entry key="SortBy">Sorter efter:</Entry>
+      <Entry key="Samples">Prøver</Entry>
+      <Entry key="Closed">Lukket</Entry>
+      <Entry key="ChangesSavedMessage">Ændringerne blev gemt korrekt.</Entry>
+      <Entry key="SelectOneOrMany">Vælg en eller flere...</Entry>
+      <Entry key="SelectOne">Vælg en...</Entry>
+      <Entry key="SelectAll">Vælg alle</Entry>
+      <Entry key="User">Bruger</Entry>
+      <Entry key="ClearText">Ryd teksten</Entry>
+      <Entry key="ImagesParan">Billede(r)</Entry>
+      <Entry key="Primary">Primær</Entry>
+      <Entry key="All">Alle</Entry>
+      <Entry key="AllFolders">Alle mapper</Entry>
+    </Section>
+
+    <Section key="LogOnView">
+      <Entry key="LanguageHeader" >Sprog</Entry>
+      <Entry key="UserNameHeader" >Brugernavn</Entry>
+      <Entry key="PasswordHeader" >Adgangskode</Entry>
+      <Entry key="LoginHeader" >Log ind</Entry>
+      <Entry key="VersionHeader" >Version</Entry>
+      <Entry key="ValidationUserName" >Angiv venligst et brugernavn</Entry>
+      <Entry key="ValidationSelectedLanguage" >Vælg venligst sprog (oppe i højre hjørne af programmet)</Entry>
+      <Entry key="ErrorLogin" >Brugernavn eller adgangskode var forkert, prøv venligst igen.</Entry>
+      <Entry key="RestartMessage" >En genstart af programmet kan være nødvendig før indstillingerne vil have effekt</Entry>
+      <Entry key="LoggingIn">Logger ind, vent venligst...</Entry>
+      <Entry key="LocalHeader">Lokal</Entry>
+    </Section>
+
+    <Section key="UsersView">
+      <Entry key="AddUser">Ny bruger</Entry>
+      <Entry key="UserName">Brugernavn</Entry>
+      <Entry key="FullName">Fulde navn</Entry>
+      <Entry key="Users">Brugere:</Entry>
+      <Entry key="IsLocked">Aktive/Inaktive brugere</Entry>
+      <Entry key="Role">Rolle</Entry>
+      <Entry key="UsersHeader">Brugere</Entry>
+      <Entry key="Sort">Sortering</Entry>
+      <Entry key="Descending">Desc</Entry>
+      <Entry key="Search">Søg</Entry>
+      <Entry key="LogIn">Log ind</Entry>
+    </Section>
+
+    <Section key="UserView">
+      <Entry key="ErrorUserNameAndName">Angiv venligst brugernavn, fornavn og efternavn.</Entry>
+      <Entry key="ErrorPassword">Indtast venligst et kodeord.</Entry>
+      <Entry key="ErrorPasswordRepeat">Gentag venligst kodeordet i tekstfeltet under kodeordet.</Entry>
+      <entry key="ErrorPasswords">Kodeordnene er forskellige, indtast dem venligst igen.</entry>
+      <entry key="ErrorPasswordLength">Angiv venglist et kodeord på mindst 6 tegn.</entry>
+      <entry key="ErrorRoles">Vælg venligst en rolle.</entry>
+      <entry key="ErrorNumber">Angiv venligst et id/nummer for nøglefiskeren.</entry>
+      <entry key="ErrorEmail">Angiv venligst en email adresse.</entry>
+      <entry key="UserNameExists">Brugernavn eksisterer allerede, vælg venligst et andet brugernavn.</entry>
+      <entry key="UserProfile">Bruger-profil</entry>
+      <entry key="InaktiveMessage">Et eller flere felter er inaktive grundet mangel på rettigheder.</entry>
+      <Entry key="UserActive">Brugerkonto aktiv</Entry>
+      <Entry key="UserActiveYes"> (Ja)</Entry>
+      <Entry key="UserActiveNo"> (Nej)</Entry>
+      <Entry key="Account">Konto</Entry>
+      <Entry key="UserInformation">Brugerinformation</Entry>
+      <Entry key="UserName">Brugernavn</Entry>
+      <Entry key="FullName">Fulde navn</Entry>
+      <Entry key="Email">Email</Entry>
+      <Entry key="Password">Kodeord</Entry>
+      <Entry key="RepeatPassword">Gentag kodeord</Entry>
+      <Entry key="Roles">Roller</Entry>
+      <Entry key="Active">Aktiv</Entry>
+      <Entry key="FirstName">Fornavn</Entry>
+      <Entry key="LastName">Efternavn</Entry>
+      <Entry key="NewRole">Ny rolle</Entry>
+      <Entry key="UserAccount">Brugerkonto</Entry>
+      <Entry key="InfoAddNewPasword">Tilføj venligst et nyt kodeord.</Entry>
+    </Section>
+
+    <Section key="LookupView">
+      <Entry key="Lookups">Kodelister</Entry>
+      <Entry key="Code">Kode (database)</Entry>
+      <Entry key="UIName">Viste værdi (brugerflade)</Entry>
+      <Entry key="AddLookup">Tilføj række</Entry>
+      <Entry key="RemoveConfirmation">Er du sikker på rækken skal fjernes? (Den fjernes først helt fra databasen efter ændringer gemmes)</Entry>
+      <Entry key="SaveMessage">Ændringerne blev gemt korrekt.</Entry>
+      <Entry key="SaveMessageError">Kode(r) kunne ikke gemmes.</Entry>
+      <Entry key="DeleteError">Koden kan ikke slettes da der hænger data på den.</Entry>
+      <Entry key="ValidateError1">Koden '{0}' eksisterer allerede, fjern eller omdøb venligst en af dem.</Entry>
+      <Entry key="ValidateError2">Både kode og den viste værdi skal være specificeret for alle rækker inden der gemmes.</Entry>
+    </Section>
+
+    <Section key="LookupManagerView">
+      <Entry key="Species">Fiske-arter</Entry>
+      <Entry key="FishSpecies">Fiske-arter</Entry>
+      <Entry key="BirdSpecies">Fugle-arter</Entry>
+      <Entry key="Gear">Redskaber</Entry>
+      <Entry key="Unit">Enheder</Entry>
+      <Entry key="Cloudiness">Skydække</Entry>
+      <Entry key="Visibility">Sigtbarhed</Entry>
+      <Entry key="WaterCondition">Vandforhold</Entry>
+      <Entry key="WindDirection">Vindretninger</Entry>
+      <Entry key="ChangeLookupConfirmation">Ændringer til nøgleværdi-listen er ikke gemt, er du sikker på du vil fortsætte?</Entry>
+    </Section>
+
+    <Section key="BabelfiskTasks">
+      <Entry key="ReadData">Se data</Entry>
+      <Entry key="EditUsers">Tilføj/Rediger brugere</Entry>
+      <Entry key="ViewLookups">Se kodelister</Entry>
+      <Entry key="EditLookups">Redigere kodelister</Entry>
+      <Entry key="EditSomeLookups">Redigere udvalgte kodelister (kontaktpersoner og skibe)</Entry>
+      <Entry key="ModifyData">Tilføj/Rediger data</Entry>
+      <Entry key="DeleteData">Slette data</Entry>
+      <Entry key="GoOffline">Gå offline</Entry>
+      <Entry key="ExportData">Eksportere data</Entry>
+      <Entry key="ExportToWarehouse">Eksportere data til datavarehuset</Entry>
+      <Entry key="ViewReports">Se rapporter</Entry>
+      <Entry key="EditReports">Tilføj/Rediger rapporter</Entry>
+      <Entry key="ViewDFADReports">Se DFAD rapporter</Entry>
+      <Entry key="AddEditSDEventsAndSamples">Aquadots - tilføj/rediger begivenheder og individer</Entry>
+      <Entry key="ViewSDEventsAndSamples">Aquadots - se begivenheder og individer</Entry>
+      <Entry key="EditSDAnnotations">Aquadots - rediger andre brugeres annoteringer i SmartDots</Entry>
+      <Entry key="DeleteAnimals">Slette enkeltfisk (individer)</Entry>
+    </Section>
+
+    <Section key="SDEventsView">
+      <Entry key="Events">Begivenheder</Entry>
+      <Entry key="AddEvent">Tilføj begivenhed</Entry>
+      <Entry key="EditEvent">Rediger begivenhed</Entry>
+      <Entry key="EventId">Begivenheds-id</Entry>
+      <Entry key="EventName">Begivenhedsnavn</Entry>
+      <Entry key="EventYear">Begivenhedsår</Entry>
+      <Entry key="EventStartDate">Begivenheds-startdato</Entry>
+      <Entry key="StartDate">Startdato</Entry>
+      <Entry key="EventEndDate">Begivenheds-slutdato</Entry>
+      <Entry key="EndDate">Slutdato</Entry>
+      <Entry key="EventSpecies">begivenhedsarter</Entry>
+      <Entry key="EventArea">Begivenhedsområde</Entry>
+      <Entry key="EventType">Begivenhedstype</Entry>
+      <Entry key="EventClosed">Begivenheden er lukket</Entry>
+      <Entry key="Area">Område</Entry>
+      <Entry key="Users">Brugere</Entry>
+      <Entry key="UsersInfo">Antal brugere med adgang til begivenheden</Entry>
+      <Entry key="Samples">Prøver</Entry>
+      <Entry key="SamplesInfo">Antal individer i begivenheden</Entry>
+      <Entry key="VisibleEvents">Synlige begivenheder:</Entry>
+      <Entry key="TotalEvents">Antal begivenheder:</Entry>
+      <Entry key="InfoNoEvents">Ingen begivenheder fundet</Entry>
+      <Entry key="InfoSorting">Brug SHIFT knappen til at sortere efter flere kolonner.</Entry>
+      <Entry key="CreatedBy">Oprettet af</Entry>
+    </Section>
+    
+    <Section key="SDEventItem">
+      <Entry key="Start">Start</Entry>
+      <Entry key="End">Slut</Entry>
+    </Section>
+
+    <Section key="AddEditSDEventView">
+      <Entry key="EventId">Id</Entry>
+      <Entry key="EventName">Navn</Entry>
+      <Entry key="EventType">Type</Entry>
+      <Entry key="SampleType">Prøvetagningstype</Entry>
+      <Entry key="Species">Art</Entry>
+      <Entry key="StartDate">Startdato</Entry>
+      <Entry key="EndDate">Slutdato</Entry>
+      <Entry key="AssignedAgeReaders">Tilføjede aldersaflæsere</Entry>
+      <Entry key="AddUser">Tilføj aldersaflæser</Entry>
+      <Entry key="DeleteEventWarning">Er du sikker at begivenheden og de tilknyttede individer og filer skal slettes?</Entry>
+      <Entry key="EditEventWithInput">Rediger begivenhedsdetaljer for</Entry>
+      <Entry key="AddNewEvent">Tilføj ny begivenhed</Entry>
+      <Entry key="Year">År</Entry>
+      <Entry key ="AddEditEventTypes">Tilføj/Rediger begivenhedstyper</Entry>
+      <Entry key ="AddEditSampleTypes">Tilføj/rediger prøvetyper</Entry>
+      <Entry key="AddEditSpecies">Tilføj/Rediger arter</Entry>
+      <Entry key="AddEditArea">Tilføj/Rediger områder</Entry>
+      <Entry key="ValidationEventName">Angiv venligst et begivenhedsnavn.</Entry>
+      <Entry key="ValidationEventType">Vælg venligst en begivenhedstype.</Entry>
+      <Entry key="ValidationSpecies">Vælg venligst en art.</Entry>
+      <Entry key="ValidationSampleType">Vælg venligst en prøvetype.</Entry>
+      <Entry key="ValidationEndDate">Angiv venligst en slutdato (senere end år 1900).</Entry>
+      <Entry key="ValidationStartDate">Angiv venligst en startdato (senere end år 1900).</Entry>
+      <Entry key="ValidationEndDateAfterStart">Slutdato skal komme efter startdato.</Entry>
+      <Entry key="ValidationYear">Tilføj venligst år (fire cifre).</Entry>
+      <Entry key="ValidationArea">Vælg venligst område.</Entry>
+      <Entry key="InfoMessageEventDeleted">Begivenheden blev slettet.</Entry>
+      <Entry key="HasChangesWarning">Der er ikke-gemte ændringer. Er du sikker på du ønsker at fortsætte uden at gemme?</Entry>
+      <Entry key="NoPrimaryReaderAssignedWarning">Advarsel, ingen af de tilknyttede aldersaflæsere er sat som primær-afslæser. Ønsker du at fortsætte?</Entry>
+      <Entry key="DeleteEventSamplesError">Det er ikke muligt at slette en begivenhed som har individer tilknyttet. Slet venligst individer først og prøv igen.</Entry>
+      <Entry key="ImageLocationHeader">Billedmappe-lokationer</Entry>
+      <Entry key="ImageLocationHeaderToolTip">De tilføjede mapper nedenfor, er de billedmapper som Fiskeline vil søge i for at finde billeder, der passer til de individer som importeres til hændelsen. Alle undermapper (og deres undermapper, osv) vil blive søgt i under importeringen.</Entry>
+      <Entry key="AddImageFolder">Vælg/Fjern billedmappe-lokation(er)</Entry>
+      <Entry key="SelectFoldersHeader">Vælg billedmappe(r)</Entry>
+      <Entry key="NoImageFoldersAddedWarning">Advarsel, du har ikke valgt nogen billedmappe-lokationer. Hvis du vælger at tilføje individer til en hændelse som ikke har nogen billedmapper-lokationer tilknyttet, vil Fiskeline søge efter billeder i alle mapper, hvilket kan tage flere minutter. Ønsker du at fortsætte?</Entry>
+      <Entry key="SelectedImageFoldersHeader">Valgte billedmapper</Entry>
+    </Section>
+
+    <Section key="AddEditSDSampleView">
+      <Entry key="AddEditSexCodes">Tilføj/Rediger køn</Entry>
+      <Entry key="AddEditMaturity">Tilføj/Rediger modenhed</Entry>
+      <Entry key="AddEditOtolithReadingRemarks">Tilføj/Rediger otolith læsebemærkninger</Entry>
+      <Entry key="AddEditEdgeStructures">Tilføj/Rediger kantstrukturer</Entry>
+      <Entry key="AddEditSpecies">Tilføj/Rediger arter</Entry>
+      <Entry key="AddEditStocks">Tilføj/Rediger bestande</Entry>
+      <Entry key="AddEditDFUAreas">Tilføj/Rediger områder</Entry>
+      <Entry key="AddEditStatisticalRectangles">Tilføj/Rediger statistisk rektangel</Entry>
+      <Entry key="AddEditPreparationMethods">Tilføj/Rediger forberedelsesmetoder</Entry>
+      <Entry key="AddEditLightTypes">Tilføj/Rediger lystype</Entry>
+      <Entry key="AddEditOtolithDescriptions">Tilføj/Rediger otolith beskrivelser</Entry>
+      <Entry key="ValidationCruiseLength">Togt må ikke være længere end 20 tegn</Entry>
+      <Entry key="ValidationTripLength">Tur må ikke være længere end 10 tegn</Entry>
+      <Entry key="ValidationStationLength">Station må ikke være længere end 6 tegn</Entry>
+      <Entry key="ValidationLatitudeRange">Breddegrad skal være mellem -90 og 90</Entry>
+      <Entry key="ValidationLongitudeRange">Længdegrad skal være mellem -180 og 180</Entry>
+      <Entry key="ValidationCatchDate">Angiv venligst en fangstdato</Entry>
+      <Entry key="ValidationAnimalId">Angiv venligst et individ-id</Entry>
+      <Entry Key="ValidationSelectedDFUArea">Angiv venligst et område</Entry>
+      <Entry key="ValidationLength">Angiv venligst en længde</Entry>
+      <Entry key="ValidationSelectedPreparationMethod">Angiv venligst en forberedelsesmetode</Entry>
+      <Entry key="ValidationLightTypeMandatory">Angiv enligst en lystype</Entry>
+      <Entry key="HasChangesWarning">Der er ikke-gemte ænderinger, er du sikker på du ønsker at fortsætte uden at gemme?</Entry>
+      <Entry key="WarningImageAlreadyAdded">Det valgte billede er allerede tilføjet individet.</Entry>
+      <Entry key="WarningImageAlreadyAddedWithInput">Et billede med navn '{0}' er allerede tilføjet individet og springes derfor over.</Entry>
+      <Entry key="WarningImageAlreadyAddedAnotherSample">Et billede med navn '{0}' er allerede tilføjet et andet individ og tilføjes derfor ikke.</Entry>
+      <Entry key="WarningOnlyOneImageForYearlyEvents">Du kan kun tilføje ét billede til et individ for årlige læsebegivenheder.</Entry>
+      <Entry key="WarningOnlyOneImageForYearlyEventsOngoing">Kun det første billede blev tilføjet, da det kun er mulligt at tilføje ét billede per individ for årlige læsebegivenheder.</Entry>
+      <Entry key="DupliacteAnimalIdForYearlyReadingEvent">Et individ med individ-id '{0}' eksisterer allerede. Samme individ kan ikke tilføjes flere gange til årlige læsebegivenheder.</Entry>
+      <Entry key="DeletionErrorImageHasAnnotations">Billedet '{0}' kan ikke fjernes, da der hænger SmartDots-annoteringer på det. Fjern venligst annoteringerne i SmartDots først og prøv igen.</Entry>
+    </Section>
+    
+    <Section key="SDSelectAnimalsView">
+      <Entry key="LoadAnimals">Hent individer</Entry>
+      <Entry key="AnimalId">Individ-id</Entry>
+      <Entry key="SelectYearsLoadAnimals">Vælg et eller flere år og indlæs individerne fra Fiskeline</Entry>
+      <Entry key="ColumnGearStartDate">Aktivitetsdato</Entry>
+      <Entry key="ColumnLength">Længde(mm)</Entry>
+      <Entry key="ColumnWeight">Vægt(g)</Entry>
+      <Entry key="SelectYears">Vælg år (et eller flere...)</Entry>
+      <Entry key="CruiseYear">År</Entry>
+      <Entry key="Cruise">Togt</Entry>
+      <Entry key="Trip">Tur</Entry>
+      <Entry key="TripType">Turtype</Entry>
+      <Entry key="Station">Station</Entry>
+      <Entry key="OtolithReadingRemarkShort">Otolith</Entry>
+      <Entry key="OtolithReadingRemark">Otolith Læsebemærkninger</Entry>
+      <Entry key="EdgeStructure">Kantstruktur</Entry>
+      <Entry key="EdgeStructureShort">Kant</Entry>
+      <Entry key="Quarter">Kvartal</Entry>
+      <Entry key="AreaCode">Område</Entry>
+      <Entry key="HasImages">Har billede</Entry>
+      <Entry key="InfoImportedRows">Semi-transparante rækker er individer som allerede er blevet importeret</Entry>
+      <Entry key="VisibleAnimals">Synlige individer:</Entry>
+      <Entry key="TotalAnimals">Antal individer:</Entry>
+      <Entry key="SelectedAnimals">Udvalgte individer:</Entry>
+      <Entry key="WarningNoYearSelected">Vælg venligst mindst et år at indlæse individer fra.</Entry>
+      <Entry key="WarningNoAnimalId">Angiv venligst et individ-id først.</Entry>
+      <Entry key="AnimalIdNotFound">Individet med individ-id '{0}' blev ikke fundet i Fiskeline-databasen.</Entry>
+      <Entry key="SearchBySampleId">Individid (Fiskeline)</Entry>
+      <Entry key="AnimalIdAlreadyExist">OBS! Individet med individ-id: '{0}' er allerede blevet tilføjet til begivenheden.</Entry>
+      <Entry key="GetAnimal">Hent individ</Entry>
+      <Entry key="WarningAnimalAnotherSpecies">Individ-arten ('{0}') passer ikke med begivenhedens arter.</Entry>
+      <Entry key="WarningAnimalAnotherArea">Individ-området ('{0}') passer ikke med begivenhedens områder.</Entry>
+      <Entry key="YearlyReadingAlreadyAddedError">Det er ikke tilladt at tilføje samme individ flere gange for årlige læsebegivenheder. Et eller flere af de valgte individer (de transparante rækker), er allerede tilføjet til begivenheden. Fravælg venligst individerne som allerede er tilføjet begivenheden og prøv igen.</Entry>
+      <Entry key="YearlyReadingDuplicatesSelectedError">Det er ikke tilladt at tilføje samme individ flere gange for årlige læsebegivenheder. Du har valgt et eller flere individer med samme individ-id. Fravælg venligst nødvendige individer for at samme individ ikke tilføjes flere gange.</Entry>
+      <Entry key="NoImagesFoundMessage">Ingen billeder fundet</Entry>
+      <Entry key="SearchForFoldersButtonHeader">Med denne knap kan du se og konfigurere hvilke mapper du vil søge efter billeder i når du henter individer. Hvis der ikke er valgt nogen mapper, vil Fiskeline søge i alle mapperne. OBS! Søgning i alle mapper kan tage flere minutter og anbefales ikke.</Entry>
+      <Entry key="WarningNoImageFoldersSelected">Du har ikke valgt nogen specifikke mapper at søge efter billeder i. Hvis der ikke er valgt nogen mapper, vil Fiskeline søge i alle mapperne. Søgning i alle mapper kan tage flere minutter og anbefales ikke, ønsker du at fortsætte?</Entry>
+    </Section>
+
+    <Section key="SDSampleView">
+      <Entry key="MoveSamples">Flyt individer</Entry>
+      <Entry key="CopySamples">Kopier individer</Entry>
+      <Entry key="Return">Luk</Entry>
+      <Entry key="LocatingImages">Leder efter billedfiler for valgte individer. Vent venligst...</Entry>
+      <Entry key="LoadingSampleData">Henter individdata. Vent venligst...</Entry>
+      <Entry key="SavingSamplesToDb">Gemmer individer, vent venligst...</Entry>
+      <Entry key="SamplesSuccessfullyAddedMsg">{0} individ(er) blev tilføjet begivenheden.</Entry>
+      <Entry key="AddRemoveSample">Tilføj/Rediger indivier</Entry>
+      <Entry key="AddImage">Tilføj billede</Entry>
+      <Entry key="SampleImage">Individbilleder</Entry>
+      <Entry key="SelectImage">Vælg et billede</Entry>
+      <Entry key="ImportSamples">Importer individer (CSV)</Entry>
+      <Entry key="AddSample">Importer individer (Fiskeline)</Entry>
+      <Entry key="AddSingleSampleHeader">Tilføj individ</Entry>
+      <Entry key="SampleType">Individtype</Entry>
+      <Entry key="Type">Type</Entry>
+      <Entry key="SampleOrigin">Individoprindelse</Entry>
+      <Entry key="Origin">Oprindelse</Entry>
+      <Entry key="SampleId">Individ-id</Entry>
+      <Entry key="DFUAre">Område</Entry>
+      <Entry key="Area">Område</Entry>
+      <Entry key="MatId">Mod.</Entry>
+      <Entry key="MaturityID">Modenhed</Entry>
+      <Entry key="MaturityIndexMethodShort">Mod. metode</Entry>
+      <Entry key="MaturityIndexMethod">Modenhedsindeksmetode</Entry>
+      <Entry key="PreparationMethod">Forberedelsesmetode</Entry>
+      <Entry key="PreparationMethodShort">Forb. metode</Entry> 
+      <Entry key="StatisticalRectangle">Statistisk rektangel</Entry>
+      <Entry key="StatisticalRectangleShort">Rektangel</Entry>
+      <Entry key="Species">Art</Entry>
+      <Entry key="Stock">Bestand</Entry>
+      <Entry key="StockId">Bestand-id</Entry>
+      <Entry key="HasChangesWarning">Der er ændringer til individlisten som ikke er gemt, er du sikker på du ønsker at fortsætte uden at gemme?</Entry>
+      <Entry key="Events">Begivenheder</Entry>
+      <Entry key="Sex">Køn</Entry>
+      <Entry key="SexCode">Køn</Entry>
+      <Entry key="ColumnLength">Længde(mm)</Entry>
+      <Entry key="ColumnWeight">Vægt(g)</Entry>
+      <Entry key="CreatedBy">Oprettet af</Entry>
+      <Entry key="AddEditImageFiles">Tilføj elle rediger billedfiler</Entry>
+      <Entry key="EditSample">Rediger individ</Entry>
+      <Entry key="CatchDate">Fangstdato</Entry>
+      <Entry key="LightTypeShort">Lystype</Entry>
+      <Entry key="LightType">Lystype</Entry>
+      <Entry key="OtolithDescriptionShort">Otolith B.</Entry>
+      <Entry key="OtolithDescription">Otolith beskrivelse</Entry>
+      <Entry key="EditingLocked">Redigering låst</Entry>
+      <Entry key="VisibleSamples">Synlige individer:</Entry>
+      <Entry key="TotalSamples">Antal individer:</Entry>
+      <Entry key="ChangeddAnimals">Ændrede individer:</Entry>
+      <Entry key="BackToEvents">Tilbage til begivenheder</Entry>
+      <Entry key="Event">Begivenhed</Entry>
+      <Entry key="SelectEvent">Vælg begivenhed</Entry>
+      <Entry key="NoEventSelected">Vælg venligst en begivenhed at flytte/kopiere individerne til.</Entry>
+      <Entry key="MoveCopy">Flyt/Kopier individer til en anden begivenhed</Entry>
+      <Entry key="SelectSamplesToMoveOrCopy">Vælg de individer som skal flyttes eller kopieres.</Entry>
+      <Entry key="CopySucceeded">De(n) valgte individ(r) blev kopieret korrekt.</Entry>
+      <Entry key="MoveSucceeded">De(n) valgte individ(r) blev flyttet korrekt.</Entry>
+      <Entry key="SamplesHaveChanges">Det er ikke muligt at aktivere funktionaliteten når en eller flere individer har ændringer. Gem venligst individ-listen først og prøv igen.</Entry> 
+      <Entry key="WarningSampleHasAnnotations">Individet med id: '{0}' har SmartDots-annoteringer tilknyttet og kan derfor ikke slettes.</Entry>
+      <Entry key="WarningFileIsOpen">Den valgte fil er åben i et andet program. Luk venligst filen i det andet program og prøv igen.</Entry>
+      <Entry key="SDSampleValidationError">Valideringen fejlede for rækken med individ-id '{0}'. {1}</Entry>
+      <Entry key="CancelMoveCopyToolTip">Fortryd flytning/kopiering af individer.</Entry>
+      <Entry key="AreaOrSpeciesDoesntMatch">Et eller flere individer har et område/art, der ikke matcher begivenheds-områderne/arterne. De problematiske områder/arter er fremhævet med rødt i individlisten nedenfor.</Entry>
+      <Entry key="SDFileExtraColumnHeader">Synlige ekstrakolonner i 'Files'-tabellen i SmartDots</Entry>
+      <Entry key="CopyAgesToFishLineHeader">Vælg manglende billedfiler eller annoteringer (røde bokse) og vælg de individer som aldrene i Fiskeline skal opdateres ud fra.</Entry>
+      <Entry key="UpdateAgesInFishlineButton">Opdater aldre i Fiskeline</Entry>
+      <Entry key="UpdateAgesInFishlineMenuButton">Opdater aldre i Fiskeline for specifikke individer</Entry>
+      <Entry key="SelectSamplesToUpdateScale">Vælg de individer hvor skalaen skal sættes</Entry>
+      <Entry key="ScaleValueHeader">Angiv en skala</Entry>
+      <Entry key="UpdateScaleButton">Anvend skala på valgte individer</Entry>
+      <Entry key="UpdateScaleMenuButton">Tildel en skala til specifikke individer</Entry>
+      <Entry key="CheckForInconsistenciesMenuButton">Tjek individer for uoverenstemmelser</Entry>
+      <Entry key="ScalesColumnHeader">Skala(er)</Entry>
+      <Entry key="SDFilesColumnHeader">Fil(er)</Entry>
+      <Entry key="SDAnnotationsColumnHeader">Godkendt(e) annotering(er)</Entry>
+      <Entry key="CheckingForInconsistensiesProgress">Tjekker for uoverenstemmelser...</Entry>
+      <Entry key="ScaleValidationEnterValue">Angive venligst en skala først.</Entry>
+      <Entry key="ValidationSelectSamples">Vælg venligst en eller flere pørver først.</Entry>
+      <Entry key="SamplesWithAnnotationsVisibleMessage">(Kun individer med godkendte SmartDot-annoteringer er synlige i listen)</Entry>
+      <Entry key="SamplesWithoutAnnotationsVisibleMessage">(Kun individer uden godkendte SmartDot-annoteringer er synlige i listen)</Entry>
+      <Entry key="SamplesWithFilesVisibleMessage">(Kun individer med billederfiler er synlige i listen)</Entry>
+      <Entry key="ValidationMoveCopySampleSpeciesMismatch">Afbryder operationen. Et individ med individ-id '{0}' har en anden art '{1}' end begivenhedes art '{2}'.</Entry>
+      <Entry key="ValidationMoveCopySampleAreaMismatch">Afbryder operationen. Et individ med individ-id '{0}' har et område '{1}' som ikke passer med behivenhedens område(r) '{2}'.</Entry>
+      <Entry key="ValidationMoveCopySampleAnimalIdDuplicate">Afbryder operationen. Et individ med individ-id '{0}' eksisterer allerede i den valgte begivenhed.</Entry>
+      <Entry key="SuccessfullyAssignedScaleMessage">Skalaen '{0}' blev tildelt de valgte individer ({0} individ(er)).</Entry>
+      <Entry key="AssignScaleConfirmation">Er du sikker på at du vil anvende skalaen '{0}' på de valgte individer ({1} individ(er)).</Entry>
+      <Entry key="SelectAllSamplesError">Du kan kun vælge alle individer, når der er mindre end 1000 individer i listen.</Entry>
+      <Entry key="MoveCopySamplesConfirmation">Er du sikker på du ønsker at flytte/slette {0} individ(er) til begivenheden '{1}'?</Entry>
+      <Entry key="SelectSingleOtolithImageMessage">{0} filer blev fundet for individet med individ-id '{1}'. Det er kun tilladt for et individ at indeholde en enkelt billedfil til årlige læsebegivenheder. Vælg venligst en af filerne nedenfor, eller spring importeringen over for individet.</Entry>
+      <Entry key="SelectSingleOtolithImageMessage2">{0} filer blev fundet for individet med individ-id '{1}'. Det er kun tilladt for et individ at indeholde en enkelt billedfil til årlige læsebegivenheder. Vælg venligst en af filerne nedenfor, eller spring billedvalg over.</Entry>
+      <Entry key="SelectSingleOtolithImageSkipButton">Spring over</Entry>
+      <Entry key="CopyAgesToFishLineConfirmation">Er du sikker på du vil anvende alderen for de(t) ({0}) valgte individ(er) på matchende individ'er i Fiskeline?</Entry>
+      <Entry key="CopyAgesToFishLineMissingFilesOrAnnotationError">Individet med individ-id '{0}' har ikke nogen billedfil eller annotering. Tildel venligst individet en billedfil eller annotering og prøv igen.</Entry>
+      <Entry key="CopyAgesToFishLineNonIntegerAnimalIdError">Individ-id'et '{0}' kan ikke konverteres til et heltal, hvilket er et krav for at kunne opdatere individet i Fiskline. Ret venligst individ-id'et eller fravælg individet og prøv igen.</Entry>
+      <Entry key="CopyAgesToFishLineAgeMissingError">Den godkendte annotering for individet med individ-id '{0}' er ikke blevet tildelt en alder. Tildel venligst annoteringen en alder eller fravælg individet og prøv igen.</Entry>
+      <Entry key="CopyAgesToFishLineSuccess">{0}/{1} indvid(er) blev opdateret korrekt i Fiskeline.</Entry>
+      <Entry key="CopyAgesToFishLineSkippedDueToLavRep">{0} individ(er) blev sprunget over, da de ikke er enkelt-fisk i Fiskline (de er LAV-rep).</Entry>
+      <Entry key="CopyAgesToFishLineAQScoreMissingError">Den godkendte annotering for individet med individ-id '{0}' har ikke fået en AQ-score tildelt (Otolith reading remark). Tildel venligst annoteringen en AQ-score eller fravælg individet og prøv igen.</Entry>
+      <Entry key="SearchInColumnsToolTip">Søg i kolonner der ikke har en nedrulningsliste i headeren.</Entry>
+      <Entry key="DeletionErrorHasAnnotations">Gemning af individerne blev annulleret. Filen '{0}' for individet med individ-id '{1}' kunne ikke slettes, da den har SmartDots-annoteringer tilknyttet. Fjern venligst annoteringerne via. SmartDots for den problematiske fil/individ og prøv igen. For at annullere gemningen, tryk 'Tilbage til begivenheder'.</Entry>
+      <Entry key="DeletionErrorHasAnnotations2">Sletning af valgte individer blev annulleret. Indivdet med id '{1}' kunne ikke slettes da dens fil '{0}' har SmartDots-annoteringer tilknyttet. Fjern venligst annoteringerne fra individet via. SmartDots og prøv igen.</Entry>
+      <Entry key="ImportSamplesToolTip">Importer individer fra en CSV-fil. CSV-filen skal benytte semikolon til at adskille kolonnerne og enten komma eller punktum som decimalseparator.</Entry>
+      <Entry key="DeleteMany">Slet flere individer</Entry>
+      <Entry key="CancelDeleteMultipleSamplesToolTip">Fortryd sletning af flere individer.</Entry>
+      <Entry key="SelectSamplesToDelete">Vælg en eller flere individer til sletning</Entry>
+      <Entry key="RemoveSelectedSamples">Slet valgte individer</Entry>
+      <Entry key="DeleteMultipleConfirmation">Er du sikker på at du vil slette de valgte ({0}) individ(er) permanent?</Entry>
+      <Entry key="SamplesWithNoAnnotationsVisibleMessage">(Kun individer uden SmartDot-annoteringer er synlige i listen)</Entry>
+      <Entry key="CSVImportSuccessMessage">{0}/{1} individ(er) blev importet korrekt.</Entry>
+      <Entry key="CSVImportProgressMessage">Importerer individer ({0}/{1}), vent venligst...</Entry>
+      <Entry key="LookForImages">Søg efter og tilknyt billedfiler til individer, der ikke har nogen</Entry>
+      <Entry key="SamplesImagesUpdated">Der blev fundet og tilknyttet billedfiler til {0}/{1} individ(er). Klik 'Gem', efter denne denne besked er lukket, for at gemme eventuelle ændringer (rækker med blå baggrund).</Entry>
+      <Entry key="NoSamplesWithMissingFileFound">Der blev ikke fundet nogen individier med manglende billedfiler.</Entry>
+      <Entry key="SamplesNoImagesFound">Der blev ikke fundet nogen billedfiler til de individer, der ikke har nogen. {0} individ(er) har pt. ikke nogen billedfiler tilknyttet. Der blev søgt efter billeder i følgende mapper:</Entry>
+    </Section>
+    
+    <Section key="SelectOtolithImagesView">
+      <Entry key="ImageName">Billednavne</Entry>
+      <Entry key="ImageDirectory">Billedmappe</Entry>
+      <Entry key="SearchDirectory">Søg efter billedmappe</Entry>
+      <Entry key="SearchName">Søg efter billednavn</Entry>
+      <Entry key="SelectedImages">Valgte billeder:</Entry>
+      <Entry key="VisibleImages">Viste billeder:</Entry>
+      <Entry key="TotalImages">Billeder i alt:</Entry>
+      <Entry key="SelectImageFiles">Vælg billedfiler</Entry>
+      <Entry key="SelectImageFile">Vælg billedfil</Entry>
+      <Entry key="WarningHasSelectedFiles">De valgte billeder vil ikke blive tilføjet. Ønsker du at fortsætte med at lukke vinduet?</Entry>
+      <Entry key="WarningNothingSelected">Vælg venligst mindst et billednavn inden du fortsætter.</Entry>
+      <Entry key="WarningTenOrMoreSelected">Er du sikker på du ønsker at tilføje '{0}' billedfil(er) til individet?</Entry>
+    </Section>
+
+    <Section key="SelectSDReadersView">
+      <Entry key="SelectReaders">Vælg aldersaflæsere</Entry>
+      <Entry key="SelectedReaders">Valgte aldersaflæsere:</Entry>
+      <Entry key="VisibleReaders">Viste aldersaflæsere:</Entry>
+      <Entry key="TotalReaders">Aldersaflæsere i alt:</Entry>
+      <Entry key="FirstYearReadingGeneral">1. års aflæsning (generelt)</Entry>
+      <Entry key="FirstYearReading">1. års aflæsning (art/bestand)</Entry>
+      <Entry key="FirstYearReadingShort">1. års aflæsning</Entry>
+      <Entry key="Experience">Erfaring</Entry>
+      <Entry key="AddEditReaders">Tilføj/Rediger aldersaflæsere</Entry>
+      <Entry key="NoReadings">Aflæsninger</Entry>
+      <Entry key="WarningHasSelectedReaders">De valgte aldersaflæsere vil ikke blive tiløjet. Ønsker du at fortsætte?</Entry>
+      <Entry key="WarningNothingSelected">Minds én aldersaflæser skal tilføjes begivenheden.</Entry>
+      <Entry key="WarningTenOrMoreSelected">Er du sikker på at '{0}' aldersaflæsere skal tilføjes begivenheden?</Entry>
+      <Entry key="ReaderAlreadyExists">Aflæseren '{0}' er allerede tilføjet og kan ikke tilføjes igen.</Entry>
+    </Section>
+
+    <Section key="ImportFromCSVView">
+      <Entry key="Browse">Browse</Entry>
+      <Entry key="SelectedSamples">Valgte individer:</Entry>
+      <Entry key="Warning">Advarsel</Entry>
+      <Entry key="Error">Fejl</Entry>
+      <Entry key="Duplicate">Duplikat - et individ med samme individ-id og forberedelsesmetode findes allerede i begivenheden.</Entry>
+      <Entry key="RowNumber">Linje</Entry>
+      <Entry key="Id">Individ-id</Entry>
+      <Entry key="Description">Beskrivelse</Entry>
+      <Entry key="MeesageType">Beskedtype</Entry>
+      <Entry key="ErrorNoSampleId">Individ-id er obligatorisk, men mangler i CSV-filen.</Entry>
+      <Entry key="ErrorNoSpecies">Individ-arten er obligatorisk, men mangler i CSV-filen.</Entry>
+      <Entry key="ErrorNofishLength">Længde er obligatorisk, men manger i CSV-filen.</Entry>
+      <Entry key="ErrorNoDFUArea">Område (DFU område) er obligatorisk, men mangler i CSV-filen eller matcher ikke begivenheds-områderne.</Entry>
+      <Entry key="ErrorNoPreparationMethod">Forberedelsesmetode er obligatorisk, men mangler i CSV-filen.</Entry>
+      <Entry key="ErrorNoLightType">Lystype er obligatorisk, men mangler i CSV-filen.</Entry>
+      <Entry key="ErrorNoImageName">Billednavn er obligatisk, men mangler i CSV-filen.</Entry>
+      <Entry key="ErrorNoCreatedBy">'Oprettet af' er obligatorisk. Angiv venligst hvem individerne er oprettet af i CSV-filen og genindlæs den.</Entry>
+      <Entry key="ErrorNoCatchDate">Fangstdato er obligatorisk, men mangler i CSV-filen.</Entry>
+      <Entry key="WarningHasSelectedSamples">Eventuelle valgte individer vil ikke bliver importeret. Ønsker du at fortsætte?</Entry>
+      <Entry key="WarningNoSelectedSamples">Der er ikke valgt nogen individer. Vælg venligst mindst et individ og fortsæt.</Entry>
+      <Entry key="CopyToClipboardButton">Kopier beskederne i listen til udklipsholder</Entry>
+      <Entry key="WarningSexCodeIssue">Køn koden bloev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningIsFromFIshlineIssue">'FromFL'-kolonnen i CSV-filen (eller 'Fra Fiskeline' i tabellen) er obligatorisk og skal indeholde værdien: 'FALSK', 'False', '0' eller 'SANDT', 'true', '1'.</Entry>
+      <Entry key="WarningIndexCodeOrMethodIssue">Modenhedsindekset eller modenhedsindeksmetoden blev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningEdgeStructureIssue">Kanstrukturen blev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningStatisticalRectangleIssue">Statistisk rektangel blev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningStockIssue">Bestanden blev ikke fundet i fiskelines kodeliste.</Entry>
+      <Entry key="WarningLatitudeIssue">Breddegrad er ikke af korrekt format (+/- decimalgrader).</Entry>
+      <Entry key="WarningLongitudeIssue">Længdegrad er ikke af korrekt format (+/- decimalgrader).</Entry>
+      <Entry key="WarningSDLightTypeIssue">Lystypen blev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningOtolithDescriptionIssue">Otolith-beskrivelsen blev ikke fundet i Fiskelines kodeliste.</Entry>
+      <Entry key="WarningCatchDateFormatIssue">'Fangstdato' er ikke af korrekt format. De supporterede formatter er 'dd-MM-yyyy', 'dd-MM-yyyy HH:mm' og 'dd-MM-yyyy HH:mm:ss' i UTC.</Entry>
+      <Entry key="WarningCreatedBy">Initialerne angivet i 'Oprettet af'-kolonnen blev ikke fundet i 'Personer (Aqua)' kodelisten. Din bruger vil derfor blive brugt i stedet for.</Entry>
+      <Entry key="ErrorAnimalId">Individ-id (linje '{0}') skal vare et heltal.</Entry>
+      <Entry key="FromFishLine">Fra Fiskeline</Entry>
+      <Entry key="ErrorPathNotFoundSDFileRemoved">Det var ikke muligt at finde billedet på serveren. Billedet '{0}' er derfor fjernet fra individet.</Entry>
+      <Entry key="InfoImportedRows">Transparante individrækker er allerede importeret/tilføjet til begivenheden</Entry>
+      <Entry key="SampleHasErrors"> - Individrækken har fejl og kan ikke importeres.</Entry>
+      <Entry key="SampleHasWarnings"> - Individrækken indeholder advarsler, men kan stadig importeres.</Entry>
+      <Entry key="SearchOnColumns">Søg i alle kolonner undtagen 'Antal billeder' og 'Fra Fiskeline'.</Entry>
+      <Entry key="NoFilePaths">Billederne med de angivne navne kunne ikke lokaliseres. Dobbeltjek venligst billednavnene i CSV-filen og prøv igen.</Entry>
+      <Entry key="ImportRowsButton">Importer valgte rækker</Entry>
+      <Entry key="NoErrorsFound">Ingen fejl, advarsler eller duplikater fundet.</Entry>
+      <Entry key="ErrorImageAlreadyAddedAnotherEventSample">Billedet '{0}' er allerede tilføjet et andet individ i begivenheden og er derfor fjernet fra dette individ.</Entry>
+      <Entry key="ErrorImageAlreadyAddedAnotherSample">Billedet '{0}' er allerede tilføjet et tidligere individ til import og er derfor fjernet fra dette individ.</Entry>
+    </Section>
+
+    <Section key="SelectDirectoryPathView">
+      <Entry key="Select">Vælg</Entry>
+      <Entry key="SelectCorrectPath">Et billede blev fundet i flere mapper på serveren, vælge venligst den korrekte mappe nedenfor.</Entry>
+      <Entry key="SetAsDefault">Brug den valgte mappe som standard for denne importering</Entry>
+      <Entry key="SearchDirectory">Søg efter mappe</Entry>
+      <Entry key="CantLeaveTheWindow">Vælg venligst en mappe før du fortsætter</Entry>
+    </Section>
+
+    <Section key="ApplyChangesToSamplesView">
+      <Entry key="Title">Der blev fundet forskelle i begivenheden: {0}{1}</Entry>
+      <Entry key="ApplyChanges">Foretag ændringerne</Entry>
+      <Entry key="ModifiedSamples">Ændrede individer</Entry>
+      <Entry key="OldValue">- Nuværende værdi</Entry>
+      <Entry key="NewValue">- Nye værdi</Entry>
+      <Entry key="CantLeaveTheWindow">Anvend venligst ændringerne, eller tryk 'Fortryd'.</Entry>
+      <Entry key="WarningNoSelectedSamples">Vælg venligst mindst et individ, før du anvender ændringerne.</Entry>
+      <Entry key="MainDescription">Der blev fundet forskelle mellem nogle af begivenhedens individer og individerne i FiskLine-varehuset. Se forskellene nedenfor og vælg de individer du ønsker at opdatere med det nye individdata fra Fiskeline-varehuset. OBS! Forskellene kan skyldes at data i varehuset ikke er helt opdateret, i så fald overfør data for de pågældende individer til data varehuset, inden du opdaterer individerne i begivenheden.</Entry>
+    </Section>
+
+
+    <Section key="SDFilesExtraColumn">
+      <Entry key="CatchDate">Fangstdato</Entry>
+      <Entry key="Length">Længde</Entry>
+      <Entry key="Area">Område</Entry>
+      <Entry key="Stock">Bestand</Entry>
+      <Entry key="StatisticalRectangle">Statistisk rektangel</Entry>
+      <Entry key="Sex">Køn</Entry>
+      <Entry key="SampleOrigin">Individoprindelse</Entry>
+      <Entry key="Maturity">Modenhed</Entry>
+      <Entry key="PreperationMethod">Forberedelsesmetode</Entry>
+    </Section>
+
+    <Section key="SFAnimalItemSDInfoView">
+      <Entry key="AgeNotAssignedFromSD">Alderen er ikke overført fra SmartDots</Entry>
+      <Entry key="AgeAssignedFromSD">Alderen er overført fra SmartDots.</Entry>
+      <Entry key="AgeAssignedFromSDNoAnnotation">Alderen er overført fra SmartDots, men selve SmartDots-annoteringen er sidenhen blevet slettet.</Entry>
+      <Entry key="AgeReaderHeader">Aldersaflæser</Entry>
+      <Entry key="EventNameHeader">Begivenhedsnavn</Entry>
+      <Entry key="EventIdHeader">Begivenheds-id</Entry>
+      <Entry key="ImageNameHeader">Billednavn</Entry>
+    </Section>
+
+
+    <Section key="SelectImportFileAndImageFoldersView">
+      <Entry key="SelectFileToImportMessage">Vælg venligst en fil først inden der importeres.</Entry>
+      <Entry key="FileDoesNotExistMessage">Filen blev ikke fundet. Vælg venligst filen igen vha. 'Browse"-knappen.</Entry>
+      <Entry key="ImportButtonHeader">Importer</Entry>
+      <Entry key="CSVFilePathHeader">CSV-fil til importering</Entry>
+      <Entry key="BrowseButtonHeader">Browse</Entry>
+      <Entry key="FolderImagePathsHeader">Mapper til billedsøgning</Entry>
+      <Entry key="SelectImageFolderButtonHeader">Vælg billedmapper</Entry>
+      <Entry key="NoFoldersSelectedMessage">Advarsel! Der vil blive søgt efter billeder i alle mapper, da der ikke er valgt nogen specifikke billedmapper (dette kan tage adskillige minutter).</Entry>
+    </Section>
+    
+    <!-- Error codes -->
+    <Section key="Errors">
+      <Entry key="1" >En uventet fejl opstod</Entry>
+      <Entry key="2">Ugyldig værdi</Entry>
+      <Entry key="3">Værdien skal være mindre end slutdatoen</Entry>
+      <Entry Key="4">Værdier kan overskrives, ikke slettes</Entry>
+    </Section>
+    
+    <!-- Warnings -->
+    <Section key="Warning">
+      <Entry key="1">Advarsel, {0} uventede forekomster opstod.</Entry>
+      <Entry key="2">Er du sikker på at rækken skal slettes?</Entry>
+      <Entry key="3">Der er ændringer som ikke er gemt, er du sikker på du vil fortsætte?</Entry>
+      <Entry key="4">Er du sikker på at du ønsker fortsætte uden at gemme eventuelle ændringer?</Entry>
+      <Entry key="5">Arbejder, vent venligst...</Entry>
+      <Entry key="6">Du har ikke rettigheder til at udføre handlingen.</Entry>
+      <Entry key="7">Fiskeline er offline</Entry>
+    </Section>
+
+  </UIText>
+</Language>

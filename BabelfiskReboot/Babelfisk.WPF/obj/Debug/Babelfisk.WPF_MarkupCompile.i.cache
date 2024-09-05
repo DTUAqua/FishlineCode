@@ -1,0 +1,20 @@
+﻿Babelfisk.WPF
+
+
+winexe
+C#
+.cs
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.WPF\obj\Debug\
+Babelfisk.WPF
+none
+false
+DEBUG;TRACE
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskReboot2\BabelfiskReboot\Babelfisk.WPF\App.xaml
+821097897515
+5-1852217520
+110-781990754
+36854245471
+Resources\Styles\ZoomSliderStyles.xaml;Resources\WindowStyles\generic.xaml;Resources\WindowStyles\OfficeStyleWindow.xaml;Views\Export\DWMessagesView.xaml;Views\Export\ExportDataView.xaml;Resources\Styles\DataGridStyles.xaml;Resources\Styles\GeneralStyles.xaml;Resources\Styles\GreenRedCheckBoxStyle.xaml;Resources\Styles\GreenRedRadioButtonStyle.xaml;Resources\Styles\HeaderButtons.xaml;Resources\Styles\InputStyles.xaml;Resources\Styles\MenuStyle.xaml;Resources\Styles\SplitterStyles.xaml;Resources\Styles\ThumbStyles.xaml;Resources\Styles\WindowRegionResource.xaml;Resources\Templates\ArrowHeads.xaml;Resources\Templates\GeneralTemplates.xaml;Views\Import\ImportRekreaDataView.xaml;Views\Input\ColumnVisibilityView.xaml;Views\Input\CruiseView.xaml;Views\Import\ImportStationView.xaml;Views\Input\SpeciesListViews\SpeciesListStatisticsView.xaml;Views\Input\SpeciesListViews\SpeciesListView.xaml;Views\Input\StationView.xaml;Views\Input\SubSampleViews\LAVView.xaml;Views\Input\SubSampleViews\REKSFView.xaml;Views\Input\SubSampleViews\SFAnimalItemSDInfoView.xaml;Views\Input\SubSampleViews\SFView.xaml;Views\Input\SubSampleViews\SubSampleSelectionsView.xaml;Views\Input\SubSampleViews\SubSampleView.xaml;Views\Input\TripHVNView.xaml;Views\Input\TripView.xaml;Views\Lookup\LookupManagerView.xaml;Views\Lookup\LookupView.xaml;Views\Map\BingMapsView.xaml;Views\Map\MapView.xaml;Views\Offline\CompareEntitiesView.xaml;Views\Offline\GoOfflineView.xaml;Views\Offline\GoOnlineView.xaml;Views\Reporting\AddEditViews\AddEditParameterView.xaml;Views\Reporting\AddEditViews\AddEditReportingTreeNodeView.xaml;Views\Reporting\AddEditViews\AddEditReportView.xaml;Views\Reporting\AddEditViews\AddEditRScriptView.xaml;Views\Reporting\AddEditViews\MoveTreeNodeView.xaml;Views\Reporting\AddEditViews\ParametersView.xaml;Views\Reporting\AddEditViews\ReportFilesView.xaml;Views\Reporting\ReportExecuteViews\DocumentReportExecuteView.xaml;Views\Reporting\ReportExecuteViews\RScriptReportExecuteView.xaml;Views\Reporting\ReportExecuteViews\SelectParametersView.xaml;Views\Reporting\ReportsTreeView.xaml;Views\Reporting\ReportsView.xaml;Views\Reporting\ReportView.xaml;Views\Security\BackupView.xaml;Views\Security\LogOnView.xaml;Views\Security\ReEnterPasswordView.xaml;Views\Security\RestoreBackupView.xaml;Views\Security\RoleView.xaml;Views\Security\UsersView.xaml;Views\Menu\MainMenuView.xaml;Views\Security\UserView.xaml;Views\SmartDots\AddEditSDEventView.xaml;Views\SmartDots\AddEditSDSampleView.xaml;Views\SmartDots\ApplyChangesToSamplesView.xaml;Views\SmartDots\ImportFromCSVView.xaml;Views\SmartDots\OtolithImagesPreview.xaml;Views\SmartDots\SDEventItem.xaml;Views\SmartDots\SDEventsView.xaml;Views\SmartDots\SDSamplesView.xaml;Views\SmartDots\SDSelectAnimalsView.xaml;Views\SmartDots\SelectDirectoryPathView.xaml;Views\SmartDots\SelectFoldersOrFilesView.xaml;Views\SmartDots\SelectImportFileAndImageFoldersView.xaml;Views\SmartDots\SelectOtolithImagesView.xaml;Views\SmartDots\SelectSDReadersView.xaml;Views\SmartDots\TreeViews\FolderTreeView.xaml;Views\StartView.xaml;Views\TreeView\MainTreeView.xaml;Views\TreeView\SelectionTreeView.xaml;Views\WarningAsterix.xaml;Windows\LoadingWindow.xaml;Windows\MainWindow.xaml;Windows\MessageWindow.xaml;
+
+True
+

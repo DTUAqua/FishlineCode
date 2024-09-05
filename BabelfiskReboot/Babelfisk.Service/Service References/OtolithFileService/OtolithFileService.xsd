@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:60523/OtolithFileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ServiceResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="tns:DatabaseOperationStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceResult" nillable="true" type="tns:ServiceResult" />
+  <xs:simpleType name="DatabaseOperationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Successful" />
+      <xs:enumeration value="DuplicateRecordException" />
+      <xs:enumeration value="ConcurrencyException" />
+      <xs:enumeration value="UnexpectedException" />
+      <xs:enumeration value="ValidationError" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DatabaseOperationStatus" nillable="true" type="tns:DatabaseOperationStatus" />
+  <xs:complexType name="OtolithFileInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimalId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuxiliaryFiles" nillable="true" type="tns:ArrayOfOtolithFileInformation" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RelativeDirectoryPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OtolithFileInformation" nillable="true" type="tns:OtolithFileInformation" />
+  <xs:complexType name="ArrayOfOtolithFileInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OtolithFileInformation" nillable="true" type="tns:OtolithFileInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOtolithFileInformation" nillable="true" type="tns:ArrayOfOtolithFileInformation" />
+  <xs:simpleType name="FileSystemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="File">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Directory">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileSystemType" nillable="true" type="tns:FileSystemType" />
+</xs:schema>

@@ -1,0 +1,42 @@
+﻿<Application x:Class="Babelfisk.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             xmlns:cnv="clr-namespace:Babelfisk.WPF.Converters"
+             xmlns:cnvA="clr-namespace:Anchor.Core.Converters;assembly=Anchor.Core"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/WindowStyles/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/WindowStyles/OfficeStyleWindow.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GeneralStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Templates/GeneralTemplates.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/WindowRegionResource.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SplitterStyles.xaml"/>
+
+                <ResourceDictionary>
+                    <cnvA:NullToBoolConverter x:Key="cNullToBool" />
+                    <cnvA:BooleanToVisibilityConverter x:Key="cBoolToVisibility" />
+                    <cnvA:BooleanToVisibilityHiddenConverter x:Key="cBoolToVisibilityHidden" />
+                    <cnvA:BoolToBoolNegationConverter x:Key="cBoolToBoolNegation" />
+                    <cnvA:IsNullConverter x:Key="cIsNull" />
+                    <cnvA:DivideByConverter x:Key="cDivideBy" />
+                    <cnvA:IntegerSubtractConverter x:Key="cIntSubtracter" />
+                    <cnvA:DoubleSubtractConverter x:Key="cDoubleSubtracter" />
+                    <cnvA:ObjectEqualsObjectConverter x:Key="cObjectEqualsObject" />
+                    <cnvA:StringInHashSetConverter x:Key="cStringInHashSet" />
+                    <cnvA:IsObjectConverter x:Key="cIsObject" />
+                    <cnvA:InvCultureStringToDecimalConverter x:Key="cStringToDecimal" />
+                    <cnvA:InvCultureStringToDoubleConverter x:Key="cStringToDouble" />
+                    <cnvA:InvCultureStringToShortConverter x:Key="cStringToShort" />
+                    <cnvA:InvCultureStringToInt32Converter x:Key="cStringToInt" />
+                    <lan:TranslateConverter x:Key="cTranslate" />
+                </ResourceDictionary>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

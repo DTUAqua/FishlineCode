@@ -1,0 +1,494 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.SmartDots.SelectOtolithImagesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:local="clr-namespace:Babelfisk.WPF.Views.SmartDots"
+             xmlns:cnv="clr-namespace:Babelfisk.WPF.Converters"
+             xmlns:dGrid="clr-namespace:Babelfisk.WPF.Infrastructure.DataGrid"
+             xmlns:inf="clr-namespace:Babelfisk.WPF.Infrastructure"
+             xmlns:aCnv="clr-namespace:Anchor.Core.Controls.Converters;assembly=Anchor.Core.Controls"
+             xmlns:inp="clr-namespace:Babelfisk.WPF.Views.Input"
+             xmlns:aBeh="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             mc:Ignorable="d" x:Name="uc"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GeneralStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedRadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/HeaderButtons.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Anchor.Core.Controls;component/Themes/FlatStyleComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Anchor.Core.Controls;component/Themes/DropDownListBox.xaml" />
+
+                <ResourceDictionary>
+                    <cnv:StringShowOnContainsToVisibilityConverter x:Key="cStringShowOnContains" />
+                    <cnv:StringHideOnContainsToVisibilityConverter x:Key="cStringHideOnContains" />
+                    <aCnv:BooleanToDataGridSelectionModeConverter x:Key="cBoolToSelectionMode" />
+
+                    <inf:BindingProxy x:Key="proxyContext" Data="{Binding Path=DataContext, ElementName=uc}" />
+
+                    
+                    <Style x:Key="sViewComboboxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ResourceKey=baseInputBoxStyle}">
+                        <Setter Property="Width" Value="200" />
+                        <Setter Property="Margin" Value="0,0,5,0"/>
+                    </Style>
+
+                    <Style x:Key="panelButton" TargetType="{x:Type Button}">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="BorderBrush" Value="#6A6969" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="bdr" SnapsToDevicePixels="True" Background="#99454942" KeyboardNavigation.IsTabStop="False" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
+                                        <Grid Margin="{TemplateBinding Padding}" x:Name="btnGrid" KeyboardNavigation.IsTabStop="False" >
+                                            <ContentControl x:Name="content" KeyboardNavigation.IsTabStop="False" Content="{TemplateBinding Content}" Foreground="White" >
+                                            </ContentControl>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Button.IsEnabled" Value="False">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.4" />
+                                        </Trigger>
+                                        <Trigger Property="Button.IsMouseOver" Value="True">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.8" />
+                                        </Trigger>
+                                        <Trigger Property="Button.IsPressed" Value="True">
+                                            <Setter TargetName="bdr" Property="Opacity" Value="0.5" ></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                 
+
+                    <SolidColorBrush x:Key="GridBorderBrush" Color="LightGray" />
+
+                    <Style x:Key="cellBorderStyle" TargetType="{x:Type Border}">
+                        <Setter Property="BorderBrush" Value="{StaticResource GridBorderBrush}" />
+                        <Setter Property="BorderThickness" Value="1,1,1,1" />
+                        <Setter Property="MaxHeight" Value="32" />
+                        <Setter Property="MinHeight" Value="21" />
+                        <Setter Property="Background" Value="White" />
+                    </Style>
+
+                    <DataTemplate x:Key="GridColumnHeaderDirectory" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" Background="{StaticResource GridBorderBrush}"
+                                Height="56" SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="27" />
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="28" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="White">
+                                    <aCtrls:SubmitTextBox x:Name="txtSearchDirectory" VerticalContentAlignment="Center" Padding="2,3" IsClearTextButtonEnabled="True" ClearButtonToolTip="{lan:Translate Section=Common, Key=ClearText, UIDesignerValue='Clear the text'}" Text="{Binding Path=DataContext.SearchStringDirectory, Mode=OneWayToSource, ElementName=uc}"  BorderThickness="0"  />
+                                    <Border Background="Transparent" IsHitTestVisible="False">
+                                        <TextBlock Background="Transparent" Text="{lan:Translate Section=SelectOtolithImagesView, Key=SearchDirectory, UIDesignerValue='Search for file directory'}" VerticalAlignment="Center" FontSize="12" Foreground="DarkGray" Margin="5,0,0,0"></TextBlock>
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text.Length, ElementName=txtSearchDirectory}" Value="0">
+                                                        <Setter Property="Visibility" Value="visible" />
+                                                    </DataTrigger>
+                                                    
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                    </Border>
+                                    
+                                </Grid>
+                                <Border Grid.Row="1" Background="LightGray" Panel.ZIndex="5" SnapsToDevicePixels="True" />
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" Panel.ZIndex="10" Background="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" SnapsToDevicePixels="True">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="{Binding Path=LowerHeaderHorizontalAlignment}" FontWeight="DemiBold"  Margin="4,0,4,0" Text="{Binding Path=LowerHeader}" Foreground="#494949"/>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="GridColumnHeaderName" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" Background="{StaticResource GridBorderBrush}"
+                                Height="56" SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="27" />
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="28" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="White">
+                                    <aCtrls:SubmitTextBox Name="txtSearchName" VerticalContentAlignment="Center" Padding="2,3" IsClearTextButtonEnabled="True" ClearButtonToolTip="{lan:Translate Section=Common, Key=ClearText, UIDesignerValue='Clear the text'}" Text="{Binding Path=DataContext.SearchStringName, Mode=OneWayToSource, ElementName=uc}"  BorderThickness="0"  />
+                                    <Border Background="Transparent" IsHitTestVisible="False">
+                                        <TextBlock Background="Transparent" Text="{lan:Translate Section=SelectOtolithImagesView, Key=SearchName,UIDesignerValue='Search for file name'}" VerticalAlignment="Center" FontSize="12" Foreground="DarkGray" Margin="5,0,0,0"></TextBlock>
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text.Length, ElementName=txtSearchName}" Value="0">
+                                                        <Setter Property="Visibility" Value="visible" />
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                    </Border>
+
+                                </Grid>
+                                <Border Grid.Row="1" Background="LightGray" Panel.ZIndex="5" SnapsToDevicePixels="True" />
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" Panel.ZIndex="10" Background="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" SnapsToDevicePixels="True">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="{Binding Path=LowerHeaderHorizontalAlignment}" FontWeight="DemiBold"  Margin="4,0,4,0" Text="{Binding Path=LowerHeader}" Foreground="#494949"/>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="GridColumnHeaderCheckBox" >
+                        <Border BorderBrush="{StaticResource GridBorderBrush}" Background="{StaticResource GridBorderBrush}"
+                                Height="56" SnapsToDevicePixels="True"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}, Path=ActualWidth}"
+                                BorderThickness="{Binding Path=HeaderBorder}" DataContext="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader, Mode=FindAncestor}}">
+                            <Grid >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="27" />
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="28" />
+                                </Grid.RowDefinitions>
+                                
+                                <Border Grid.Row="0" Background="WhiteSmoke">
+                                    
+                                </Border>
+                               
+                                <Border Grid.Row="1" Background="LightGray" Panel.ZIndex="5" SnapsToDevicePixels="True" />
+                                
+                                <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="{Binding Path=LowerHeaderBorder}" Background="WhiteSmoke" ToolTip="{Binding Path=LowerHeaderToolTip}" Panel.ZIndex="5" SnapsToDevicePixels="True" >
+                                    
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Background="White">
+        <DockPanel>
+
+            <!-- Top bar -->
+            <Border DockPanel.Dock="Top" BorderBrush="LightGray" BorderThickness="0,0,0,1" Background="{StaticResource InputHeaderBackgroundRev}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  SnapsToDevicePixels="True">
+                <DockPanel Margin="0">
+
+                    <!-- Header -->
+                    <Border DockPanel.Dock="Top">
+                        <Grid Margin="10,8,10,8">
+                            <DockPanel >
+                                <Image Opacity="0.95" DockPanel.Dock="Left"  Margin="0,0,8,0" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Image.ico"  />
+
+                                <Grid TextBlock.FontSize="16" TextBlock.LineHeight="16" TextBlock.LineStackingStrategy="BlockLineHeight">
+                                    <TextBlock Text="{lan:Translate Section=SelectOtolithImagesView, Key=SelectImageFiles, UIDesignerValue='Select image files'}" Foreground="White" 
+                                               Visibility="{Binding Path=IsSingleSelection, Converter={StaticResource cBoolToVisibility}, ConverterParameter=False}" VerticalAlignment="Center" ></TextBlock>
+
+                                    <TextBlock Text="{lan:Translate Section=SelectOtolithImagesView, Key=SelectImageFile, UIDesignerValue='Select image file'}" Foreground="White" 
+                                               Visibility="{Binding Path=IsSingleSelection, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" VerticalAlignment="Center" ></TextBlock>
+                                </Grid>
+                                
+                            </DockPanel>
+
+                        </Grid>
+                    </Border>
+
+
+                    <Border DockPanel.Dock="Top" Padding="10,8,10,11" BorderBrush="#6F6F6F" BorderThickness="0,1,0,0" SnapsToDevicePixels="True"
+                            Visibility="{Binding Path=HasDescription, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" VerticalAlignment="Center" 
+                            >
+                        <TextBlock Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" FontSize="14" />
+                    </Border>
+
+
+                    <StackPanel></StackPanel>
+
+                </DockPanel>
+            </Border>
+
+            <!-- Bottom bar - to be populated -->
+            <Border DockPanel.Dock="Bottom" BorderBrush="LightGray" BorderThickness="0,1,0,0" 
+                    Background="{StaticResource InputHeaderBackgroundRev}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  SnapsToDevicePixels="True">
+                <DockPanel Margin="0">
+                    <Border>
+                        <Grid Margin="2,-1,0,0" DockPanel.Dock="Left" VerticalAlignment="Center" TextBlock.FontSize="10" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="12" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,0,0,0" Text="{lan:Translate Section=SelectOtolithImagesView, Key=SelectedImages, UIDesignerValue='Selected images:'}" VerticalAlignment="Center"  />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Text="{Binding Path=SelectedFilesCount}" VerticalAlignment="Center"  />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Text="{lan:Translate Section=SelectOtolithImagesView, Key=VisibleImages, UIDesignerValue='Visible images:'}" VerticalAlignment="Center"  />
+                            <TextBlock Grid.Row="1" Grid.Column="1"  Margin="5,0,0,0" Text="{Binding Path=FilteredOtolithItemList.Count}" VerticalAlignment="Center"  />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Text="{lan:Translate Section=SelectOtolithImagesView, Key=TotalImages, UIDesignerValue='Total images:'}" VerticalAlignment="Center"  />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="5,0,0,0" Text="{Binding Path=OtolithItemList.Count}" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+
+                    <!-- {lan:Translate Section=Common, Key=Close, UIDesignerValue='Luk'} -->
+                    <Button Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                        Style="{StaticResource ResourceKey=btnStandard}" Margin="10"
+                        FontSize="14" Height="28" Content="{Binding Path=CancelButtonText, Mode=OneWay}"
+                        Command="{Binding Path=CancelCommand}">
+                    </Button>
+
+                    <Button Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right"
+                        Style="{StaticResource ResourceKey=btnStandard}"
+                        FontSize="14" Height="28" Margin="0" Content="{lan:Translate Section=Common, Key=Add, UIDesignerValue='Add selected'}"
+                        Command="{Binding Path=AddFilesCommand}">
+                    </Button>
+                </DockPanel>
+            </Border>
+
+            <!-- No samples added message -->
+            <!-- Events -->
+
+            <Grid Margin="0,0,0,0" >
+
+                <DockPanel>
+                    <!-- No animals found message -->
+                    <Border DockPanel.Dock="Top">
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=IsLoading}" Value="False" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    
+                    <!-- DataGrid -->
+                    <Border BorderThickness="1" Panel.ZIndex="5" SnapsToDevicePixels="True" 
+                                KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+
+                        <aCtrls:AncDataGrid x:Name="dataGrid" ItemsSource="{Binding Path=FilteredOtolithItemList}"
+                                            Style="{StaticResource defaultDataGridLightStyle}"
+                                CanUserAddRows="False" IsSynchronizedWithCurrentItem="False" Background="White"
+                                AutoGenerateColumns="False" RowHeaderWidth="0"
+                                SelectionMode="{Binding Path=IsSingleSelection, Converter={StaticResource cBoolToSelectionMode}, ConverterParameter=True}" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True" FooterVisibility="Collapsed"
+                                CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="Transparent"
+                                VerticalGridLinesBrush="LightGray" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" RowDetailsVisibilityMode="Collapsed"
+                                VirtualizingStackPanel.VirtualizationMode="Recycling" 
+                                Tag="{Binding Path=DataContext, ElementName=uc}"
+                                CellFooterVisibility="Collapsed" 
+                                SelectionChanged="dataGrid_SelectionChanged"
+                                CellFooterBorderStyle="{StaticResource cellBorderStyle}"
+                                ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnLightHeaderStyle}" >
+                            
+                            <aCtrls:AncDataGrid.ContextMenu>
+                                <ContextMenu DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={x:Static RelativeSource.Self}}" 
+                                         Tag="{Binding Path=PlacementTarget.Tag, RelativeSource={x:Static RelativeSource.Self}}">
+                                    <MenuItem Header="Tilføj række" Command="{Binding Path=Tag.AddRowCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Style="{StaticResource defaultMenuItem}" >
+                                        <MenuItem.Icon>
+                                            <Image Width="15" Height="15" Margin="3,1,3,1" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/Add.ico" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </aCtrls:AncDataGrid.ContextMenu>
+                            <aCtrls:AncDataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource ResourceKey=OverColor2}" Opacity="0.6"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                                <SolidColorBrush x:Key="disabledField" Color="#FFF0F0F0" />
+
+                                <Style x:Key="lblDisplay" TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=ValidateElementRedBorder}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Padding" Value="2,0,2,0" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="False">
+                                            <Setter Property="ToolTip" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}}" />
+                                        </Trigger>
+                        
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="StandardCellStyle" TargetType="{x:Type DataGridCell}" >
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Border x:Name="Border" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="BorderBrush" Value="LightGray"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    <Setter Property="Padding" Value="0,0,0,1"/>
+                                </Style>
+
+                                <Style x:Key="NoTabStopCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                </Style>
+
+                                <Style x:Key="DisabledCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                                    <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                    <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                                    <Setter Property="Background" Value="#7FE6E6E6" />
+                                    <Setter Property="BorderBrush" Value="#99E6E6E6" />
+                                </Style>
+                            </aCtrls:AncDataGrid.Resources>
+                            <aCtrls:AncDataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="MinHeight" Value="30" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Setter Property="Tag" Value="{Binding Path=DataContext, ElementName=uc}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFFCF4" Offset="0.0"/>
+                                                        <GradientStop Color="#FFFCFAE7" Offset="1.0"/>
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </aCtrls:AncDataGrid.RowStyle>
+                            <aCtrls:AncDataGrid.Columns>
+                                
+                                <!-- CheckBox -->
+                                <aCtrls:AncDataGridTemplateColumn SortMemberPath="IsSelected" CellStyle="{StaticResource StandardCellStyle}"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderCheckBox}" Width="28" MinWidth="28">
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Center"  />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <RadioButton IsChecked="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                             Style="{StaticResource sRadioButton}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,0,0,0"
+                                                             Visibility="{Binding Path=Data.IsSingleSelection, Mode=OneWay, Source={StaticResource proxyContext}, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" />
+
+                                                <CheckBox IsChecked="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDown="CheckBox_MouseDown" PreviewMouseDown="CheckBox_PreviewMouseDown" IsThreeState="false"
+                                                          Visibility="{Binding Path=Data.IsSingleSelection, Mode=OneWay, Source={StaticResource proxyContext}, Converter={StaticResource cBoolToVisibility}, ConverterParameter=False}"
+                                                          Margin="0,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource sCheckBoxDataGrid}" ></CheckBox>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                <!--Animal Has images -->
+                               
+                                <!-- Image Path -->
+                                <aCtrls:AncDataGridTemplateColumn SortMemberPath="ImageDirectory" CellStyle="{StaticResource StandardCellStyle}"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDirectory}" Width="*" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Center" LowerHeader="{lan:Translate Section=SelectOtolithImagesView, Key=ImageDirectory, UIDesignerValue='Image directory'}" LowerHeaderToolTip="{lan:Translate Section=SelectOtolithImagesView, Key=ImageDirectory, UIDesignerValue='Image directory'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=ImageDirectory}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchStringDirectory, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       ToolTip="{Binding Path=ImageDirectory}" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0"></TextBlock>
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                                
+                                
+                                <!-- Image name-->
+                                <aCtrls:AncDataGridTemplateColumn SortMemberPath="ImageName" CellStyle="{StaticResource StandardCellStyle}"  HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderName}" Width="300" >
+                                    <aCtrls:AncDataGridTemplateColumn.Header>
+                                        <dGrid:DoubleColumnHeader UpperHeader="" LowerHeaderHorizontalAlignment="Center" LowerHeader="{lan:Translate Section=SelectOtolithImagesView, Key=ImageName, UIDesignerValue='Image name'}" LowerHeaderToolTip="{lan:Translate Section=SDSelectAnimalsView, Key=ImageName, UIDesignerValue='Image name'}" />
+                                    </aCtrls:AncDataGridTemplateColumn.Header>
+                                    <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border DataContext="{Binding}" Background="Transparent" MouseLeftButtonDown="ImagesBorder_MouseLeftButtonDown" >
+                                                <Border.ToolTip>
+                                                    <ToolTip DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}" Background="White" Padding="0" MaxHeight="700" MaxWidth="800">
+                                                        <local:OtolithImagesPreview FilePath="{Binding Path=ImagePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </ToolTip>
+                                                </Border.ToolTip>
+                                                <TextBlock aBeh:HighlightTermBehavior.Text="{Binding Path=ImageName}"
+                                                       aBeh:HighlightTermBehavior.HighlightText="{Binding Path=Data.SearchStringName, Mode=OneWay, Source={StaticResource proxyContext}}"
+                                                       LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0"></TextBlock>
+                                            </Border>
+                                          
+                                        </DataTemplate>
+                                    </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                </aCtrls:AncDataGridTemplateColumn>
+                               
+                                
+                            </aCtrls:AncDataGrid.Columns>
+                        </aCtrls:AncDataGrid>
+                        <!-- Show hide grid 
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=HasOtolithFiles}" Value="True" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        -->
+                       
+                    </Border>
+                   
+
+
+                    
+                </DockPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <!-- Loading message - shown in front of everything else -->
+                    <Border Visibility="{Binding Path=IsLoading, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"
+                        BorderBrush="LightGray" BorderThickness="1" SnapsToDevicePixels="True" Background="White" Margin="0,80,0,0"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Margin="10,5,10,8">
+                            <TextBlock Text="{lan:Translate Section=Warning, Key=5, UIDesignerValue='Arbejder, vent venligst...'}" FontSize="14" />
+                            <ProgressBar IsIndeterminate="True" Height="10" Margin="0,4,0,0" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+
+        </DockPanel>
+    </Border>
+</UserControl>

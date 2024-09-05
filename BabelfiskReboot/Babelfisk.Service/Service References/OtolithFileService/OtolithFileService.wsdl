@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OtolithFileService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:60523/OtolithFileService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:60523/OtolithFileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60523/OtolithFileService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:60523/OtolithFileService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOtolithFileService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationFromAnimalIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationFromAnimalIds" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationFromAnimalIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationFromAnimalIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationFromFileNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationFromFileNames" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationFromFileNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationFromFileNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileBytes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileBytes" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileBytes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileBytesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationDictionaryFromAnimalIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationDictionaryFromAnimalIds" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFileInformationDictionaryFromAnimalIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileInformationDictionaryFromAnimalIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetAllFilePaths_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFilePaths" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetAllFilePaths_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFilePathsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFolderContentCompressed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderContentCompressed" />
+  </wsdl:message>
+  <wsdl:message name="IOtolithFileService_GetFolderContentCompressed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderContentCompressedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOtolithFileService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetData" message="tns:IOtolithFileService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetDataResponse" message="tns:IOtolithFileService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationFromAnimalIds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationFromAnimalIds" message="tns:IOtolithFileService_GetFileInformationFromAnimalIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationFromAnimalIdsResponse" message="tns:IOtolithFileService_GetFileInformationFromAnimalIds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationFromFileNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationFromFileNames" message="tns:IOtolithFileService_GetFileInformationFromFileNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationFromFileNamesResponse" message="tns:IOtolithFileService_GetFileInformationFromFileNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileBytes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileBytes" message="tns:IOtolithFileService_GetFileBytes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileBytesResponse" message="tns:IOtolithFileService_GetFileBytes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationDictionaryFromAnimalIds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationDictionaryFromAnimalIds" message="tns:IOtolithFileService_GetFileInformationDictionaryFromAnimalIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetFileInformationDictionaryFromAnimalIdsResponse" message="tns:IOtolithFileService_GetFileInformationDictionaryFromAnimalIds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFilePaths">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetAllFilePaths" message="tns:IOtolithFileService_GetAllFilePaths_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetAllFilePathsResponse" message="tns:IOtolithFileService_GetAllFilePaths_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderContentCompressed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOtolithFileService/GetFolderContentCompressed" message="tns:IOtolithFileService_GetFolderContentCompressed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOtolithFileService/GetFolderContentCompressedResponse" message="tns:IOtolithFileService_GetFolderContentCompressed_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OtolithFileServiceEndPoint" type="tns:IOtolithFileService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationFromAnimalIds">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetFileInformationFromAnimalIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationFromFileNames">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetFileInformationFromFileNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileBytes">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetFileBytes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformationDictionaryFromAnimalIds">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetFileInformationDictionaryFromAnimalIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFilePaths">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetAllFilePaths" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderContentCompressed">
+      <soap:operation soapAction="http://tempuri.org/IOtolithFileService/GetFolderContentCompressed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OtolithFileService">
+    <wsdl:port name="OtolithFileServiceEndPoint" binding="tns:OtolithFileServiceEndPoint">
+      <soap:address location="http://localhost:60523/OtolithFileService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

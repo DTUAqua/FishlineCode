@@ -1,0 +1,36 @@
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Sprattus\Sprattus.tt
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.UnitTests.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.UnitTests.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Entities.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\protobuf-net.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Anchor.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Globe.Core.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\GeometricLibrary.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Entities.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.csproj.AssemblyReference.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.csproj.CoreCompileInputs.cache
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.csproj.CopyComplete
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.dll
+C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.csproj.AssemblyReference.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfisk.UnitTests.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Sprattus\Sprattus.tt
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.UnitTests.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.UnitTests.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Entities.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\protobuf-net.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Anchor.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Globe.Core.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\GeometricLibrary.dll
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Entities.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.pdb
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\bin\Debug\Babelfisk.Warehouse.dll.config
+C:\Users\muhaadu\Desktop\Fiskeline Code\BabelfiskRebootOG\BabelfiskReboot\Babelfisk.UnitTests\obj\Debug\Babelfis.7A3FC17B.Up2Date

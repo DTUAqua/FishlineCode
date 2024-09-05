@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowRegionStyle" TargetType="Window">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Path=DataContext.WindowHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="WindowStyle" Value="None" />
+    </Style>
+
+    <Style x:Key="WindowReportStyle" TargetType="Window" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="600" />
+        <Setter Property="Height" Value="600" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+    </Style>
+
+
+    <Style x:Key="WindowWithBorderStyle" TargetType="Window" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Path=DataContext.WindowHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Tag" Value="ToolWindow" />
+    </Style>
+
+    <Style x:Key="StandardWindowWithBorderStyle" TargetType="Window" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Path=DataContext.WindowHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Tag" Value="SingleBorderWindow" />
+    </Style>
+
+    <Style x:Key="WindowWithBorderAutoHeightStyle" TargetType="Window" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="SizeToContent" Value="Height" ></Setter>
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Tag" Value="ToolWindow" />
+    </Style>
+
+    <Style x:Key="WindowToolBox" TargetType="Window" >
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Path=DataContext.WindowHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Tag" Value="ToolWindow" />
+        <Setter Property="AllowsTransparency" Value="False" />
+    </Style>
+
+    <Style x:Key="WindowToolBoxSimple" TargetType="Window">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <!-- <Setter Property="SizeToContent" Value="{Binding Path=DataContext.WindowSizeToContent, RelativeSource={RelativeSource Self}}" ></Setter> -->
+        <Setter Property="Width" Value="{Binding Path=DataContext.WindowWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Path=DataContext.WindowHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Title" Value="{Binding Path=DataContext.WindowTitle, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Tag" Value="ToolWindow" />
+    </Style>
+</ResourceDictionary>

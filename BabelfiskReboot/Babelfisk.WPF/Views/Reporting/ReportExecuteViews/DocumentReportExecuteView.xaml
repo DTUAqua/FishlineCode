@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Reporting.ReportExecuteViews.DocumentReportExecuteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:set="clr-namespace:Babelfisk.BusinessLogic.Settings;assembly=Babelfisk.BusinessLogic"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml" />
+
+                <ResourceDictionary>
+
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}">
+            <Grid.Style>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsLoading}" Value="True">
+                            <Setter Property="Opacity" Value="0.4" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" BorderBrush="{StaticResource ResourceKey=bdrBrush}" SnapsToDevicePixels="True" BorderThickness="0,0,0,1">
+                <DockPanel Margin="10" VerticalAlignment="Center" >
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,3">
+                        <Image Source="pack://application:,,,/Resources/Images/Common/DownArrow.ico" Margin="0,0,0,0" Height="18" Opacity="0.6" DockPanel.Dock="Bottom" />
+
+                        <TextBlock Text="Vælg hvor dokumentet/dokumenterne skal gemmes." Margin="5,0,0,0"  Foreground="Black" FontSize="15" VerticalAlignment="Center"  TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <Border VerticalAlignment="Top" Margin="0,3,0,0" Height="28">
+                        <DockPanel >
+
+                            <!-- Go to folder button -->
+                            <Button DockPanel.Dock="Right"  Margin="3,0,0,0" VerticalAlignment="Bottom" Template="{StaticResource ResourceKey=imageButton}"
+                                    IsEnabled="{Binding Path=HasLocalReportFolderPath}" ToolTip="Åben den angivne mappe i en Windows Explorer"
+                                    Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    ToolTipService.ShowDuration="30000"
+                                    Command="{Binding Path=OpenExplorerCommand}" Height="{Binding Path=ActualHeight, ElementName=btnBrowse}" >
+                                <Image Source="pack://application:,,,/Resources/Images/Common/GoTo.ico" Margin="4" Opacity="0.8" />
+                            </Button>
+
+                            <!-- Reset path -->
+                            <Button DockPanel.Dock="Right"  Margin="3,0,0,0" VerticalAlignment="Bottom" Template="{StaticResource ResourceKey=imageButton}"
+                                    ToolTipService.ShowDuration="30000"
+                                    Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    ToolTip="Nulstil stien til hvor rapporten gemmes til standard-stien."
+                                    Command="{Binding Path=ResetPathCommand}" Height="{Binding Path=ActualHeight, ElementName=btnBrowse}" >
+                                <Image Source="pack://application:,,,/Resources/Images/Common/Reset.ico" Margin="5" Opacity="0.7" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Button>
+
+                            <!-- Save path for all reports -->
+                            <Button DockPanel.Dock="Right"  Margin="3,0,0,0" VerticalAlignment="Bottom" Template="{StaticResource ResourceKey=imageButton}"
+                                    Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"
+                                     ToolTipService.ShowDuration="30000"
+                                    ToolTip="Gem den angivne sti som standard for alle rapporter der ikke har en specifik/individuel sti angivet i forvejen."
+                                    Command="{Binding Path=SavePathForAllReportsCommand}" Height="{Binding Path=ActualHeight, ElementName=btnBrowse}" >
+                                <Image Source="pack://application:,,,/Resources/Images/Common/SaveAll.ico" Margin="5" Opacity="0.9" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Button>
+
+                            <!-- Browse button -->
+                            <Button x:Name="btnBrowse" DockPanel.Dock="Right"  Margin="3,0,0,0" Template="{StaticResource ResourceKey=imageButton}"
+                                    Command="{Binding Path=BrowseCommand}" >
+                                <Border Margin="20,3,20,3">
+                                    <TextBlock Text="Browse" FontSize="15" />
+                                </Border>
+                            </Button>
+
+                            <TextBox FontSize="15" Text="{Binding Path=LocalReportFolderPath}" VerticalContentAlignment="Center" Padding="3,0,3,0" FontFamily="Arial" TextWrapping="NoWrap"  />
+
+                        </DockPanel>
+                    </Border>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Row="1" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Margin="10,40,10,40">
+
+                        <Button DockPanel.Dock="Right" HorizontalAlignment="Left" Command="{Binding Path=LoadReportCommand}" CommandParameter="GET"
+                                Template="{StaticResource ResourceKey=imageButton}" MinWidth="210" >
+                            <DockPanel Margin="20,5,20,5" >
+                                <Image DockPanel.Dock="Left" VerticalAlignment="Center" Opacity="0.8" Height="21" Source="pack://application:,,,/Resources/Images/Common/RightArrow.ico" />
+
+                                <TextBlock VerticalAlignment="Center" Text="Hent dokument(er)" Margin="10,2,0,2" FontSize="15" FontWeight="Normal" /> 
+                            </DockPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10" Visibility="Collapsed" Orientation="Horizontal" VerticalAlignment="Center" MinWidth="100" />
+
+                    <Border Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,3,3">
+                        <CheckBox Style="{StaticResource ResourceKey=sCheckBox2}" Margin="0,0,0,0"
+                              IsChecked="{Binding Source={x:Static set:Settings.Instance}, Path=OpenReportAutomatically, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
+                            <TextBlock Text="Åben (første) dokument automatisk efter det/de er hentet" Margin="0,0,5,0" FontSize="11" />
+                        </CheckBox>
+                    </Border>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+        <Border Grid.Row="0" Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="WhiteSmoke" BorderBrush="LightGray" BorderThickness="1" SnapsToDevicePixels="True">
+            <StackPanel Orientation="Vertical" Margin="15,6,15,6">
+                <TextBlock Text="Arbejder, vent venligst..." FontSize="16" />
+                <ProgressBar IsIndeterminate="True" Height="10" Margin="0,2,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

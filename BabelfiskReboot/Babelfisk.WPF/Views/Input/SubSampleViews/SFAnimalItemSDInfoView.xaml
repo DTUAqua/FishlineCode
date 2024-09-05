@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Input.SubSampleViews.SFAnimalItemSDInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Babelfisk.WPF.Views.Input.SubSampleViews"
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             xmlns:acnv="clr-namespace:Anchor.Core.Converters;assembly=Anchor.Core"
+             mc:Ignorable="d" x:Name="uc"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <acnv:IndexFromCollectionConverter x:Key="cIndexInCollection" />
+
+                    <Style x:Key="sHeaderItemBorder" TargetType="{x:Type Border}">
+                        <Setter Property="Padding" Value="8,3" />
+                        <Setter Property="BorderBrush" Value="LightGray" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    </Style>
+
+                    <Style x:Key="sHeaderTextBlockBorder" TargetType="{x:Type TextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="Medium" />
+                    </Style>
+
+                    <Style x:Key="sValueItemBorder" TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Padding" Value="6,3" />
+                        <Setter Property="BorderBrush" Value="LightGray" />
+                        <Setter Property="BorderThickness" Value="0,0,0,1" />
+                    </Style>
+
+                    <Style x:Key="sValueTextBlockBorder" TargetType="{x:Type TextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border DataContext="{Binding ElementName=uc}">
+        <Border Margin="3">
+            <Border BorderBrush="LightGray" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="0" Padding="0,0,0,0" BorderBrush="LightGray" Background="#ECECEC" BorderThickness="0,0,0,0">
+                        <Grid>
+                            <StackPanel  Orientation="Vertical">
+                                <Border Style="{StaticResource sHeaderItemBorder}" BorderThickness="0,0,0,0">
+                                    <TextBlock Text="{Binding Path=Message}" FontWeight="Medium" Style="{StaticResource sHeaderTextBlockBorder}" />
+                                </Border>
+
+                                <!-- Reader info -->
+                                <Border Visibility="{Binding Path=ShowReaderInfo, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"
+                                        BorderBrush="LightGray" Background="#ECECEC" BorderThickness="0,1,0,0"
+                                        >
+                                    <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True" 
+                                        >
+                                        <Grid  >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Style="{StaticResource sHeaderItemBorder}">
+                                                <TextBlock Text="{lan:Translate Section=SFAnimalItemSDInfoView, Key=AgeReaderHeader, UIDesignerValue='Age reader'}" Style="{StaticResource sHeaderTextBlockBorder}" />
+                                            </Border>
+
+
+                                            <Border Grid.Column="1" Style="{StaticResource sValueItemBorder}">
+                                                <TextBlock Text="{Binding Path=EventReader}" Style="{StaticResource sValueTextBlockBorder}" />
+                                            </Border >
+                                        </Grid>
+
+                                        <Grid Visibility="{Binding Path=HasAnnotationInfo, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Style="{StaticResource sHeaderItemBorder}">
+                                                <TextBlock Text="{lan:Translate Section=SFAnimalItemSDInfoView, Key=EventNameHeader, UIDesignerValue='Event name'}" Style="{StaticResource sHeaderTextBlockBorder}" />
+                                            </Border>
+
+
+                                            <Border Grid.Column="1" Style="{StaticResource sValueItemBorder}">
+                                                <TextBlock Text="{Binding Path=EventName}" Style="{StaticResource sValueTextBlockBorder}" />
+                                            </Border >
+                                        </Grid>
+
+                                        <Grid Visibility="{Binding Path=HasAnnotationInfo, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Style="{StaticResource sHeaderItemBorder}">
+                                                <TextBlock Text="{lan:Translate Section=SFAnimalItemSDInfoView, Key=EventIdHeader, UIDesignerValue='Event id'}" Style="{StaticResource sHeaderTextBlockBorder}" />
+                                            </Border>
+
+
+                                            <Border Grid.Column="1" Style="{StaticResource sValueItemBorder}">
+                                                <TextBlock Text="{Binding Path=EventIdString}" Style="{StaticResource sValueTextBlockBorder}" />
+                                            </Border >
+                                        </Grid>
+
+                                        <Grid Visibility="{Binding Path=HasAnnotationInfo, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Style="{StaticResource sHeaderItemBorder}"  BorderThickness="0,0,1,0">
+                                                <TextBlock Text="{lan:Translate Section=SFAnimalItemSDInfoView, Key=ImageNameHeader, UIDesignerValue='Image name'}" Style="{StaticResource sHeaderTextBlockBorder}" />
+                                            </Border>
+
+
+                                            <Border Grid.Column="1" Style="{StaticResource sValueItemBorder}" BorderThickness="0,0,0,0">
+                                                <TextBlock Text="{Binding Path=ImageName}" Style="{StaticResource sValueTextBlockBorder}" />
+                                            </Border >
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                               
+                            </StackPanel>
+
+                            <Border Padding="20,10">
+                                <ProgressBar IsIndeterminate="True" Height="10" Width="100" HorizontalAlignment="Center" Visibility="{Binding Path=IsLoading, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" />
+                            </Border>
+                        </Grid>
+                        
+                       
+                    </Border>
+
+                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,1,0,0" >
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger >
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=IsLoadingImage}" Value="false" />
+                                            <Condition Binding="{Binding Path=HasImage}" Value="false" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Border Grid.Row="1" Margin="10" >
+                            <Grid >
+                                <Image Source="{Binding Path=Image}" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                <ProgressBar IsIndeterminate="True" Height="10" Width="100" HorizontalAlignment="Center" Visibility="{Binding Path=IsLoadingImage, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" />
+                                <TextBlock Text="{Binding Path=ImageError}" Visibility="{Binding Path=HasImageError, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" HorizontalAlignment="Left" MaxWidth="600" TextWrapping="Wrap" />
+                            </Grid>
+                        </Border>
+                    </Border>
+
+
+                </Grid>
+            </Border>
+
+        </Border>
+    </Border>
+</UserControl>

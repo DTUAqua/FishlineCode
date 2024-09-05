@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11b70cd4-fcd4-4a55-ab22-14ae3a3f3283" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60523/OtolithFileService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OtolithFileService.xsd" MetadataType="Schema" ID="2729861b-c8aa-4815-a63e-ab05d640c5ac" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?xsd=xsd3" />
+    <MetadataFile FileName="OtolithFileService1.xsd" MetadataType="Schema" ID="fa37e11e-2457-4db6-97d4-a67207f628a5" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OtolithFileService2.xsd" MetadataType="Schema" ID="d940c793-c9de-4a1f-bdd6-a90fa2481cc0" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OtolithFileService.disco" MetadataType="Disco" ID="4507d8a0-8940-4bc2-9264-130e381ecf88" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?disco" />
+    <MetadataFile FileName="OtolithFileService3.xsd" MetadataType="Schema" ID="5efe1829-25ea-4617-859d-81599be0693f" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OtolithFileService.wsdl" MetadataType="Wsdl" ID="6e252b8f-7bc5-4458-b5df-93b715a4afa1" SourceId="1" SourceUrl="http://localhost:60523/OtolithFileService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

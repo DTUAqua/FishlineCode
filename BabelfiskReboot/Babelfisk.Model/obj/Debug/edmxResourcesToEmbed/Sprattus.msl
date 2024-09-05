@@ -1,0 +1,1667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BabelfiskEntitiesStoreContainer" CdmEntityContainer="SprattusContainer">
+    <EntitySetMapping Name="ActivityLog">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.ActivityLog)">
+        <MappingFragment StoreEntitySet="ActivityLog">
+          <ScalarProperty Name="ActivityLogId" ColumnName="ActivityLogId" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="DataTable" ColumnName="DataTable" />
+          <ScalarProperty Name="DataNaturalKey" ColumnName="DataNaturalKey" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Age">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Age)">
+        <MappingFragment StoreEntitySet="Age">
+          <ScalarProperty Name="ageId" ColumnName="ageId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="age1" ColumnName="age" />
+          <ScalarProperty Name="otolithReadingRemarkId" ColumnName="otolithReadingRemarkId" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="ageMeasureMethodId" ColumnName="ageMeasureMethodId" />
+          <ScalarProperty Name="hatchMonth" ColumnName="hatchMonth" />
+          <ScalarProperty Name="otolithWeight" ColumnName="otolithWeight" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
+          <ScalarProperty Name="genetics" ColumnName="genetics" />
+          <ScalarProperty Name="hatchMonthReadabilityId" ColumnName="hatchMonthReadabilityId" />
+          <ScalarProperty Name="visualStockId" ColumnName="visualStockId" />
+          <ScalarProperty Name="geneticStockId" ColumnName="geneticStockId" />
+          <ScalarProperty Name="sdAgeInfoUpdated" ColumnName="sdAgeInfoUpdated" />
+          <ScalarProperty Name="sdAnnotationId" ColumnName="sdAnnotationId" />
+          <ScalarProperty Name="sdAgeReadId" ColumnName="sdAgeReadId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animal">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Animal)">
+        <MappingFragment StoreEntitySet="Animal">
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="subSampleId" ColumnName="subSampleId" />
+          <ScalarProperty Name="individNum" ColumnName="individNum" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="lengthMeasureUnit" ColumnName="lengthMeasureUnit" />
+          <ScalarProperty Name="lengthMeasureTypeId" ColumnName="lengthMeasureTypeId" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="broodingPhase" ColumnName="broodingPhase" />
+          <ScalarProperty Name="dfuBase_lfRecordId" ColumnName="dfuBase_lfRecordId" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="dataHandlerId" ColumnName="dataHandlerId" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="catchNum" ColumnName="catchNum" />
+          <ScalarProperty Name="otolithFinScale" ColumnName="otolithFinScale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnimalInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.AnimalInfo)">
+        <MappingFragment StoreEntitySet="AnimalInfo">
+          <ScalarProperty Name="animalInfoId" ColumnName="animalInfoId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="heigth" ColumnName="heigth" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="maturityId" ColumnName="maturityId" />
+          <ScalarProperty Name="I1" ColumnName="I1" />
+          <ScalarProperty Name="fatId" ColumnName="fatId" />
+          <ScalarProperty Name="numVertebra" ColumnName="numVertebra" />
+          <ScalarProperty Name="weightGutted" ColumnName="weightGutted" />
+          <ScalarProperty Name="weightLiver" ColumnName="weightLiver" />
+          <ScalarProperty Name="weightGonads" ColumnName="weightGonads" />
+          <ScalarProperty Name="pictureReference" ColumnName="pictureReference" />
+          <ScalarProperty Name="netPlaceVertical" ColumnName="netPlaceVertical" />
+          <ScalarProperty Name="netPlaceHorisontal" ColumnName="netPlaceHorisontal" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="parasiteId" ColumnName="parasiteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cruise">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Cruise)">
+        <MappingFragment StoreEntitySet="Cruise">
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="cruise1" ColumnName="cruise" />
+          <ScalarProperty Name="cruiseTitle" ColumnName="cruiseTitle" />
+          <ScalarProperty Name="responsibleId" ColumnName="responsibleId" />
+          <ScalarProperty Name="participants" ColumnName="participants" />
+          <ScalarProperty Name="reportFile" ColumnName="reportFile" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="DFUDepartment" ColumnName="DFUDepartment" />
+          <ScalarProperty Name="cruiseStatus" ColumnName="cruiseStatus" />
+          <ScalarProperty Name="dateEstimCruise" ColumnName="dateEstimCruise" />
+          <ScalarProperty Name="dateControl" ColumnName="dateControl" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="dataHandlerId" ColumnName="dataHandlerId" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DFUPerson">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.DFUPerson)">
+        <MappingFragment StoreEntitySet="DFUPerson">
+          <ScalarProperty Name="dfuPersonId" ColumnName="dfuPersonId" />
+          <ScalarProperty Name="initials" ColumnName="initials" />
+          <ScalarProperty Name="dfuDepartment" ColumnName="dfuDepartment" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DFUSubArea">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.DFUSubArea)">
+        <MappingFragment StoreEntitySet="DFUSubArea">
+          <ScalarProperty Name="dfuSubAreaId" ColumnName="dfuSubAreaId" />
+          <ScalarProperty Name="DFUArea" ColumnName="DFUArea" />
+          <ScalarProperty Name="northDefinitionLatitudeText" ColumnName="northDefinitionLatitudeText" />
+          <ScalarProperty Name="southDefinitionLatitudeText" ColumnName="southDefinitionLatitudeText" />
+          <ScalarProperty Name="westDefinitionLongitudeText" ColumnName="westDefinitionLongitudeText" />
+          <ScalarProperty Name="eastDefinitionLongitudeText" ColumnName="eastDefinitionLongitudeText" />
+          <ScalarProperty Name="SubAreaType" ColumnName="SubAreaType" />
+          <ScalarProperty Name="northDefinitionLatitudeDec" ColumnName="northDefinitionLatitudeDec" />
+          <ScalarProperty Name="southDefinitionLatitudeDec" ColumnName="southDefinitionLatitudeDec" />
+          <ScalarProperty Name="westDefinitionLongitudeDec" ColumnName="westDefinitionLongitudeDec" />
+          <ScalarProperty Name="eastDefinitionLongitudeDec" ColumnName="eastDefinitionLongitudeDec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Est_Method">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Est_Method)">
+        <MappingFragment StoreEntitySet="Est_Method">
+          <ScalarProperty Name="Est_MethodId" ColumnName="Est_MethodId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Est_MethodStep">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Est_MethodStep)">
+        <MappingFragment StoreEntitySet="Est_MethodStep">
+          <ScalarProperty Name="Est_MethodStepId" ColumnName="Est_MethodStepId" />
+          <ScalarProperty Name="Est_MethodId" ColumnName="Est_MethodId" />
+          <ScalarProperty Name="stepNumber" ColumnName="stepNumber" />
+          <ScalarProperty Name="Est_StrataId" ColumnName="Est_StrataId" />
+          <ScalarProperty Name="overwrites" ColumnName="overwrites" />
+          <ScalarProperty Name="SpeciesCode" ColumnName="SpeciesCode" />
+          <ScalarProperty Name="dfubase_category" ColumnName="dfubase_category" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="datahandlerId" ColumnName="datahandlerId" />
+          <ScalarProperty Name="disabled" ColumnName="disabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Est_Strata">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Est_Strata)">
+        <MappingFragment StoreEntitySet="Est_Strata">
+          <ScalarProperty Name="Est_StrataId" ColumnName="Est_StrataId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="TripId" ColumnName="TripId" />
+          <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+          <ScalarProperty Name="dfubase_category" ColumnName="dfubase_category" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="representative" ColumnName="representative" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="disabled" ColumnName="disabled" />
+          <ScalarProperty Name="datahandlerId" ColumnName="datahandlerId" />
+          <ScalarProperty Name="delete_CruiseId" ColumnName="delete_CruiseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fat">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Fat)">
+        <MappingFragment StoreEntitySet="Fat">
+          <ScalarProperty Name="fatId" ColumnName="fatId" />
+          <ScalarProperty Name="fatIndex" ColumnName="fatIndex" />
+          <ScalarProperty Name="fatIndexMethod" ColumnName="fatIndexMethod" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FishingActivityOnSample">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.FishingActivityOnSample)">
+        <MappingFragment StoreEntitySet="FishingActivityOnSample">
+          <ScalarProperty Name="fishingActivityId" ColumnName="fishingActivityId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="fishingActivity" ColumnName="fishingActivity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Activity">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Activity)">
+        <MappingFragment StoreEntitySet="L_Activity">
+          <ScalarProperty Name="L_activityid" ColumnName="L_activityid" />
+          <ScalarProperty Name="activity" ColumnName="activity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_AgeMeasureMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_AgeMeasureMethod)">
+        <MappingFragment StoreEntitySet="L_AgeMeasureMethod">
+          <ScalarProperty Name="L_ageMeasureMethodId" ColumnName="L_ageMeasureMethodId" />
+          <ScalarProperty Name="ageMeasureMethod" ColumnName="ageMeasureMethod" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_BITS_cruises">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_BITS_cruises)">
+        <MappingFragment StoreEntitySet="L_BITS_cruises">
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="shipCode" ColumnName="shipCode" />
+          <ScalarProperty Name="cruiseYear" ColumnName="cruiseYear" />
+          <ScalarProperty Name="cruiseNo" ColumnName="cruiseNo" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cruiseDays" ColumnName="cruiseDays" />
+          <ScalarProperty Name="cruiseName" ColumnName="cruiseName" />
+          <ScalarProperty Name="projectType" ColumnName="projectType" />
+          <ScalarProperty Name="cruiseLeader" ColumnName="cruiseLeader" />
+          <ScalarProperty Name="assistCruiseLeader" ColumnName="assistCruiseLeader" />
+          <ScalarProperty Name="captain" ColumnName="captain" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="cruiseArea" ColumnName="cruiseArea" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="institution" ColumnName="institution" />
+          <ScalarProperty Name="institute" ColumnName="institute" />
+          <ScalarProperty Name="projectArea" ColumnName="projectArea" />
+          <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Bottomtype">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Bottomtype)">
+        <MappingFragment StoreEntitySet="L_Bottomtype">
+          <ScalarProperty Name="L_bottomTypeId" ColumnName="L_bottomTypeId" />
+          <ScalarProperty Name="bottomtype" ColumnName="bottomtype" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_BroodingPhase">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_BroodingPhase)">
+        <MappingFragment StoreEntitySet="L_BroodingPhase">
+          <ScalarProperty Name="broodingPhase" ColumnName="broodingPhase" />
+          <ScalarProperty Name="L_broodingPhaseId" ColumnName="L_broodingPhaseId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_CatchRegistration">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_CatchRegistration)">
+        <MappingFragment StoreEntitySet="L_CatchRegistration">
+          <ScalarProperty Name="catchRegistrationId" ColumnName="catchRegistrationId" />
+          <ScalarProperty Name="catchRegistration" ColumnName="catchRegistration" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_CruiseStatus">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_CruiseStatus)">
+        <MappingFragment StoreEntitySet="L_CruiseStatus">
+          <ScalarProperty Name="cruiseStatus" ColumnName="cruiseStatus" />
+          <ScalarProperty Name="L_cruiseStatusId" ColumnName="L_cruiseStatusId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_CruiseType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_CruiseType)">
+        <MappingFragment StoreEntitySet="L_CruiseType">
+          <ScalarProperty Name="cruiseType" ColumnName="cruiseType" />
+          <ScalarProperty Name="L_cruiseTypeId" ColumnName="L_cruiseTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_CuticulaHardness">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_CuticulaHardness)">
+        <MappingFragment StoreEntitySet="L_CuticulaHardness">
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="L_cuticulaHardnessId" ColumnName="L_cuticulaHardnessId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_DFUArea">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_DFUArea)">
+        <MappingFragment StoreEntitySet="L_DFUArea">
+          <ScalarProperty Name="DFUArea" ColumnName="DFUArea" />
+          <ScalarProperty Name="L_DFUAreaId" ColumnName="L_DFUAreaId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="parentDFUArea" ColumnName="parentDFUArea" />
+          <ScalarProperty Name="areaNES" ColumnName="areaNES" />
+          <ScalarProperty Name="areaICES" ColumnName="areaICES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_DFUBase_Category">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_DFUBase_Category)">
+        <MappingFragment StoreEntitySet="L_DFUBase_Category">
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="L_dfuBase_CategoryId" ColumnName="L_dfuBase_CategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_DFUDepartment">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_DFUDepartment)">
+        <MappingFragment StoreEntitySet="L_DFUDepartment">
+          <ScalarProperty Name="dfuDepartment" ColumnName="dfuDepartment" />
+          <ScalarProperty Name="L_dfuDepartmentId" ColumnName="L_dfuDepartmentId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_FatIndexMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_FatIndexMethod)">
+        <MappingFragment StoreEntitySet="L_FatIndexMethod">
+          <ScalarProperty Name="fatIndexMethod" ColumnName="fatIndexMethod" />
+          <ScalarProperty Name="L_fatIndexMethodId" ColumnName="L_fatIndexMethodId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Fejlkategorier">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Fejlkategorier)">
+        <MappingFragment StoreEntitySet="L_Fejlkategorier">
+          <ScalarProperty Name="FejlkategoriId" ColumnName="FejlkategoriId" />
+          <ScalarProperty Name="FejlkategoriTekst" ColumnName="FejlkategoriTekst" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_FishingActivityCategory">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_FishingActivityCategory)">
+        <MappingFragment StoreEntitySet="L_FishingActivityCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FishingActivityLevel" ColumnName="FishingActivityLevel" />
+          <ScalarProperty Name="ParentFishingActivityCategory" ColumnName="ParentFishingActivityCategory" />
+          <ScalarProperty Name="FishingActivityCategoryType" ColumnName="FishingActivityCategoryType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_FishingActivityCategory_temp">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_FishingActivityCategory_temp)">
+        <MappingFragment StoreEntitySet="L_FishingActivityCategory_temp">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FishingActivityLevel" ColumnName="FishingActivityLevel" />
+          <ScalarProperty Name="ParentFishingActivityCategory" ColumnName="ParentFishingActivityCategory" />
+          <ScalarProperty Name="FishingActivityCategoryType" ColumnName="FishingActivityCategoryType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_FishingActivityNational">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_FishingActivityNational)">
+        <MappingFragment StoreEntitySet="L_FishingActivityNational">
+          <ScalarProperty Name="fishingActivityId" ColumnName="fishingActivityId" />
+          <ScalarProperty Name="fishingActivity" ColumnName="fishingActivity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Gear">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Gear)">
+        <MappingFragment StoreEntitySet="L_Gear">
+          <ScalarProperty Name="gearId" ColumnName="gearId" />
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="gear" ColumnName="gear" />
+          <ScalarProperty Name="gearText" ColumnName="gearText" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearInfoType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_GearInfoType)">
+        <MappingFragment StoreEntitySet="L_GearInfoType">
+          <ScalarProperty Name="gearInfoType" ColumnName="gearInfoType" />
+          <ScalarProperty Name="L_gearInfoTypeId" ColumnName="L_gearInfoTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dfuBase_dfuref" ColumnName="dfuBase_dfuref" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearQuality">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_GearQuality)">
+        <MappingFragment StoreEntitySet="L_GearQuality">
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="L_gearQualityId" ColumnName="L_gearQualityId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_GearType)">
+        <MappingFragment StoreEntitySet="L_GearType">
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="L_gearTypeId" ColumnName="L_gearTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="fmCode" ColumnName="fmCode" />
+          <ScalarProperty Name="logbookCode" ColumnName="logbookCode" />
+          <ScalarProperty Name="catchOperation" ColumnName="catchOperation" />
+          <ScalarProperty Name="showInVidUI" ColumnName="showInVidUI" />
+          <ScalarProperty Name="showInSeaHvnUI" ColumnName="showInSeaHvnUI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Harbour">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Harbour)">
+        <MappingFragment StoreEntitySet="L_Harbour">
+          <ScalarProperty Name="harbour" ColumnName="harbour" />
+          <ScalarProperty Name="L_harbourId" ColumnName="L_harbourId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="harbourNES" ColumnName="harbourNES" />
+          <ScalarProperty Name="harbourEU" ColumnName="harbourEU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Harbour2">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Harbour2)">
+        <MappingFragment StoreEntitySet="L_Harbour2">
+          <ScalarProperty Name="harbour" ColumnName="harbour" />
+          <ScalarProperty Name="L_harbourId" ColumnName="L_harbourId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_IBTS_cruises">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_IBTS_cruises)">
+        <MappingFragment StoreEntitySet="L_IBTS_cruises">
+          <ScalarProperty Name="cruiseID" ColumnName="cruiseID" />
+          <ScalarProperty Name="shipCode" ColumnName="shipCode" />
+          <ScalarProperty Name="cruiseYear" ColumnName="cruiseYear" />
+          <ScalarProperty Name="cruiseNo" ColumnName="cruiseNo" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cruiseDays" ColumnName="cruiseDays" />
+          <ScalarProperty Name="cruiseName" ColumnName="cruiseName" />
+          <ScalarProperty Name="projectType" ColumnName="projectType" />
+          <ScalarProperty Name="cruiseLeader" ColumnName="cruiseLeader" />
+          <ScalarProperty Name="assistCruiseLeader" ColumnName="assistCruiseLeader" />
+          <ScalarProperty Name="captain" ColumnName="captain" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="cruiseArea" ColumnName="cruiseArea" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="institution" ColumnName="institution" />
+          <ScalarProperty Name="institute" ColumnName="institute" />
+          <ScalarProperty Name="projectArea" ColumnName="projectArea" />
+          <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_LandingCategory">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_LandingCategory)">
+        <MappingFragment StoreEntitySet="L_LandingCategory">
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="L_landingCategoryId" ColumnName="L_landingCategoryId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_LengthMeasureUnit">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_LengthMeasureUnit)">
+        <MappingFragment StoreEntitySet="L_LengthMeasureUnit">
+          <ScalarProperty Name="lengthMeasureUnit" ColumnName="lengthMeasureUnit" />
+          <ScalarProperty Name="L_lengthMeasureUnitId" ColumnName="L_lengthMeasureUnitId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_MaturityIndexMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_MaturityIndexMethod)">
+        <MappingFragment StoreEntitySet="L_MaturityIndexMethod">
+          <ScalarProperty Name="maturityIndexMethod" ColumnName="maturityIndexMethod" />
+          <ScalarProperty Name="L_maturityIndexMethodId" ColumnName="L_maturityIndexMethodId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_MissingLookup">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_MissingLookup)">
+        <MappingFragment StoreEntitySet="L_MissingLookup">
+          <ScalarProperty Name="dataTable" ColumnName="dataTable" />
+          <ScalarProperty Name="dataField" ColumnName="dataField" />
+          <ScalarProperty Name="dataValue" ColumnName="dataValue" />
+          <ScalarProperty Name="keydata" ColumnName="keydata" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="specieslistId" ColumnName="specieslistId" />
+          <ScalarProperty Name="subsampleId" ColumnName="subsampleId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="ageId" ColumnName="ageId" />
+          <ScalarProperty Name="LFrecordId" ColumnName="LFrecordId" />
+          <ScalarProperty Name="artsrecordId" ColumnName="artsrecordId" />
+          <ScalarProperty Name="errorType" ColumnName="errorType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Nationality">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Nationality)">
+        <MappingFragment StoreEntitySet="L_Nationality">
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="L_nationalityId" ColumnName="L_nationalityId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_NavigationSystem">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_NavigationSystem)">
+        <MappingFragment StoreEntitySet="L_NavigationSystem">
+          <ScalarProperty Name="navigationSystem" ColumnName="navigationSystem" />
+          <ScalarProperty Name="L_navigationSystemId" ColumnName="L_navigationSystemId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_OtolithReadingRemark">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_OtolithReadingRemark)">
+        <MappingFragment StoreEntitySet="L_OtolithReadingRemark">
+          <ScalarProperty Name="L_OtolithReadingRemarkID" ColumnName="L_OtolithReadingRemarkID" />
+          <ScalarProperty Name="otolithReadingRemark" ColumnName="otolithReadingRemark" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="transAgeFromAquaDotsToFishLine" ColumnName="transAgeFromAquaDotsToFishLine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Platform">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Platform)">
+        <MappingFragment StoreEntitySet="L_Platform">
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="L_platformId" ColumnName="L_platformId" />
+          <ScalarProperty Name="platformType" ColumnName="platformType" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="boatIdentity" ColumnName="boatIdentity" />
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_PlatformType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_PlatformType)">
+        <MappingFragment StoreEntitySet="L_PlatformType">
+          <ScalarProperty Name="platformType" ColumnName="platformType" />
+          <ScalarProperty Name="L_platformTypeId" ColumnName="L_platformTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_PlatformVersion">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_PlatformVersion)">
+        <MappingFragment StoreEntitySet="L_PlatformVersion">
+          <ScalarProperty Name="platformVersionId" ColumnName="platformVersionId" />
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="revisionYear" ColumnName="revisionYear" />
+          <ScalarProperty Name="navigationSystem" ColumnName="navigationSystem" />
+          <ScalarProperty Name="registerTons" ColumnName="registerTons" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="power" ColumnName="power" />
+          <ScalarProperty Name="crew" ColumnName="crew" />
+          <ScalarProperty Name="radiosignal" ColumnName="radiosignal" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SampleStatus">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SampleStatus)">
+        <MappingFragment StoreEntitySet="L_SampleStatus">
+          <ScalarProperty Name="sampleStatus" ColumnName="sampleStatus" />
+          <ScalarProperty Name="L_sampleStatusId" ColumnName="L_sampleStatusId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SampleType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SampleType)">
+        <MappingFragment StoreEntitySet="L_SampleType">
+          <ScalarProperty Name="sampleType" ColumnName="sampleType" />
+          <ScalarProperty Name="L_sampleTypeId" ColumnName="L_sampleTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SamplingMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SamplingMethod)">
+        <MappingFragment StoreEntitySet="L_SamplingMethod">
+          <ScalarProperty Name="samplingMethodId" ColumnName="samplingMethodId" />
+          <ScalarProperty Name="samplingMethod" ColumnName="samplingMethod" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SamplingType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SamplingType)">
+        <MappingFragment StoreEntitySet="L_SamplingType">
+          <ScalarProperty Name="samplingTypeId" ColumnName="samplingTypeId" />
+          <ScalarProperty Name="samplingType" ColumnName="samplingType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SelectPanel">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SelectPanel)">
+        <MappingFragment StoreEntitySet="L_SelectPanel">
+          <ScalarProperty Name="selectPanel" ColumnName="selectPanel" />
+          <ScalarProperty Name="L_selectPanelId" ColumnName="L_selectPanelId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SexCode">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SexCode)">
+        <MappingFragment StoreEntitySet="L_SexCode">
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="L_sexCodeId" ColumnName="L_sexCodeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_ShovelType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_ShovelType)">
+        <MappingFragment StoreEntitySet="L_ShovelType">
+          <ScalarProperty Name="shovelType" ColumnName="shovelType" />
+          <ScalarProperty Name="L_shovelTypeId" ColumnName="L_shovelTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SizeSortingDFU">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SizeSortingDFU)">
+        <MappingFragment StoreEntitySet="L_SizeSortingDFU">
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="L_sizeSortingDFUId" ColumnName="L_sizeSortingDFUId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SizeSortingEU">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SizeSortingEU)">
+        <MappingFragment StoreEntitySet="L_SizeSortingEU">
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="L_sizeSortingEUId" ColumnName="L_sizeSortingEUId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Species">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Species)">
+        <MappingFragment StoreEntitySet="L_Species">
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="L_speciesId" ColumnName="L_speciesId" />
+          <ScalarProperty Name="dkName" ColumnName="dkName" />
+          <ScalarProperty Name="ukName" ColumnName="ukName" />
+          <ScalarProperty Name="nodc" ColumnName="nodc" />
+          <ScalarProperty Name="latin" ColumnName="latin" />
+          <ScalarProperty Name="icesCode" ColumnName="icesCode" />
+          <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
+          <ScalarProperty Name="dfuFisk_Code" ColumnName="dfuFisk_Code" />
+          <ScalarProperty Name="tsn" ColumnName="tsn" />
+          <ScalarProperty Name="aphiaID" ColumnName="aphiaID" />
+          <ScalarProperty Name="standardLengthMeasureTypeId" ColumnName="standardLengthMeasureTypeId" />
+          <ScalarProperty Name="lengthMin" ColumnName="lengthMin" />
+          <ScalarProperty Name="lengthMax" ColumnName="lengthMax" />
+          <ScalarProperty Name="ageMin" ColumnName="ageMin" />
+          <ScalarProperty Name="ageMax" ColumnName="ageMax" />
+          <ScalarProperty Name="weightMin" ColumnName="weightMin" />
+          <ScalarProperty Name="weightMax" ColumnName="weightMax" />
+          <ScalarProperty Name="speciesNES" ColumnName="speciesNES" />
+          <ScalarProperty Name="speciesFAO" ColumnName="speciesFAO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SpeciesRegistration">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SpeciesRegistration)">
+        <MappingFragment StoreEntitySet="L_SpeciesRegistration">
+          <ScalarProperty Name="speciesRegistrationId" ColumnName="speciesRegistrationId" />
+          <ScalarProperty Name="speciesRegistration" ColumnName="speciesRegistration" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_StatisticalRectangle">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_StatisticalRectangle)">
+        <MappingFragment StoreEntitySet="L_StatisticalRectangle">
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="L_statisticalRectangleId" ColumnName="L_statisticalRectangleId" />
+          <ScalarProperty Name="latitudeDecMin" ColumnName="latitudeDecMin" />
+          <ScalarProperty Name="latitudeDecMax" ColumnName="latitudeDecMax" />
+          <ScalarProperty Name="longitudeDecMin" ColumnName="longitudeDecMin" />
+          <ScalarProperty Name="longitudeDecMax" ColumnName="longitudeDecMax" />
+          <ScalarProperty Name="latitudeDecMid" ColumnName="latitudeDecMid" />
+          <ScalarProperty Name="longitudeDecMid" ColumnName="longitudeDecMid" />
+          <ScalarProperty Name="latitudeTextMin" ColumnName="latitudeTextMin" />
+          <ScalarProperty Name="latitudeTextMax" ColumnName="latitudeTextMax" />
+          <ScalarProperty Name="longitudeTextMin" ColumnName="longitudeTextMin" />
+          <ScalarProperty Name="longitudeTextMax" ColumnName="longitudeTextMax" />
+          <ScalarProperty Name="latitudeTextMid" ColumnName="latitudeTextMid" />
+          <ScalarProperty Name="longitudeTextMid" ColumnName="longitudeTextMid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Stock">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Stock)">
+        <MappingFragment StoreEntitySet="L_Stock">
+          <ScalarProperty Name="L_stockId" ColumnName="L_stockId" />
+          <ScalarProperty Name="stockCode" ColumnName="stockCode" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SubAreaType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SubAreaType)">
+        <MappingFragment StoreEntitySet="L_SubAreaType">
+          <ScalarProperty Name="L_SubAreaTypeId" ColumnName="L_SubAreaTypeId" />
+          <ScalarProperty Name="SubAreaType" ColumnName="SubAreaType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_TreadMaterial">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_TreadMaterial)">
+        <MappingFragment StoreEntitySet="L_TreadMaterial">
+          <ScalarProperty Name="treadMaterial" ColumnName="treadMaterial" />
+          <ScalarProperty Name="L_treadMaterialId" ColumnName="L_treadMaterialId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_TreadType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_TreadType)">
+        <MappingFragment StoreEntitySet="L_TreadType">
+          <ScalarProperty Name="treadType" ColumnName="treadType" />
+          <ScalarProperty Name="L_treadTypeId" ColumnName="L_treadTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Treatment">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Treatment)">
+        <MappingFragment StoreEntitySet="L_Treatment">
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="L_treatmentId" ColumnName="L_treatmentId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_TreatmentFactorGroup">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_TreatmentFactorGroup)">
+        <MappingFragment StoreEntitySet="L_TreatmentFactorGroup">
+          <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
+          <ScalarProperty Name="L_treatmentFactorGroupId" ColumnName="L_treatmentFactorGroupId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_TripType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_TripType)">
+        <MappingFragment StoreEntitySet="L_TripType">
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="L_tripTypeId" ColumnName="L_tripTypeId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="cruiseType" ColumnName="cruiseType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_UsabilityParam">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_UsabilityParam)">
+        <MappingFragment StoreEntitySet="L_UsabilityParam">
+          <ScalarProperty Name="usabilityParamId" ColumnName="usabilityParamId" />
+          <ScalarProperty Name="usabilityParam" ColumnName="usabilityParam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_UsabilityParamGrp">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_UsabilityParamGrp)">
+        <MappingFragment StoreEntitySet="L_UsabilityParamGrp">
+          <ScalarProperty Name="usabilityParamGrpId" ColumnName="usabilityParamGrpId" />
+          <ScalarProperty Name="usabilityGrp" ColumnName="usabilityGrp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_YesNo">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_YesNo)">
+        <MappingFragment StoreEntitySet="L_YesNo">
+          <ScalarProperty Name="YesNo" ColumnName="YesNo" />
+          <ScalarProperty Name="L_YesNoId" ColumnName="L_YesNoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maturity">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Maturity)">
+        <MappingFragment StoreEntitySet="Maturity">
+          <ScalarProperty Name="maturityId" ColumnName="maturityId" />
+          <ScalarProperty Name="maturityIndex" ColumnName="maturityIndex" />
+          <ScalarProperty Name="maturityIndexMethod" ColumnName="maturityIndexMethod" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NumberOfStationsPerTrip">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.NumberOfStationsPerTrip)">
+        <MappingFragment StoreEntitySet="NumberOfStationsPerTrip">
+          <ScalarProperty Name="numberOfStationsPerTripId" ColumnName="numberOfStationsPerTripId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="numStnPerTrip" ColumnName="numStnPerTrip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Person)">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="personId" ColumnName="personId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="organization" ColumnName="organization" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="zipTown" ColumnName="zipTown" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="SEno" ColumnName="SEno" />
+          <ScalarProperty Name="bankAccountNo" ColumnName="bankAccountNo" />
+          <ScalarProperty Name="telephonePrivate" ColumnName="telephonePrivate" />
+          <ScalarProperty Name="telephoneMobile" ColumnName="telephoneMobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="facebook" ColumnName="facebook" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Queries">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Queries)">
+        <MappingFragment StoreEntitySet="Queries">
+          <ScalarProperty Name="usercode" ColumnName="usercode" />
+          <ScalarProperty Name="queryName" ColumnName="queryName" />
+          <ScalarProperty Name="querySQL" ColumnName="querySQL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QueryTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.QueryTypes)">
+        <MappingFragment StoreEntitySet="QueryTypes">
+          <ScalarProperty Name="QueryTypeID" ColumnName="QueryTypeID" />
+          <ScalarProperty Name="tblAlias" ColumnName="tblAlias" />
+          <ScalarProperty Name="tblName" ColumnName="tblName" />
+          <ScalarProperty Name="selectType" ColumnName="selectType" />
+          <ScalarProperty Name="selectWhat" ColumnName="selectWhat" />
+          <ScalarProperty Name="whereClause" ColumnName="whereClause" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_CruiseUsabilityParam">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_CruiseUsabilityParam)">
+        <MappingFragment StoreEntitySet="R_CruiseUsabilityParam">
+          <ScalarProperty Name="R_CruiseUsbilityParamId" ColumnName="R_CruiseUsbilityParamId" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="usabilityParamId" ColumnName="usabilityParamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_GearInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_GearInfo)">
+        <MappingFragment StoreEntitySet="R_GearInfo">
+          <ScalarProperty Name="R_gearInfoID" ColumnName="R_gearInfoID" />
+          <ScalarProperty Name="gearId" ColumnName="gearId" />
+          <ScalarProperty Name="gearInfoType" ColumnName="gearInfoType" />
+          <ScalarProperty Name="gearValue" ColumnName="gearValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_Maturity">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_Maturity)">
+        <MappingFragment StoreEntitySet="R_Maturity">
+          <ScalarProperty Name="r_MaturityId" ColumnName="r_MaturityId" />
+          <ScalarProperty Name="maturityId_PK" ColumnName="maturityId_PK" />
+          <ScalarProperty Name="maturityId_FK" ColumnName="maturityId_FK" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_SampleUsabilityParam">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_SampleUsabilityParam)">
+        <MappingFragment StoreEntitySet="R_SampleUsabilityParam">
+          <ScalarProperty Name="R_SampleUsabilityParamId" ColumnName="R_SampleUsabilityParamId" />
+          <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+          <ScalarProperty Name="usabilityParamId" ColumnName="usabilityParamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_TargetSpecies">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_TargetSpecies)">
+        <MappingFragment StoreEntitySet="R_TargetSpecies">
+          <ScalarProperty Name="TargetSpeciesId" ColumnName="TargetSpeciesId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_TripPlatformVersion">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_TripPlatformVersion)">
+        <MappingFragment StoreEntitySet="R_TripPlatformVersion">
+          <ScalarProperty Name="R_TripPlatformVersionId" ColumnName="R_TripPlatformVersionId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="platformVersionId" ColumnName="platformVersionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_TripUsabilityParam">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_TripUsabilityParam)">
+        <MappingFragment StoreEntitySet="R_TripUsabilityParam">
+          <ScalarProperty Name="R_tripUsabilityParamId" ColumnName="R_tripUsabilityParamId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="usabilityParamId" ColumnName="usabilityParamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_UsabilityParamUsabilityGrp">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_UsabilityParamUsabilityGrp)">
+        <MappingFragment StoreEntitySet="R_UsabilityParamUsabilityGrp">
+          <ScalarProperty Name="R_UsabilityParamUsabilityGrpId" ColumnName="R_UsabilityParamUsabilityGrpId" />
+          <ScalarProperty Name="usabilityParamId" ColumnName="usabilityParamId" />
+          <ScalarProperty Name="usabilityParamGrpId" ColumnName="usabilityParamGrpId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="replicationLog">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.replicationLog)">
+        <MappingFragment StoreEntitySet="replicationLog">
+          <ScalarProperty Name="replicationLogId" ColumnName="replicationLogId" />
+          <ScalarProperty Name="logType" ColumnName="logType" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="systemText" ColumnName="systemText" />
+          <ScalarProperty Name="userText" ColumnName="userText" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="species" ColumnName="species" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sample">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Sample)">
+        <MappingFragment StoreEntitySet="Sample">
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="stationName" ColumnName="stationName" />
+          <ScalarProperty Name="virtual" ColumnName="virtual" />
+          <ScalarProperty Name="gearId" ColumnName="gearId" />
+          <ScalarProperty Name="sampleType" ColumnName="sampleType" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="dateGearEnd" ColumnName="dateGearEnd" />
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="fishingtime" ColumnName="fishingtime" />
+          <ScalarProperty Name="night" ColumnName="night" />
+          <ScalarProperty Name="latPosStartText" ColumnName="latPosStartText" />
+          <ScalarProperty Name="lonPosStartText" ColumnName="lonPosStartText" />
+          <ScalarProperty Name="latPosEndText" ColumnName="latPosEndText" />
+          <ScalarProperty Name="lonPosEndText" ColumnName="lonPosEndText" />
+          <ScalarProperty Name="fishingActivityId" ColumnName="fishingActivityId" />
+          <ScalarProperty Name="fishingActivityNationalId" ColumnName="fishingActivityNationalId" />
+          <ScalarProperty Name="catchRegistrationId" ColumnName="catchRegistrationId" />
+          <ScalarProperty Name="speciesRegistrationId" ColumnName="speciesRegistrationId" />
+          <ScalarProperty Name="HVN_geartype" ColumnName="HVN_geartype" />
+          <ScalarProperty Name="distance" ColumnName="distance" />
+          <ScalarProperty Name="dfuArea" ColumnName="dfuArea" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="depthAvg" ColumnName="depthAvg" />
+          <ScalarProperty Name="bottomType" ColumnName="bottomType" />
+          <ScalarProperty Name="windDirection" ColumnName="windDirection" />
+          <ScalarProperty Name="windSpeed" ColumnName="windSpeed" />
+          <ScalarProperty Name="currentDirectionSrf" ColumnName="currentDirectionSrf" />
+          <ScalarProperty Name="currentSpeedSrf" ColumnName="currentSpeedSrf" />
+          <ScalarProperty Name="currentDirectionBot" ColumnName="currentDirectionBot" />
+          <ScalarProperty Name="currentSpeedBot" ColumnName="currentSpeedBot" />
+          <ScalarProperty Name="waveDirection" ColumnName="waveDirection" />
+          <ScalarProperty Name="waveHeigth" ColumnName="waveHeigth" />
+          <ScalarProperty Name="startlog" ColumnName="startlog" />
+          <ScalarProperty Name="endlog" ColumnName="endlog" />
+          <ScalarProperty Name="datahandlerId" ColumnName="datahandlerId" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="numNets" ColumnName="numNets" />
+          <ScalarProperty Name="lostNets" ColumnName="lostNets" />
+          <ScalarProperty Name="tidTamp" ColumnName="tidTamp" />
+          <ScalarProperty Name="flyerTrack" ColumnName="flyerTrack" />
+          <ScalarProperty Name="released" ColumnName="released" />
+          <ScalarProperty Name="sampleTaken" ColumnName="sampleTaken" />
+          <ScalarProperty Name="constantFish" ColumnName="constantFish" />
+          <ScalarProperty Name="haulSpeedMean" ColumnName="haulSpeedMean" />
+          <ScalarProperty Name="haulDirection" ColumnName="haulDirection" />
+          <ScalarProperty Name="haulSpeedBot" ColumnName="haulSpeedBot" />
+          <ScalarProperty Name="haulSpeedWat" ColumnName="haulSpeedWat" />
+          <ScalarProperty Name="wireLength" ColumnName="wireLength" />
+          <ScalarProperty Name="wingSpread" ColumnName="wingSpread" />
+          <ScalarProperty Name="numSamples" ColumnName="numSamples" />
+          <ScalarProperty Name="courseTrack" ColumnName="courseTrack" />
+          <ScalarProperty Name="shovelDist" ColumnName="shovelDist" />
+          <ScalarProperty Name="depthAveGear" ColumnName="depthAveGear" />
+          <ScalarProperty Name="netOpening" ColumnName="netOpening" />
+          <ScalarProperty Name="depthAbove" ColumnName="depthAbove" />
+          <ScalarProperty Name="landing" ColumnName="landing" />
+          <ScalarProperty Name="maskWidth" ColumnName="maskWidth" />
+          <ScalarProperty Name="externalJournalNum" ColumnName="externalJournalNum" />
+          <ScalarProperty Name="samplePersonId" ColumnName="samplePersonId" />
+          <ScalarProperty Name="arrivalWeight" ColumnName="arrivalWeight" />
+          <ScalarProperty Name="analysisPersonId" ColumnName="analysisPersonId" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="sampleStatus" ColumnName="sampleStatus" />
+          <ScalarProperty Name="robLength" ColumnName="robLength" />
+          <ScalarProperty Name="hydroStnRef" ColumnName="hydroStnRef" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="labJournalNum" ColumnName="labJournalNum" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="selectionDevice" ColumnName="selectionDevice" />
+          <ScalarProperty Name="selectionDeviceSourceId" ColumnName="selectionDeviceSourceId" />
+          <ScalarProperty Name="meshSize" ColumnName="meshSize" />
+          <ScalarProperty Name="numberTrawls" ColumnName="numberTrawls" />
+          <ScalarProperty Name="heightNets" ColumnName="heightNets" />
+          <ScalarProperty Name="lengthNets" ColumnName="lengthNets" />
+          <ScalarProperty Name="lengthRopeFlyer" ColumnName="lengthRopeFlyer" />
+          <ScalarProperty Name="numberHooks" ColumnName="numberHooks" />
+          <ScalarProperty Name="gearRemark" ColumnName="gearRemark" />
+          <ScalarProperty Name="widthRopeFlyer" ColumnName="widthRopeFlyer" />
+          <ScalarProperty Name="lengthBeam" ColumnName="lengthBeam" />
+          <ScalarProperty Name="haulType" ColumnName="haulType" />
+          <ScalarProperty Name="thermoCline" ColumnName="thermoCline" />
+          <ScalarProperty Name="temperatureSrf" ColumnName="temperatureSrf" />
+          <ScalarProperty Name="temperatureBot" ColumnName="temperatureBot" />
+          <ScalarProperty Name="oxygenSrf" ColumnName="oxygenSrf" />
+          <ScalarProperty Name="oxygenBot" ColumnName="oxygenBot" />
+          <ScalarProperty Name="thermoClineDepth" ColumnName="thermoClineDepth" />
+          <ScalarProperty Name="salinitySrf" ColumnName="salinitySrf" />
+          <ScalarProperty Name="salinityBot" ColumnName="salinityBot" />
+          <ScalarProperty Name="totalWeight" ColumnName="totalWeight" />
+          <ScalarProperty Name="weightEstimationMethod" ColumnName="weightEstimationMethod" />
+          <ScalarProperty Name="sgId" ColumnName="sgId" />
+          <ScalarProperty Name="weekdayWeekend" ColumnName="weekdayWeekend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpeciesList">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SpeciesList)">
+        <MappingFragment StoreEntitySet="SpeciesList">
+          <ScalarProperty Name="speciesListId" ColumnName="speciesListId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="dfuBase_Category" ColumnName="dfuBase_Category" />
+          <ScalarProperty Name="sizeSortingEU" ColumnName="sizeSortingEU" />
+          <ScalarProperty Name="sizeSortingDFU" ColumnName="sizeSortingDFU" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="ovigorous" ColumnName="ovigorous" />
+          <ScalarProperty Name="cuticulaHardness" ColumnName="cuticulaHardness" />
+          <ScalarProperty Name="dfuBase_ArtRecordId" ColumnName="dfuBase_ArtRecordId" />
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="agePlusGroup" ColumnName="agePlusGroup" />
+          <ScalarProperty Name="ageReadId" ColumnName="ageReadId" />
+          <ScalarProperty Name="datahandlerId" ColumnName="datahandlerId" />
+          <ScalarProperty Name="stockId" ColumnName="stockId" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="bmsNonRep" ColumnName="bmsNonRep" />
+          <ScalarProperty Name="weightEstimationMethod" ColumnName="weightEstimationMethod" />
+          <ScalarProperty Name="hatchMonthReaderId" ColumnName="hatchMonthReaderId" />
+          <ScalarProperty Name="maturityReaderId" ColumnName="maturityReaderId" />
+          <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubSample">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SubSample)">
+        <MappingFragment StoreEntitySet="SubSample">
+          <ScalarProperty Name="subSampleId" ColumnName="subSampleId" />
+          <ScalarProperty Name="speciesListId" ColumnName="speciesListId" />
+          <ScalarProperty Name="stepNum" ColumnName="stepNum" />
+          <ScalarProperty Name="representative" ColumnName="representative" />
+          <ScalarProperty Name="subSampleWeight" ColumnName="subSampleWeight" />
+          <ScalarProperty Name="landingWeight" ColumnName="landingWeight" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="sumAnimalWeights" ColumnName="sumAnimalWeights" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test_Niels">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Test_Niels)">
+        <MappingFragment StoreEntitySet="Test_Niels">
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="dateGearStart" ColumnName="dateGearStart" />
+          <ScalarProperty Name="dateGearEnd" ColumnName="dateGearEnd" />
+          <ScalarProperty Name="fishingtime" ColumnName="fishingtime" />
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrawlOperation">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.TrawlOperation)">
+        <MappingFragment StoreEntitySet="TrawlOperation">
+          <ScalarProperty Name="trawlOperationId" ColumnName="trawlOperationId" />
+          <ScalarProperty Name="sampleId" ColumnName="sampleId" />
+          <ScalarProperty Name="operationNum" ColumnName="operationNum" />
+          <ScalarProperty Name="netOpening" ColumnName="netOpening" />
+          <ScalarProperty Name="depthOver" ColumnName="depthOver" />
+          <ScalarProperty Name="totalDepth" ColumnName="totalDepth" />
+          <ScalarProperty Name="operationTime" ColumnName="operationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TreatmentFactor">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.TreatmentFactor)">
+        <MappingFragment StoreEntitySet="TreatmentFactor">
+          <ScalarProperty Name="treatmentFactorId" ColumnName="treatmentFactorId" />
+          <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
+          <ScalarProperty Name="treatment" ColumnName="treatment" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="versioningDate" ColumnName="versioningDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trip">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Trip)">
+        <MappingFragment StoreEntitySet="Trip">
+          <ScalarProperty Name="tripId" ColumnName="tripId" />
+          <ScalarProperty Name="cruiseId" ColumnName="cruiseId" />
+          <ScalarProperty Name="trip1" ColumnName="trip" />
+          <ScalarProperty Name="tripType" ColumnName="tripType" />
+          <ScalarProperty Name="samplingTypeId" ColumnName="samplingTypeId" />
+          <ScalarProperty Name="samplingMethodId" ColumnName="samplingMethodId" />
+          <ScalarProperty Name="numOfHaulsPerTrip" ColumnName="numOfHaulsPerTrip" />
+          <ScalarProperty Name="manualCount" ColumnName="manualCount" />
+          <ScalarProperty Name="stationStart" ColumnName="stationStart" />
+          <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="stationEnd" ColumnName="stationEnd" />
+          <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="tripLeaderId" ColumnName="tripLeaderId" />
+          <ScalarProperty Name="harbourLanding" ColumnName="harbourLanding" />
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="dataHandlerId" ColumnName="dataHandlerId" />
+          <ScalarProperty Name="dateEstimTrip" ColumnName="dateEstimTrip" />
+          <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="logBldNr" ColumnName="logBldNr" />
+          <ScalarProperty Name="fDFVessel" ColumnName="fDFVessel" />
+          <ScalarProperty Name="platform1" ColumnName="platform1" />
+          <ScalarProperty Name="platform2" ColumnName="platform2" />
+          <ScalarProperty Name="fisheryType" ColumnName="fisheryType" />
+          <ScalarProperty Name="dateSample" ColumnName="dateSample" />
+          <ScalarProperty Name="harbourSample" ColumnName="harbourSample" />
+          <ScalarProperty Name="sgTripId" ColumnName="sgTripId" />
+          <ScalarProperty Name="tripNum" ColumnName="tripNum" />
+          <ScalarProperty Name="placeName" ColumnName="placeName" />
+          <ScalarProperty Name="placeCode" ColumnName="placeCode" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="numberInPlace" ColumnName="numberInPlace" />
+          <ScalarProperty Name="respYes" ColumnName="respYes" />
+          <ScalarProperty Name="respNo" ColumnName="respNo" />
+          <ScalarProperty Name="respTot" ColumnName="respTot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ICES_DFU_Relation_FF">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.ICES_DFU_Relation_FF)">
+        <MappingFragment StoreEntitySet="ICES_DFU_Relation_FF">
+          <ScalarProperty Name="ICES_DFU_Relation_FFId" ColumnName="ICES_DFU_Relation_FFId" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="area_20_21" ColumnName="area_20_21" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SelectionDevice">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SelectionDevice)">
+        <MappingFragment StoreEntitySet="L_SelectionDevice">
+          <ScalarProperty Name="selectionDevice" ColumnName="selectionDevice" />
+          <ScalarProperty Name="L_selectionDeviceId" ColumnName="L_selectionDeviceId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_GearTypeSelectionDevice">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_GearTypeSelectionDevice)">
+        <MappingFragment StoreEntitySet="R_GearTypeSelectionDevice">
+          <ScalarProperty Name="R_GearTypeSelectionDeviceId" ColumnName="R_GearTypeSelectionDeviceId" />
+          <ScalarProperty Name="gearType" ColumnName="gearType" />
+          <ScalarProperty Name="selectionDevice" ColumnName="selectionDevice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_FisheryType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_FisheryType)">
+        <MappingFragment StoreEntitySet="L_FisheryType">
+          <ScalarProperty Name="fisheryType" ColumnName="fisheryType" />
+          <ScalarProperty Name="L_fisheryTypeId" ColumnName="L_fisheryTypeId" />
+          <ScalarProperty Name="landingCategory" ColumnName="landingCategory" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_HaulType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_HaulType)">
+        <MappingFragment StoreEntitySet="L_HaulType">
+          <ScalarProperty Name="haulType" ColumnName="haulType" />
+          <ScalarProperty Name="L_haulTypeId" ColumnName="L_haulTypeId" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_ThermoCline">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_ThermoCline)">
+        <MappingFragment StoreEntitySet="L_ThermoCline">
+          <ScalarProperty Name="thermoCline" ColumnName="thermoCline" />
+          <ScalarProperty Name="L_thermoClineId" ColumnName="L_thermoClineId" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_TimeZone">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_TimeZone)">
+        <MappingFragment StoreEntitySet="L_TimeZone">
+          <ScalarProperty Name="timeZone" ColumnName="timeZone" />
+          <ScalarProperty Name="L_timeZoneId" ColumnName="L_timeZoneId" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_WeightEstimationMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_WeightEstimationMethod)">
+        <MappingFragment StoreEntitySet="L_WeightEstimationMethod">
+          <ScalarProperty Name="weightEstimationMethod" ColumnName="weightEstimationMethod" />
+          <ScalarProperty Name="L_weightEstimationMethodId" ColumnName="L_weightEstimationMethodId" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_EdgeStructure">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_EdgeStructure)">
+        <MappingFragment StoreEntitySet="L_EdgeStructure">
+          <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
+          <ScalarProperty Name="L_edgeStructureId" ColumnName="L_edgeStructureId" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Parasite">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Parasite)">
+        <MappingFragment StoreEntitySet="L_Parasite">
+          <ScalarProperty Name="L_parasiteId" ColumnName="L_parasiteId" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Reference">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Reference)">
+        <MappingFragment StoreEntitySet="L_Reference">
+          <ScalarProperty Name="L_referenceId" ColumnName="L_referenceId" />
+          <ScalarProperty Name="reference" ColumnName="reference" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_AnimalInfoReference">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_AnimalInfoReference)">
+        <MappingFragment StoreEntitySet="R_AnimalInfoReference">
+          <ScalarProperty Name="R_animalInfoReferenceId" ColumnName="R_animalInfoReferenceId" />
+          <ScalarProperty Name="animalInfoId" ColumnName="animalInfoId" />
+          <ScalarProperty Name="L_referenceId" ColumnName="L_referenceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Report">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Report)">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="reportId" ColumnName="reportId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="isAvailableOffline" ColumnName="isAvailableOffline" />
+          <ScalarProperty Name="outputFormat" ColumnName="outputFormat" />
+          <ScalarProperty Name="permissionTasks" ColumnName="permissionTasks" />
+          <ScalarProperty Name="outputPath" ColumnName="outputPath" />
+          <ScalarProperty Name="outputPathRestriction" ColumnName="outputPathRestriction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportingTreeNode">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.ReportingTreeNode)">
+        <MappingFragment StoreEntitySet="ReportingTreeNode">
+          <ScalarProperty Name="reportingTreeNodeId" ColumnName="reportingTreeNodeId" />
+          <ScalarProperty Name="parentTreeNodeId" ColumnName="parentTreeNodeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnimalFile">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.AnimalFile)">
+        <MappingFragment StoreEntitySet="AnimalFile">
+          <ScalarProperty Name="animalFileId" ColumnName="animalFileId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+          <ScalarProperty Name="fileType" ColumnName="fileType" />
+          <ScalarProperty Name="autoAdded" ColumnName="autoAdded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_Applications">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_Application)">
+        <MappingFragment StoreEntitySet="L_Applications">
+          <ScalarProperty Name="L_applicationId" ColumnName="L_applicationId" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_HatchMonthReadability">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_HatchMonthReadability)">
+        <MappingFragment StoreEntitySet="L_HatchMonthReadability">
+          <ScalarProperty Name="L_HatchMonthReadabilityId" ColumnName="L_HatchMonthReadabilityId" />
+          <ScalarProperty Name="hatchMonthRemark" ColumnName="hatchMonthRemark" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_VisualStock">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_VisualStock)">
+        <MappingFragment StoreEntitySet="L_VisualStock">
+          <ScalarProperty Name="L_visualStockId" ColumnName="L_visualStockId" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="visualStock" ColumnName="visualStock" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GeneticStock">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_GeneticStock)">
+        <MappingFragment StoreEntitySet="L_GeneticStock">
+          <ScalarProperty Name="L_geneticStockId" ColumnName="L_geneticStockId" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="geneticStock" ColumnName="geneticStock" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDEventType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDEventType)">
+        <MappingFragment StoreEntitySet="L_SDEventType">
+          <ScalarProperty Name="L_sdEventTypeId" ColumnName="L_sdEventTypeId" />
+          <ScalarProperty Name="eventType" ColumnName="eventType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="ageUpdatingMethod" ColumnName="ageUpdatingMethod" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDPurpose">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDPurpose)">
+        <MappingFragment StoreEntitySet="L_SDPurpose">
+          <ScalarProperty Name="L_sdPurposeId" ColumnName="L_sdPurposeId" />
+          <ScalarProperty Name="purpose" ColumnName="purpose" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDAnnotation">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDAnnotation)">
+        <MappingFragment StoreEntitySet="SDAnnotation">
+          <ScalarProperty Name="sdAnnotationId" ColumnName="sdAnnotationId" />
+          <ScalarProperty Name="sdAnnotationGuid" ColumnName="sdAnnotationGuid" />
+          <ScalarProperty Name="sdFileId" ColumnName="sdFileId" />
+          <ScalarProperty Name="createdById" ColumnName="createdById" />
+          <ScalarProperty Name="createdByUserName" ColumnName="createdByUserName" />
+          <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+          <ScalarProperty Name="isFixed" ColumnName="isFixed" />
+          <ScalarProperty Name="isReadOnly" ColumnName="isReadOnly" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="modifiedTime" ColumnName="modifiedTime" />
+          <ScalarProperty Name="sdAnalysisParameterId" ColumnName="sdAnalysisParameterId" />
+          <ScalarProperty Name="otolithReadingRemarkId" ColumnName="otolithReadingRemarkId" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
+          <ScalarProperty Name="age" ColumnName="age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDEvent">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDEvent)">
+        <MappingFragment StoreEntitySet="SDEvent">
+          <ScalarProperty Name="sdEventId" ColumnName="sdEventId" />
+          <ScalarProperty Name="sdEventGuid" ColumnName="sdEventGuid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="sdPurposeId" ColumnName="sdPurposeId" />
+          <ScalarProperty Name="sdEventTypeId" ColumnName="sdEventTypeId" />
+          <ScalarProperty Name="createdById" ColumnName="createdById" />
+          <ScalarProperty Name="createdByUserName" ColumnName="createdByUserName" />
+          <ScalarProperty Name="closed" ColumnName="closed" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="sdSampleTypeId" ColumnName="sdSampleTypeId" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="uiSDFileExtraColumns" ColumnName="uiSDFileExtraColumns" />
+          <ScalarProperty Name="defaultImageFolders" ColumnName="defaultImageFolders" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDFile">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDFile)">
+        <MappingFragment StoreEntitySet="SDFile">
+          <ScalarProperty Name="sdFileId" ColumnName="sdFileId" />
+          <ScalarProperty Name="sdFileGuid" ColumnName="sdFileGuid" />
+          <ScalarProperty Name="sdSampleId" ColumnName="sdSampleId" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="scale" ColumnName="scale" />
+          <ScalarProperty Name="imageWidth" ColumnName="imageWidth" />
+          <ScalarProperty Name="imageHeight" ColumnName="imageHeight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDLine">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDLine)">
+        <MappingFragment StoreEntitySet="SDLine">
+          <ScalarProperty Name="sdLineId" ColumnName="sdLineId" />
+          <ScalarProperty Name="sdLineGuid" ColumnName="sdLineGuid" />
+          <ScalarProperty Name="sdAnnotationId" ColumnName="sdAnnotationId" />
+          <ScalarProperty Name="createdById" ColumnName="createdById" />
+          <ScalarProperty Name="createdByUserName" ColumnName="createdByUserName" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="lineIndex" ColumnName="lineIndex" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="X1" ColumnName="X1" />
+          <ScalarProperty Name="X2" ColumnName="X2" />
+          <ScalarProperty Name="Y1" ColumnName="Y1" />
+          <ScalarProperty Name="Y2" ColumnName="Y2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDPoint">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDPoint)">
+        <MappingFragment StoreEntitySet="SDPoint">
+          <ScalarProperty Name="sdPointId" ColumnName="sdPointId" />
+          <ScalarProperty Name="sdPointGuid" ColumnName="sdPointGuid" />
+          <ScalarProperty Name="sdAnnotationId" ColumnName="sdAnnotationId" />
+          <ScalarProperty Name="createdById" ColumnName="createdById" />
+          <ScalarProperty Name="createdByUserName" ColumnName="createdByUserName" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="pointIndex" ColumnName="pointIndex" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="pointType" ColumnName="pointType" />
+          <ScalarProperty Name="shape" ColumnName="shape" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDSample">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.SDSample)">
+        <MappingFragment StoreEntitySet="SDSample">
+          <ScalarProperty Name="sdSampleId" ColumnName="sdSampleId" />
+          <ScalarProperty Name="sdSampleGuid" ColumnName="sdSampleGuid" />
+          <ScalarProperty Name="sdEventId" ColumnName="sdEventId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="catchDate" ColumnName="catchDate" />
+          <ScalarProperty Name="DFUArea" ColumnName="DFUArea" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="stockId" ColumnName="stockId" />
+          <ScalarProperty Name="sexCode" ColumnName="sexCode" />
+          <ScalarProperty Name="fishLengthMM" ColumnName="fishLengthMM" />
+          <ScalarProperty Name="fishWeightG" ColumnName="fishWeightG" />
+          <ScalarProperty Name="maturityIndexMethod" ColumnName="maturityIndexMethod" />
+          <ScalarProperty Name="maturityId" ColumnName="maturityId" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="createdById" ColumnName="createdById" />
+          <ScalarProperty Name="createdByUserName" ColumnName="createdByUserName" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="modifiedTime" ColumnName="modifiedTime" />
+          <ScalarProperty Name="cruise" ColumnName="cruise" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="station" ColumnName="station" />
+          <ScalarProperty Name="sdPreparationMethodId" ColumnName="sdPreparationMethodId" />
+          <ScalarProperty Name="sdLightTypeId" ColumnName="sdLightTypeId" />
+          <ScalarProperty Name="sdOtolithDescriptionId" ColumnName="sdOtolithDescriptionId" />
+          <ScalarProperty Name="otolithReadingRemarkId" ColumnName="otolithReadingRemarkId" />
+          <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
+          <ScalarProperty Name="readOnly" ColumnName="readOnly" />
+          <ScalarProperty Name="importStatus" ColumnName="importStatus" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDLightType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDLightType)">
+        <MappingFragment StoreEntitySet="L_SDLightType">
+          <ScalarProperty Name="L_sdLightTypeId" ColumnName="L_sdLightTypeId" />
+          <ScalarProperty Name="lightType" ColumnName="lightType" />
+          <ScalarProperty Name="dkDescription" ColumnName="dkDescription" />
+          <ScalarProperty Name="ukDescription" ColumnName="ukDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDOtolithDescription">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDOtolithDescription)">
+        <MappingFragment StoreEntitySet="L_SDOtolithDescription">
+          <ScalarProperty Name="L_sdOtolithDescriptionId" ColumnName="L_sdOtolithDescriptionId" />
+          <ScalarProperty Name="otolithDescription" ColumnName="otolithDescription" />
+          <ScalarProperty Name="dkDescription" ColumnName="dkDescription" />
+          <ScalarProperty Name="ukDescription" ColumnName="ukDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDPreparationMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDPreparationMethod)">
+        <MappingFragment StoreEntitySet="L_SDPreparationMethod">
+          <ScalarProperty Name="L_sdPreparationMethodId" ColumnName="L_sdPreparationMethodId" />
+          <ScalarProperty Name="preparationMethod" ColumnName="preparationMethod" />
+          <ScalarProperty Name="dkDescription" ColumnName="dkDescription" />
+          <ScalarProperty Name="ukDescription" ColumnName="ukDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDSampleType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDSampleType)">
+        <MappingFragment StoreEntitySet="L_SDSampleType">
+          <ScalarProperty Name="L_sdSampleTypeId" ColumnName="L_sdSampleTypeId" />
+          <ScalarProperty Name="sampleType" ColumnName="sampleType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_StockSpeciesArea">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_StockSpeciesArea)">
+        <MappingFragment StoreEntitySet="R_StockSpeciesArea">
+          <ScalarProperty Name="r_StockSpeciesAreaId" ColumnName="r_StockSpeciesAreaId" />
+          <ScalarProperty Name="L_stockId" ColumnName="L_stockId" />
+          <ScalarProperty Name="DFUArea" ColumnName="DFUArea" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="statisticalRectangle" ColumnName="statisticalRectangle" />
+          <ScalarProperty Name="quarter" ColumnName="quarter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDReaderExperience">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDReaderExperience)">
+        <MappingFragment StoreEntitySet="L_SDReaderExperience">
+          <ScalarProperty Name="L_SDReaderExperienceId" ColumnName="L_SDReaderExperienceId" />
+          <ScalarProperty Name="readerExperience" ColumnName="readerExperience" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_SDEventSDReader">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_SDEventSDReader)">
+        <MappingFragment StoreEntitySet="R_SDEventSDReader">
+          <ScalarProperty Name="sdEventId" ColumnName="sdEventId" />
+          <ScalarProperty Name="sdReaderId" ColumnName="sdReaderId" />
+          <ScalarProperty Name="primaryReader" ColumnName="primaryReader" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="R_SDReader">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.R_SDReader)">
+        <MappingFragment StoreEntitySet="R_SDReader">
+          <ScalarProperty Name="r_SDReaderId" ColumnName="r_SDReaderId" />
+          <ScalarProperty Name="dfuPersonId" ColumnName="dfuPersonId" />
+          <ScalarProperty Name="speciesCode" ColumnName="speciesCode" />
+          <ScalarProperty Name="stockId" ColumnName="stockId" />
+          <ScalarProperty Name="firstYearAgeReadingGeneral" ColumnName="firstYearAgeReadingGeneral" />
+          <ScalarProperty Name="firstYearAgeReadingCurrent" ColumnName="firstYearAgeReadingCurrent" />
+          <ScalarProperty Name="sdReaderExperienceId" ColumnName="sdReaderExperienceId" />
+          <ScalarProperty Name="sdPreparationMethodId" ColumnName="sdPreparationMethodId" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SDAnalysisParameter">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SDAnalysisParameter)">
+        <MappingFragment StoreEntitySet="L_SDAnalysisParameter">
+          <ScalarProperty Name="L_sdAnalysisParameterId" ColumnName="L_sdAnalysisParameterId" />
+          <ScalarProperty Name="analysisParameter" ColumnName="analysisParameter" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_SelectionDeviceSource">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SelectionDeviceSource)">
+        <MappingFragment StoreEntitySet="L_SelectionDeviceSource">
+          <ScalarProperty Name="L_selectionDeviceSourceId" ColumnName="L_selectionDeviceSourceId" />
+          <ScalarProperty Name="selectionDeviceSource" ColumnName="selectionDeviceSource" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_LengthMeasureType">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_LengthMeasureType)">
+        <MappingFragment StoreEntitySet="L_LengthMeasureType">
+          <ScalarProperty Name="L_lengthMeasureTypeId" ColumnName="L_lengthMeasureTypeId" />
+          <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="RDBES" ColumnName="RDBES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="R_ReportingTreeNodeReport" TypeName="Babelfisk.Entities.R_ReportingTreeNodeReport" StoreEntitySet="R_ReportingTreeNodeReport">
+      <EndProperty Name="Report">
+        <ScalarProperty Name="reportId" ColumnName="reportId" />
+      </EndProperty>
+      <EndProperty Name="ReportingTreeNode">
+        <ScalarProperty Name="reportingTreeNodeId" ColumnName="reportingTreeNodeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="R_SDEventDFUArea" TypeName="Babelfisk.Entities.R_SDEventDFUArea" StoreEntitySet="R_SDEventDFUArea">
+      <EndProperty Name="L_DFUArea">
+        <ScalarProperty Name="DFUArea" ColumnName="DFUArea" />
+      </EndProperty>
+      <EndProperty Name="SDEvent">
+        <ScalarProperty Name="sdEventId" ColumnName="sdEventId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

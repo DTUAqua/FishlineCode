@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sprattusSecurityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SprattusSecurityContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActivityLog" EntityType="sprattusSecurityModel.ActivityLog" />
+    <EntitySet Name="ExceptionLog" EntityType="sprattusSecurityModel.ExceptionLog" />
+    <EntitySet Name="FishLineTasks" EntityType="sprattusSecurityModel.FishLineTasks" />
+    <EntitySet Name="L_Country" EntityType="sprattusSecurityModel.L_Country" />
+    <EntitySet Name="Role" EntityType="sprattusSecurityModel.Role" />
+    <EntitySet Name="Users" EntityType="sprattusSecurityModel.Users" />
+    <AssociationSet Name="FK_ActivityLog_Role" Association="sprattusSecurityModel.FK_ActivityLog_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="ActivityLog" EntitySet="ActivityLog" />
+    </AssociationSet>
+    <AssociationSet Name="FishLineTaskRole" Association="sprattusSecurityModel.FishLineTaskRole">
+      <End Role="FishLineTasks" EntitySet="FishLineTasks" />
+      <End Role="Role" EntitySet="Role" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUser" Association="sprattusSecurityModel.RoleUser">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ActivityLog">
+    <Key>
+      <PropertyRef Name="ActivityLogId" />
+    </Key>
+    <Property Type="Int32" Name="ActivityLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="Time" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Page" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="sprattusSecurityModel.FK_ActivityLog_Role" FromRole="ActivityLog" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="ExceptionLog">
+    <Key>
+      <PropertyRef Name="errorLogId" />
+    </Key>
+    <Property Type="Int32" Name="errorLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="time" Nullable="false" />
+    <Property Type="String" Name="source" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="systemtext" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="userText" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FishLineTasks">
+    <Key>
+      <PropertyRef Name="FishLineTaskId" />
+    </Key>
+    <Property Type="Int32" Name="FishLineTaskId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Value" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="sprattusSecurityModel.FishLineTaskRole" FromRole="FishLineTasks" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="L_Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Type="Int32" Name="CountryID_PK" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Country" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId_PK" />
+    </Key>
+    <Property Type="Int32" Name="RoleId_PK" Nullable="false" />
+    <Property Type="String" Name="Role1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ActivityLog" Relationship="sprattusSecurityModel.FK_ActivityLog_Role" FromRole="Role" ToRole="ActivityLog" />
+    <NavigationProperty Name="FishLineTasks" Relationship="sprattusSecurityModel.FishLineTaskRole" FromRole="Role" ToRole="FishLineTasks" />
+    <NavigationProperty Name="Users" Relationship="sprattusSecurityModel.RoleUser" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="country_FK" Nullable="false" />
+    <Property Type="Int32" Name="groupId_FK" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordHint" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="sprattusSecurityModel.RoleUser" FromRole="Users" ToRole="Role" />
+    <Property Type="Int32" Name="LoginAttempts" Nullable="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActivityLog_Role">
+    <End Type="sprattusSecurityModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="sprattusSecurityModel.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId_PK" />
+      </Principal>
+      <Dependent Role="ActivityLog">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FishLineTaskRole">
+    <End Type="sprattusSecurityModel.FishLineTasks" Role="FishLineTasks" Multiplicity="*" />
+    <End Type="sprattusSecurityModel.Role" Role="Role" Multiplicity="*" />
+  </Association>
+  <Association Name="RoleUser">
+    <End Type="sprattusSecurityModel.Role" Role="Role" Multiplicity="*" />
+    <End Type="sprattusSecurityModel.Users" Role="Users" Multiplicity="*" />
+  </Association>
+</Schema>

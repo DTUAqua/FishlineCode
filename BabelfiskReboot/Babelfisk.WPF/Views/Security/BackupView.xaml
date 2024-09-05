@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Security.BackupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="680">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedRadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="txtHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="Margin" Value="0,3,10,3" />
+                        <Setter Property="Width" Value="230" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="LineHeight" Value="16" />
+                        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="txtValue2" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=txtValue}">
+                        <Setter Property="Margin" Value="3" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border>
+        <DockPanel>
+            <!-- Automatic backup Enable/disable -->
+            <Border DockPanel.Dock="Top" Background="#FFF3F3F3" BorderBrush="Gray" SnapsToDevicePixels="True" BorderThickness="0,0,0,1">
+                <DockPanel Margin="15">
+                    <CheckBox Style="{StaticResource ResourceKey=sCheckBox2}" IsChecked="{Binding Path=IsAutomaticBackupEnabled}" VerticalAlignment="Center" VerticalContentAlignment="Center" >
+                        <TextBlock Text="Aktiver/Deaktiver automatisk sikkerhedskopiering af offline data." FontSize="14" TextWrapping="Wrap" />
+                    </CheckBox>
+                </DockPanel>
+            </Border>
+
+            <!-- Automatic backup settings -->
+            <Border DockPanel.Dock="Top" >
+                <DockPanel Margin="15" IsEnabled="{Binding Path=IsAutomaticBackupEnabled, UpdateSourceTrigger=PropertyChanged}">
+                    <!-- Backup location -->
+                    <DockPanel Margin="0" DockPanel.Dock="Top" >
+                        <TextBlock Text="Backupmappe" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                        <Button DockPanel.Dock="Right" Height="28" Command="{Binding Path=BrowseBackupDirectoryCommand}" Template="{StaticResource ResourceKey=standardButtonBright}" >
+                            <TextBlock Text="Browse" FontSize="15" FontWeight="Normal" Margin="10,0,10,0" />
+                        </Button>
+
+                        <TextBox Text="{Binding Path=BackupDirectory, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel Margin="0,10,0,0" DockPanel.Dock="Top" >
+                        <TextBlock Text="Maksimalt antal gemte backupfiler indenfor seneste døgn" DockPanel.Dock="Left" ToolTipService.ShowDuration="60000" ToolTip="Feltet angiver hvor mange backups der maksimalt gemmes indenfor et døgn. Hvis værdien overskrides, slettes ældste backups når nye gemmes." Style="{StaticResource ResourceKey=txtHeader}" />
+
+                        <TextBox Text="{Binding Path=NoOfBackupsPerDay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Left" Width="100" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel Margin="0,10,0,0" DockPanel.Dock="Top" >
+                        <TextBlock Text="Maksimalt antal backupdage" ToolTipService.ShowDuration="60000" ToolTip="Feltet angiver for hvor mange dage der gemmes backups. Hvis værdien overskrides, slettes ældste backups når nye gemmes." DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                        <TextBox Text="{Binding Path=NoOfBackupDays, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Left" Width="100" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                    </DockPanel>
+                    
+                    <StackPanel />
+                </DockPanel>
+            </Border>
+
+            <!-- OK/Cancel buttons -->
+            <Border DockPanel.Dock="Bottom" Grid.Row="2" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  BorderBrush="LightGray" BorderThickness="0,0,0,0" >
+                <DockPanel Margin="0,3">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,0,3,0">
+                        <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}" Margin="3" Command="{Binding Path=OKCommand}" >
+                            <TextBlock Text="Gem og luk" FontSize="15" FontWeight="Medium" Margin="25,2,25,2" />
+                        </Button>
+                        
+                        <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}" Margin="3" Command="{Binding Path=CancelCommand}" >
+                            <TextBlock Text="Luk" FontSize="15" FontWeight="Medium" Margin="25,2,25,2" />
+                        </Button>
+
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Manual backup and restore UI -->
+            <Border BorderBrush="Gray" Background="#FFF3F3F3" SnapsToDevicePixels="True" BorderThickness="0,1,0,0">
+                <UniformGrid Rows="2" Columns="1" VerticalAlignment="Center">
+                    <Grid Margin="50,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="110" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Lav en sikkerhedskopi af alt offline data til en valgfri destination" TextAlignment="Center" Width="260" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Center" />
+                        
+                        <Image Grid.Column="1" Source="pack://application:,,,/Resources/Images/Common/RightArrow.ico" DockPanel.Dock="Right" Margin="20,0" Opacity="0.6" Height="25" />
+
+                        <Button Grid.Column="2" DockPanel.Dock="Right" Command="{Binding Path=ManualBackupCommand}" Height="42" Template="{StaticResource ResourceKey=standardButtonBrighter}" >
+                            <StackPanel Orientation="Horizontal"  Margin="10,0,10,0">
+                                <Image DockPanel.Dock="Left" Margin="0,0,7,0" Height="22" Opacity="0.83" Source="pack://application:,,,/Resources/Images/Menu/Backup.ico"   ></Image>
+                                <TextBlock Text="Backup" FontSize="15" FontWeight="Normal" VerticalAlignment="Center" />
+                            </StackPanel>
+
+                        </Button>
+                    </Grid>
+
+                    <Grid Margin="50,15,50,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="110" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Gendan en tidligere backup" TextWrapping="Wrap" FontSize="15" Width="260" VerticalAlignment="Center" TextAlignment="Center" />
+
+                        <Image Grid.Column="1" Source="pack://application:,,,/Resources/Images/Common/RightArrow.ico" DockPanel.Dock="Right" Margin="20,0" Opacity="0.6" Height="25" />
+
+                        <Button Grid.Column="2" DockPanel.Dock="Right" Command="{Binding Path=RestoreBackupCommand}"  Height="42" Template="{StaticResource ResourceKey=standardButtonBrighter}" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image DockPanel.Dock="Left" Margin="0,0,7,0" Height="22" Opacity="0.83" Source="pack://application:,,,/Resources/Images/Menu/Restore.ico"   ></Image>
+                                <TextBlock Text="Gendan" FontSize="15" FontWeight="Normal" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </UniformGrid>
+            </Border>
+        </DockPanel>
+    </Border>
+</UserControl>

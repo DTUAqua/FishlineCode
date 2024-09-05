@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SIS.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="DanaDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CruiseInformation" EntityType="SIS.Model.CruiseInformation" />
+    <EntitySet Name="GearData" EntityType="SIS.Model.GearData" />
+    <EntitySet Name="Instruments" EntityType="SIS.Model.Instruments" />
+    <EntitySet Name="L_GearCodeList" EntityType="SIS.Model.L_GearCodeList" />
+    <EntitySet Name="L_GearTypeList" EntityType="SIS.Model.L_GearTypeList" />
+    <EntitySet Name="L_ParamListe" EntityType="SIS.Model.L_ParamListe" />
+    <EntitySet Name="L_SampleType" EntityType="SIS.Model.L_SampleType" />
+    <EntitySet Name="L_ShipInformation" EntityType="SIS.Model.L_ShipInformation" />
+    <EntitySet Name="SampleLog" EntityType="SIS.Model.SampleLog" />
+    <EntitySet Name="Sensor" EntityType="SIS.Model.Sensor" />
+    <EntitySet Name="ShipData" EntityType="SIS.Model.ShipData" />
+    <EntitySet Name="TrawlData" EntityType="SIS.Model.TrawlData" />
+    <EntitySet Name="TrawlLog" EntityType="SIS.Model.TrawlLog" />
+    <AssociationSet Name="FK_cruise_information_L_ship_inf" Association="SIS.Model.FK_cruise_information_L_ship_inf">
+      <End Role="L_ShipInformation" EntitySet="L_ShipInformation" />
+      <End Role="CruiseInformation" EntitySet="CruiseInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gear_data_cruise_information" Association="SIS.Model.FK_gear_data_cruise_information">
+      <End Role="CruiseInformation" EntitySet="CruiseInformation" />
+      <End Role="GearData" EntitySet="GearData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SampleLog_CruiseInformation" Association="SIS.Model.FK_SampleLog_CruiseInformation">
+      <End Role="CruiseInformation" EntitySet="CruiseInformation" />
+      <End Role="SampleLog" EntitySet="SampleLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrawlLog_CruiseInformation" Association="SIS.Model.FK_TrawlLog_CruiseInformation">
+      <End Role="CruiseInformation" EntitySet="CruiseInformation" />
+      <End Role="TrawlLog" EntitySet="TrawlLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gear_data_L_GearCodeList" Association="SIS.Model.FK_gear_data_L_GearCodeList">
+      <End Role="L_GearCodeList" EntitySet="L_GearCodeList" />
+      <End Role="GearData" EntitySet="GearData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_L_GearCodeList_L_GearTypeList" Association="SIS.Model.FK_L_GearCodeList_L_GearTypeList">
+      <End Role="L_GearTypeList" EntitySet="L_GearTypeList" />
+      <End Role="L_GearCodeList" EntitySet="L_GearCodeList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipData_L_ParamListe" Association="SIS.Model.FK_ShipData_L_ParamListe">
+      <End Role="L_ParamListe" EntitySet="L_ParamListe" />
+      <End Role="ShipData" EntitySet="ShipData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrawlData_L_ParamListe" Association="SIS.Model.FK_TrawlData_L_ParamListe">
+      <End Role="L_ParamListe" EntitySet="L_ParamListe" />
+      <End Role="TrawlData" EntitySet="TrawlData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SampleLog_L_SampleType" Association="SIS.Model.FK_SampleLog_L_SampleType">
+      <End Role="L_SampleType" EntitySet="L_SampleType" />
+      <End Role="SampleLog" EntitySet="SampleLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipData_SampleLog" Association="SIS.Model.FK_ShipData_SampleLog">
+      <End Role="SampleLog" EntitySet="SampleLog" />
+      <End Role="ShipData" EntitySet="ShipData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrawlData_TrawlLog" Association="SIS.Model.FK_TrawlData_TrawlLog">
+      <End Role="TrawlLog" EntitySet="TrawlLog" />
+      <End Role="TrawlData" EntitySet="TrawlData" />
+    </AssociationSet>
+    <AssociationSet Name="R_SampleParamListe" Association="SIS.Model.R_SampleParamListe">
+      <End Role="L_ParamListe" EntitySet="L_ParamListe" />
+      <End Role="L_SampleType" EntitySet="L_SampleType" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CruiseInformation">
+    <Key>
+      <PropertyRef Name="cruiseID" />
+    </Key>
+    <Property Name="cruiseID" Type="Int32" Nullable="false" />
+    <Property Name="shipCode" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="cruiseYear" Type="Int32" Nullable="false" />
+    <Property Name="cruiseNo" Type="Int32" Nullable="false" />
+    <Property Name="cruiseDays" Type="Int16" />
+    <Property Name="cruiseName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="projectType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="cruiseLeader" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="assistCruiseLeader" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="captain" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="technician" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="cruiseArea" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="startDate" Type="DateTime" />
+    <Property Name="endDate" Type="DateTime" />
+    <Property Name="institution" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="institute" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="projectArea" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="projectNo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="remarks" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="L_ShipInformation" Relationship="SIS.Model.FK_cruise_information_L_ship_inf" FromRole="CruiseInformation" ToRole="L_ShipInformation" />
+    <NavigationProperty Name="GearData" Relationship="SIS.Model.FK_gear_data_cruise_information" FromRole="CruiseInformation" ToRole="GearData" />
+    <NavigationProperty Name="SampleLog" Relationship="SIS.Model.FK_SampleLog_CruiseInformation" FromRole="CruiseInformation" ToRole="SampleLog" />
+    <NavigationProperty Name="TrawlLog" Relationship="SIS.Model.FK_TrawlLog_CruiseInformation" FromRole="CruiseInformation" ToRole="TrawlLog" />
+  </EntityType>
+  <EntityType Name="GearData">
+    <Key>
+      <PropertyRef Name="gearDataID" />
+    </Key>
+    <Property Name="gearDataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cruiseID" Type="Int32" Nullable="false" />
+    <Property Name="gearNo" Type="Int32" Nullable="false" />
+    <Property Name="haulNo" Type="Int32" />
+    <Property Name="stationNo" Type="Int32" />
+    <Property Name="gearCode" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="true" />
+    <Property Name="transNo" Type="Int16" />
+    <Property Name="tape1" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="status" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="offIni" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="timeStart" Type="DateTime" />
+    <Property Name="posLatStart" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="posLonStart" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="posLatStartDec" Type="Double" />
+    <Property Name="posLonStartDec" Type="Double" />
+    <Property Name="logStart" Type="Single" />
+    <Property Name="courseStart" Type="Single" />
+    <Property Name="botDepStart" Type="Single" />
+    <Property Name="speedWatStart" Type="Single" />
+    <Property Name="speedBotStart" Type="Single" />
+    <Property Name="navSysStart" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="squareStart" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="gearDistLog" Type="Single" />
+    <Property Name="gearDistPos" Type="Single" />
+    <Property Name="gearDur" Type="Single" />
+    <Property Name="wireLength" Type="Single" />
+    <Property Name="gearDepth" Type="Single" />
+    <Property Name="trawlGap" Type="Single" />
+    <Property Name="trawlSlack" Type="Single" />
+    <Property Name="timeStop" Type="DateTime" />
+    <Property Name="posLatStop" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="posLonStop" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="posLatStopDec" Type="Double" />
+    <Property Name="posLonStopDec" Type="Double" />
+    <Property Name="logStop" Type="Single" />
+    <Property Name="courseStop" Type="Single" />
+    <Property Name="botDepStop" Type="Single" />
+    <Property Name="speedWatStop" Type="Single" />
+    <Property Name="speedBotStop" Type="Single" />
+    <Property Name="navSysStop" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="squareStop" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="atmPres" Type="Int16" />
+    <Property Name="airTemp" Type="Single" />
+    <Property Name="windDir" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="windSpeed" Type="Single" />
+    <Property Name="seaHeaviness" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="seaCurrent" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="remarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="dataRemarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CruiseInformation" Relationship="SIS.Model.FK_gear_data_cruise_information" FromRole="GearData" ToRole="CruiseInformation" />
+    <NavigationProperty Name="L_GearCodeList" Relationship="SIS.Model.FK_gear_data_L_GearCodeList" FromRole="GearData" ToRole="L_GearCodeList" />
+  </EntityType>
+  <EntityType Name="Instruments">
+    <Key>
+      <PropertyRef Name="machineNo" />
+      <PropertyRef Name="instrNo" />
+    </Key>
+    <Property Name="machineNo" Type="Int16" Nullable="false" />
+    <Property Name="instrNo" Type="Int16" Nullable="false" />
+    <Property Name="instrName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="onOff" Type="Int16" Nullable="false" />
+    <Property Name="timeUpdate" Type="DateTime" />
+    <Property Name="maxTime" Type="Int16" />
+  </EntityType>
+  <EntityType Name="L_GearCodeList">
+    <Key>
+      <PropertyRef Name="gearCode" />
+    </Key>
+    <Property Name="gearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gearCode" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="true" />
+    <Property Name="gearType" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="gearDate" Type="DateTime" />
+    <Property Name="gearName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="init" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="gearText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="sampleFreq" Type="Int32" />
+    <NavigationProperty Name="GearData" Relationship="SIS.Model.FK_gear_data_L_GearCodeList" FromRole="L_GearCodeList" ToRole="GearData" />
+    <NavigationProperty Name="L_GearTypeList" Relationship="SIS.Model.FK_L_GearCodeList_L_GearTypeList" FromRole="L_GearCodeList" ToRole="L_GearTypeList" />
+  </EntityType>
+  <EntityType Name="L_GearTypeList">
+    <Key>
+      <PropertyRef Name="gearType" />
+    </Key>
+    <Property Name="gearType" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="gearTypeText" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="L_GearCodeList" Relationship="SIS.Model.FK_L_GearCodeList_L_GearTypeList" FromRole="L_GearTypeList" ToRole="L_GearCodeList" />
+  </EntityType>
+  <EntityType Name="L_ParamListe">
+    <Key>
+      <PropertyRef Name="paramCode" />
+    </Key>
+    <Property Name="paramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="paramCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="unit" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ShipData" Relationship="SIS.Model.FK_ShipData_L_ParamListe" FromRole="L_ParamListe" ToRole="ShipData" />
+    <NavigationProperty Name="TrawlData" Relationship="SIS.Model.FK_TrawlData_L_ParamListe" FromRole="L_ParamListe" ToRole="TrawlData" />
+    <NavigationProperty Name="L_SampleType" Relationship="SIS.Model.R_SampleParamListe" FromRole="L_ParamListe" ToRole="L_SampleType" />
+  </EntityType>
+  <EntityType Name="L_SampleType">
+    <Key>
+      <PropertyRef Name="sampleCode" />
+    </Key>
+    <Property Name="sampleTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sampleCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="SampleLog" Relationship="SIS.Model.FK_SampleLog_L_SampleType" FromRole="L_SampleType" ToRole="SampleLog" />
+    <NavigationProperty Name="L_ParamListe" Relationship="SIS.Model.R_SampleParamListe" FromRole="L_SampleType" ToRole="L_ParamListe" />
+  </EntityType>
+  <EntityType Name="L_ShipInformation">
+    <Key>
+      <PropertyRef Name="shipCode" />
+    </Key>
+    <Property Name="shipCode" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="shipName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="countryCode" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="institutionName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="CruiseInformation" Relationship="SIS.Model.FK_cruise_information_L_ship_inf" FromRole="L_ShipInformation" ToRole="CruiseInformation" />
+  </EntityType>
+  <EntityType Name="SampleLog">
+    <Key>
+      <PropertyRef Name="sampleID" />
+    </Key>
+    <Property Name="sampleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cruiseID" Type="Int32" Nullable="false" />
+    <Property Name="logTime" Type="DateTime" Nullable="false" />
+    <Property Name="posLat" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="posLon" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="posLatDec" Type="Double" />
+    <Property Name="posLonDec" Type="Double" />
+    <Property Name="sampleCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CruiseInformation" Relationship="SIS.Model.FK_SampleLog_CruiseInformation" FromRole="SampleLog" ToRole="CruiseInformation" />
+    <NavigationProperty Name="L_SampleType" Relationship="SIS.Model.FK_SampleLog_L_SampleType" FromRole="SampleLog" ToRole="L_SampleType" />
+    <NavigationProperty Name="ShipData" Relationship="SIS.Model.FK_ShipData_SampleLog" FromRole="SampleLog" ToRole="ShipData" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="sensorId" />
+      <PropertyRef Name="sampleCode" />
+      <PropertyRef Name="paramCode" />
+    </Key>
+    <Property Name="sensorId" Type="Int32" Nullable="false" />
+    <Property Name="sampleCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="paramCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="sensorName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="sensorType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SerielNo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="sensorPrecision" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Sensitivity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="kalibDate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="kalibInit" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="remarks" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="changedInit" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="changedDate" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="ShipData">
+    <Key>
+      <PropertyRef Name="sampleID" />
+      <PropertyRef Name="ParamCode" />
+    </Key>
+    <Property Name="sampleID" Type="Int32" Nullable="false" />
+    <Property Name="ParamCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Result" Type="Single" />
+    <NavigationProperty Name="L_ParamListe" Relationship="SIS.Model.FK_ShipData_L_ParamListe" FromRole="ShipData" ToRole="L_ParamListe" />
+    <NavigationProperty Name="SampleLog" Relationship="SIS.Model.FK_ShipData_SampleLog" FromRole="ShipData" ToRole="SampleLog" />
+  </EntityType>
+  <EntityType Name="TrawlData">
+    <Key>
+      <PropertyRef Name="sampleID" />
+      <PropertyRef Name="paramCode" />
+      <PropertyRef Name="sensorNumber" />
+    </Key>
+    <Property Name="sampleID" Type="Int32" Nullable="false" />
+    <Property Name="paramCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="sensorNumber" Type="Int16" Nullable="false" />
+    <Property Name="result" Type="Single" />
+    <Property Name="quality" Type="Int16" />
+    <NavigationProperty Name="L_ParamListe" Relationship="SIS.Model.FK_TrawlData_L_ParamListe" FromRole="TrawlData" ToRole="L_ParamListe" />
+    <NavigationProperty Name="TrawlLog" Relationship="SIS.Model.FK_TrawlData_TrawlLog" FromRole="TrawlData" ToRole="TrawlLog" />
+  </EntityType>
+  <EntityType Name="TrawlLog">
+    <Key>
+      <PropertyRef Name="sampleID" />
+    </Key>
+    <Property Name="sampleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cruiseID" Type="Int32" Nullable="false" />
+    <Property Name="logTime" Type="DateTime" Nullable="false" />
+    <Property Name="posLat" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="posLon" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="posLatDec" Type="Double" />
+    <Property Name="posLonDec" Type="Double" />
+    <Property Name="sampleCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CruiseInformation" Relationship="SIS.Model.FK_TrawlLog_CruiseInformation" FromRole="TrawlLog" ToRole="CruiseInformation" />
+    <NavigationProperty Name="TrawlData" Relationship="SIS.Model.FK_TrawlData_TrawlLog" FromRole="TrawlLog" ToRole="TrawlData" />
+  </EntityType>
+  <Association Name="FK_cruise_information_L_ship_inf">
+    <End Role="L_ShipInformation" Type="SIS.Model.L_ShipInformation" Multiplicity="1" />
+    <End Role="CruiseInformation" Type="SIS.Model.CruiseInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_ShipInformation">
+        <PropertyRef Name="shipCode" />
+      </Principal>
+      <Dependent Role="CruiseInformation">
+        <PropertyRef Name="shipCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gear_data_cruise_information">
+    <End Role="CruiseInformation" Type="SIS.Model.CruiseInformation" Multiplicity="1" />
+    <End Role="GearData" Type="SIS.Model.GearData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CruiseInformation">
+        <PropertyRef Name="cruiseID" />
+      </Principal>
+      <Dependent Role="GearData">
+        <PropertyRef Name="cruiseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SampleLog_CruiseInformation">
+    <End Role="CruiseInformation" Type="SIS.Model.CruiseInformation" Multiplicity="1" />
+    <End Role="SampleLog" Type="SIS.Model.SampleLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CruiseInformation">
+        <PropertyRef Name="cruiseID" />
+      </Principal>
+      <Dependent Role="SampleLog">
+        <PropertyRef Name="cruiseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrawlLog_CruiseInformation">
+    <End Role="CruiseInformation" Type="SIS.Model.CruiseInformation" Multiplicity="1" />
+    <End Role="TrawlLog" Type="SIS.Model.TrawlLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CruiseInformation">
+        <PropertyRef Name="cruiseID" />
+      </Principal>
+      <Dependent Role="TrawlLog">
+        <PropertyRef Name="cruiseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gear_data_L_GearCodeList">
+    <End Role="L_GearCodeList" Type="SIS.Model.L_GearCodeList" Multiplicity="1" />
+    <End Role="GearData" Type="SIS.Model.GearData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_GearCodeList">
+        <PropertyRef Name="gearCode" />
+      </Principal>
+      <Dependent Role="GearData">
+        <PropertyRef Name="gearCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_L_GearCodeList_L_GearTypeList">
+    <End Role="L_GearTypeList" Type="SIS.Model.L_GearTypeList" Multiplicity="0..1" />
+    <End Role="L_GearCodeList" Type="SIS.Model.L_GearCodeList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_GearTypeList">
+        <PropertyRef Name="gearType" />
+      </Principal>
+      <Dependent Role="L_GearCodeList">
+        <PropertyRef Name="gearType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipData_L_ParamListe">
+    <End Role="L_ParamListe" Type="SIS.Model.L_ParamListe" Multiplicity="1" />
+    <End Role="ShipData" Type="SIS.Model.ShipData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_ParamListe">
+        <PropertyRef Name="paramCode" />
+      </Principal>
+      <Dependent Role="ShipData">
+        <PropertyRef Name="ParamCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrawlData_L_ParamListe">
+    <End Role="L_ParamListe" Type="SIS.Model.L_ParamListe" Multiplicity="1" />
+    <End Role="TrawlData" Type="SIS.Model.TrawlData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_ParamListe">
+        <PropertyRef Name="paramCode" />
+      </Principal>
+      <Dependent Role="TrawlData">
+        <PropertyRef Name="paramCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SampleLog_L_SampleType">
+    <End Role="L_SampleType" Type="SIS.Model.L_SampleType" Multiplicity="1" />
+    <End Role="SampleLog" Type="SIS.Model.SampleLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_SampleType">
+        <PropertyRef Name="sampleCode" />
+      </Principal>
+      <Dependent Role="SampleLog">
+        <PropertyRef Name="sampleCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipData_SampleLog">
+    <End Role="SampleLog" Type="SIS.Model.SampleLog" Multiplicity="1" />
+    <End Role="ShipData" Type="SIS.Model.ShipData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SampleLog">
+        <PropertyRef Name="sampleID" />
+      </Principal>
+      <Dependent Role="ShipData">
+        <PropertyRef Name="sampleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrawlData_TrawlLog">
+    <End Role="TrawlLog" Type="SIS.Model.TrawlLog" Multiplicity="1" />
+    <End Role="TrawlData" Type="SIS.Model.TrawlData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrawlLog">
+        <PropertyRef Name="sampleID" />
+      </Principal>
+      <Dependent Role="TrawlData">
+        <PropertyRef Name="sampleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_SampleParamListe">
+    <End Role="L_ParamListe" Type="SIS.Model.L_ParamListe" Multiplicity="*" />
+    <End Role="L_SampleType" Type="SIS.Model.L_SampleType" Multiplicity="*" />
+  </Association>
+</Schema>

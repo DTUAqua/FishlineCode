@@ -1,0 +1,944 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Input.TripHVNView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+             xmlns:ancBe="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+             xmlns:wpfExt="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             xmlns:set="clr-namespace:Babelfisk.BusinessLogic.Settings;assembly=Babelfisk.BusinessLogic"
+             xmlns:ancSl="clr-namespace:Anchor.Core.Controls.Sliders;assembly=Anchor.Core.Controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="800"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/HeaderButtons.xaml"/>
+
+                <ResourceDictionary>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid Background="White"
+          KeyboardNavigation.TabNavigation="Cycle"
+          IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" TextBlock.Foreground="{StaticResource InputHeaderForeground}" Background="{StaticResource InputHeaderBackground}" SnapsToDevicePixels="True">
+                <Grid DockPanel.Dock="Bottom" Margin="10,10,10,10" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="Tur/Station" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="26" />
+                    </DockPanel>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock DockPanel.Dock="Left" Text="Havneindsamling" VerticalAlignment="Center" FontSize="18" Margin="0,0,5,0" >
+                        </TextBlock>
+
+                        <Image Height="32" Width="32" Margin="0,3,0,0" Source="pack://application:,,,/Resources/Images/Treeview/hvn.ico" ></Image>
+                    </StackPanel>
+
+                    <DockPanel HorizontalAlignment="Center"
+                               Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=False}"
+                               >
+
+                        <aCtrls:HeaderButton  DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Klik for at gå til togtet"
+                                              Command="{Binding Path=ShowCruiseCommand}" Style="{StaticResource ResourceKey=headerInfoButton}" >
+                            <aCtrls:HeaderButton.Header>
+                                <Image Source="pack://application:,,,/Resources/Images/Treeview/vessel.ico" Opacity="0.7" Height="20" Margin="0,0,0,0" />
+                            </aCtrls:HeaderButton.Header>
+                            <aCtrls:HeaderButton.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="6">
+                                    <TextBlock Text="{Binding Path=Cruise.cruise1}" />
+                                </StackPanel>
+                            </aCtrls:HeaderButton.Content>
+                        </aCtrls:HeaderButton>
+
+                        <Image DockPanel.Dock="Right" Source="pack://application:,,,/Resources/Images/Common/ArrowRight.ico" Margin="10,0,10,0"  Width="20" />
+
+                        <aCtrls:HeaderButton  DockPanel.Dock="Right" ToolTip="År" Tag="Disabled" HorizontalAlignment="Right" 
+                                              KeyboardNavigation.IsTabStop="False"
+                                              Style="{StaticResource ResourceKey=headerInfoButton}">
+                            <aCtrls:HeaderButton.Header>
+                                <Image Source="pack://application:,,,/Resources/Images/Treeview/Year4.ico" Height="18" Margin="0,0,0,0" />
+                            </aCtrls:HeaderButton.Header>
+                            <aCtrls:HeaderButton.Content>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="6">
+                                    <TextBlock Text="{Binding Path=CruiseYear}" />
+                                </StackPanel>
+                            </aCtrls:HeaderButton.Content>
+                        </aCtrls:HeaderButton>
+
+                    </DockPanel>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <aCtrls:ScrollViewerStaticContent x:Name="scrollviewer" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <DockPanel Margin="15" Width="780"  >
+                <DockPanel.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelTripHVN, Converter={StaticResource ResourceKey=cDivideBy}, ConverterParameter=100}" 
+                                        ScaleX="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelTripHVN, Converter={StaticResource ResourceKey=cDivideBy}, ConverterParameter=100}"/>
+                    </TransformGroup>
+                </DockPanel.LayoutTransform>
+                
+                <!-- Station details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}" >
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Station"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        <UniformGrid Rows="1" Columns="2">
+                            
+                            <!-- Journal number -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Journal nr." DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <TextBox x:Name="tbStationNumber" DockPanel.Dock="Left" KeyboardNavigation.TabIndex="1"  ancBe:SelectTextOnFocus.Active="True"
+                                             Text="{Binding Path=StationNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                             Style="{StaticResource ResourceKey=txtValue}" 
+                                             ancBe:SetControlFocus.SetFocus="{Binding Path=IsStationNumberFocused, Mode=TwoWay}"        
+                                             />
+
+                                    <TextBlock Style="{StaticResource txtMandatoryField}" HorizontalAlignment="Right"  />
+                                </Grid>
+
+                            </DockPanel>
+
+                            <!-- Log book number -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Logbogsbladnummer" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <TextBox x:Name="tbLogbookNumber" KeyboardNavigation.TabIndex="2" ancBe:SelectTextOnFocus.Active="True" 
+                                     Text="{Binding Path=LogbookNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                     Style="{StaticResource ResourceKey=txtValue}"   />
+                            </DockPanel>
+                        </UniformGrid>
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Time and place details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}" x:Name="dpTimeAndPlace" >
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Tid og sted"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Sample date -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Indsamlingsdato" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <aCtrls:DateTimePickerControl Value="{Binding Path=SampleDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" 
+                                                                  Style="{StaticResource baseInputBoxStyle}" Format="dd-MM-yyyy" IsTimePickerVisible="false"
+                                                                  KeyboardNavigation.TabIndex="3" Padding="0,0,0,0"
+                                                                  ErrorInvalidKey="Ugyldig værdi" ErrorLessThan="Værdien skal være mindre end " ErrorOverstrike="Værdier kan overskrives, ikke slettes"
+                                                                  InputStyle="{StaticResource txtValueNoMargin}" />
+
+                                    <Border Margin="0,0,0,0">
+                                        <TextBlock Style="{StaticResource txtMandatoryField}" HorizontalAlignment="Right"  />
+                                    </Border>
+                                </Grid>
+                            </DockPanel>
+
+                            <!-- Sample Harbour information -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Indsamlingshavn" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+
+                                    <Grid DockPanel.Dock="Right">
+                                        <Button 
+                                                Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_Harbour"
+                                                Template="{StaticResource ResourceKey=imageButton}" 
+                                                Style="{StaticResource ResourceKey=dropDownButton}"
+                                                ToolTip="Tilføj/Redigér havne"
+                                                KeyboardNavigation.IsTabStop="False" >
+                                            <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                        </Button>
+                                        
+                                        <Border Margin="0,0,0,0">
+                                            <TextBlock Style="{StaticResource txtMandatoryField}" HorizontalAlignment="Right"  />
+                                        </Border>
+                                    </Grid>
+
+
+                                    <aCtrls:FilteredComboBox  KeyboardNavigation.TabIndex="4" FilterFromStart="True"
+                                                        ItemsSource="{Binding Path=Harbours}" OpenOnFocus="False"
+                                                        SelectedItem="{Binding Path=SelectedHarbourSample, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                        DisplayMemberPath="UIDisplay" DropDownWidth="300"
+                                                        Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                        MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                </DockPanel>
+                            </DockPanel>
+                        </UniformGrid>
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Landing date -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Landingsdato" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <aCtrls:DateTimePickerControl Value="{Binding Path=LandingDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" 
+                                                                  Style="{StaticResource baseInputBoxStyle}" Format="dd-MM-yyyy" IsTimePickerVisible="false"
+                                                                  KeyboardNavigation.TabIndex="5" Padding="0,0,0,0"
+                                                                  ErrorInvalidKey="Ugyldig værdi" ErrorLessThan="Værdien skal være mindre end " ErrorOverstrike="Værdier kan overskrives, ikke slettes"
+                                                                  InputStyle="{StaticResource txtValueNoMargin}" />
+
+                                    <Border Margin="0,0,0,0">
+                                        <TextBlock Style="{StaticResource txtMandatoryField}" HorizontalAlignment="Right"  />
+                                    </Border>
+                                </Grid>
+                            </DockPanel>
+
+                            <!-- Harbour information -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Landingshavn" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                            Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_Harbour"
+                                            Template="{StaticResource ResourceKey=imageButton}" 
+                                            Style="{StaticResource ResourceKey=dropDownButton}"
+                                            ToolTip="Tilføj/Redigér havne"
+                                            KeyboardNavigation.IsTabStop="False" >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox  KeyboardNavigation.TabIndex="6" FilterFromStart="True"
+                                                         ItemsSource="{Binding Path=Harbours}" OpenOnFocus="False"
+                                                         SelectedItem="{Binding Path=SelectedHarbourLanding, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" DropDownWidth="300"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+                                    
+                                </DockPanel>
+                            </DockPanel>
+                        </UniformGrid>
+
+                       
+                        <UniformGrid Rows="1" Columns="2">
+                            
+                            <!-- Area -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Farvand" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_DFUArea"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér farvand"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="7" FilterFromStart="True"
+                                                             ItemsSource="{Binding Path=Areas}" SelectionChanged="Area_SelectionChanged"
+                                                             SelectedItem="{Binding Path=SelectedArea, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                             DisplayMemberPath="UIDisplay" OpenOnFocus="False"
+                                                             Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                             MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+
+                            </DockPanel>
+                            
+                            <!-- Square -->
+                            <DockPanel Margin="0" >
+                               
+                                <Label Content="Square" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" 
+                                                Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="ICES_DFU_Relation_FF"
+                                                Template="{StaticResource ResourceKey=imageButton}" 
+                                                Style="{StaticResource ResourceKey=dropDownButton}"
+                                                ToolTip="Tilføj/Redigér relationen mellem farvand og statistiske rektangler"
+                                                KeyboardNavigation.IsTabStop="False" >
+                                            <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                        </Button>
+
+                                        <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="8" FilterFromStart="True"
+                                                                 ItemsSource="{Binding Path=StatisticalRectangles}" 
+                                                                 SelectedItem="{Binding Path=SelectedRectangle, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                                 DisplayMemberPath="UIDisplay" OpenOnFocus="False"
+                                                                 Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                                 MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                    </DockPanel>
+
+                                    <Border Background="White" Opacity="0.6"
+                                            Visibility="{Binding Path=IsSquareLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True, FallbackValue=Collapsed}"
+                                            >
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                            <TextBlock Text="Arbejder..." Margin="10,0,10,0"  />
+                                            <ProgressBar IsIndeterminate="True" Width="40" Height="8" VerticalAlignment="Center" />
+                                        </StackPanel>
+
+                                    </Border>
+                                </Grid>
+                            </DockPanel>
+                        </UniformGrid>
+
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Vessel details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}" >
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Fartøj"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Primary vessel -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Primært fartøj (kutter nr.)" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_Platform"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér fartøjer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="9" FilterFromStart="True"
+                                                             ItemsSource="{Binding Path=Platforms}" SelectionChanged="Area_SelectionChanged"
+                                                             SelectedItem="{Binding Path=SelectedPlatform1, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                             DisplayMemberPath="UIString" OpenOnFocus="False" DropDownWidth="300"
+                                                             Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                             MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                </DockPanel>
+
+                            </DockPanel>
+
+                            <!-- Secondary vessel -->
+                            <DockPanel Margin="0" >
+
+                                <Label Content="Makkerfartøj (kutter nr.)" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" 
+                                                Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_Platform"
+                                                Template="{StaticResource ResourceKey=imageButton}" 
+                                                Style="{StaticResource ResourceKey=dropDownButton}"
+                                                ToolTip="Tilføj/Redigér fartøjer"
+                                                KeyboardNavigation.IsTabStop="False" >
+                                            <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                        </Button>
+
+                                        <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="10" FilterFromStart="True"
+                                                                 ItemsSource="{Binding Path=Platforms}" 
+                                                                 SelectedItem="{Binding Path=SelectedPlatform2, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                                 DisplayMemberPath="UIString" OpenOnFocus="False" DropDownWidth="300"
+                                                                 Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                                 MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                    </DockPanel>
+                                </Grid>
+                            </DockPanel>
+                        </UniformGrid>
+
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Fishery details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}" >
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Fiskeri"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Fishing type -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Fiskeritype (ind/kon)" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <DockPanel >
+                                        <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_FisheryType"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér fiskerityper"
+                                        KeyboardNavigation.IsTabStop="False"  >
+                                            <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                        </Button>
+
+                                        <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="11" FilterFromStart="False"
+                                                             
+                                                             ItemsSource="{Binding Path=FisheryTypes}"
+                                                             SelectedItem="{Binding Path=SelectedFisheryType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                             DisplayMemberPath="UIDisplay" OpenOnFocus="False"
+                                                             Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                             MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                    </DockPanel>
+                                    
+                                    <TextBlock Style="{StaticResource txtRecommendedField}" Margin="0,5,-9,0" HorizontalAlignment="Right" />
+                                </Grid>
+                                
+
+                            </DockPanel>
+
+                            <!-- Primary species -->
+                            <DockPanel Margin="0" >
+                                <DockPanel.Style>
+                                    <Style TargetType="{x:Type DockPanel}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=SelectedFisheryType.landingCategory, UpdateSourceTrigger=PropertyChanged}" Value="IND">
+                                                <Setter Property="IsEnabled" Value="True" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=SelectedFisheryType.fisheryType, UpdateSourceTrigger=PropertyChanged}" Value="3">
+                                                <Setter Property="IsEnabled" Value="True" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DockPanel.Style>
+                                
+                                <!-- Gear group -->
+                                <Label Content="Fiskerens målart" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" 
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_Species"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér arter"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="12" FilterFromStart="True"
+                                                         ItemsSource="{Binding Path=TargetSpecies}" 
+                                                         SelectedItem="{Binding Path=SelectedTargetSpecies, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" OpenOnFocus="False" DropDownWidth="300"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                        </UniformGrid>
+
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Gear details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}" >
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Redskab"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Gear type -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Redskabstype" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <Grid>
+                                    <DockPanel >
+                                        <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_GearType"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér redskabstyper"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                            <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                        </Button>
+
+                                        <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="13" FilterFromStart="True"
+                                                             ItemsSource="{Binding Path=GearTypes}" SelectionChanged="Area_SelectionChanged"
+                                                             SelectedItem="{Binding Path=SelectedGearType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                             DisplayMemberPath="UIDisplay" OpenOnFocus="False" DropDownWidth="300"
+                                                             Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                             MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                    </DockPanel>
+                                    
+                                    <TextBlock Style="{StaticResource txtRecommendedField}" Margin="0,5,-9,0" HorizontalAlignment="Right" />
+                                </Grid>
+                                
+
+                            </DockPanel>
+
+                            <!-- Meshsize vessel -->
+                            <DockPanel Margin="0" >
+
+                                <Label DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" >
+                                    <TextBlock Text="Maskevidde (helmasker, mm)" Style="{StaticResource txtLabelTextBlock}" />
+                                </Label>
+
+                                <TextBlock Style="{StaticResource txtRecommendedField}" Margin="1,5,-10,0" DockPanel.Dock="Right" />
+
+                                <TextBox x:Name="tbMeshSize" KeyboardNavigation.TabIndex="14" ancBe:SelectTextOnFocus.Active="True" VerticalAlignment="Center"
+                                     Text="{Binding Path=MeshSize, Converter={StaticResource ResourceKey=cStringToInt}, Mode=TwoWay,  UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"
+                                     Style="{StaticResource ResourceKey=txtValue}"   />
+                            </DockPanel>
+                        </UniformGrid>
+
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Sampleing details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Prøvetagning"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Sampling type -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Fisk fra flere skibe?" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_SamplingType"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér prøvetyper"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox ItemsSource="{Binding Path=SamplingTypes}" OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedSamplingType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="15"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                            <!-- Sampling method -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Indsamlingsmetode" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_SamplingMethod"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér indsamlingsmetoder"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox ItemsSource="{Binding Path=SamplingMethods}"  OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedSamplingMethod, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="16"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                        </UniformGrid>
+
+                        <!-- Below fields are currently collapsed because the users found out they are not used -->
+                        <UniformGrid Rows="1" Columns="2" Visibility="Collapsed">
+
+                            <!-- Catch registration -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Prøvetagningsniveau" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_CatchRegistration"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér prøvetagningsniveauer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <DockPanel x:Name="dpWidth">
+                                        <aCtrls:FilteredComboBox x:Name="cbxCatchRegistration" ItemsSource="{Binding Path=CatchRegistrations}"  OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedCatchRegistration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="17"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False">
+                                        </aCtrls:FilteredComboBox>
+                                    </DockPanel>
+                                </DockPanel>
+                            </DockPanel>
+
+                            <!-- Species registration -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Oparbejdning af arter" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_SpeciesRegistration"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér artsregistreringer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox x:Name="cbxSpeciesRegistration" ItemsSource="{Binding Path=SpeciesRegistrations}"  OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedSpeciesRegistration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="18"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                        </UniformGrid>
+
+                    </StackPanel>
+
+                </DockPanel>
+
+                <!-- Person details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Person"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        
+                        <UniformGrid Rows="1" Columns="2">
+
+                            <!-- Leader information -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Indsamler" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="DFUPerson"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér personer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox ItemsSource="{Binding Path=DFUPersons}" OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedCollectorPerson, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="19"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"  DropDownWidth="300"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                            <!-- Input person information -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Oparbejdet af" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="DFUPerson"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér personer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox ItemsSource="{Binding Path=DFUPersons}"  OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedAnalyzedByPerson, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="20"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"  DropDownWidth="300"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                        </UniformGrid>
+
+                        <UniformGrid Rows="1" Columns="2">
+                            
+                            <!-- Input person information -->
+                            <DockPanel Margin="0" >
+                                <Label Content="Indtaster" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                                <DockPanel >
+                                    <Button DockPanel.Dock="Right"
+                                        Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="DFUPerson"
+                                        Template="{StaticResource ResourceKey=imageButton}" 
+                                        Style="{StaticResource ResourceKey=dropDownButton}"
+                                        ToolTip="Tilføj/Redigér personer"
+                                        KeyboardNavigation.IsTabStop="False"
+                                        >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox ItemsSource="{Binding Path=DFUPersons}"  OpenOnFocus="False" FilterFromStart="True"
+                                                         SelectedItem="{Binding Path=SelectedOperatorPerson, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                         DisplayMemberPath="UIDisplay" KeyboardNavigation.TabIndex="21"
+                                                         Style="{StaticResource ResourceKey=baseInputBoxStyle}"  DropDownWidth="300"
+                                                         MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+
+
+                                </DockPanel>
+                            </DockPanel>
+
+                        </UniformGrid>
+                    </StackPanel>
+                    
+                </DockPanel>
+
+                <!-- Other details -->
+                <DockPanel Style="{StaticResource ResourceKey=dpSection}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" Style="{StaticResource txtSectionHeader}" Text="Andet"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Style="{StaticResource ResourceKey=spSection}">
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="Bemærkninger" DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <TextBox x:Name="tbRemark" Text="{Binding Path=Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="90" 
+                                     Style="{StaticResource ResourceKey=txtStandard}"  KeyboardNavigation.TabIndex="22"
+                                     AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" />
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+            </DockPanel>
+
+            <aCtrls:ScrollViewerStaticContent.StaticContent>
+                <Grid >
+                    <!-- Zoom slider -->
+                    <ancSl:ZoomSlider Grid.Row="1" Margin="4,0,0,0" Value="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelTripHVN}" Width="160" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                        <ancSl:ZoomSlider.Style>
+                            <Style TargetType="{x:Type ancSl:ZoomSlider}">
+                                <Setter Property="Opacity" Value="0.2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.2" To="1.0" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1.0" To="0.2" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ancSl:ZoomSlider.Style>
+                    </ancSl:ZoomSlider>
+                </Grid>
+            </aCtrls:ScrollViewerStaticContent.StaticContent>
+        </aCtrls:ScrollViewerStaticContent>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="2" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.TabIndex="21">
+            <Border Height="50" BorderBrush="LightGray" BorderThickness="0,1,0,0" TextBlock.Foreground="{StaticResource InputHeaderForeground}" Background="{StaticResource InputHeaderBackground}" SnapsToDevicePixels="True">
+                <DockPanel DockPanel.Dock="Bottom" Margin="10,5,10,5" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+
+                    <DockPanel DockPanel.Dock="Left" VerticalAlignment="Center">
+
+                        <!-- Save button -->
+                        <Button Command="{Binding Path=SaveCommand}" SnapsToDevicePixels="True" Content="Gem" DockPanel.Dock="Left"
+                             KeyboardNavigation.TabIndex="1"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" ToolTip="Gem ændringer (ctrl+s)" ToolTipService.ShowDuration="30000"
+                            Template="{StaticResource ResourceKey=standardButton}"
+                            Width="120" FontSize="15" >
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="IsEnabled" Value="{Binding Path=HasEditingRights}" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=Trip.ChangeTracker.State}" >
+                                                    <Condition.Value>
+                                                        <ent:ObjectState>Unchanged</ent:ObjectState>
+                                                    </Condition.Value>
+                                                </Condition>
+                                                <Condition Binding="{Binding Path=Sample.ChangeTracker.State}" >
+                                                    <Condition.Value>
+                                                        <ent:ObjectState>Unchanged</ent:ObjectState>
+                                                    </Condition.Value>
+                                                </Condition>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </MultiDataTrigger>
+                                        <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        
+                        <!-- Close button -->
+                        <Button Command="{Binding Path=CloseCommand}" SnapsToDevicePixels="True" Content="Luk" DockPanel.Dock="Right"
+                             KeyboardNavigation.TabIndex="2"
+                            HorizontalAlignment="Right" Margin="0,0,0,0"
+                            Template="{StaticResource ResourceKey=standardButton}"
+                            Width="100" FontSize="15" >
+                        </Button>
+
+                        
+                        <!-- New species list button -->
+                        <Button Command="{Binding Path=SpeciesListCommand}"  SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" KeyboardNavigation.TabIndex="5" Width="105"
+                                 IsEnabled="{Binding Path=IsEdit}"
+                            Template="{StaticResource ResourceKey=standardButtonBright}"  FontSize="15" >
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="pack://application:,,,/Resources/Images/Treeview/specieslist.ico" Opacity="0.7" Margin="0,1,10,0"  Width="15" />
+                                    <TextBlock Text="Artsliste" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        
+                        <!-- To Cruise button -->
+                        <Button  Command="{Binding Path=ShowCruiseCommand}" CommandParameter="SØS" SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,10,0"
+                                  KeyboardNavigation.TabIndex="4"
+                            Template="{StaticResource ResourceKey=standardButtonBright}"
+                            Width="100" FontSize="15" >
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="pack://application:,,,/Resources/Images/Treeview/Vessel.ico" Opacity="0.7" Margin="0,0,8,0"  Width="17" />
+                                    <TextBlock Text="Til Togt" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <!-- New station button -->
+                        <Button  Command="{Binding Path=NewStationCommand}" Visibility="Collapsed" SnapsToDevicePixels="True" DockPanel.Dock="Right"
+                            HorizontalAlignment="Right" Margin="0,0,10,0" KeyboardNavigation.TabIndex="3"
+                            Template="{StaticResource ResourceKey=standardButtonBright}" IsEnabled="{Binding Path=HasEditingRights}"
+                            Width="100" FontSize="15" >
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="pack://application:,,,/Resources/Images/Treeview/hvn.ico" Opacity="0.7" Margin="1,0,6,0"  Width="17" />
+                                    <TextBlock Text="Ny station" FontWeight="Normal" FontSize="14" Margin="0,0,4,0" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+
+                    </DockPanel>
+
+                    
+
+                    <Border Margin="8,1,8,1">
+                        <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="15"
+                                   FontSize="14" TextAlignment="Center" Foreground="{StaticResource ErrorForeground}" ToolTip="{Binding Path=GetUIErrorMessage}" Text="{Binding Path=GetUIErrorMessage}" />
+                    </Border>
+
+                    <!-- Message shown between buttons -->
+                    <Border Margin="14,1,14,1" >
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=HasEditingRights}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" LineHeight="15" LineStackingStrategy="BlockLineHeight"
+                                   FontSize="14" TextAlignment="Center" Foreground="{StaticResource ErrorForeground}" >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Text" Value="Du har ikke rettigheder til at gemme eventuelle ændringer" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=CanEditOffline}" Value="False">
+                                            <Setter Property="Text" Value="Ændringer til hentet offline data kan ikke gemmes" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Border>
+                </DockPanel>
+            </Border>
+        </Grid>
+
+        <!-- Loading message -->
+        <Grid Grid.Row="1" Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True, FallbackValue=Hidden}">
+            <Border Background="#CCFFFFFF" HorizontalAlignment="Center" SnapsToDevicePixels="True" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="Gray" BorderThickness="1" CornerRadius="0" >
+                <DockPanel Margin="15,10,15,10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Path=LoadingMessage}"  FontSize="17"  />
+                    </StackPanel>
+
+                    <ProgressBar IsIndeterminate="True" Height="10" Margin="0,3,0,0" />
+                </DockPanel>
+            </Border>
+        </Grid>
+
+
+    </Grid>
+</UserControl>

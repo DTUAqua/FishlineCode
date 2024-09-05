@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Import.ImportRekreaDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:exp="clr-namespace:Babelfisk.WPF.Views.Export"
+             mc:Ignorable="d" 
+             d:DesignWidth="750" d:DesignHeight="500">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml" />
+
+                <ResourceDictionary>
+                    <Style x:Key="sBaseText" TargetType="{x:Type FrameworkElement}">
+                        <Setter Property="TextBlock.FontSize" Value="16" />
+                        <Setter Property="TextBlock.FontFamily" Value="Calibri" />
+                    </Style>
+
+                    <Style x:Key="sSubHeaderText" TargetType="{x:Type FrameworkElement}" BasedOn="{StaticResource sBaseText}">
+                        <Setter Property="Width" Value="120" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+
+                    <Style x:Key="sHeaderText" TargetType="{x:Type FrameworkElement}">
+                        <Setter Property="TextBlock.FontSize" Value="18" />
+                        <Setter Property="TextBlock.FontFamily" Value="Calibri" />
+                        <Setter Property="TextBlock.Foreground" Value="Black" />
+                    </Style>
+
+                    <Style x:Key="sInputTextbox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource txtValue}">
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#FFEBEBEB">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Select database controls -->
+        <Border Margin="5" BorderBrush="#FFD4D4D4" BorderThickness="1,0,0,0" SnapsToDevicePixels="True" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}">
+            <Border Background="White" BorderBrush="#FFB0B0B0" BorderThickness="0,0,1,1" SnapsToDevicePixels="True">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Margin="0,5,0,5" >
+                        <DockPanel Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Text="Vælg venligst de rekrea-filer du ønsker at importere." Margin="0,0,0,0" Style="{StaticResource sHeaderText}"  />
+                        </DockPanel>
+
+                    </Border>
+
+                    <Border DockPanel.Dock="Top" BorderBrush="#FFE8E8E8" BorderThickness="0,0,0,1" SnapsToDevicePixels="True"></Border>
+
+                    <!-- Content -->
+                    <StackPanel  Margin="30,10,10,10" DockPanel.Dock="Top" Orientation="Vertical" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}" >
+                        <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top">
+                            <TextBlock DockPanel.Dock="Left" Text="Tur-fil" Style="{StaticResource ResourceKey=sSubHeaderText}" />
+
+                            <!-- Browse button -->
+                            <Button DockPanel.Dock="Right" Width="80" Margin="4,4,0,4"
+                                Command="{Binding Path=BrowseCommand}" CommandParameter="Trip" Padding="0" Template="{StaticResource ResourceKey=standardButtonBrighter}">
+                                <TextBlock Text="Browse" FontSize="14" />
+                            </Button>
+
+                            <TextBox Style="{StaticResource sInputTextbox}" Text="{Binding Path=TripFilePath, Mode=TwoWay}"  />
+                        </DockPanel>
+
+                        <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top">
+                            <TextBlock DockPanel.Dock="Left" Text="fangst-fil" Style="{StaticResource ResourceKey=sSubHeaderText}" />
+
+                            <!-- Browse button -->
+                            <Button DockPanel.Dock="Right" Width="80" Margin="4,4,0,4"
+                                Command="{Binding Path=BrowseCommand}" CommandParameter="Catch" Padding="0" Template="{StaticResource ResourceKey=standardButtonBrighter}">
+                                <TextBlock Text="Browse" FontSize="14" />
+                            </Button>
+
+                            <TextBox Style="{StaticResource sInputTextbox}" Text="{Binding Path=CatchFilePath, Mode=TwoWay}"  />
+                        </DockPanel>
+
+                        <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top" Visibility="Collapsed">
+                            <TextBlock DockPanel.Dock="Left" Text="respondent-fil" Style="{StaticResource ResourceKey=sSubHeaderText}" />
+
+                            <!-- Browse button -->
+                            <Button DockPanel.Dock="Right" Width="80" Margin="4,4,0,4"
+                                Command="{Binding Path=BrowseCommand}" CommandParameter="Respondent" Padding="0" Template="{StaticResource ResourceKey=standardButtonBrighter}">
+                                <TextBlock Text="Browse" FontSize="14" />
+                            </Button>
+
+                            <TextBox Style="{StaticResource sInputTextbox}" Text="{Binding Path=RespFilePath, Mode=TwoWay}"  />
+                        </DockPanel>
+                    </StackPanel>
+
+                </DockPanel>
+            </Border>
+        </Border>
+
+        <Border Margin="5" Grid.Row="2" BorderBrush="#FFD4D4D4" BorderThickness="1,0,0,0" SnapsToDevicePixels="True">
+            <Border Background="White" BorderBrush="#FFB0B0B0" BorderThickness="0,0,1,1" SnapsToDevicePixels="True">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Margin="0,5,0,5" >
+                        <DockPanel Margin="10,0,10,0" VerticalAlignment="Center" >
+                            <Button DockPanel.Dock="Right" Margin="0"
+                                Command="{Binding Path=ClearMessagesCommand}" CommandParameter="Trip" Width="110" Template="{StaticResource ResourceKey=standardButtonBrighter}">
+                                <TextBlock Text="Ryd fejl og advarsler" FontSize="10" />
+                            </Button>
+                            
+                            <TextBlock Text="Fejl og advarsler" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource sHeaderText}"  />
+                        </DockPanel>
+
+                    </Border>
+                    
+                    <exp:DWMessagesView x:Name="ctrlMessages" DataContext="{Binding}" IsSourceIdColumnVisible="False"  />
+
+                </DockPanel>
+            </Border>
+        </Border>
+
+        <!-- Button controls -->
+        <Border DockPanel.Dock="Bottom" Grid.Row="3" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  BorderBrush="LightGray" BorderThickness="0,1,0,0" >
+            <DockPanel Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right"  Height="32" Margin="0,0,3,0"
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}" >
+                    <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}"  
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}"
+                            Content="Analyser data" Width="120" Margin="3" Command="{Binding Path=AnalyzeCommand}" >
+
+                    </Button>
+                    <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}"  
+                            Visibility="{Binding Path=IsAnalyzed, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}"
+                            Content="Importer data" Width="120" Margin="3" Command="{Binding Path=ImportCommand}" >
+
+                    </Button>
+                    <Button Template="{StaticResource ResourceKey=standardButtonBright}"  Content="Luk"
+                            IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}"
+                            Width="100" Margin="3" Command="{Binding Path=CancelCommand}" >
+
+                    </Button>
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Path=LoadingMessage, FallbackValue='Arbejder, vent venligst....'}" Foreground="#FFEDEDEE" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" ></TextBlock>
+                            <ProgressBar IsIndeterminate="True" Margin="0,2,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="5" Value="0" />
+                        </StackPanel>
+
+                        <Button DockPanel.Dock="Right" Margin="10,0" Content="Stop" Visibility="{Binding Path=IsImporting, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}"
+                                Command="{Binding Path=StopImportingCommand}" CommandParameter="Trip" Padding="15,0" FontSize="12" Style="{StaticResource ResourceKey=standardButtonBrighterStyle}">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

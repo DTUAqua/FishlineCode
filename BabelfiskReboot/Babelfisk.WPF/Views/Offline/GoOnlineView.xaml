@@ -1,0 +1,307 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Offline.GoOnlineView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:aCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:acom="clr-namespace:Anchor.Core.Common;assembly=Anchor.Core"
+             xmlns:dGrid="clr-namespace:Babelfisk.WPF.Infrastructure.DataGrid"
+             xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+             xmlns:vm="clr-namespace:Babelfisk.ViewModels;assembly=Babelfisk.ViewModels"
+             mc:Ignorable="d" x:Name="uCtrl"
+             d:DesignHeight="300" d:DesignWidth="550">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Top message -->
+        <Border Grid.Row="0" Background="#FFF3F3F3" BorderBrush="Gray" BorderThickness="0,0,0,1">
+            <DockPanel Margin="8">
+                <TextBlock FontSize="14" Text="Nedenfor listes de koder, togter og ture som er tilføjet eller ændret mens applikationen har været offline. Klik 'Gå online' for automatisk at synkronisere de nedenfor valgte tilføjelser/ændringer til databasen på land og gå online igen." TextWrapping="Wrap" />
+            </DockPanel>
+        </Border>
+        
+        <!-- Center controls -->
+        <Grid Grid.Row="1" x:Name="dpGrid">
+            <!-- Grid -->
+            <Border>
+                <aCtrls:AncDataGrid x:Name="dataGrid" ItemsSource="{Binding Path=OfflineChanges}" 
+                        CanUserAddRows="False" IsSynchronizedWithCurrentItem="False"
+                        Width="{Binding Path=ActualWidth, ElementName=dpGrid}" 
+                        AutoGenerateColumns="False" RowHeaderWidth="0" 
+                        Background="{StaticResource ResourceKey=GeneralBackground}"
+                        SelectionMode="Single" KeyboardNavigation.TabIndex="1" CanUserSortColumns="True"
+                        CanUserDeleteRows="False" CanUserResizeRows="False" HorizontalGridLinesBrush="LightGray"
+                        VerticalGridLinesBrush="LightGray" BorderBrush="LightGray" BorderThickness="0" DockPanel.Dock="Top" 
+                        RowDetailsVisibilityMode="Collapsed"
+                        VirtualizingStackPanel.VirtualizationMode="Recycling"
+                        Tag="{Binding Path=DataContext, ElementName=uCtrl}"
+                        SelectedItem="{Binding Path=SelectedOfflineItem}"
+                        CellFooterVisibility="Visible"
+                        ColumnHeaderStyle="{StaticResource ResourceKey=defaultColumnHeaderStyle}">
+                    <aCtrls:AncDataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource ResourceKey=OverColor2}"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <SolidColorBrush x:Key="disabledField" Color="#FFF0F0F0" />
+
+                        <Style x:Key="lblDisplay" TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=ValidateElementRedBorder}">
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="2,1,2,1" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+                            <Setter Property="TextBlock.FontSize" Value="14" />
+                            
+                            <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="false">
+                                    <Setter Property="ToolTip" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style x:Key="StandardCellStyle" TargetType="{x:Type DataGridCell}" >
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Border x:Name="Border" Height="{TemplateBinding Height}" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="2" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style x:Key="NoTabStopCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                            <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                        </Style>
+
+                        <Style x:Key="DisabledCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource StandardCellStyle}" >
+                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                            <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+                            <Setter Property="Background" Value="#7FE6E6E6" />
+                            <Setter Property="BorderBrush" Value="#99E6E6E6" />
+                        </Style>
+
+                        <Style x:Key="defaultHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Padding" Value="4" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+
+                        <Style x:Key="defaultHeaderStyleNoBorder" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Padding" Value="4" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+
+                        <Style x:Key="centeredHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Padding" Value="4" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="0,0,1,0" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+
+                    </aCtrls:AncDataGrid.Resources>
+                    <aCtrls:AncDataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Tag" Value="{Binding Path=DataContext, ElementName=uCtrl}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSynchronized}" Value="True">
+                                    <Setter Property="Background" Value="#99E4F3AD" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </aCtrls:AncDataGrid.RowStyle>
+                    <aCtrls:AncDataGrid.Columns>
+                        <aCtrls:AncDataGridTemplateColumn Width="23" Header="#" CanUserResize="False" HeaderStyle="{StaticResource ResourceKey=centeredHeaderStyle}">
+                            <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}" 
+                                              Visibility="{Binding Path=CanCheck, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}"
+                                              VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource sCheckBoxDataGrid}" />
+                                </DataTemplate>
+                            </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        </aCtrls:AncDataGridTemplateColumn>
+
+                        <aCtrls:AncDataGridTemplateColumn Width="Auto" Header="Type" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                            <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label >
+                                        <Label.Style>
+                                            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=lblDisplay}">
+                                                <Setter Property="Content" Value="Togt" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="Trip">
+                                                        <Setter Property="Content" Value="Tur" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="L_Species">
+                                                        <Setter Property="Content" Value="Art" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="DFUPerson">
+                                                        <Setter Property="Content" Value="Person (Aqua)" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="Person">
+                                                        <Setter Property="Content" Value="Kontaktperson" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="L_GearType">
+                                                        <Setter Property="Content" Value="Redskabstype" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityType.Name}" Value="L_Platform">
+                                                        <Setter Property="Content" Value="Skib" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                </DataTemplate>
+                            </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        </aCtrls:AncDataGridTemplateColumn>
+
+                        <aCtrls:AncDataGridTemplateColumn Width="*" Header="Navn" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyle}">
+                            <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=OfflineItem.Name}" Style="{StaticResource lblDisplay}" />
+                                </DataTemplate>
+                            </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        </aCtrls:AncDataGridTemplateColumn>
+
+                        <aCtrls:AncDataGridTemplateColumn Width="70" Header="Status" HeaderStyle="{StaticResource ResourceKey=defaultHeaderStyleNoBorder}">
+                            <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label >
+                                        <Label.Style>
+                                            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource ResourceKey=lblDisplay}">
+                                                <Setter Property="Content" Value="Tilføjet" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=OfflineItem.EntityState}">
+                                                        <DataTrigger.Value>
+                                                            <ent:ObjectState>Modified</ent:ObjectState>
+                                                        </DataTrigger.Value>
+                                                        <Setter Property="Content" Value="Ændret" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Label.Style>
+                                    </Label>
+                                </DataTemplate>
+                            </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        </aCtrls:AncDataGridTemplateColumn>
+                    </aCtrls:AncDataGrid.Columns>
+                    
+                </aCtrls:AncDataGrid>
+            </Border>
+
+            <!-- Connecting message -->
+            <Grid Grid.Row="1" Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True, FallbackValue=Collapsed}">
+                <Border Background="#CCFFFFFF" HorizontalAlignment="Center" SnapsToDevicePixels="True" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="Gray" BorderThickness="1" CornerRadius="0" >
+                    <DockPanel Margin="15,10,15,10" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                            <TextBlock Text="Søger efter ændringer..."  FontSize="15"  />
+                        </StackPanel>
+
+                        <ProgressBar IsIndeterminate="True" Height="10" Margin="0,3,0,0" />
+                    </DockPanel>
+                </Border>
+            </Grid>
+
+            <!-- Connecting message -->
+            <Grid Grid.Row="1">
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsLoading}" Value="False" />
+                                    <Condition Binding="{Binding Path=HasOfflineChanges}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Visible" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Border HorizontalAlignment="Center" SnapsToDevicePixels="True" VerticalAlignment="Top" Margin="0,0,0,0" CornerRadius="0" >
+                    <DockPanel Margin="15,40,15,10" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                            <TextBlock Text="Ingen offline tilføjelser eller ændringer fundet"  FontSize="13"  />
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Button controls -->
+        <Border DockPanel.Dock="Bottom" Grid.Row="2" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  BorderBrush="LightGray" BorderThickness="0,1,0,0" >
+            <DockPanel Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right"  Height="32" Margin="0,0,3,0">
+                    <Button IsDefault="True" Template="{StaticResource ResourceKey=standardButtonBright}"  
+                            IsEnabled="{Binding Path=IsSynchronizing, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}"
+                            Content="Gå online" Width="100" Margin="3" Command="{Binding Path=GoOnlineCommand}" >
+
+                    </Button>
+                    <Button Template="{StaticResource ResourceKey=standardButtonBright}"  Content="Fortryd" Width="100" Margin="3" Command="{Binding Path=CancelCommand}"
+                             IsEnabled="{Binding Path=IsSynchronizing, Converter={StaticResource ResourceKey=cBoolToBoolNegation}}"
+                            >
+
+                    </Button>
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center"
+                                Visibility="{Binding Path=IsSynchronizing, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}">
+                        
+                        <TextBlock Foreground="#FFEDEDEE" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Text" Value="Synkroniserer, vent venligst" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=ProcessState}">
+                                            <DataTrigger.Value>
+                                                <vm:OnlineProcessState>TestingConnectivity</vm:OnlineProcessState>
+                                            </DataTrigger.Value>
+                                            <Setter Property="Text" Value="Forbinder, vent venligst" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=ProcessState}">
+                                            <DataTrigger.Value>
+                                                <vm:OnlineProcessState>SyncLookups</vm:OnlineProcessState>
+                                            </DataTrigger.Value>
+                                            <Setter Property="Text" Value="Synkroniserer koder, vent venligst" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=ProcessState}">
+                                            <DataTrigger.Value>
+                                                <vm:OnlineProcessState>SyncCruises</vm:OnlineProcessState>
+                                            </DataTrigger.Value>
+                                            <Setter Property="Text" Value="Synkroniserer togter, vent venligst" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=ProcessState}">
+                                            <DataTrigger.Value>
+                                                <vm:OnlineProcessState>SyncTrips</vm:OnlineProcessState>
+                                            </DataTrigger.Value>
+                                            <Setter Property="Text" Value="Synkroniserer ture, vent venligst" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <ProgressBar IsIndeterminate="True" Margin="6,1,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="13" Width="60" Value="0" />
+                        
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

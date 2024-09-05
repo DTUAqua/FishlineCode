@@ -1,0 +1,284 @@
+﻿<UserControl x:Class="Babelfisk.WPF.Views.Security.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sec="clr-namespace:Babelfisk.WPF.Views.Security"
+             xmlns:wpfToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:lan="urn:anchorcore-language-localization-ui"
+             x:Name="uc"
+             mc:Ignorable="d" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/GreenRedRadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/InputStyles.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="txtHeader" TargetType="{x:Type Label}">
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="Margin" Value="10,3" />
+                        <Setter Property="Width" Value="180" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+
+                    <Style x:Key="txtValue2" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ResourceKey=txtValue}">
+                        <Setter Property="Width" Value="280" />
+                        <Setter Property="Margin" Value="3" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Visibility="{Binding Path=User.IsAdmin, Converter={StaticResource cBoolToVisibility}, ConverterParameter=False}"
+                         Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="White"  BorderBrush="LightGray" BorderThickness="0,0,0,1" 
+                        >
+            <DockPanel Margin="8">
+                <TextBlock Text="{lan:Translate Section=UserView, Key=InaktiveMessage,UIDesignerValue='Et eller flere felter er inaktive grundet mangel på rettigheder.'}" HorizontalAlignment="Center" TextWrapping="Wrap" />
+            </DockPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="White">
+            <DockPanel Margin="5,5,0,5">
+                <!-- IsLocked information -->
+                <DockPanel DockPanel.Dock="Top">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" FontSize="16" Foreground="Gray"   VerticalAlignment="Center" Text="{lan:Translate Section=USerView, Key=UserAccount,UIDesignerValue='Brugerkonto'}"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <DockPanel Margin="8,5,0,0" IsEnabled="{Binding Path=HasSecurityRights}" >
+                        <Label Content="{lan:Translate Section=UserView, Key=Active, UIDesignerValue='Aktiv'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                        <CheckBox VerticalAlignment="Center" Foreground="Gray"
+                                  IsChecked="{Binding Path=IsActive}" Margin="2,0,0,0" >
+                            <TextBlock Margin="0,-2,0,0">
+                                <TextBlock >
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="{Binding Path=YesString}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsActive}" Value="False">
+                                                    <Setter Property="Text" Value="{Binding Path=NoString}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </TextBlock>
+                            <CheckBox.Style>
+                                <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource ResourceKey=sCheckBox2}">
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
+                    </DockPanel>
+                </DockPanel>
+
+                <!-- User information -->
+                <DockPanel DockPanel.Dock="Top">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" FontSize="16" Foreground="Gray"   VerticalAlignment="Center" Text="{lan:Translate Section=UserView, Key=UserInformation, UIDesignerValue='Brugerinformation'}"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Margin="8" Orientation="Vertical">
+                        <DockPanel Margin="0" IsEnabled="{Binding Path=User.IsAdmin}">
+                            <Label Content="{lan:Translate Section=UserView, Key=UserName, UIDesignerValue='Brugernavn'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <TextBox Text="{Binding Path=UserName, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="{lan:Translate Section=UserView, Key=FirstName, UIDesignerValue='Fornavn'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <TextBox Text="{Binding Path=FirstName, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0" >
+                            <Label Content="{lan:Translate Section=UserView, Key=LastName,UIDesignerValue='Efternavn'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <TextBox Text="{Binding Path=LastName, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0">
+                            <Label Content="{lan:Translate Section=UserView, Key=Email, UIDesignerValue='Email'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <TextBox Text="{Binding Path=Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" Style="{StaticResource ResourceKey=txtValue2}"></TextBox>
+                        </DockPanel>
+
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Password information -->
+                <DockPanel DockPanel.Dock="Top">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" FontSize="16" Foreground="Gray"   VerticalAlignment="Center" Text="{lan:Translate Section=UserView, Key=Password, UIDesignerValue='Kodeord'}"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Margin="8" Orientation="Vertical">
+                        <DockPanel Margin="0">
+                            <Label Content="{lan:Translate Section=UserView, Key=Password, UIDesignerValue='Kodeord'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <PasswordBox x:Name="Password"  Margin="3" Width="150" HorizontalAlignment="Left" PasswordChanged="Password_PasswordChanged" VerticalContentAlignment="Center" Style="{StaticResource ResourceKey=baseInputBoxStyle}" ></PasswordBox>
+                        </DockPanel>
+
+                        <DockPanel Margin="0,5,0,0">
+                            <Label Content="{lan:Translate Section=UserView, Key=RepeatPassword, UIDesignerValue='Gentag kodeord'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" />
+                            <PasswordBox x:Name="PasswordRepeat"  Margin="3" Width="150" HorizontalAlignment="Left" PasswordChanged="PasswordRepeat_PasswordChanged" VerticalContentAlignment="Center" Style="{StaticResource ResourceKey=baseInputBoxStyle}" ></PasswordBox>
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+                <!-- Roles information -->
+                <DockPanel DockPanel.Dock="Top" IsEnabled="{Binding Path=User.IsAdmin}">
+                    <DockPanel DockPanel.Dock="Top">
+                        <TextBlock DockPanel.Dock="left" FontSize="16" Foreground="Gray"   VerticalAlignment="Center" Text="{lan:Translate Section=UserView, Key=Roles, UIDesignerValue='Roller'}"/>
+                        <Separator Height="10" DockPanel.Dock="Top" Margin="6" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                    <StackPanel Margin="8" Orientation="Vertical">
+                        <DockPanel Margin="0">
+                            <Label Content="{lan:Translate Section=UserView, Key=Roles, UIDesignerValue='Roller'}" DockPanel.Dock="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=txtHeader}" />
+
+                            <DockPanel Margin="2,0,0,0" HorizontalAlignment="Left">
+                                <Button Margin="3,0,3,3" DockPanel.Dock="Right" VerticalAlignment="Top" Command="{Binding Path=AddRoleCommand}"
+                                        Visibility="{Binding Path=HasSecurityRights, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}"
+                                        Template="{StaticResource ResourceKey=imageButton3}" Style="{StaticResource ResourceKey=dropDownButton}"
+                                        KeyboardNavigation.IsTabStop="False" Height="26" >
+                                    <Button.Width>
+                                        <sys:Double>NaN</sys:Double>
+                                    </Button.Width>
+                                    <DockPanel>
+                                        <Image Source="pack://application:,,,/Resources/Images/Common/Add.ico" Margin="5" DockPanel.Dock="Left" />
+
+                                        <TextBlock Text="{lan:Translate Section=UserView, Key=NewRole,UIDesignerValue='Ny rolle'}" VerticalAlignment="Center" Margin="0,1,7,1"  />
+                                    </DockPanel>
+                                </Button>
+
+                                <Border Width="280" DockPanel.Dock="Left" HorizontalAlignment="Left" MinHeight="70" SnapsToDevicePixels="True" MaxHeight="150" Background="White" BorderBrush="LightGray" BorderThickness="1" CornerRadius="2">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <Grid Margin="0,0,0,0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="27*"/>
+                                                <RowDefinition Height="41*"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                            Visibility="{Binding Path=IsLoadingRoles, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}" Margin="70,20" Grid.RowSpan="2">
+                                                <TextBlock Text="{lan:Translate Section=Warning, Key=5,UIDesignerValue='Arbejder, vent venligst...'}" Foreground="#FF5176AA" FontWeight="Bold" HorizontalAlignment="Center" ></TextBlock>
+                                                <ProgressBar IsIndeterminate="True" Margin="0,3,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="10" Value="0" />
+                                            </StackPanel>
+
+                                            <ItemsControl Margin="0,0,0,4"
+                                                  ItemsSource="{Binding Path=Roles}"
+                                                  Visibility="{Binding Path=IsLoadingRoles, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=False}"
+                                                  ItemsPanel="{StaticResource StackPanelTemplate}" 
+                                                  VirtualizingStackPanel.IsVirtualizing="True" 
+                                                  VirtualizingStackPanel.VirtualizationMode="Recycling" Grid.RowSpan="2" >
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border x:Name="btnBorder" Margin="4,3,4,0" SnapsToDevicePixels="True" ToolTipService.ShowDuration="120000" >
+                                                            <Grid x:Name="btnGrid" Margin="3,2" >
+                                                                <DockPanel>
+                                                                    <Button VerticalAlignment="Center" Width="20" Height="20" DockPanel.Dock="Right" Style="{StaticResource NoteButtonStyle}"
+                                                                        Command="{Binding Path=DataContext.EditRoleCommand, ElementName=uc}" CommandParameter="{Binding}" Margin="2,0,2,0"
+                                                                            Visibility="{Binding Path=IsAdministratorRole, Converter={StaticResource cBoolToVisibility}, ConverterParameter=False}"
+                                                                        ToolTip="Rediger rolle" >
+                                                                        <Image Margin="1,2,1,1" Source="pack://application:,,,/Resources/Images/Common/EditPen.ico"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="12" />
+                                                                    </Button>
+
+                                                                    <CheckBox IsChecked="{Binding Path=IsChecked}" Style="{StaticResource sCheckBoxBigger}" VerticalAlignment="Center" >
+                                                                        <TextBlock Text="{Binding Path=NameLocal}" Margin="0,-1,0,0" >
+                                                                        </TextBlock>
+                                                                    </CheckBox>
+                                                                </DockPanel>
+                                                            </Grid>
+                                                            <Border.Style>
+                                                                <Style TargetType="{x:Type Border}">
+                                                                    <Setter Property="Border.Background" Value="Transparent" >
+                                                                    </Setter>
+                                                                    <Setter Property="Border.BorderBrush" Value="Transparent" />
+                                                                    <Setter Property="Border.BorderThickness" Value="1" />
+                                                                    <Setter Property="Border.CornerRadius" Value="2" />
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="Border.IsMouseOver" Value="True" >
+                                                                            <Setter Property="Border.Background" >
+                                                                                <Setter.Value>
+                                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                                        <GradientStop Color="#FFF3F3F5" Offset="0.0"/>
+                                                                                        <GradientStop Color="#C5D9E0F8" Offset="1.0"/>
+                                                                                    </LinearGradientBrush>
+                                                                                </Setter.Value>
+
+                                                                            </Setter>
+                                                                            <Setter Property="Border.BorderBrush" Value="#C5D9D9F8" />
+                                                                            <Setter Property="Border.BorderThickness" Value="1" />
+                                                                            <Setter Property="Border.CornerRadius" Value="2" />
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <Border.ToolTip>
+                                                                <Border>
+                                                                    <DockPanel>
+                                                                        <TextBlock Text="Rettigheder" FontWeight="Bold" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="3" />
+
+                                                                        <ItemsControl Margin="0,0,0,3" ItemsSource="{Binding Path=Tasks}" ItemsPanel="{StaticResource StackPanelTemplate}" >
+                                                                            <ItemsControl.ItemTemplate>
+                                                                                <DataTemplate>
+                                                                                    <Border Margin="3,3,3,0">
+                                                                                        <TextBlock Text="{Binding Path=Value, StringFormat=- {0}, Converter={StaticResource ResourceKey=cTranslate}, ConverterParameter=BabelfiskTasks}">
+                                                                                        </TextBlock>
+                                                                                    </Border>
+                                                                                </DataTemplate>
+                                                                            </ItemsControl.ItemTemplate>
+                                                                        </ItemsControl>
+                                                                    </DockPanel>
+                                                                </Border>
+                                                            </Border.ToolTip>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                            </DockPanel>
+
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+                <StackPanel></StackPanel>
+            </DockPanel>
+        </ScrollViewer>
+
+        <!-- OK/Cancel buttons -->
+        <Border DockPanel.Dock="Bottom" Grid.Row="2" Background="{StaticResource InputHeaderBackground}" TextBlock.Foreground="{StaticResource InputHeaderForeground}"  BorderBrush="LightGray" BorderThickness="0,1,0,0" >
+            <DockPanel Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right"  Height="32" Margin="0,0,3,0">
+                    <Button x:Name="btnOK" IsDefault="True" Template="{StaticResource ResourceKey=standardButton}"  Content="{lan:Translate Section=Common, Key=OK,UIDesignerValue='OK'}" Width="100" Margin="3" Command="{Binding Path=OKCommand}" >
+
+                    </Button>
+                    <Button x:Name="btnCancel" Template="{StaticResource ResourceKey=standardButton}"  Content="{lan:Translate Section=Common, Key=Cancel,UIDesignerValue='Fortryd'}" Width="100" Margin="3" Command="{Binding Path=CancelCommand}" >
+
+                    </Button>
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center"
+                        Visibility="{Binding Path=IsLoading, Converter={StaticResource ResourceKey=cBoolToVisibility}, ConverterParameter=True}">
+                        <TextBlock Text="{lan:Translate Section=Warning, Key=5, UIDesignerValue='Arbejder, vent venligst...'}" Foreground="#FFEDEDEE" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" ></TextBlock>
+                        <ProgressBar IsIndeterminate="True" Margin="6,1,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="10" Width="50" Value="0" />
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
