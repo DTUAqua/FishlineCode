@@ -64,6 +64,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -101,6 +102,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private SampleLog _sampleLog;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupL_ParamListe(L_ParamListe previousValue)
@@ -144,5 +146,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

@@ -35,6 +35,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -72,6 +73,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private ICollection<L_GearCodeList> _l_GearCodeList;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupL_GearCodeList(object sender, NotifyCollectionChangedEventArgs e)
@@ -97,5 +99,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

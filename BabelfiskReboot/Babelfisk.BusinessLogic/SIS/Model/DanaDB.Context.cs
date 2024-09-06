@@ -121,5 +121,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private ObjectSet<TrawlLog> _trawlLog;
 
         #endregion
+
     }
 }

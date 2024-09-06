@@ -157,6 +157,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -279,6 +280,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private ICollection<TrawlLog> _trawlLog;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupL_ShipInformation(L_ShipInformation previousValue)
@@ -368,5 +370,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

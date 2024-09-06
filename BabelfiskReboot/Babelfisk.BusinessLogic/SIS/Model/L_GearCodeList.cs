@@ -91,6 +91,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -145,6 +146,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private L_GearTypeList _l_GearTypeList;
 
         #endregion
+
         #region Association Fixup
     
         private bool _settingFK = false;
@@ -196,5 +198,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

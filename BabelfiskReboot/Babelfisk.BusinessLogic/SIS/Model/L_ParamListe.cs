@@ -49,6 +49,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -154,6 +155,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private ICollection<L_SampleType> _l_SampleType;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupShipData(object sender, NotifyCollectionChangedEventArgs e)
@@ -226,5 +228,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

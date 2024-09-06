@@ -340,6 +340,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -377,6 +378,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private L_GearCodeList _l_GearCodeList;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupCruiseInformation(CruiseInformation previousValue)
@@ -420,5 +422,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }

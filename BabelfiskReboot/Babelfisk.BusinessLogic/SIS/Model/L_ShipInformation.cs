@@ -53,6 +53,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
         #region Navigation Properties
         
     
@@ -90,6 +91,7 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         private ICollection<CruiseInformation> _cruiseInformation;
 
         #endregion
+
         #region Association Fixup
     
         private void FixupCruiseInformation(object sender, NotifyCollectionChangedEventArgs e)
@@ -115,5 +117,6 @@ namespace Babelfisk.BusinessLogic.SIS.Model
         }
 
         #endregion
+
     }
 }
