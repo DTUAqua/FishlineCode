@@ -69,6 +69,8 @@ namespace Babelfisk.Entities.Sprattus
 
                 var lst = _lstSpeciesAreaStock.Where(x => _dicStocks != null && x.speciesCode == speciesCode && _dicStocks.ContainsKey(x.L_stockId))
                                               .Select(x => _dicStocks[x.L_stockId])
+                                              .GroupBy(x => x.stockCode) // Group by stockCode
+                                              .Select(g => g.First())    //select frist from the group
                                               .OrderBy(x => x.stockCode)
                                               .ToList();
 
