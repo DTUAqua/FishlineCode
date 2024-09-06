@@ -1,6 +1,0 @@
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\bin\Debug\SmartDots.Service.Entities.dll
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\bin\Debug\SmartDots.Service.Entities.pdb
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\obj\Debug\SmartDots.Service.Entities.csproj.AssemblyReference.cache
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\obj\Debug\SmartDots.Service.Entities.csproj.CoreCompileInputs.cache
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\obj\Debug\SmartDots.Service.Entities.dll
-C:\Mads\Development\DTU Aqua\FishLine source\BabelfiskReboot\AquaDots\SmartDots.Service.Entities\obj\Debug\SmartDots.Service.Entities.pdb
