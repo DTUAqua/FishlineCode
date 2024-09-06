@@ -12,3 +12,6 @@ obj/
 
 # Ignore .vs
 .vs/
+
+# Ignore packages folders, since they are downloaded automatically from NuGet
+packages/
