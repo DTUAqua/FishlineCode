@@ -524,6 +524,7 @@
     <Resource Include="Resources\Images\Window\normalpress.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\Xceed.Wpf.Toolkit.dll" />
     <Resource Include="Resources\Images\Common\Off.png" />
     <Resource Include="Resources\Images\Common\Information.png" />
     <Resource Include="Resources\Images\Common\Warning.png" />
