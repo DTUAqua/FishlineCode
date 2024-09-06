@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Lookups.LookupsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Lookups"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    <Border Background="White">
+        <Grid Margin="10" Background="White" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="5,0">
+                <TextBlock Text="Henter " FontSize="30"/>
+                <TextBlock Text="{Binding TransferredCount}" FontSize="30" />
+                <TextBlock Text=" ud af " FontSize="30"/>
+                <TextBlock Text="{Binding ToTransferCount}" FontSize="30" />
+                <TextBlock Text=" lookup-tabeller " FontSize="30"/>
+            </StackPanel>
+
+            <DockPanel Grid.Row="1" Margin="10,10,10,0">
+                <ProgressBar Value="{Binding TransferredPercentage}" Orientation="Horizontal"  
+                             Height="20">
+                </ProgressBar>
+
+            </DockPanel>
+        </Grid>
+    </Border>
+</UserControl>

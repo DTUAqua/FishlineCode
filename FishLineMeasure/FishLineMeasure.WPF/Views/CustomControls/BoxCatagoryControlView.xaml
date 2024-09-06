@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.CustomControls.BoxCatagoryControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:t="clr-namespace:FishLineMeasure.WPF.Views.CustomControls"
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Overview"
+             xmlns:ancCtrls="clr-namespace:Anchor.Core.Controls;assembly=Anchor.Core.Controls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <!--<Style x:Key="ItemsControlVirtualizedStyle" TargetType="ListBox">
+                        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border
+                                        BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                        Padding="{TemplateBinding Control.Padding}"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                        Background="{TemplateBinding Panel.Background}"
+                                        SnapsToDevicePixels="True"
+                                    >
+                                        <ScrollViewer Padding="{TemplateBinding Control.Padding}" Focusable="False"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                                            <ScrollViewer.Resources>
+                                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">45</sys:Double>
+                                            </ScrollViewer.Resources>
+                                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>-->
+
+                    <Style x:Key="ListBoxStyle" TargetType="ListBox">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border
+                                        BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                        Padding="{TemplateBinding Control.Padding}"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                        Background="{TemplateBinding Panel.Background}"
+                                        SnapsToDevicePixels="True"
+                                    >
+                                        <ScrollViewer Padding="{TemplateBinding Control.Padding}" Focusable="False"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                                            <ScrollViewer.Resources>
+                                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">45</sys:Double>
+                                            </ScrollViewer.Resources>
+                                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Height="250" MinWidth="230" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="LightGray" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#FFF9F9F9" BorderBrush="LightGray" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" Grid.Row="0">
+                <StackPanel Grid.Row="0" Margin="0,5,0,10">
+                    <StackPanel Orientation="Horizontal" Margin="10,0,10,5" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding DisplayName}"  ToolTip="{Binding DisplayName}" TextAlignment="Center" FontWeight="Bold" FontSize="24" TextTrimming="CharacterEllipsis"></TextBlock>
+                        <TextBlock Text="{Binding Path=SelectedItem.Entity.Code, StringFormat='({0})'}"
+                                   Visibility="{Binding Path=HasSelectedItem, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"
+                                   Margin="5,0,0,0"  ToolTip="{Binding DisplayName}" TextAlignment="Center" FontWeight="Bold" FontSize="24" TextTrimming="CharacterEllipsis"></TextBlock>
+                    </StackPanel>
+                    
+                    
+                    <Grid Margin="10,0,10,0">
+                        <TextBox x:Name="tbSearch" BorderBrush="LightGray" Text="{Binding Search,UpdateSourceTrigger=PropertyChanged,Delay=750}" Padding="6,1"  TextAlignment="Left" FontWeight="Bold" FontSize="18"></TextBox>
+                        <TextBlock IsHitTestVisible="False" Text="Søg" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" Margin="6,0,0,0" Foreground="#FFCFCFCF">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Text, ElementName=tbSearch}" Value="" />
+                                                <Condition Binding="{Binding ElementName=tbSearch, Path=IsKeyboardFocused}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <MultiDataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </MultiDataTrigger.Setters>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1">
+                <ListBox ItemsSource="{Binding Lookups}" Style="{StaticResource ListBoxStyle}" ItemContainerStyle="{StaticResource listBoxItemTransparentMouseOver}"  >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <t:CheckBoxControlView Margin="10,5,10,0" Width="300" DataContext="{Binding}" ></t:CheckBoxControlView>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <!--<ItemsControl ItemsSource="{Binding Lookups}" Style="{StaticResource ItemsControlVirtualizedStyle}" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <t:CheckBoxControlView Margin="10,5,10,0" Width="300"  DataContext="{Binding}"></t:CheckBoxControlView>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+            </Border>
+
+        </Grid>
+    </Border>
+
+
+</UserControl>

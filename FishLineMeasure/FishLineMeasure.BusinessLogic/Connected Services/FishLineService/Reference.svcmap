@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="dbe86c92-8e9a-4d99-b468-ee1da2d2f34a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Babelfisk.Entities" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9011/BabelfiskService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BabelfiskService.disco" MetadataType="Disco" ID="19826819-ff7d-4626-9812-955781410eb2" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?disco" />
+    <MetadataFile FileName="BabelfiskService1.xsd" MetadataType="Schema" ID="1d02d7d5-de04-491f-bde0-55283504ea3c" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BabelfiskService4.xsd" MetadataType="Schema" ID="b487a843-35ff-47ca-b206-7e1ef95176d4" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BabelfiskService5.xsd" MetadataType="Schema" ID="8fad4ab0-c1c0-436f-8a43-c22b5da79070" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd3" />
+    <MetadataFile FileName="BabelfiskService7.xsd" MetadataType="Schema" ID="ba765c4b-a785-48b9-ac99-780513bcdab5" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BabelfiskService2.xsd" MetadataType="Schema" ID="d313d48d-c1b5-4938-95bc-59704333e089" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd5" />
+    <MetadataFile FileName="BabelfiskService6.xsd" MetadataType="Schema" ID="7914f80e-05d5-4a0d-aad3-18343cd30723" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd4" />
+    <MetadataFile FileName="BabelfiskService.xsd" MetadataType="Schema" ID="4fe40291-d0ae-4a78-be5e-0147fb18428f" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd7" />
+    <MetadataFile FileName="BabelfiskService3.xsd" MetadataType="Schema" ID="e78fb553-ce6b-4092-aa3a-d427f88ecc31" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?xsd=xsd6" />
+    <MetadataFile FileName="BabelfiskService.wsdl" MetadataType="Wsdl" ID="9caa1f66-cf16-46f7-8c0c-fc9acbfcbad2" SourceId="1" SourceUrl="http://localhost:9011/BabelfiskService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

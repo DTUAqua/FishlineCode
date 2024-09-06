@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{101B8D35-1C9B-4A28-998A-94F8356C8D26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FishLineMeasure.BusinessLogic</RootNamespace>
+    <AssemblyName>FishLineMeasure.BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Anchor.Core, Version=1.8.49.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalLibraries\Anchor.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connected Services\FishLineService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Lookups\ILocalLookupEntity.cs" />
+    <Compile Include="Lookups\LocalLookups\L_Ovigorous.cs" />
+    <Compile Include="Lookups\LookupDataVersioning.cs" />
+    <Compile Include="Lookups\LookupManager.cs" />
+    <Compile Include="Lookups\ServiceLookupClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\SecurityManager.cs" />
+    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Settings\SettingsBaseObject.cs" />
+    <Compile Include="Settings\SettingsContainer.cs" />
+    <Compile Include="Settings\UserSettingsContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Ionic.Zip.dll" />
+    <Content Include="Components\Microsoft.Practices.Prism.dll" />
+    <Content Include="Components\Microsoft.Practices.Prism.MefExtensions.dll" />
+    <Content Include="Components\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="Components\System.Runtime.WindowsRuntime.dll" />
+    <Content Include="Components\System.Runtime.WindowsRuntime.xml" />
+    <None Include="Connected Services\FishLineService\BabelfiskService.disco" />
+    <None Include="Components\Windows.winmd" />
+    <None Include="Connected Services\FishLineService\BabelfiskService.wsdl" />
+    <None Include="Connected Services\FishLineService\BabelfiskService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\BabelfiskService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.DWMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.ExecuteRScriptResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveCruiseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveCruiseToDataWarehouseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveHVNResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveLookupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveReportingTreeNodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveSampleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveSDEventResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveSpeciesListItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SaveTripResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SynchronizeCruiseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SynchronizeLookupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.SynchronizeTripResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\FishLineMeasure.BusinessLogic.FishLineService.UpdateRoleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FishLineService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\FishLineService\configuration.svcinfo" />
+    <None Include="Connected Services\FishLineService\configuration91.svcinfo" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.DatabaseOperationResult.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.DataVersioning.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Record.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.ReportFile.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.R_SDReaderStatistics.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.ServiceResult.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Age.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Animal.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.AnimalFile.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.AnimalInfo.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Cruise.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.L_DFUArea.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.L_SelectionDevice.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.L_StatisticalRectangle.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.L_Year.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.MapPoint.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Person.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Report.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.ReportingTreeNode.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.R_AnimalInfoReference.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Sample.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.SDAnnotation.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.SDEvent.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.SpeciesList.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.SubSample.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.Sprattus.Trip.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.SprattusSecurity.FishLineTasks.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.SprattusSecurity.Role.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.SprattusSecurity.Users.datasource" />
+    <None Include="Properties\DataSources\Babelfisk.Entities.SyncDatabaseOperationResult.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FishLineService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BabelfiskReboot\Babelfisk.Entities\Babelfisk.Entities.csproj">
+      <Project>{bbcbbcbc-5bd8-43ea-be7a-1b6c977208aa}</Project>
+      <Name>Babelfisk.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

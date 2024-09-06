@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.CustomControls.CheckBoxControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="175">
+
+    <DockPanel Background="White" Margin="2" PreviewMouseUp="TextBlock_PreviewMouseUp">
+        <RadioButton IsChecked="{Binding IsChecked, Mode=OneWay}" IsHitTestVisible="False" VerticalAlignment="Center" GroupName="{Binding GroupName}" DockPanel.Dock="Right" Margin="0,0,2,0">
+            <RadioButton.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </RadioButton.LayoutTransform>
+            
+        </RadioButton>
+        
+        <TextBlock Text="{Binding UIDisplay}" ToolTip="{Binding UIDisplay}" Background="Transparent"
+                   TextTrimming="CharacterEllipsis" FontSize="24" VerticalAlignment="Center" Margin="0,0,0,0" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.7" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </DockPanel>
+</UserControl>

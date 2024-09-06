@@ -1,0 +1,2824 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" />
+  <xs:complexType name="ArrayOfL_Year">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_Year" nillable="true" type="tns:L_Year" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfL_Year" nillable="true" type="tns:ArrayOfL_Year" />
+  <xs:complexType name="L_Year">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CruiseCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Year" nillable="true" type="tns:L_Year" />
+  <xs:complexType name="ArrayOfCruise">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cruise" nillable="true" type="tns:Cruise" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCruise" nillable="true" type="tns:ArrayOfCruise" />
+  <xs:complexType name="Cruise">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q1:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="DFUDepartment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="DFUPerson1" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="Est_Method" nillable="true" type="tns:TrackableCollectionOfEst_Method_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Est_Strata1" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_CruiseStatus" nillable="true" type="tns:L_CruiseStatus" />
+          <xs:element minOccurs="0" name="L_DFUDepartment" nillable="true" type="tns:L_DFUDepartment" />
+          <xs:element minOccurs="0" name="R_CruiseUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_CruiseUsabilityParam_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="TripCount" type="xs:int" />
+          <xs:element minOccurs="0" name="cruise1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+          <xs:element minOccurs="0" name="cruiseStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cruiseTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dataHandlerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dateControl" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateEstimCruise" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateUpdate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="participants" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="reportFile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="responsibleId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="summary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="year" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Cruise" nillable="true" type="tns:Cruise" />
+  <xs:simpleType name="ObjectState">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unchanged" />
+          <xs:enumeration value="Added" />
+          <xs:enumeration value="Modified" />
+          <xs:enumeration value="Deleted" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ObjectState" nillable="true" type="tns:ObjectState" />
+  <xs:complexType name="ArrayOfAge">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Age" nillable="true" type="tns:Age" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAge" nillable="true" type="tns:ArrayOfAge" />
+  <xs:complexType name="Age">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q2:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:Animal" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="L_AgeMeasureMethod" nillable="true" type="tns:L_AgeMeasureMethod" />
+          <xs:element minOccurs="0" name="L_EdgeStructure" nillable="true" type="tns:L_EdgeStructure" />
+          <xs:element minOccurs="0" name="L_GeneticStock" nillable="true" type="tns:L_GeneticStock" />
+          <xs:element minOccurs="0" name="L_HatchMonthReadability" nillable="true" type="tns:L_HatchMonthReadability" />
+          <xs:element minOccurs="0" name="L_OtolithReadingRemark" nillable="true" type="tns:L_OtolithReadingRemark" />
+          <xs:element minOccurs="0" name="L_VisualStock" nillable="true" type="tns:L_VisualStock" />
+          <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:SDAnnotation" />
+          <xs:element minOccurs="0" name="age1" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ageId" type="xs:int" />
+          <xs:element minOccurs="0" name="ageMeasureMethodId" type="xs:int" />
+          <xs:element minOccurs="0" name="animalId" type="xs:int" />
+          <xs:element minOccurs="0" name="edgeStructure" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="geneticStockId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="genetics" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="hatchMonth" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="hatchMonthReadabilityId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="number" type="xs:int" />
+          <xs:element minOccurs="0" name="otolithReadingRemarkId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="otolithWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sdAgeInfoUpdated" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="sdAgeReadId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sdAnnotationId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="visualStockId" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Age" nillable="true" type="tns:Age" />
+  <xs:complexType name="Animal">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q3:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="AnimalFiles" nillable="true" type="tns:TrackableCollectionOfAnimalFile_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="AnimalInfo" nillable="true" type="tns:TrackableCollectionOfAnimalInfo_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_BroodingPhase" nillable="true" type="tns:L_BroodingPhase" />
+          <xs:element minOccurs="0" name="L_LengthMeasureType" nillable="true" type="tns:L_LengthMeasureType" />
+          <xs:element minOccurs="0" name="L_LengthMeasureUnit" nillable="true" type="tns:L_LengthMeasureUnit" />
+          <xs:element minOccurs="0" name="L_SexCode" nillable="true" type="tns:L_SexCode" />
+          <xs:element minOccurs="0" name="SubSample" nillable="true" type="tns:SubSample" />
+          <xs:element minOccurs="0" name="animalId" type="xs:int" />
+          <xs:element minOccurs="0" name="broodingPhase" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="catchNum" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dataHandlerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dfuBase_lfRecordId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="individNum" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="length" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="lengthMeasureTypeId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="lengthMeasureUnit" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="number" type="xs:int" />
+          <xs:element minOccurs="0" name="otolithFinScale" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sexCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="subSampleId" type="xs:int" />
+          <xs:element minOccurs="0" name="weight" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Animal" nillable="true" type="tns:Animal" />
+  <xs:complexType name="TrackableCollectionOfAge_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Age" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Age" nillable="true" type="tns:Age" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfAge_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfAnimalFile_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="AnimalFile" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnimalFile" nillable="true" type="tns:AnimalFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfAnimalFile_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfAnimalFile_PnZ2KOgA" />
+  <xs:complexType name="AnimalFile">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q4:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:Animal" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="animalFileId" type="xs:int" />
+          <xs:element minOccurs="0" name="animalId" type="xs:int" />
+          <xs:element minOccurs="0" name="autoAdded" type="xs:boolean" />
+          <xs:element minOccurs="0" name="filePath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fileType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AnimalFile" nillable="true" type="tns:AnimalFile" />
+  <xs:complexType name="ObjectChangeTracker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExtendedProperties" nillable="true" type="tns:ExtendedPropertiesDictionary" />
+      <xs:element minOccurs="0" name="ObjectsAddedToCollectionProperties" nillable="true" type="tns:ObjectsAddedToCollectionProperties" />
+      <xs:element minOccurs="0" name="ObjectsRemovedFromCollectionProperties" nillable="true" type="tns:ObjectsRemovedFromCollectionProperties" />
+      <xs:element minOccurs="0" name="OriginalValues" nillable="true" type="tns:OriginalValuesDictionary" />
+      <xs:element minOccurs="0" name="State" type="tns:ObjectState" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ObjectChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+  <xs:complexType name="ExtendedPropertiesDictionary">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtendedProperties">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" nillable="true" type="xs:string" />
+            <xs:element name="ExtendedProperty" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExtendedPropertiesDictionary" nillable="true" type="tns:ExtendedPropertiesDictionary" />
+  <xs:complexType name="ObjectsAddedToCollectionProperties">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AddedObjectsForProperty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CollectionPropertyName" nillable="true" type="xs:string" />
+            <xs:element name="AddedObjects" nillable="true" type="tns:ObjectList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectsAddedToCollectionProperties" nillable="true" type="tns:ObjectsAddedToCollectionProperties" />
+  <xs:complexType name="ObjectList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectValue" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectList" nillable="true" type="tns:ObjectList" />
+  <xs:complexType name="ObjectsRemovedFromCollectionProperties">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeletedObjectsForProperty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CollectionPropertyName" nillable="true" type="xs:string" />
+            <xs:element name="DeletedObjects" nillable="true" type="tns:ObjectList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectsRemovedFromCollectionProperties" nillable="true" type="tns:ObjectsRemovedFromCollectionProperties" />
+  <xs:complexType name="OriginalValuesDictionary">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OriginalValues">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" nillable="true" type="xs:string" />
+            <xs:element name="OriginalValue" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OriginalValuesDictionary" nillable="true" type="tns:OriginalValuesDictionary" />
+  <xs:complexType name="L_AgeMeasureMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_ageMeasureMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="ageMeasureMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_AgeMeasureMethod" nillable="true" type="tns:L_AgeMeasureMethod" />
+  <xs:complexType name="L_BroodingPhase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:TrackableCollectionOfAnimal_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_broodingPhaseId" type="xs:int" />
+      <xs:element minOccurs="0" name="broodingPhase" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_BroodingPhase" nillable="true" type="tns:L_BroodingPhase" />
+  <xs:complexType name="TrackableCollectionOfAnimal_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Animal" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Animal" nillable="true" type="tns:Animal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfAnimal_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfAnimal_PnZ2KOgA" />
+  <xs:complexType name="L_OtolithReadingRemark">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_OtolithReadingRemarkID" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="otolithReadingRemark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="transAgeFromAquaDotsToFishLine" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_OtolithReadingRemark" nillable="true" type="tns:L_OtolithReadingRemark" />
+  <xs:complexType name="L_LengthMeasureUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:TrackableCollectionOfAnimal_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_lengthMeasureUnitId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lengthMeasureUnit" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_LengthMeasureUnit" nillable="true" type="tns:L_LengthMeasureUnit" />
+  <xs:complexType name="L_EdgeStructure">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_edgeStructureId" type="xs:int" />
+      <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:TrackableCollectionOfSDAnnotation_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="edgeStructure" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_EdgeStructure" nillable="true" type="tns:L_EdgeStructure" />
+  <xs:complexType name="TrackableCollectionOfSDAnnotation_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDAnnotation" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDAnnotation" nillable="true" type="tns:SDAnnotation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDAnnotation_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDAnnotation_PnZ2KOgA" />
+  <xs:complexType name="SDAnnotation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="FishLineAge" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_EdgeStructure" nillable="true" type="tns:L_EdgeStructure" />
+      <xs:element minOccurs="0" name="L_OtolithReadingRemark" nillable="true" type="tns:L_OtolithReadingRemark" />
+      <xs:element minOccurs="0" name="L_SDAnalysisParameter" nillable="true" type="tns:L_SDAnalysisParameter" />
+      <xs:element minOccurs="0" name="SDFile" nillable="true" type="tns:SDFile" />
+      <xs:element minOccurs="0" name="SDLine" nillable="true" type="tns:TrackableCollectionOfSDLine_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SDPoint" nillable="true" type="tns:TrackableCollectionOfSDPoint_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="age" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdById" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="createdByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="edgeStructure" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isApproved" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="isFixed" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="isReadOnly" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="modifiedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="otolithReadingRemarkId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdAnalysisParameterId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdAnnotationGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdAnnotationId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdFileId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDAnnotation" nillable="true" type="tns:SDAnnotation" />
+  <xs:complexType name="DFUPerson">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q5:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:TrackableCollectionOfCruise_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Cruise1" nillable="true" type="tns:TrackableCollectionOfCruise_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_DFUDepartment" nillable="true" type="tns:L_DFUDepartment" />
+          <xs:element minOccurs="0" name="R_SDReader" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:TrackableCollectionOfSDAnnotation_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDEvent" nillable="true" type="tns:TrackableCollectionOfSDEvent_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDLine" nillable="true" type="tns:TrackableCollectionOfSDLine_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDPoint" nillable="true" type="tns:TrackableCollectionOfSDPoint_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDSample" nillable="true" type="tns:TrackableCollectionOfSDSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Sample1" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList1" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList1_1" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList_1" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Trip1" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="dfuDepartment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dfuPersonId" type="xs:int" />
+          <xs:element minOccurs="0" name="initials" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+  <xs:complexType name="TrackableCollectionOfCruise_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Cruise" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cruise" nillable="true" type="tns:Cruise" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfCruise_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfCruise_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfEst_Strata_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Est_Strata" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Est_Strata" nillable="true" type="tns:Est_Strata" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfEst_Strata_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+  <xs:complexType name="Est_Strata">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:Cruise" />
+      <xs:element minOccurs="0" name="Cruise1" nillable="true" type="tns:Cruise" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="Est_MethodStep" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Est_StrataId" type="xs:int" />
+      <xs:element minOccurs="0" name="L_DFUBase_Category" nillable="true" type="tns:L_DFUBase_Category" />
+      <xs:element minOccurs="0" name="L_YesNo" nillable="true" type="tns:L_YesNo" />
+      <xs:element minOccurs="0" name="L_YesNo1" nillable="true" type="tns:L_YesNo" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:Sample" />
+      <xs:element minOccurs="0" name="SampleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:Trip" />
+      <xs:element minOccurs="0" name="TripId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+      <xs:element minOccurs="0" name="datahandlerId" type="xs:int" />
+      <xs:element minOccurs="0" name="delete_CruiseId" type="xs:int" />
+      <xs:element minOccurs="0" name="dfubase_category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="disabled" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="representative" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sizeSortingEU" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Est_Strata" nillable="true" type="tns:Est_Strata" />
+  <xs:complexType name="TrackableCollectionOfEst_MethodStep_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Est_MethodStep" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Est_MethodStep" nillable="true" type="tns:Est_MethodStep" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfEst_MethodStep_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+  <xs:complexType name="Est_MethodStep">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Est_Method" nillable="true" type="tns:Est_Method" />
+      <xs:element minOccurs="0" name="Est_MethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="Est_MethodStepId" type="xs:int" />
+      <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:Est_Strata" />
+      <xs:element minOccurs="0" name="Est_StrataId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="L_DFUBase_Category" nillable="true" type="tns:L_DFUBase_Category" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+      <xs:element minOccurs="0" name="L_YesNo" nillable="true" type="tns:L_YesNo" />
+      <xs:element minOccurs="0" name="SpeciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="datahandlerId" type="xs:int" />
+      <xs:element minOccurs="0" name="dfubase_category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="disabled" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="overwrites" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sampleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sizeSortingEU" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="stepNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="tripId" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Est_MethodStep" nillable="true" type="tns:Est_MethodStep" />
+  <xs:complexType name="Est_Method">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:Cruise" />
+      <xs:element minOccurs="0" name="Est_MethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="Est_MethodStep" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Est_Method" nillable="true" type="tns:Est_Method" />
+  <xs:complexType name="L_DFUDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:TrackableCollectionOfCruise_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:TrackableCollectionOfDFUPerson_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_dfuDepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dfuDepartment" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_DFUDepartment" nillable="true" type="tns:L_DFUDepartment" />
+  <xs:complexType name="TrackableCollectionOfDFUPerson_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DFUPerson" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfDFUPerson_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfDFUPerson_PnZ2KOgA" />
+  <xs:complexType name="L_DFUBase_Category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Est_MethodStep" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_dfuBase_CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dfuBase_Category" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_DFUBase_Category" nillable="true" type="tns:L_DFUBase_Category" />
+  <xs:complexType name="TrackableCollectionOfSpeciesList_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SpeciesList" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpeciesList" nillable="true" type="tns:SpeciesList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSpeciesList_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+  <xs:complexType name="SpeciesList">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q6:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="DFUPerson1" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="HatchMontReader" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="IsLAVPresent" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsSFPresent" type="xs:boolean" />
+          <xs:element minOccurs="0" name="L_Application" nillable="true" type="tns:L_Application" />
+          <xs:element minOccurs="0" name="L_CuticulaHardness" nillable="true" type="tns:L_CuticulaHardness" />
+          <xs:element minOccurs="0" name="L_DFUBase_Category" nillable="true" type="tns:L_DFUBase_Category" />
+          <xs:element minOccurs="0" name="L_LandingCategory" nillable="true" type="tns:L_LandingCategory" />
+          <xs:element minOccurs="0" name="L_SexCode" nillable="true" type="tns:L_SexCode" />
+          <xs:element minOccurs="0" name="L_SizeSortingDFU" nillable="true" type="tns:L_SizeSortingDFU" />
+          <xs:element minOccurs="0" name="L_SizeSortingEU" nillable="true" type="tns:L_SizeSortingEU" />
+          <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+          <xs:element minOccurs="0" name="L_Treatment" nillable="true" type="tns:L_Treatment" />
+          <xs:element minOccurs="0" name="L_WeightEstimationMethod" nillable="true" type="tns:L_WeightEstimationMethod" />
+          <xs:element minOccurs="0" name="MaturityReader" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:Sample" />
+          <xs:element minOccurs="0" name="SubSample" nillable="true" type="tns:TrackableCollectionOfSubSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="agePlusGroup" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ageReadId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="applicationId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="bmsNonRep" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="cuticulaHardness" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="datahandlerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dfuBase_ArtRecordId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dfuBase_Category" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="hatchMonthReaderId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="landingCategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="maturityReaderId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="number" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ovigorous" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sampleId" type="xs:int" />
+          <xs:element minOccurs="0" name="sexCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sizeSortingDFU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sizeSortingEU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="speciesListId" type="xs:int" />
+          <xs:element minOccurs="0" name="stockId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="treatment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="weightEstimationMethod" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SpeciesList" nillable="true" type="tns:SpeciesList" />
+  <xs:complexType name="L_Application">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_applicationId" type="xs:int" />
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Application" nillable="true" type="tns:L_Application" />
+  <xs:complexType name="L_CuticulaHardness">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_cuticulaHardnessId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="cuticulaHardness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_CuticulaHardness" nillable="true" type="tns:L_CuticulaHardness" />
+  <xs:complexType name="L_CruiseStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:TrackableCollectionOfCruise_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_cruiseStatusId" type="xs:int" />
+      <xs:element minOccurs="0" name="cruiseStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_CruiseStatus" nillable="true" type="tns:L_CruiseStatus" />
+  <xs:complexType name="L_LandingCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_FisheryType" nillable="true" type="tns:TrackableCollectionOfL_FisheryType_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_landingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="landingCategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_LandingCategory" nillable="true" type="tns:L_LandingCategory" />
+  <xs:complexType name="TrackableCollectionOfL_FisheryType_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_FisheryType" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_FisheryType" nillable="true" type="tns:L_FisheryType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_FisheryType_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_FisheryType_PnZ2KOgA" />
+  <xs:complexType name="L_FisheryType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_LandingCategory" nillable="true" type="tns:L_LandingCategory" />
+      <xs:element minOccurs="0" name="L_fisheryTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fisheryType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="landingCategory" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_FisheryType" nillable="true" type="tns:L_FisheryType" />
+  <xs:complexType name="TrackableCollectionOfTrip_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Trip" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Trip" nillable="true" type="tns:Trip" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTrip_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+  <xs:complexType name="Trip">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q7:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:Cruise" />
+          <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="DFUPerson1" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_FisheryType" nillable="true" type="tns:L_FisheryType" />
+          <xs:element minOccurs="0" name="L_Harbour" nillable="true" type="tns:L_Harbour" />
+          <xs:element minOccurs="0" name="L_Harbour1" nillable="true" type="tns:L_Harbour" />
+          <xs:element minOccurs="0" name="L_Nationality" nillable="true" type="tns:L_Nationality" />
+          <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:L_Platform" />
+          <xs:element minOccurs="0" name="L_Platform1" nillable="true" type="tns:L_Platform" />
+          <xs:element minOccurs="0" name="L_SamplingMethod" nillable="true" type="tns:L_SamplingMethod" />
+          <xs:element minOccurs="0" name="L_SamplingType" nillable="true" type="tns:L_SamplingType" />
+          <xs:element minOccurs="0" name="L_TimeZone" nillable="true" type="tns:L_TimeZone" />
+          <xs:element minOccurs="0" name="L_TripType" nillable="true" type="tns:L_TripType" />
+          <xs:element minOccurs="0" name="NumberOfStationsPerTrip" nillable="true" type="tns:TrackableCollectionOfNumberOfStationsPerTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+          <xs:element minOccurs="0" name="R_TripPlatformVersion" nillable="true" type="tns:TrackableCollectionOfR_TripPlatformVersion_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="R_TripUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_TripUsabilityParam_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SampleCount" type="xs:int" />
+          <xs:element minOccurs="0" name="SpeciesListCount" type="xs:int" />
+          <xs:element minOccurs="0" name="contactPersonId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+          <xs:element minOccurs="0" name="dataHandlerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dateEnd" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateEstimTrip" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateSample" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateStart" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateUpdated" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="fDFVessel" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="fisheryType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="harbourLanding" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="harbourSample" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="logBldNr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="manualCount" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="nationality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numOfHaulsPerTrip" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="numberInPlace" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="placeCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="placeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="platform1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="platform2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="postalCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="respNo" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="respTot" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="respYes" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="samplingMethodId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="samplingTypeId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sgTripId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stationEnd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stationStart" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="trip1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tripId" type="xs:int" />
+          <xs:element minOccurs="0" name="tripLeaderId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="tripNum" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tripType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Trip" nillable="true" type="tns:Trip" />
+  <xs:complexType name="L_Harbour">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Nationality" nillable="true" type="tns:L_Nationality" />
+      <xs:element minOccurs="0" name="L_harbourId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Trip1" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="harbour" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="harbourEU" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="harbourNES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nationality" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Harbour" nillable="true" type="tns:L_Harbour" />
+  <xs:complexType name="L_Nationality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Harbour" nillable="true" type="tns:TrackableCollectionOfL_Harbour_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:TrackableCollectionOfL_Platform_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_nationalityId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nationality" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Nationality" nillable="true" type="tns:L_Nationality" />
+  <xs:complexType name="TrackableCollectionOfL_Harbour_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_Harbour" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_Harbour" nillable="true" type="tns:L_Harbour" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_Harbour_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_Harbour_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfL_Platform_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_Platform" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_Platform" nillable="true" type="tns:L_Platform" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_Platform_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_Platform_PnZ2KOgA" />
+  <xs:complexType name="L_Platform">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q8:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_Gear" nillable="true" type="tns:TrackableCollectionOfL_Gear_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_Nationality" nillable="true" type="tns:L_Nationality" />
+          <xs:element minOccurs="0" name="L_PlatformType" nillable="true" type="tns:L_PlatformType" />
+          <xs:element minOccurs="0" name="L_PlatformVersion" nillable="true" type="tns:TrackableCollectionOfL_PlatformVersion_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_platformId" type="xs:int" />
+          <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+          <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Trip1" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="boatIdentity" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactPersonId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nationality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="platform" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="platformType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="L_Platform" nillable="true" type="tns:L_Platform" />
+  <xs:complexType name="TrackableCollectionOfL_Gear_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_Gear" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_Gear" nillable="true" type="tns:L_Gear" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_Gear_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_Gear_PnZ2KOgA" />
+  <xs:complexType name="L_Gear">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_GearType" nillable="true" type="tns:L_GearType" />
+      <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:L_Platform" />
+      <xs:element minOccurs="0" name="R_GearInfo" nillable="true" type="tns:TrackableCollectionOfR_GearInfo_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gear" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gearId" type="xs:int" />
+      <xs:element minOccurs="0" name="gearText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gearType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="platform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="version" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Gear" nillable="true" type="tns:L_Gear" />
+  <xs:complexType name="L_GearType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q9:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_Gear" nillable="true" type="tns:TrackableCollectionOfL_Gear_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_SampleType" nillable="true" type="tns:L_SampleType" />
+          <xs:element minOccurs="0" name="L_gearTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="R_GearTypeSelectionDevice" nillable="true" type="tns:TrackableCollectionOfR_GearTypeSelectionDevice_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Sample1" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="catchOperation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fmCode" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="gearType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="logbookCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="showInSeaHvnUI" type="xs:boolean" />
+          <xs:element minOccurs="0" name="showInVidUI" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="L_GearType" nillable="true" type="tns:L_GearType" />
+  <xs:complexType name="L_SampleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_GearType" nillable="true" type="tns:TrackableCollectionOfL_GearType_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_sampleTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sampleType" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SampleType" nillable="true" type="tns:L_SampleType" />
+  <xs:complexType name="TrackableCollectionOfL_GearType_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_GearType" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_GearType" nillable="true" type="tns:L_GearType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_GearType_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_GearType_PnZ2KOgA" />
+  <xs:complexType name="L_SexCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:TrackableCollectionOfAnimal_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sexCodeId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sexCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SexCode" nillable="true" type="tns:L_SexCode" />
+  <xs:complexType name="SDFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:TrackableCollectionOfSDAnnotation_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SDSample" nillable="true" type="tns:SDSample" />
+      <xs:element minOccurs="0" name="displayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="imageHeight" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="imageWidth" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="path" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="scale" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="sdFileGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdFileId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdSampleId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDFile" nillable="true" type="tns:SDFile" />
+  <xs:complexType name="SDSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+      <xs:element minOccurs="0" name="L_EdgeStructure" nillable="true" type="tns:L_EdgeStructure" />
+      <xs:element minOccurs="0" name="L_MaturityIndexMethod" nillable="true" type="tns:L_MaturityIndexMethod" />
+      <xs:element minOccurs="0" name="L_OtolithReadingRemark" nillable="true" type="tns:L_OtolithReadingRemark" />
+      <xs:element minOccurs="0" name="L_SDLightType" nillable="true" type="tns:L_SDLightType" />
+      <xs:element minOccurs="0" name="L_SDOtolithDescription" nillable="true" type="tns:L_SDOtolithDescription" />
+      <xs:element minOccurs="0" name="L_SDPreparationMethod" nillable="true" type="tns:L_SDPreparationMethod" />
+      <xs:element minOccurs="0" name="L_SexCode" nillable="true" type="tns:L_SexCode" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+      <xs:element minOccurs="0" name="L_StatisticalRectangle" nillable="true" type="tns:L_StatisticalRectangle" />
+      <xs:element minOccurs="0" name="L_Stock" nillable="true" type="tns:L_Stock" />
+      <xs:element minOccurs="0" name="Maturity" nillable="true" type="tns:Maturity" />
+      <xs:element minOccurs="0" name="SDEvent" nillable="true" type="tns:SDEvent" />
+      <xs:element minOccurs="0" name="SDFile" nillable="true" type="tns:TrackableCollectionOfSDFile_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="animalId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="catchDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="comments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdById" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="createdByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="cruise" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="edgeStructure" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fishLengthMM" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="fishWeightG" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="importStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="latitude" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="longitude" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="maturityId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="maturityIndexMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="modifiedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="otolithReadingRemarkId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="readOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="sdEventId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdLightTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdOtolithDescriptionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdPreparationMethodId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdSampleGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdSampleId" type="xs:int" />
+      <xs:element minOccurs="0" name="sexCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stockId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="trip" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDSample" nillable="true" type="tns:SDSample" />
+  <xs:complexType name="L_DFUArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DFUSubArea" nillable="true" type="tns:TrackableCollectionOfDFUSubArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_DFUArea1" nillable="true" type="tns:TrackableCollectionOfL_DFUArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_DFUArea2" nillable="true" type="tns:L_DFUArea" />
+      <xs:element minOccurs="0" name="L_DFUAreaId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_StockSpeciesArea" nillable="true" type="tns:TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SDEvent" nillable="true" type="tns:TrackableCollectionOfSDEvent_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="areaICES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="areaNES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="parentDFUArea" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+  <xs:complexType name="TrackableCollectionOfDFUSubArea_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="DFUSubArea" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DFUSubArea" nillable="true" type="tns:DFUSubArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfDFUSubArea_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfDFUSubArea_PnZ2KOgA" />
+  <xs:complexType name="DFUSubArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+      <xs:element minOccurs="0" name="SubAreaType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dfuSubAreaId" type="xs:int" />
+      <xs:element minOccurs="0" name="eastDefinitionLongitudeDec" type="xs:decimal" />
+      <xs:element minOccurs="0" name="eastDefinitionLongitudeText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="northDefinitionLatitudeDec" type="xs:decimal" />
+      <xs:element minOccurs="0" name="northDefinitionLatitudeText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="southDefinitionLatitudeDec" type="xs:decimal" />
+      <xs:element minOccurs="0" name="southDefinitionLatitudeText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="westDefinitionLongitudeDec" type="xs:decimal" />
+      <xs:element minOccurs="0" name="westDefinitionLongitudeText" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="DFUSubArea" nillable="true" type="tns:DFUSubArea" />
+  <xs:complexType name="Sample">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q10:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="DFUPerson1" nillable="true" type="tns:DFUPerson" />
+          <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="HVN_geartype" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="L_CatchRegistration" nillable="true" type="tns:L_CatchRegistration" />
+          <xs:element minOccurs="0" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+          <xs:element minOccurs="0" name="L_FishingActivityCategory" nillable="true" type="tns:L_FishingActivityCategory" />
+          <xs:element minOccurs="0" name="L_Gear" nillable="true" type="tns:L_Gear" />
+          <xs:element minOccurs="0" name="L_GearType" nillable="true" type="tns:L_GearType" />
+          <xs:element minOccurs="0" name="L_GearType1" nillable="true" type="tns:L_GearType" />
+          <xs:element minOccurs="0" name="L_HaulType" nillable="true" type="tns:L_HaulType" />
+          <xs:element minOccurs="0" name="L_SampleStatus" nillable="true" type="tns:L_SampleStatus" />
+          <xs:element minOccurs="0" name="L_SelectionDevice" nillable="true" type="tns:L_SelectionDevice" />
+          <xs:element minOccurs="0" name="L_SelectionDeviceSource" nillable="true" type="tns:L_SelectionDeviceSource" />
+          <xs:element minOccurs="0" name="L_SpeciesRegistration" nillable="true" type="tns:L_SpeciesRegistration" />
+          <xs:element minOccurs="0" name="L_StatisticalRectangle" nillable="true" type="tns:L_StatisticalRectangle" />
+          <xs:element minOccurs="0" name="L_ThermoCline" nillable="true" type="tns:L_ThermoCline" />
+          <xs:element minOccurs="0" name="L_TimeZone" nillable="true" type="tns:L_TimeZone" />
+          <xs:element minOccurs="0" name="L_WeightEstimationMethod" nillable="true" type="tns:L_WeightEstimationMethod" />
+          <xs:element minOccurs="0" name="R_SampleUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_SampleUsabilityParam_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="R_TargetSpecies" nillable="true" type="tns:TrackableCollectionOfR_TargetSpecies_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesListCount" type="xs:int" />
+          <xs:element minOccurs="0" name="TrawlOperation" nillable="true" type="tns:TrackableCollectionOfTrawlOperation_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:Trip" />
+          <xs:element minOccurs="0" name="analysisPersonId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="arrivalWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="bottomType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="catchRegistrationId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="constantFish" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="courseTrack" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="currentDirectionBot" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="currentDirectionSrf" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="currentSpeedBot" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="currentSpeedSrf" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="datahandlerId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dateGearEnd" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="dateGearStart" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="deadline" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="depthAbove" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="depthAveGear" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="depthAvg" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="dfuArea" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="distance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="endlog" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="externalJournalNum" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fishingActivityId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="fishingActivityNationalId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="fishingtime" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="flyerTrack" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gearId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="gearQuality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gearRemark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gearType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="haulDirection" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="haulSpeedBot" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="haulSpeedMean" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="haulSpeedWat" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="haulType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="heightNets" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="hydroStnRef" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="labJournalNum" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="landing" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="latPosEndText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latPosStartText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lengthBeam" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="lengthNets" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="lengthRopeFlyer" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="lonPosEndText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lonPosStartText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lostNets" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="maskWidth" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="meshSize" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="netOpening" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="night" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numNets" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="numSamples" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="numberHooks" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="numberTrawls" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="oxygenBot" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="oxygenSrf" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="released" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="robLength" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="salinityBot" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="salinitySrf" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="sampleId" type="xs:int" />
+          <xs:element minOccurs="0" name="samplePersonId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sampleStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sampleTaken" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sampleType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="selectionDevice" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="selectionDeviceSourceId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sgId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="shovelDist" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="speciesRegistrationId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="startlog" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stationName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="temperatureBot" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperatureSrf" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="thermoCline" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="thermoClineDepth" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tidTamp" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="totalWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tripId" type="xs:int" />
+          <xs:element minOccurs="0" name="virtual" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="waveDirection" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="waveHeigth" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="weekdayWeekend" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="weightEstimationMethod" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="widthRopeFlyer" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="windDirection" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="windSpeed" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="wingSpread" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="wireLength" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Sample" nillable="true" type="tns:Sample" />
+  <xs:complexType name="L_CatchRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="catchRegistration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="catchRegistrationId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_CatchRegistration" nillable="true" type="tns:L_CatchRegistration" />
+  <xs:complexType name="TrackableCollectionOfSample_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Sample" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sample" nillable="true" type="tns:Sample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSample_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+  <xs:complexType name="R_GearTypeSelectionDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_GearType" nillable="true" type="tns:L_GearType" />
+      <xs:element minOccurs="0" name="L_SelectionDevice" nillable="true" type="tns:L_SelectionDevice" />
+      <xs:element minOccurs="0" name="R_GearTypeSelectionDeviceId" type="xs:int" />
+      <xs:element minOccurs="0" name="gearType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="selectionDevice" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_GearTypeSelectionDevice" nillable="true" type="tns:R_GearTypeSelectionDevice" />
+  <xs:complexType name="L_SelectionDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_selectionDeviceId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_GearTypeSelectionDevice" nillable="true" type="tns:TrackableCollectionOfR_GearTypeSelectionDevice_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="selectionDevice" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SelectionDevice" nillable="true" type="tns:L_SelectionDevice" />
+  <xs:complexType name="TrackableCollectionOfR_GearTypeSelectionDevice_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_GearTypeSelectionDevice" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_GearTypeSelectionDevice" nillable="true" type="tns:R_GearTypeSelectionDevice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_GearTypeSelectionDevice_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_GearTypeSelectionDevice_PnZ2KOgA" />
+  <xs:complexType name="R_GearInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Gear" nillable="true" type="tns:L_Gear" />
+      <xs:element minOccurs="0" name="L_GearInfoType" nillable="true" type="tns:L_GearInfoType" />
+      <xs:element minOccurs="0" name="R_gearInfoID" type="xs:int" />
+      <xs:element minOccurs="0" name="gearId" type="xs:int" />
+      <xs:element minOccurs="0" name="gearInfoType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gearValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_GearInfo" nillable="true" type="tns:R_GearInfo" />
+  <xs:complexType name="L_GearInfoType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_gearInfoTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_GearInfo" nillable="true" type="tns:TrackableCollectionOfR_GearInfo_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dfuBase_dfuref" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gearInfoType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="unit" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_GearInfoType" nillable="true" type="tns:L_GearInfoType" />
+  <xs:complexType name="TrackableCollectionOfR_GearInfo_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_GearInfo" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_GearInfo" nillable="true" type="tns:R_GearInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_GearInfo_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_GearInfo_PnZ2KOgA" />
+  <xs:complexType name="L_PlatformType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:TrackableCollectionOfL_Platform_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_platformTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="platformType" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_PlatformType" nillable="true" type="tns:L_PlatformType" />
+  <xs:complexType name="L_SamplingMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="samplingMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="samplingMethodId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SamplingMethod" nillable="true" type="tns:L_SamplingMethod" />
+  <xs:complexType name="L_FishingActivityCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FishingActivityCategoryType" type="xs:int" />
+      <xs:element minOccurs="0" name="FishingActivityLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentFishingActivityCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_FishingActivityCategory" nillable="true" type="tns:L_FishingActivityCategory" />
+  <xs:complexType name="Person">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q11:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:TrackableCollectionOfL_Platform_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SEno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bankAccountNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="facebook" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="organization" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="personId" type="xs:int" />
+          <xs:element minOccurs="0" name="telephone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="telephoneMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="telephonePrivate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="zipTown" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Person" nillable="true" type="tns:Person" />
+  <xs:complexType name="L_SamplingType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="samplingType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="samplingTypeId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SamplingType" nillable="true" type="tns:L_SamplingType" />
+  <xs:complexType name="L_PlatformVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_NavigationSystem" nillable="true" type="tns:L_NavigationSystem" />
+      <xs:element minOccurs="0" name="L_Platform" nillable="true" type="tns:L_Platform" />
+      <xs:element minOccurs="0" name="R_TripPlatformVersion" nillable="true" type="tns:TrackableCollectionOfR_TripPlatformVersion_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="crew" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="length" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="navigationSystem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="platform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="platformVersionId" type="xs:int" />
+      <xs:element minOccurs="0" name="power" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="radiosignal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="registerTons" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="revisionYear" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="version" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_PlatformVersion" nillable="true" type="tns:L_PlatformVersion" />
+  <xs:complexType name="L_NavigationSystem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_PlatformVersion" nillable="true" type="tns:TrackableCollectionOfL_PlatformVersion_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_navigationSystemId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="navigationSystem" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_NavigationSystem" nillable="true" type="tns:L_NavigationSystem" />
+  <xs:complexType name="TrackableCollectionOfL_PlatformVersion_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_PlatformVersion" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_PlatformVersion" nillable="true" type="tns:L_PlatformVersion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_PlatformVersion_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_PlatformVersion_PnZ2KOgA" />
+  <xs:complexType name="L_TripType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_CruiseType" nillable="true" type="tns:L_CruiseType" />
+      <xs:element minOccurs="0" name="L_tripTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="cruiseType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tripType" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_TripType" nillable="true" type="tns:L_TripType" />
+  <xs:complexType name="L_CruiseType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_TripType" nillable="true" type="tns:TrackableCollectionOfL_TripType_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_cruiseTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="cruiseType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_CruiseType" nillable="true" type="tns:L_CruiseType" />
+  <xs:complexType name="TrackableCollectionOfL_TripType_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_TripType" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_TripType" nillable="true" type="tns:L_TripType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_TripType_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_TripType_PnZ2KOgA" />
+  <xs:complexType name="R_TripPlatformVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_PlatformVersion" nillable="true" type="tns:L_PlatformVersion" />
+      <xs:element minOccurs="0" name="R_TripPlatformVersionId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:Trip" />
+      <xs:element minOccurs="0" name="platformVersionId" type="xs:int" />
+      <xs:element minOccurs="0" name="tripId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_TripPlatformVersion" nillable="true" type="tns:R_TripPlatformVersion" />
+  <xs:complexType name="NumberOfStationsPerTrip">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:Trip" />
+      <xs:element minOccurs="0" name="numStnPerTrip" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="numberOfStationsPerTripId" type="xs:int" />
+      <xs:element minOccurs="0" name="tripId" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="NumberOfStationsPerTrip" nillable="true" type="tns:NumberOfStationsPerTrip" />
+  <xs:complexType name="L_SampleStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sampleStatusId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sampleStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SampleStatus" nillable="true" type="tns:L_SampleStatus" />
+  <xs:complexType name="R_TripUsabilityParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_UsabilityParam" nillable="true" type="tns:L_UsabilityParam" />
+      <xs:element minOccurs="0" name="R_tripUsabilityParamId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:Trip" />
+      <xs:element minOccurs="0" name="tripId" type="xs:int" />
+      <xs:element minOccurs="0" name="usabilityParamId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_TripUsabilityParam" nillable="true" type="tns:R_TripUsabilityParam" />
+  <xs:complexType name="L_UsabilityParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="R_CruiseUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_CruiseUsabilityParam_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="R_SampleUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_SampleUsabilityParam_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="R_TripUsabilityParam" nillable="true" type="tns:TrackableCollectionOfR_TripUsabilityParam_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="R_UsabilityParamUsabilityGrp" nillable="true" type="tns:TrackableCollectionOfR_UsabilityParamUsabilityGrp_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="usabilityParam" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usabilityParamId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_UsabilityParam" nillable="true" type="tns:L_UsabilityParam" />
+  <xs:complexType name="TrackableCollectionOfR_CruiseUsabilityParam_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_CruiseUsabilityParam" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_CruiseUsabilityParam" nillable="true" type="tns:R_CruiseUsabilityParam" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_CruiseUsabilityParam_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_CruiseUsabilityParam_PnZ2KOgA" />
+  <xs:complexType name="R_CruiseUsabilityParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Cruise" nillable="true" type="tns:Cruise" />
+      <xs:element minOccurs="0" name="L_UsabilityParam" nillable="true" type="tns:L_UsabilityParam" />
+      <xs:element minOccurs="0" name="R_CruiseUsbilityParamId" type="xs:int" />
+      <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+      <xs:element minOccurs="0" name="usabilityParamId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_CruiseUsabilityParam" nillable="true" type="tns:R_CruiseUsabilityParam" />
+  <xs:complexType name="R_StockSpeciesArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+      <xs:element minOccurs="0" name="L_StatisticalRectangle" nillable="true" type="tns:L_StatisticalRectangle" />
+      <xs:element minOccurs="0" name="L_Stock" nillable="true" type="tns:L_Stock" />
+      <xs:element minOccurs="0" name="L_stockId" type="xs:int" />
+      <xs:element minOccurs="0" name="quarter" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="r_StockSpeciesAreaId" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_StockSpeciesArea" nillable="true" type="tns:R_StockSpeciesArea" />
+  <xs:complexType name="L_Species">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q12:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="Est_MethodStep" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="L_StandardLengthMeasureType" nillable="true" type="tns:L_LengthMeasureType" />
+          <xs:element minOccurs="0" name="L_TreatmentFactorGroup" nillable="true" type="tns:L_TreatmentFactorGroup" />
+          <xs:element minOccurs="0" name="L_speciesId" type="xs:int" />
+          <xs:element minOccurs="0" name="R_SDReader" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="R_StockSpeciesArea" nillable="true" type="tns:TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="R_TargetSpecies" nillable="true" type="tns:TrackableCollectionOfR_TargetSpecies_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="R_TargetSpecies1" nillable="true" type="tns:TrackableCollectionOfR_TargetSpecies_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SDSample" nillable="true" type="tns:TrackableCollectionOfSDSample_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="ageMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ageMin" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="aphiaID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="dfuFisk_Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dkName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="icesCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latin" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="lengthMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="lengthMin" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="nodc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="speciesFAO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="speciesNES" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="standardLengthMeasureTypeId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="treatmentFactorGroup" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tsn" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ukName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="weightMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="weightMin" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="L_Species" nillable="true" type="tns:L_Species" />
+  <xs:complexType name="L_LengthMeasureType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_lengthMeasureTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="RDBES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lengthMeasureType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_LengthMeasureType" nillable="true" type="tns:L_LengthMeasureType" />
+  <xs:complexType name="L_TreatmentFactorGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:TrackableCollectionOfL_Species_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_treatmentFactorGroupId" type="xs:int" />
+      <xs:element minOccurs="0" name="TreatmentFactor" nillable="true" type="tns:TrackableCollectionOfTreatmentFactor_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="treatmentFactorGroup" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_TreatmentFactorGroup" nillable="true" type="tns:L_TreatmentFactorGroup" />
+  <xs:complexType name="TrackableCollectionOfL_Species_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_Species" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_Species" nillable="true" type="tns:L_Species" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_Species_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_Species_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfTreatmentFactor_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TreatmentFactor" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TreatmentFactor" nillable="true" type="tns:TreatmentFactor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTreatmentFactor_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfTreatmentFactor_PnZ2KOgA" />
+  <xs:complexType name="TreatmentFactor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_Treatment" nillable="true" type="tns:L_Treatment" />
+      <xs:element minOccurs="0" name="L_TreatmentFactorGroup" nillable="true" type="tns:L_TreatmentFactorGroup" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="factor" type="xs:decimal" />
+      <xs:element minOccurs="0" name="treatment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="treatmentFactorGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="treatmentFactorId" type="xs:int" />
+      <xs:element minOccurs="0" name="versioningDate" type="xs:dateTime" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TreatmentFactor" nillable="true" type="tns:TreatmentFactor" />
+  <xs:complexType name="L_Treatment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_treatmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="TreatmentFactor" nillable="true" type="tns:TrackableCollectionOfTreatmentFactor_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="treatment" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Treatment" nillable="true" type="tns:L_Treatment" />
+  <xs:complexType name="L_YesNo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Est_MethodStep" nillable="true" type="tns:TrackableCollectionOfEst_MethodStep_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Est_Strata" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Est_Strata1" nillable="true" type="tns:TrackableCollectionOfEst_Strata_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_YesNoId" type="xs:int" />
+      <xs:element minOccurs="0" name="SubSample" nillable="true" type="tns:TrackableCollectionOfSubSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="YesNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_YesNo" nillable="true" type="tns:L_YesNo" />
+  <xs:complexType name="TrackableCollectionOfSubSample_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SubSample" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubSample" nillable="true" type="tns:SubSample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSubSample_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSubSample_PnZ2KOgA" />
+  <xs:complexType name="SubSample">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q13:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:TrackableCollectionOfAnimal_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_YesNo" nillable="true" type="tns:L_YesNo" />
+          <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:SpeciesList" />
+          <xs:element minOccurs="0" name="landingWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="representative" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="speciesListId" type="xs:int" />
+          <xs:element minOccurs="0" name="stepNum" type="xs:int" />
+          <xs:element minOccurs="0" name="subSampleId" type="xs:int" />
+          <xs:element minOccurs="0" name="subSampleWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="sumAnimalWeights" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SubSample" nillable="true" type="tns:SubSample" />
+  <xs:complexType name="R_SampleUsabilityParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_UsabilityParam" nillable="true" type="tns:L_UsabilityParam" />
+      <xs:element minOccurs="0" name="R_SampleUsabilityParamId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:Sample" />
+      <xs:element minOccurs="0" name="SampleId" type="xs:int" />
+      <xs:element minOccurs="0" name="usabilityParamId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_SampleUsabilityParam" nillable="true" type="tns:R_SampleUsabilityParam" />
+  <xs:complexType name="R_TargetSpecies">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q14:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+          <xs:element minOccurs="0" name="L_Species1" nillable="true" type="tns:L_Species" />
+          <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:Sample" />
+          <xs:element minOccurs="0" name="TargetSpeciesId" type="xs:int" />
+          <xs:element minOccurs="0" name="sampleId" type="xs:int" />
+          <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="R_TargetSpecies" nillable="true" type="tns:R_TargetSpecies" />
+  <xs:complexType name="L_StatisticalRectangle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_statisticalRectangleId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_StockSpeciesArea" nillable="true" type="tns:TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="latitudeDecMax" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="latitudeDecMid" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="latitudeDecMin" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="latitudeTextMax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="latitudeTextMid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="latitudeTextMin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="longitudeDecMax" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="longitudeDecMid" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="longitudeDecMin" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="longitudeTextMax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="longitudeTextMid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="longitudeTextMin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_StatisticalRectangle" nillable="true" type="tns:L_StatisticalRectangle" />
+  <xs:complexType name="TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_StockSpeciesArea" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_StockSpeciesArea" nillable="true" type="tns:R_StockSpeciesArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" />
+  <xs:complexType name="R_UsabilityParamUsabilityGrp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_UsabilityParam" nillable="true" type="tns:L_UsabilityParam" />
+      <xs:element minOccurs="0" name="L_UsabilityParamGrp" nillable="true" type="tns:L_UsabilityParamGrp" />
+      <xs:element minOccurs="0" name="R_UsabilityParamUsabilityGrpId" type="xs:int" />
+      <xs:element minOccurs="0" name="usabilityParamGrpId" type="xs:int" />
+      <xs:element minOccurs="0" name="usabilityParamId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_UsabilityParamUsabilityGrp" nillable="true" type="tns:R_UsabilityParamUsabilityGrp" />
+  <xs:complexType name="L_UsabilityParamGrp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="R_UsabilityParamUsabilityGrp" nillable="true" type="tns:TrackableCollectionOfR_UsabilityParamUsabilityGrp_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="usabilityGrp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usabilityParamGrpId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_UsabilityParamGrp" nillable="true" type="tns:L_UsabilityParamGrp" />
+  <xs:complexType name="TrackableCollectionOfR_UsabilityParamUsabilityGrp_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_UsabilityParamUsabilityGrp" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_UsabilityParamUsabilityGrp" nillable="true" type="tns:R_UsabilityParamUsabilityGrp" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_UsabilityParamUsabilityGrp_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_UsabilityParamUsabilityGrp_PnZ2KOgA" />
+  <xs:complexType name="R_SDReader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="L_SDPreparationMethod" nillable="true" type="tns:L_SDPreparationMethod" />
+      <xs:element minOccurs="0" name="L_SDReaderExperience" nillable="true" type="tns:L_SDReaderExperience" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+      <xs:element minOccurs="0" name="L_Stock" nillable="true" type="tns:L_Stock" />
+      <xs:element minOccurs="0" name="R_SDEventSDReader" nillable="true" type="tns:TrackableCollectionOfR_SDEventSDReader_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dfuPersonId" type="xs:int" />
+      <xs:element minOccurs="0" name="firstYearAgeReadingCurrent" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="firstYearAgeReadingGeneral" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="r_SDReaderId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdPreparationMethodId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdReaderExperienceId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stockId" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_SDReader" nillable="true" type="tns:R_SDReader" />
+  <xs:complexType name="L_SDPreparationMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdPreparationMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_SDReader" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="dkDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="preparationMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ukDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDPreparationMethod" nillable="true" type="tns:L_SDPreparationMethod" />
+  <xs:complexType name="TrackableCollectionOfR_SDReader_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_SDReader" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_SDReader" nillable="true" type="tns:R_SDReader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_SDReader_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+  <xs:complexType name="L_MaturityIndexMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_maturityIndexMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="Maturity" nillable="true" type="tns:TrackableCollectionOfMaturity_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maturityIndexMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_MaturityIndexMethod" nillable="true" type="tns:L_MaturityIndexMethod" />
+  <xs:complexType name="TrackableCollectionOfMaturity_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Maturity" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Maturity" nillable="true" type="tns:Maturity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfMaturity_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfMaturity_PnZ2KOgA" />
+  <xs:complexType name="Maturity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimalInfo" nillable="true" type="tns:TrackableCollectionOfAnimalInfo_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_MaturityIndexMethod" nillable="true" type="tns:L_MaturityIndexMethod" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maturityId" type="xs:int" />
+      <xs:element minOccurs="0" name="maturityIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="maturityIndexMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Maturity" nillable="true" type="tns:Maturity" />
+  <xs:complexType name="TrackableCollectionOfAnimalInfo_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="AnimalInfo" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnimalInfo" nillable="true" type="tns:AnimalInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfAnimalInfo_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfAnimalInfo_PnZ2KOgA" />
+  <xs:complexType name="AnimalInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q15:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Animal" nillable="true" type="tns:Animal" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="Fat" nillable="true" type="tns:Fat" />
+          <xs:element minOccurs="0" name="I1" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="L_Parasite" nillable="true" type="tns:L_Parasite" />
+          <xs:element minOccurs="0" name="Maturity" nillable="true" type="tns:Maturity" />
+          <xs:element minOccurs="0" name="R_AnimalInfoReference" nillable="true" type="tns:TrackableCollectionOfR_AnimalInfoReference_PnZ2KOgA" />
+          <xs:element minOccurs="0" name="animalId" type="xs:int" />
+          <xs:element minOccurs="0" name="animalInfoId" type="xs:int" />
+          <xs:element minOccurs="0" name="fatId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="heigth" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="maturityId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="netPlaceHorisontal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="netPlaceVertical" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numVertebra" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="parasiteId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="pictureReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="weightGonads" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="weightGutted" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="weightLiver" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="width" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AnimalInfo" nillable="true" type="tns:AnimalInfo" />
+  <xs:complexType name="Fat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimalInfo" nillable="true" type="tns:TrackableCollectionOfAnimalInfo_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_FatIndexMethod" nillable="true" type="tns:L_FatIndexMethod" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fatId" type="xs:int" />
+      <xs:element minOccurs="0" name="fatIndex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fatIndexMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Fat" nillable="true" type="tns:Fat" />
+  <xs:complexType name="L_FatIndexMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Fat" nillable="true" type="tns:TrackableCollectionOfFat_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_fatIndexMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fatIndexMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_FatIndexMethod" nillable="true" type="tns:L_FatIndexMethod" />
+  <xs:complexType name="TrackableCollectionOfFat_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Fat" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Fat" nillable="true" type="tns:Fat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfFat_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfFat_PnZ2KOgA" />
+  <xs:complexType name="L_TimeZone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_timeZoneId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="Trip" nillable="true" type="tns:TrackableCollectionOfTrip_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="timeZone" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_TimeZone" nillable="true" type="tns:L_TimeZone" />
+  <xs:complexType name="L_SDReaderExperience">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_SDReaderExperienceId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_SDReader" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="readerExperience" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDReaderExperience" nillable="true" type="tns:L_SDReaderExperience" />
+  <xs:complexType name="SDLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:SDAnnotation" />
+      <xs:element minOccurs="0" name="X1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="X2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Y1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Y2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdById" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="createdByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="lineIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sdAnnotationId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdLineGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdLineId" type="xs:int" />
+      <xs:element minOccurs="0" name="width" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDLine" nillable="true" type="tns:SDLine" />
+  <xs:complexType name="L_HatchMonthReadability">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="tns:TrackableCollectionOfAge_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_HatchMonthReadabilityId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="hatchMonthRemark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_HatchMonthReadability" nillable="true" type="tns:L_HatchMonthReadability" />
+  <xs:complexType name="L_Stock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_stockId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_SDReader" nillable="true" type="tns:TrackableCollectionOfR_SDReader_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="R_StockSpeciesArea" nillable="true" type="tns:TrackableCollectionOfR_StockSpeciesArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stockCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Stock" nillable="true" type="tns:L_Stock" />
+  <xs:complexType name="L_Parasite">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimalInfo" nillable="true" type="tns:TrackableCollectionOfAnimalInfo_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_parasiteId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Parasite" nillable="true" type="tns:L_Parasite" />
+  <xs:complexType name="L_SizeSortingDFU">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sizeSortingDFUId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sizeSortingDFU" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SizeSortingDFU" nillable="true" type="tns:L_SizeSortingDFU" />
+  <xs:complexType name="L_SpeciesRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesRegistration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="speciesRegistrationId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SpeciesRegistration" nillable="true" type="tns:L_SpeciesRegistration" />
+  <xs:complexType name="R_SDEventSDReader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="SDEvent" nillable="true" type="tns:SDEvent" />
+      <xs:element minOccurs="0" name="SDReader" nillable="true" type="tns:R_SDReader" />
+      <xs:element minOccurs="0" name="primaryReader" type="xs:boolean" />
+      <xs:element minOccurs="0" name="sdEventId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdReaderId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="R_SDEventSDReader" nillable="true" type="tns:R_SDEventSDReader" />
+  <xs:complexType name="SDEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="L_DFUAreas" nillable="true" type="tns:TrackableCollectionOfL_DFUArea_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="L_SDEventType" nillable="true" type="tns:L_SDEventType" />
+      <xs:element minOccurs="0" name="L_SDPurpose" nillable="true" type="tns:L_SDPurpose" />
+      <xs:element minOccurs="0" name="L_SDSampleType" nillable="true" type="tns:L_SDSampleType" />
+      <xs:element minOccurs="0" name="L_Species" nillable="true" type="tns:L_Species" />
+      <xs:element minOccurs="0" name="SDReaders" nillable="true" type="tns:TrackableCollectionOfR_SDEventSDReader_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SDSample" nillable="true" type="tns:TrackableCollectionOfSDSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SamplesCount" type="xs:int" />
+      <xs:element minOccurs="0" name="closed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdById" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="createdByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="defaultImageFolders" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="endDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sdEventGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdEventId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdEventTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdPurposeId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdSampleTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="startDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="uiSDFileExtraColumns" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="year" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDEvent" nillable="true" type="tns:SDEvent" />
+  <xs:complexType name="TrackableCollectionOfL_DFUArea_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="L_DFUArea" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfL_DFUArea_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfL_DFUArea_PnZ2KOgA" />
+  <xs:complexType name="L_SDEventType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdEventTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="ageUpdatingMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eventType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDEventType" nillable="true" type="tns:L_SDEventType" />
+  <xs:complexType name="L_SDPurpose">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdPurposeId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="purpose" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDPurpose" nillable="true" type="tns:L_SDPurpose" />
+  <xs:complexType name="L_SDSampleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdSampleTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sampleType" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDSampleType" nillable="true" type="tns:L_SDSampleType" />
+  <xs:complexType name="TrackableCollectionOfR_SDEventSDReader_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_SDEventSDReader" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_SDEventSDReader" nillable="true" type="tns:R_SDEventSDReader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_SDEventSDReader_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_SDEventSDReader_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfSDSample_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDSample" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDSample" nillable="true" type="tns:SDSample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDSample_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDSample_PnZ2KOgA" />
+  <xs:complexType name="TrawlOperation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:Sample" />
+      <xs:element minOccurs="0" name="depthOver" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="netOpening" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="operationNum" type="xs:int" />
+      <xs:element minOccurs="0" name="operationTime" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sampleId" type="xs:int" />
+      <xs:element minOccurs="0" name="totalDepth" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="trawlOperationId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TrawlOperation" nillable="true" type="tns:TrawlOperation" />
+  <xs:complexType name="R_AnimalInfoReference">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" base="q16:OfflineEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AnimalInfo" nillable="true" type="tns:AnimalInfo" />
+          <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+          <xs:element minOccurs="0" name="L_Reference" nillable="true" type="tns:L_Reference" />
+          <xs:element minOccurs="0" name="L_referenceId" type="xs:int" />
+          <xs:element minOccurs="0" name="R_animalInfoReferenceId" type="xs:int" />
+          <xs:element minOccurs="0" name="animalInfoId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="R_AnimalInfoReference" nillable="true" type="tns:R_AnimalInfoReference" />
+  <xs:complexType name="L_Reference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_referenceId" type="xs:int" />
+      <xs:element minOccurs="0" name="R_AnimalInfoReference" nillable="true" type="tns:TrackableCollectionOfR_AnimalInfoReference_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Reference" nillable="true" type="tns:L_Reference" />
+  <xs:complexType name="TrackableCollectionOfR_AnimalInfoReference_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_AnimalInfoReference" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_AnimalInfoReference" nillable="true" type="tns:R_AnimalInfoReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_AnimalInfoReference_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_AnimalInfoReference_PnZ2KOgA" />
+  <xs:complexType name="L_SizeSortingEU">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sizeSortingEUId" type="xs:int" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sizeSortingEU" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SizeSortingEU" nillable="true" type="tns:L_SizeSortingEU" />
+  <xs:complexType name="L_HaulType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_haulTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="haulType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_HaulType" nillable="true" type="tns:L_HaulType" />
+  <xs:complexType name="L_SDLightType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdLightTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="dkDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lightType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ukDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDLightType" nillable="true" type="tns:L_SDLightType" />
+  <xs:complexType name="L_SDOtolithDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdOtolithDescriptionId" type="xs:int" />
+      <xs:element minOccurs="0" name="dkDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="otolithDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ukDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDOtolithDescription" nillable="true" type="tns:L_SDOtolithDescription" />
+  <xs:complexType name="SDPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DFUPerson" nillable="true" type="tns:DFUPerson" />
+      <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:SDAnnotation" />
+      <xs:element minOccurs="0" name="X" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdById" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="createdByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="pointIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="pointType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sdAnnotationId" type="xs:int" />
+      <xs:element minOccurs="0" name="sdPointGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="sdPointId" type="xs:int" />
+      <xs:element minOccurs="0" name="shape" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="width" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SDPoint" nillable="true" type="tns:SDPoint" />
+  <xs:complexType name="L_VisualStock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_visualStockId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="visualStock" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_VisualStock" nillable="true" type="tns:L_VisualStock" />
+  <xs:complexType name="L_GeneticStock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_geneticStockId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="geneticStock" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_GeneticStock" nillable="true" type="tns:L_GeneticStock" />
+  <xs:complexType name="L_WeightEstimationMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_weightEstimationMethodId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="SpeciesList" nillable="true" type="tns:TrackableCollectionOfSpeciesList_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="weightEstimationMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_WeightEstimationMethod" nillable="true" type="tns:L_WeightEstimationMethod" />
+  <xs:complexType name="L_SDAnalysisParameter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_sdAnalysisParameterId" type="xs:int" />
+      <xs:element minOccurs="0" name="SDAnnotation" nillable="true" type="tns:TrackableCollectionOfSDAnnotation_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="analysisParameter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SDAnalysisParameter" nillable="true" type="tns:L_SDAnalysisParameter" />
+  <xs:complexType name="L_ThermoCline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_thermoClineId" type="xs:int" />
+      <xs:element minOccurs="0" name="Sample" nillable="true" type="tns:TrackableCollectionOfSample_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="thermoCline" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_ThermoCline" nillable="true" type="tns:L_ThermoCline" />
+  <xs:complexType name="L_SelectionDeviceSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_selectionDeviceSourceId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="selectionDeviceSource" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_SelectionDeviceSource" nillable="true" type="tns:L_SelectionDeviceSource" />
+  <xs:complexType name="TrackableCollectionOfR_TargetSpecies_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_TargetSpecies" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_TargetSpecies" nillable="true" type="tns:R_TargetSpecies" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_TargetSpecies_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_TargetSpecies_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfR_SampleUsabilityParam_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_SampleUsabilityParam" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_SampleUsabilityParam" nillable="true" type="tns:R_SampleUsabilityParam" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_SampleUsabilityParam_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_SampleUsabilityParam_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfR_TripUsabilityParam_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_TripUsabilityParam" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_TripUsabilityParam" nillable="true" type="tns:R_TripUsabilityParam" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_TripUsabilityParam_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_TripUsabilityParam_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfR_TripPlatformVersion_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="R_TripPlatformVersion" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_TripPlatformVersion" nillable="true" type="tns:R_TripPlatformVersion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfR_TripPlatformVersion_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfR_TripPlatformVersion_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfTrawlOperation_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TrawlOperation" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrawlOperation" nillable="true" type="tns:TrawlOperation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTrawlOperation_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfTrawlOperation_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfSDEvent_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDEvent" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDEvent" nillable="true" type="tns:SDEvent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDEvent_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDEvent_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfSDFile_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDFile" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDFile" nillable="true" type="tns:SDFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDFile_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDFile_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfNumberOfStationsPerTrip_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="NumberOfStationsPerTrip" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NumberOfStationsPerTrip" nillable="true" type="tns:NumberOfStationsPerTrip" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfNumberOfStationsPerTrip_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfNumberOfStationsPerTrip_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfSDLine_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDLine" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDLine" nillable="true" type="tns:SDLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDLine_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDLine_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfSDPoint_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SDPoint" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDPoint" nillable="true" type="tns:SDPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfSDPoint_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfSDPoint_PnZ2KOgA" />
+  <xs:complexType name="ArrayOfAnimalFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnimalFile" nillable="true" type="tns:AnimalFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnimalFile" nillable="true" type="tns:ArrayOfAnimalFile" />
+  <xs:complexType name="ArrayOfR_AnimalInfoReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="R_AnimalInfoReference" nillable="true" type="tns:R_AnimalInfoReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfR_AnimalInfoReference" nillable="true" type="tns:ArrayOfR_AnimalInfoReference" />
+  <xs:complexType name="TrackableCollectionOfEst_Method_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Est_Method" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Est_Method" nillable="true" type="tns:Est_Method" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfEst_Method_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfEst_Method_PnZ2KOgA" />
+  <xs:complexType name="ArrayOfTrip">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Trip" nillable="true" type="tns:Trip" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrip" nillable="true" type="tns:ArrayOfTrip" />
+  <xs:complexType name="ArrayOfSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sample" nillable="true" type="tns:Sample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSample" nillable="true" type="tns:ArrayOfSample" />
+  <xs:complexType name="ArrayOfSpeciesList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpeciesList" nillable="true" type="tns:SpeciesList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSpeciesList" nillable="true" type="tns:ArrayOfSpeciesList" />
+  <xs:complexType name="ArrayOfAnimal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Animal" nillable="true" type="tns:Animal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnimal" nillable="true" type="tns:ArrayOfAnimal" />
+  <xs:complexType name="ArrayOfAnimalInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AnimalInfo" nillable="true" type="tns:AnimalInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnimalInfo" nillable="true" type="tns:ArrayOfAnimalInfo" />
+  <xs:complexType name="L_GearQuality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_gearQualityId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gearQuality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="num" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_GearQuality" nillable="true" type="tns:L_GearQuality" />
+  <xs:complexType name="ICES_DFU_Relation_FF">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Area" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ICES_DFU_Relation_FFId" type="xs:int" />
+      <xs:element minOccurs="0" name="area_20_21" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="statisticalRectangle" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ICES_DFU_Relation_FF" nillable="true" type="tns:ICES_DFU_Relation_FF" />
+  <xs:complexType name="L_Bottomtype">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="L_bottomTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="bottomtype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="L_Bottomtype" nillable="true" type="tns:L_Bottomtype" />
+  <xs:complexType name="ArrayOfL_DFUArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_DFUArea" nillable="true" type="tns:L_DFUArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfL_DFUArea" nillable="true" type="tns:ArrayOfL_DFUArea" />
+  <xs:complexType name="MapPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LatitudeStart" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LatitudeStop" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LongitudeStart" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LongitudeStop" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TripName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MapPoint" nillable="true" type="tns:MapPoint" />
+  <xs:complexType name="ArrayOfL_StatisticalRectangle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_StatisticalRectangle" nillable="true" type="tns:L_StatisticalRectangle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfL_StatisticalRectangle" nillable="true" type="tns:ArrayOfL_StatisticalRectangle" />
+  <xs:complexType name="ArrayOfL_SelectionDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="L_SelectionDevice" nillable="true" type="tns:L_SelectionDevice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfL_SelectionDevice" nillable="true" type="tns:ArrayOfL_SelectionDevice" />
+  <xs:complexType name="ArrayOfMapPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MapPoint" nillable="true" type="tns:MapPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMapPoint" nillable="true" type="tns:ArrayOfMapPoint" />
+  <xs:complexType name="ReportingTreeNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ChildTreeNodes" nillable="true" type="tns:TrackableCollectionOfReportingTreeNode_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="IsChecked" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsExpanded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ParentTreeNode" nillable="true" type="tns:ReportingTreeNode" />
+      <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:TrackableCollectionOfReport_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="parentTreeNodeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="reportingTreeNodeId" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ReportingTreeNode" nillable="true" type="tns:ReportingTreeNode" />
+  <xs:complexType name="TrackableCollectionOfReportingTreeNode_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ReportingTreeNode" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportingTreeNode" nillable="true" type="tns:ReportingTreeNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfReportingTreeNode_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfReportingTreeNode_PnZ2KOgA" />
+  <xs:complexType name="TrackableCollectionOfReport_PnZ2KOgA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Report" Namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Report" nillable="true" type="tns:Report" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfReport_PnZ2KOgA" nillable="true" type="tns:TrackableCollectionOfReport_PnZ2KOgA" />
+  <xs:complexType name="Report">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="Files" nillable="true" type="q17:ArrayOfReportFile" />
+      <xs:element minOccurs="0" name="IsChecked" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsExpanded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReportingTreeNodes" nillable="true" type="tns:TrackableCollectionOfReportingTreeNode_PnZ2KOgA" />
+      <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isAvailableOffline" type="xs:boolean" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="outputFormat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="outputPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="outputPathRestriction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="permissionTasks" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reportId" type="xs:int" />
+      <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Report" nillable="true" type="tns:Report" />
+  <xs:complexType name="ArrayOfSDSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SDSample" nillable="true" type="tns:SDSample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSDSample" nillable="true" type="tns:ArrayOfSDSample" />
+</xs:schema>

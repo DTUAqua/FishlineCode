@@ -1,0 +1,300 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Menu.BluetoothHelperView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="475" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary>
+                    <Style x:Key="TabItemFocusVisual">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Margin="3,3,3,1" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="0" StrokeDashArray="1 2"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#FFB4B4B4"/>
+                   
+                    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,0" StartPoint="1,0">
+                        <GradientStop Color="#F3F3F3" Offset="0"/>
+                        <GradientStop Color="#EBEBEB" Offset="0.3"/>
+                        <GradientStop Color="#DDDDDD" Offset="0.6"/>
+                        <GradientStop Color="#CDCDCD" Offset="1"/>
+                    </LinearGradientBrush>
+
+                    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+                    <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+                    <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+
+                    <LinearGradientBrush x:Key="TabItemBackground" StartPoint="0.0,0.0" EndPoint="1.0,0.5">
+                        <GradientStop Color="#FFF1F1F1" Offset="1.0" />
+                        <GradientStop Color="#FFF1F1F1" Offset="1.0" />
+                    </LinearGradientBrush>
+
+                    <LinearGradientBrush x:Key="TabControlSelectedBackground" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+                        <GradientStop Color="#F9F9F9" Offset="0.0" />
+                        <GradientStop Color="#F9F9F9" Offset="1.0" />
+                    </LinearGradientBrush>
+
+
+                    <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+                        <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Padding" Value="12,15"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+                        <Setter Property="Background" Value="{StaticResource TabItemBackground}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Grid SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
+
+                                        <Border x:Name="Bd" BorderBrush="LightGray" SnapsToDevicePixels="True" TextBlock.Foreground="Black" TextBlock.FontSize="22" BorderThickness="0,0,1,1" Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter x:Name="Content" ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Opacity" Value="1.0" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Panel.ZIndex" Value="1"/>
+                                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabControlSelectedBackground}"/>
+                                            <Setter Property="TextBlock.Foreground" TargetName="Bd"  Value="Black"/>
+                                            <Setter Property="TextBlock.FontWeight" TargetName="Bd"  Value="Medium"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="false"/>
+                                                <Condition Property="IsMouseOver" Value="true"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Opacity" Value="0.8" />
+                                            <Setter Property="TextBlock.Foreground" TargetName="Bd"  Value="Black"/>
+                                        </MultiTrigger>
+
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Margin" TargetName="Content" Value="0,0"/>
+                                            <Setter Property="Background" Value="#F9F9F9"/>
+                                            <Setter Property="BorderThickness" TargetName="Bd" Value="0,0,0,1"/>
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="LightGray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource TabItemDisabledBackground}"/>
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="{StaticResource TabItemBackground}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="TabStripPlacement" Value="Left"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabControl}">
+                                    <Grid ClipToBounds="True" SnapsToDevicePixels="True" KeyboardNavigation.TabNavigation="Local">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition x:Name="ColumnDefinition0" Width="275"/>
+                                            <ColumnDefinition x:Name="ColumnDefinition1" Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition x:Name="RowDefinition0" Height="*"/>
+                                            <RowDefinition x:Name="RowDefinition1" Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <DockPanel x:Name="HeaderDockPanel" Grid.Column="0" Grid.Row="0"  Margin="0,0,0,0">
+                                            <DockPanel x:Name="tabHeaderDockPanelTop" DockPanel.Dock="Top">
+                                                <Border BorderThickness="0" CornerRadius="0,0,0,0" Height="0" Background="{TemplateBinding Background}"  />
+                                            </DockPanel>
+
+                                            <TabPanel x:Name="HeaderPanel" DockPanel.Dock="Top" IsItemsHost="true" SnapsToDevicePixels="True"  KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" />
+
+                                            <!-- Squared panel below tab buttons -->
+                                            <Border x:Name="tabHeaderDockPanelButtom" SnapsToDevicePixels="True"  BorderBrush="LightGray" BorderThickness="0,0,1,0" Background="{StaticResource TabItemBackground}" >
+
+                                            </Border>
+
+                                        </DockPanel>
+                                        <Border x:Name="ContentPanel" Grid.Row="0" Grid.Column="1" SnapsToDevicePixels="True" BorderBrush="LightGray" BorderThickness="0,0,0,0"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"  KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" Panel.ZIndex="2">
+                                            <DockPanel Background="#F9F9F9" Margin="0,0,0,0" TextBlock.Foreground="Black">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                                    <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="25,15,25,15" SnapsToDevicePixels="True" Panel.ZIndex="0" />
+                                                </ScrollViewer>
+                                            </DockPanel>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="sTextblockHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="Margin" Value="0,10,0,0"/>
+ 
+                    </Style>
+
+                    <Style x:Key="sTextInDockpanel" TargetType="{x:Type StackPanel}">
+                        <Style.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="0,0,0,5"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="FontSize" Value="20"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" >
+        <DockPanel>
+
+            <Border  DockPanel.Dock="Bottom" Grid.Row="2" Background="#FFF1F1F1" SnapsToDevicePixels="True" BorderThickness="0,1,0,0" BorderBrush="LightGray">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,10,10" HorizontalAlignment="Right" DockPanel.Dock="Right" >
+
+                        <Button Command="{Binding CloseCommand}" Width="150" Height="55" Style="{StaticResource ResourceKey=BlueButtonStyle}"
+                            IsDefault="False" >
+                            <DockPanel>
+                                <TextBlock Text="Luk" FontSize="24" LineHeight="28" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                            </DockPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding Error}" Foreground="Red" FontSize="18" VerticalAlignment="Center" Margin="10,10" TextAlignment="Center"
+                               Visibility="{Binding Path=HasErrors, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"/>
+                </DockPanel>
+
+            </Border>
+
+            <TabControl BorderThickness="0" Style="{DynamicResource TabControlStyle}">
+                <TabItem Header="Slå bluetooth til" BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Slå bluetooth til på skydelæret" TextWrapping="Wrap" Style="{StaticResource sTextblockHeader}"/>
+
+                        <TextBlock Grid.Row="1" Margin="0,20,0,0" Text="Før der kan forbindes til et skydelære, skal bluetooth være slået til på det. Følg skridtene nedenfor for at tænde for bluetooth på et skydelære." TextWrapping="Wrap" Foreground="Black" FontSize="14" />
+
+                        <StackPanel Grid.Row="2" Margin="0,25,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="1) Klik på 'MODE'-knappen 4 gange." FontWeight="Normal" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="2) Klik på 'SET'-knappen 1 gang." FontWeight="Normal" Margin="0,15,0,0" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="3) Klik på 'MODE'-knappen." FontWeight="Normal" Margin="0,15,0,0" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <TextBlock Foreground="Black" FontSize="14" Text="OBS! Har skydelæret været forbundet til en anden computer/tablet, skal bluetooth først nulstilles, før der kan forbindes til det. Klik på 'Nulstil bluetooth' i menuen til venstre, for at se hvordan dette gøres." 
+                                   TextWrapping="Wrap" FontWeight="Normal" Margin="0,25,0,0"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Vis bluetooth-adresse" BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Vis skydelærets bluetooth-adresse" TextWrapping="Wrap" Style="{StaticResource sTextblockHeader}"/>
+
+                        <TextBlock Grid.Row="1" Margin="0,20,0,0" Text="Når programmet finder en ny bluetooth enhed, vises enhedens bluetooth-adresse til højre i listen. For at se bluetooth-adressen for et specifikt skydelære, følg nedenstående punkter." TextWrapping="Wrap" Foreground="Black" FontSize="14" />
+
+                        <StackPanel Grid.Row="2" Margin="0,25,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="1) Klik på 'MODE'-knappen 4 gange." FontWeight="Normal" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="2) Klik på 'SET'-knappen 3 gange." FontWeight="Normal" TextWrapping="Wrap" Margin="0,15,0,0"></TextBlock>
+                            <TextBlock Text="3) Klik på 'MODE'-knappen og aflæs adressen i displayet." FontWeight="Normal" Margin="0,15,0,0" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Nulstil bluetooth" BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Nulstill bluetooth på skydelæret" TextWrapping="Wrap" Style="{StaticResource sTextblockHeader}"/>
+
+                        <TextBlock Grid.Row="1" Margin="0,20,0,0" Text="Før skydelæret kan forbinde til en ny tablet/computer, skal bluetooth på skydelæret nulstilles. Følg skridtene nedenfor for at nulstille bluetooth på en enhed." TextWrapping="Wrap" Foreground="Black" FontSize="14" />
+                        
+                        <StackPanel Grid.Row="2" Margin="0,25,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="1) Klik på 'MODE'-knappen 4 gange." TextWrapping="Wrap" FontWeight="Normal"></TextBlock>
+                            <TextBlock Text="2) Klik på 'SET'-knappen 2 gange." TextWrapping="Wrap" FontWeight="Normal" Margin="0,15,0,0"></TextBlock>
+                            <TextBlock Text="3) Klik på 'MODE'-knappen." FontWeight="Normal" TextWrapping="Wrap" Margin="0,15,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Nulstil skydelære" Visibility="Collapsed" BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Kalibring af skydelære" TextWrapping="Wrap" Style="{StaticResource sTextblockHeader}"/>
+
+                        <StackPanel Grid.Row="1" Margin="0,15,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="Step 1:" FontWeight="Medium"></TextBlock>
+                            <TextBlock Text="Ryk skydelæret til bunden (0.0 cm)."/>
+                            <TextBlock Text="Step 2:" FontWeight="Medium" Margin="0,10,0,0"></TextBlock>
+                            <TextBlock Text="klik på 'MODE'-knappen 3 gange."/>
+                            <TextBlock Text="Step 3:" FontWeight="Medium" Margin="0,10,0,0"/>
+                            <TextBlock Text="Klik på 'SET'-knappen."/>
+                            <TextBlock Text="Step 4:" FontWeight="Medium" Margin="0,10,0,0"/>
+                            <TextBlock Text="Klik på 'bluetooth / DATA'-knappen."/>
+                        </StackPanel>
+                </Grid>
+                </TabItem>
+                
+
+                <TabItem Header="Genstart skydelære"  BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Genstart skydelæret" Style="{StaticResource sTextblockHeader}"/>
+                        <StackPanel Grid.Row="1" Margin="0,25,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="1) Fjern batteriet fra enheden i toppen." TextWrapping="Wrap" FontWeight="Normal"></TextBlock>
+                            <TextBlock Text="2) Vent 5 sekunder." TextWrapping="Wrap" FontWeight="Normal" Margin="0,15,0,0"></TextBlock>
+                            <TextBlock Text="3) Indsæt batteriet igen." FontWeight="Normal" TextWrapping="Wrap" Margin="0,15,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Visibility="Collapsed" Header="Error 1 - Ikke fundet"  BorderThickness="0" Style="{DynamicResource TabItemStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Skydelæret blev ikke fundet" Style="{StaticResource sTextblockHeader}"/>
+                        <StackPanel Grid.Row="1" Margin="0,5,0,0" Style="{StaticResource sTextInDockpanel}">
+                            <TextBlock Text="Step 1:"></TextBlock>
+                            <TextBlock Text="Genstart bluetooth på skydelæren"/>
+                            <TextBlock Text="Step 2:" Margin="0,10,0,0"></TextBlock>
+                            <TextBlock Text="Genstart bluetooth på enheden"/>
+                            <TextBlock Text="Step 3:" Margin="0,10,0,0"/>
+                            <TextBlock Text="Prøv derefter igen"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</UserControl>

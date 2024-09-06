@@ -1,0 +1,127 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ent="clr-namespace:Babelfisk.Entities.Sprattus;assembly=Babelfisk.Entities"
+                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    >
+    
+    <SolidColorBrush x:Key="CellReadOnlyColor" Color="#99F0F0F0"/>
+
+    <Style x:Key="GridCellStyle" TargetType="{x:Type DataGridCell}" >
+        <!--<EventSetter Event="PreviewKeyDown" Handler="GridCellKeyDown" />-->
+    </Style>
+
+    <Style x:Key="GridCellReadOnlyStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource GridCellStyle}">
+        <Setter Property="Background" Value="{StaticResource CellReadOnlyColor}" />
+        
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=ChangeTracker.State}">
+                <DataTrigger.Value>
+                    <ent:ObjectState>Added</ent:ObjectState>
+                </DataTrigger.Value>
+                <Setter Property="Background" Value="Transparent" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="4"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="SizeWE"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--
+    <LinearGradientBrush x:Key="GridHeaderStyleOver" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0.0"/>
+        <GradientStop Color="#FFEEEEEE" Offset="0.8"/>
+        <GradientStop Color="#FFF0F0F0" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridHeaderStyle" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0.0"/>
+        <GradientStop Color="#FFE4E4E4" Offset="0.8"/>
+        <GradientStop Color="#FFD6D6D6" Offset="1.0"/>
+    </LinearGradientBrush>
+    -->
+
+    <SolidColorBrush x:Key="GeneralBackground" Color="#FFEEEEEE" />
+
+    <SolidColorBrush x:Key="GridBorderBrush" Color="#FF6A6A6A" />
+
+    <LinearGradientBrush x:Key="GridHeaderStyle" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF494949" Offset="0.0"/>
+        <GradientStop Color="#FF363636" Offset="0.7"/>
+        <GradientStop Color="#FF0C0C0C" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GridHeaderStyleOver" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF616161" Offset="0.0"/>
+        <GradientStop Color="#FF4F4F4F" Offset="0.7"/>
+        <GradientStop Color="#FF424242" Offset="1.0"/>
+    </LinearGradientBrush>
+    
+
+    <Style x:Key="defaultColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="{StaticResource GridHeaderStyle}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Microsoft_Windows_Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SnapsToDevicePixels="True" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
+                            <Grid>
+                                <ContentPresenter Grid.Column="0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                                <Border x:Name="SortArrowBorder" SnapsToDevicePixels="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,1,0" 
+                                                        Visibility="Collapsed" Opacity="0.9" Background="Transparent" BorderBrush="Transparent" BorderThickness="1,1,1,1">
+                                    <Border.ToolTip>
+                                        <TextBlock x:Name="ttArrowBorder" />
+                                    </Border.ToolTip>
+                                    <Path x:Name="SortArrow" Grid.Column="1"  Width="7" Height="6" Margin="1,1,1,1" Stretch="Fill" Fill="#FFE0DDDD" RenderTransformOrigin="0.5,0.4" Data="M0,0 L1,0 0.5,1 z" />
+                                </Border>
+                            </Grid>
+
+                        </Microsoft_Windows_Themes:DataGridHeaderBorder>
+                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                        <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource GridHeaderStyleOver}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter TargetName="SortArrowBorder" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="SortArrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="ttArrowBorder" Property="Text" Value="(Ascending) - Kolonnen er sorteret med mindste værdi først og højeste til sidst." />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter TargetName="SortArrowBorder" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ttArrowBorder" Property="Text" Value="(Descending) - Kolonnen er sorteret med højeste værdi først og laveste til sidst." />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

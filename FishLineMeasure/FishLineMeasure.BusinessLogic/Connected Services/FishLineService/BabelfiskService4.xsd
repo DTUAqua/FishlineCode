@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Service" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" />
+  <xs:import schemaLocation="http://localhost:9011/BabelfiskService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Babelfisk.Warehouse" />
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Babelfisk.Service" minOccurs="0" name="composite" nillable="true" type="q1:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContractResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Babelfisk.Service" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q2:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewYears">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewYearsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetTreeViewYearsResult" nillable="true" type="q3:ArrayOfL_Year" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTripCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intCruiseId" type="xs:int" />
+        <xs:element minOccurs="0" name="strTripType" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTripCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTreeViewTripCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTripCounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CruiseIds" nillable="true" type="q4:ArrayOfint" />
+        <xs:element minOccurs="0" name="strTripType" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTripCountsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetTreeViewTripCountsResult" nillable="true" type="q5:ArrayOfKeyValueOfintint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewCruises">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intYear" type="xs:int" />
+        <xs:element minOccurs="0" name="strTripType" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewCruisesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetTreeViewCruisesResult" nillable="true" type="q6:ArrayOfCruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTrips">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intCruiseId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewTripsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetTreeViewTripsResult" nillable="true" type="q7:ArrayOfTrip" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewSamples">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTreeViewSamplesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetTreeViewSamplesResult" nillable="true" type="q8:ArrayOfSample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSpeciesLists">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSpeciesListsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSpeciesListsResult" nillable="true" type="q9:ArrayOfSpeciesList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimals">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetAnimalsResult" nillable="true" type="q10:ArrayOfAnimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetAgesResult" nillable="true" type="q11:ArrayOfAge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetAnimalFilesResult" nillable="true" type="q12:ArrayOfAnimalFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalInfos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalInfosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetAnimalInfosResult" nillable="true" type="q13:ArrayOfAnimalInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalInfoReferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnimalInfoReferencesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetAnimalInfoReferencesResult" nillable="true" type="q14:ArrayOfR_AnimalInfoReference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataForRaising">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstCruiseIds" nillable="true" type="q15:ArrayOfint" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstTripIds" nillable="true" type="q16:ArrayOfint" />
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstSampleIds" nillable="true" type="q17:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataForRaisingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataForRaisingResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruise">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="year" type="xs:int" />
+        <xs:element minOccurs="0" name="cruiseName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetCruiseResult" nillable="true" type="q18:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStationsForDataImport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cruiseId" type="xs:int" />
+        <xs:element minOccurs="0" name="trip" nillable="true" type="xs:string" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="stations" nillable="true" type="q19:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStationsForDataImportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStationsForDataImportResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="LogonUserResult" nillable="true" type="q20:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strUserName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="GetUserResult" nillable="true" type="q21:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="GetUsersResult" nillable="true" type="q22:ArrayOfUsers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q23:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRoles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRolesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="GetRolesResult" nillable="true" type="q24:ArrayOfRole" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTasks">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="GetTasksResult" nillable="true" type="q25:ArrayOfFishLineTasks" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CanDeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="user" nillable="true" type="q26:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CanDeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CanDeleteUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="user" nillable="true" type="q27:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="UpdateUserResult" type="q28:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="r" nillable="true" type="q29:Role" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="UpdateRoleResult" type="q30:DatabaseOperationResult" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.SprattusSecurity" minOccurs="0" name="r" nillable="true" type="q31:Role" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLookups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strEntityType" nillable="true" type="xs:string" />
+        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="includes" nillable="true" type="q32:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLookupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLookupsResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveLookups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstLookups" nillable="true" type="q33:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveLookupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveLookupsResult" type="q34:DatabaseOperationResult" />
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstLookups" nillable="true" type="q35:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDependencies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objLookup" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDependenciesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetDependenciesResult" nillable="true" type="q36:ArrayOfRecord" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRectangleAreas">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRectangleAreasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetRectangleAreasResult" nillable="true" type="q37:ArrayOfL_DFUArea" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLookupVersions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLookupVersionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetLookupVersionsResult" nillable="true" type="q38:DataVersioning" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetYears">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetYearsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetYearsResult" nillable="true" type="q39:ArrayOfL_Year" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseNames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCruiseNamesResult" nillable="true" type="q40:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAndGetCruise">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cruiseYear" type="xs:int" />
+        <xs:element minOccurs="0" name="cruiseName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAndGetCruiseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="CreateAndGetCruiseResult" nillable="true" type="q41:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intCruiseId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetCruiseFromIdResult" nillable="true" type="q42:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTripFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+        <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrIncludes" nillable="true" type="q43:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTripFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetTripFromIdResult" nillable="true" type="q44:Trip" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestPersonFromPlatformId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intPlatformId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestPersonFromPlatformIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetLatestPersonFromPlatformIdResult" nillable="true" type="q45:Person" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSampleFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSampleFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSampleFromIdResult" nillable="true" type="q46:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestSample">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestSampleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetLatestSampleResult" nillable="true" type="q47:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSamplesFromTripId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSamplesFromTripIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSamplesFromTripIdResult" nillable="true" type="q48:ArrayOfSample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSpeciesListFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSpeciesListId" type="xs:int" />
+        <xs:element xmlns:q49="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="arrIncludes" nillable="true" type="q49:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSpeciesListFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSpeciesListFromIdResult" nillable="true" type="q50:SpeciesList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubSampleFromId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSubSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubSampleFromIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSubSampleFromIdResult" nillable="true" type="q51:SubSample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCruise">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="c" nillable="true" type="q52:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCruiseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveCruiseResult" type="q53:DatabaseOperationResult" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="c" nillable="true" type="q54:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveTrip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="t" nillable="true" type="q55:Trip" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveTripResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveTripResult" type="q56:DatabaseOperationResult" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="t" nillable="true" type="q57:Trip" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSample">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="s" nillable="true" type="q58:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSampleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveSampleResult" type="q59:DatabaseOperationResult" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="s" nillable="true" type="q60:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveHVN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="t" nillable="true" type="q61:Trip" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="s" nillable="true" type="q62:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveHVNResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveHVNResult" type="q63:DatabaseOperationResult" />
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="t" nillable="true" type="q64:Trip" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="s" nillable="true" type="q65:Sample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatisticalRectangleFromArea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strAreaCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatisticalRectangleFromAreaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetStatisticalRectangleFromAreaResult" nillable="true" type="q66:ArrayOfL_StatisticalRectangle" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionDevicesFromGearType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strGearType" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionDevicesFromGearTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSelectionDevicesFromGearTypeResult" nillable="true" type="q67:ArrayOfL_SelectionDevice" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromCruiseId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intCruiseId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromCruiseIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetMapPositionsFromCruiseIdResult" nillable="true" type="q68:ArrayOfMapPoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromTripId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromTripIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetMapPositionsFromTripIdResult" nillable="true" type="q69:ArrayOfMapPoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromSampleId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMapPositionsFromSampleIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetMapPositionsFromSampleIdResult" nillable="true" type="q70:ArrayOfMapPoint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSpeciesListItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="speciesListItems" nillable="true" type="q71:ArrayOfSpeciesList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSpeciesListItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveSpeciesListItemsResult" type="q72:DatabaseOperationResult" />
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="speciesListItems" nillable="true" type="q73:ArrayOfSpeciesList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveLavSFItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="sl" nillable="true" type="q74:SpeciesList" />
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="lstItems" nillable="true" type="q75:ArrayOfLavSFTransferItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveLavSFItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveLavSFItemsResult" type="q76:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCruiseToDataWarehouse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="arrCruise" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="arrMessages" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="blnDeleteCruiseBeforeInsert" type="xs:boolean" />
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/Babelfisk.Warehouse" minOccurs="0" name="lstMessagesNew" nillable="true" type="q77:ArrayOfDWMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCruiseToDataWarehouseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveCruiseToDataWarehouseResult" type="q78:DatabaseOperationResult" />
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/Babelfisk.Warehouse" minOccurs="0" name="lstMessagesNew" nillable="true" type="q79:ArrayOfDWMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCruise">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intCruiseId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCruiseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="DeleteCruiseResult" type="q80:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTrip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intTripId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTripResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="DeleteTripResult" type="q81:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSample">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intSampleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteSampleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="DeleteSampleResult" type="q82:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RunFileSynchronizer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RunFileSynchronizerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="RunFileSynchronizerResult" type="q83:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSelectionData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstYears" nillable="true" type="q84:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSelectionDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOfflineSelectionDataResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSelectionDataWithSamples">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q85="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstYears" nillable="true" type="q85:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSelectionDataWithSamplesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOfflineSelectionDataWithSamplesResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineCruiseData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstCruiseIds" nillable="true" type="q86:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineCruiseDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOfflineCruiseDataResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineTripData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstTripIds" nillable="true" type="q87:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineTripDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOfflineTripDataResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsOnline">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsOnlineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsOnlineResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeLookups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q88="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lookups" nillable="true" type="q88:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeLookupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SynchronizeLookupsResult" type="q89:SyncDatabaseOperationResult" />
+        <xs:element xmlns:q90="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lookups" nillable="true" type="q90:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeCruise">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="c" nillable="true" type="q91:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeCruiseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SynchronizeCruiseResult" type="q92:SyncDatabaseOperationResult" />
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="c" nillable="true" type="q93:Cruise" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeTrip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tbytes" nillable="true" type="xs:base64Binary" />
+        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="syncRef" type="q94:SyncDatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeTripResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SynchronizeTripResult" nillable="true" type="xs:base64Binary" />
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="syncRef" type="q95:SyncDatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportTreeNodes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportTreeNodesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReportTreeNodesResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReportingTreeNode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="node" nillable="true" type="q96:ReportingTreeNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReportingTreeNodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveReportingTreeNodeResult" type="q97:DatabaseOperationResult" />
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="node" nillable="true" type="q98:ReportingTreeNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="node" nillable="true" type="q99:Report" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveReportResult" type="q100:DatabaseOperationResult" />
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="node" nillable="true" type="q101:Report" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteSQLStatement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strQuery" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteSQLStatementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="ExecuteSQLStatementResult" nillable="true" type="q102:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteRScript">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="script" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reportResultType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="intReportId" type="xs:int" />
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="lstSupportFiles" nillable="true" type="q103:ArrayOfReportFile" />
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="lstAdditionalOutput" nillable="true" type="q104:ArrayOfReportFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteRScriptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="ExecuteRScriptResult" nillable="true" type="q105:ServiceResult" />
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="lstAdditionalOutput" nillable="true" type="q106:ArrayOfReportFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intReportId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReportDetailsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="intReportId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetReportFilesResult" nillable="true" type="q107:ArrayOfReportFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSDEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="evt" nillable="true" type="q108:SDEvent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSDEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveSDEventResult" type="q109:DatabaseOperationResult" />
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="evt" nillable="true" type="q110:SDEvent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDEventsCompressed">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDEventsCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSDEventsCompressedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseYears">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCruiseYearsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q111="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCruiseYearsResult" nillable="true" type="q111:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionAnimalsCompressed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="speciesCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q112="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="years" nillable="true" type="q112:ArrayOfint" />
+        <xs:element xmlns:q113="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="areas" nillable="true" type="q113:ArrayOfstring" />
+        <xs:element minOccurs="0" name="includeAnimalJpgFiles" type="xs:boolean" />
+        <xs:element xmlns:q114="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="relativeFolderPaths" nillable="true" type="q114:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionAnimalsCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSelectionAnimalsCompressedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionAnimalsByIdCompressed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q115="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="animalIds" nillable="true" type="q115:ArrayOfint" />
+        <xs:element minOccurs="0" name="includeAnimalJpgFiles" type="xs:boolean" />
+        <xs:element xmlns:q116="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="relativeFolderPaths" nillable="true" type="q116:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSelectionAnimalsByIdCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSelectionAnimalsByIdCompressedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDSamplesCompressed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eventId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDSamplesCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSDSamplesCompressedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDSamplesWithIncludesCompressed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eventId" type="xs:int" />
+        <xs:element xmlns:q117="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="include" nillable="true" type="q117:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDSamplesWithIncludesCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSDSamplesWithIncludesCompressedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveOrCopySamplesToEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q118="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="sampleIds" nillable="true" type="q118:ArrayOfint" />
+        <xs:element minOccurs="0" name="toEventId" type="xs:int" />
+        <xs:element minOccurs="0" name="copy" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveOrCopySamplesToEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q119="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="MoveOrCopySamplesToEventResult" type="q119:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileInformationFromAnimalIds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q120="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="animalIds" nillable="true" type="q120:ArrayOfstring" />
+        <xs:element xmlns:q121="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="relativeFolderPaths" nillable="true" type="q121:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileInformationFromAnimalIdsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetFileInformationFromAnimalIdsResult" nillable="true" type="q122:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileInformationFromFileNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q123="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fileNames" nillable="true" type="q123:ArrayOfstring" />
+        <xs:element xmlns:q124="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="relativeFolderPaths" nillable="true" type="q124:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileInformationFromFileNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetFileInformationFromFileNamesResult" nillable="true" type="q125:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileBytes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="relativeImagePath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileBytesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetFileBytesResult" nillable="true" type="q126:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFilesPaths">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q127="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="relativeFolderPaths" nillable="true" type="q127:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFilesPathsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q128="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetAllFilesPathsResult" nillable="true" type="q128:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFolderContentCompressed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folderRelativePath" nillable="true" type="xs:string" />
+        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="type" type="q129:FileSystemType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFolderContentCompressedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q130="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetFolderContentCompressedResult" nillable="true" type="q130:ServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSDSamples">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="samples" nillable="true" type="q131:ArrayOfSDSample" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSDSamplesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="SaveSDSamplesResult" type="q132:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyAgesToFishLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="animalIdsAndAges" nillable="true" type="q133:ArrayOfSDAnimalAgeItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyAgesToFishLineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="CopyAgesToFishLineResult" type="q134:DatabaseOperationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDAnnotation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sdAnnotationId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDAnnotationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/Babelfisk.Entities.Sprattus" minOccurs="0" name="GetSDAnnotationResult" nillable="true" type="q135:SDAnnotation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDReaderStatistics">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSDReaderStatisticsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/Babelfisk.Entities" minOccurs="0" name="GetSDReaderStatisticsResult" nillable="true" type="q136:ArrayOfR_SDReaderStatistics" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

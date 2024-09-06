@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Data version="1">
+  <Header>
+    <Year>2019</Year>
+    <Cruise>SØS</Cruise>
+    <Trip>Minidisc</Trip>
+    <Station>1</Station>
+  </Header>
+
+  <LookupConfiguration>
+    <LookupType type="Sex">
+      <Lookup code="M"></Lookup>
+      <Lookup code="F"></Lookup>
+    </LookupType>
+    <LookupType type="CatchCategory">
+      <Lookup code="DIS"></Lookup>
+      <Lookup code="LAN"></Lookup>
+    </LookupType>
+  </LookupConfiguration>
+
+  <Measurements>
+    <Measurement creationTime="03-06-2016 15:10:12.342">
+      <Lookups>
+        <Lookup type="Sex">M</Lookup>
+        <Lookup type="CatchCategory">DIS</Lookup>
+      </Lookups>
+      <Length>12.34</Length>
+    </Measurement>
+    <Measurement creationTime="03-06-2016 15:10:12.342">
+      <Lookups>
+        <Lookup type="Sex">F</Lookup>
+        <Lookup type="CatchCategory">DIS</Lookup>
+      </Lookups>
+      <Length>12.34</Length>
+    </Measurement>
+  </Measurements>
+</Data>

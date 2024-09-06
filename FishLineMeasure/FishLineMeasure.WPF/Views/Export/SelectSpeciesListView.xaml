@@ -1,0 +1,362 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Export.SelectSpeciesListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Export"
+             xmlns:vmExport="clr-namespace:FishLineMeasure.ViewModels.Export;assembly=FishLineMeasure.ViewModels"
+             xmlns:vm="clr-namespace:FishLineMeasure.ViewModels;assembly=FishLineMeasure.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" x:Name="uc"
+             d:DesignHeight="400" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary>
+
+                    <Style x:Key="sTextHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="MinWidth" Value="160" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,0,10,0" />
+                        <Setter Property="FontSize" Value="30" />
+                    </Style>
+
+                    <Style x:Key="sTextValue" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ValidateElementRedBorder}">
+                        <Setter Property="Padding" Value="4,3" />
+                        <Setter Property="Margin" Value="25,0,0,0" />
+                        <Setter Property="FontSize" Value="40" />
+                    </Style>
+
+                    <Style x:Key="sPasswordBoxValue" TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource ValidateElementRedBorder}">
+                        <Setter Property="Padding" Value="4,3" />
+                        <Setter Property="Margin" Value="25,0,0,0" />
+                        <Setter Property="FontSize" Value="40" />
+                    </Style>
+
+                    <Style x:Key="sGridHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="FontWeight" Value="Medium" />
+                    </Style>
+
+                    <Style x:Key="sGridHeaderBorder" TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="WhiteSmoke" />
+                        <Setter Property="BorderBrush" Value="LightGray" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="Padding" Value="6,2,6,4" />
+                    </Style>
+
+                    <Style x:Key="sGridCell" TargetType="{x:Type TextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                    </Style>
+
+                    <Style x:Key="sGridCellBorder" TargetType="{x:Type Border}">
+                        
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="BorderBrush" Value="LightGray" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="Padding" Value="6,4,6,6" />
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource cObjectEqualsObject}" UpdateSourceTrigger="PropertyChanged"> 
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="." />
+                                            <Binding Path="DataContext.SelectedSpeciesList" ElementName="uc" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+
+                                <Setter Property="Background" Value="#FFF5EBD8" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="sGridCellBorderHeader" TargetType="{x:Type Border}" BasedOn="{StaticResource sGridCellBorder}">
+                        <Setter Property="Background" Value="#FFF3F6FF" />
+                    </Style>
+
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Border Background="{StaticResource ResourceKey=brushBackColor}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="White" BorderBrush="LightGray" BorderThickness="0,1,0,1" SnapsToDevicePixels="True" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical">
+                        <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" Padding="0,0" Background="Whitesmoke">
+                            <UniformGrid Rows="1" Columns="3" >
+                                <Border DockPanel.Dock="Left">
+                                    <DockPanel>
+                                        <Border Padding="5" BorderThickness="0,0,1,0" BorderBrush="LightGray" SnapsToDevicePixels="True">
+                                            <TextBlock Margin="10,0"  FontSize="16" DockPanel.Dock="Left" Text="Togt:" />
+                                        </Border>
+                                        <Border Padding="5" Background="White">
+                                            <TextBlock  FontSize="16" Margin="10,0" DockPanel.Dock="Left" FontWeight="DemiBold" Text="{Binding Path=Cruise}" />
+                                        </Border>
+
+                                    </DockPanel>
+                                </Border>
+
+                                <Border DockPanel.Dock="Left">
+                                    <DockPanel>
+                                        <Border Padding="5" BorderThickness="1,0,1,0" BorderBrush="LightGray" SnapsToDevicePixels="True">
+                                            <TextBlock Margin="10,0"  FontSize="16" DockPanel.Dock="Left" Text="Tur:" />
+                                        </Border>
+                                        <Border Padding="5" Background="White">
+                                            <TextBlock  FontSize="16" Margin="10,0" DockPanel.Dock="Left" FontWeight="DemiBold" Text="{Binding Path=Trip}" />
+                                        </Border>
+
+                                    </DockPanel>
+                                </Border>
+
+                                <Border DockPanel.Dock="Left">
+                                    <DockPanel>
+                                        <Border Padding="5" BorderThickness="1,0,1,0" BorderBrush="LightGray" SnapsToDevicePixels="True">
+                                            <TextBlock Margin="10,0"  FontSize="16" DockPanel.Dock="Left" Text="Station:" />
+                                        </Border>
+                                        <Border Padding="5" Background="White">
+                                            <TextBlock  FontSize="16" Margin="10,0" DockPanel.Dock="Left" FontWeight="DemiBold" Text="{Binding Path=Station}" />
+                                        </Border>
+
+                                    </DockPanel>
+                                </Border>
+                            </UniformGrid>
+                        </Border>
+                        <Border BorderBrush="LightGray"
+                            BorderThickness="0,0,0,1" SnapsToDevicePixels="True" Padding="15,10" Background="Whitesmoke">
+                            <TextBlock FontSize="18" Text="Der eksisterer mere end én artslisterække i Fiskeline for længdefordelingen nedenfor." TextWrapping="Wrap" />
+                        </Border>
+                    </StackPanel>
+
+                 
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Select" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Species" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="LandingCategory" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="SizeSortingEU" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="SizeSortingDFU" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Sex" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Ovigorous" Width="Auto" />
+                            <ColumnDefinition  />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock  Text="-" Style="{StaticResource sGridHeader}" />
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock  Text="Art" Style="{StaticResource sGridHeader}" />
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource sGridHeaderBorder}" >
+                            <TextBlock Text="LaningsKat." Style="{StaticResource sGridHeader}" />
+                        </Border>
+                        <Border Grid.Column="3" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock Text="Sortering" Style="{StaticResource sGridHeader}" />
+                        </Border>
+                        <Border Grid.Column="4" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock Text="Opdeling" Style="{StaticResource sGridHeader}" />
+                        </Border>
+                        <Border Grid.Column="5" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock Text="Køn" Style="{StaticResource sGridHeader}" ></TextBlock>
+                        </Border>
+                        <Border Grid.Column="6" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock Text="Rogn" Style="{StaticResource sGridHeader}" ></TextBlock>
+                        </Border>
+                        <Border Grid.Column="7" Style="{StaticResource sGridHeaderBorder}">
+                            <TextBlock Text="Anvendelse" Style="{StaticResource sGridHeader}" ></TextBlock>
+                        </Border>
+
+                    </Grid>
+                    
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Select" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Species" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="LandingCategory" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="SizeSortingEU" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="SizeSortingDFU" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Sex" Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Ovigorous" Width="Auto" />
+                            <ColumnDefinition  />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Style="{StaticResource sGridCellBorderHeader}">
+                            
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock  Text="{Binding Path=SpeciesCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource sGridCellBorderHeader}" >
+                            <TextBlock Text="{Binding Path=LandingCategoryCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                        <Border Grid.Column="3" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock Text="{Binding Path=SortingEUCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                        <Border Grid.Column="4" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock Text="{Binding Path=SortingDFUCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                        <Border Grid.Column="5" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock Text="{Binding Path=SexCode}" Style="{StaticResource sGridCell}" ></TextBlock>
+                        </Border>
+                        <Border Grid.Column="6" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock Text="{Binding Path=OvirogousCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                        <Border Grid.Column="7" Style="{StaticResource sGridCellBorderHeader}">
+                            <TextBlock Text="{Binding Path=ApplicationCode}" Style="{StaticResource sGridCell}" />
+                        </Border>
+                    </Grid>
+
+                    <Border Grid.Row="3" BorderBrush="LightGray" 
+                            BorderThickness="0,0,0,1" SnapsToDevicePixels="True" Padding="15,10" Background="Whitesmoke">
+                        <TextBlock FontSize="18" Text="Vælg venligst en artslisterække fra Fiskeline nedenfor som længderne skal tilføjes til, eller undlad at eksportere den givne længdefordelingen (spring over)." TextWrapping="Wrap" />
+                    </Border>
+
+
+                    <Border Grid.Row="4" >
+                        <ScrollViewer>
+                            <ScrollViewer.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                            </ScrollViewer.Resources>
+                            <ItemsControl ItemsSource="{Binding Path=SpeciesList}"  
+                                 ScrollViewer.CanContentScroll="True" 
+                                 ScrollViewer.VerticalScrollBarVisibility="Visible"  >
+                              
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+
+                                        <ItemsPresenter />
+
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid PreviewMouseUp="Grid_PreviewMouseUp" Tag="{Binding}" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition SharedSizeGroup="Select" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="Species" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="LandingCategory" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="SizeSortingEU" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="SizeSortingDFU" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="Sex" Width="Auto" />
+                                                <ColumnDefinition SharedSizeGroup="Ovigorous" Width="Auto" />
+                                                <ColumnDefinition  />
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <Border Grid.Column="0" Style="{StaticResource sGridCellBorder}">
+                                                <RadioButton VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,-4" >
+                                                    <RadioButton.IsChecked>
+                                                        <MultiBinding Converter="{StaticResource cObjectEqualsObject}" UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                                            <MultiBinding.Bindings>
+                                                                <Binding Path="." />
+                                                                <Binding Path="DataContext.SelectedSpeciesList" ElementName="uc" />
+                                                            </MultiBinding.Bindings>
+                                                        </MultiBinding>
+                                                    </RadioButton.IsChecked>
+                                                    <RadioButton.LayoutTransform>
+                                                        <ScaleTransform ScaleX="1.4" ScaleY="1.4" />
+                                                    </RadioButton.LayoutTransform>
+                                                </RadioButton>
+                                            </Border>
+                                            <Border Grid.Column="1" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock  Text="{Binding Path=speciesCode}" Style="{StaticResource sGridCell}" />
+                                            </Border>
+                                            <Border Grid.Column="2" Style="{StaticResource sGridCellBorder}" >
+                                                <TextBlock Text="{Binding Path=landingCategory}" Style="{StaticResource sGridCell}" />
+                                            </Border>
+                                            <Border Grid.Column="3" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock Text="{Binding Path=sizeSortingEU}" Style="{StaticResource sGridCell}" />
+                                            </Border>
+                                            <Border Grid.Column="4" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock Text="{Binding Path=sizeSortingDFU}" Style="{StaticResource sGridCell}" />
+                                            </Border>
+                                            <Border Grid.Column="5" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock Text="{Binding Path=sexCode}" Style="{StaticResource sGridCell}" ></TextBlock>
+                                            </Border>
+                                            <Border Grid.Column="6" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock Text="{Binding Path=ovigorous}" Style="{StaticResource sGridCell}" ></TextBlock>
+                                            </Border>
+                                            <Border Grid.Column="7" Style="{StaticResource sGridCellBorder}">
+                                                <TextBlock Style="{StaticResource sGridCell}" >
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource cIntToCodeFromDic}" UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                                            <MultiBinding.Bindings>
+                                                                <Binding Path="applicationId" />
+                                                                <Binding Path="DataContext.ApplicationCodes" ElementName="uc" />
+                                                            </MultiBinding.Bindings>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Border>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                     
+                    </Border>
+
+
+                </Grid>
+
+
+            </Border>
+            <Border Grid.Row="0" Visibility="{Binding Path=IsLoading, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True, FallbackValue=Collapsed}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="20,10">
+                    <TextBlock Text="Arbejder, vent venligst..." FontSize="20" Margin="0,0,0,4" />
+                    <ProgressBar IsIndeterminate="true" Height="10" />
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1" Background="White" BorderBrush="LightGray" Margin="0,8,0,0" BorderThickness="0,1,0,0" SnapsToDevicePixels="True" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Style="{StaticResource GreenButtonStyle}" Command="{Binding Path=OKCommand}" Margin="20" IsDefault="True" IsEnabled="{Binding Path=HasSelectedSpeciesList}" >
+                        <TextBlock HorizontalAlignment="Center" Text="OK" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="30" Margin="20,20" >
+                        </TextBlock>
+                    </Button>
+
+                    <Button Command="{Binding SkipCommand}" Grid.Column="1" Style="{StaticResource BlueButtonStyle}" Margin="0,20,20,20" >
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="30" Margin="20,7" TextAlignment="Center" LineHeight="34" LineStackingStrategy="BlockLineHeight" 
+                                   TextWrapping="Wrap">
+                            <Run Text="Spring over" />
+                        </TextBlock>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+    </Border>
+</UserControl>

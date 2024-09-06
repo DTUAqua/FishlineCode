@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A51E7C6E-C000-4703-B1A0-C0702FF436BE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FishLineMeasure.WPF</RootNamespace>
+    <AssemblyName>FishLineMeasure.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\inetpub\wwwroot\FishLineMeasure\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://fishlinemeasure.anchorlab.net/</InstallUrl>
+    <ProductName>FishLine Measure</ProductName>
+    <PublisherName>Anchor Lab</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>Publish.html</WebPage>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.3.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E9783B3293EEDCBEE5F4B070468C47F66E29782D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AnchorLab.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Anchor.Core, Version=1.8.49.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalLibraries\Anchor.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Anchor.Core.Controls, Version=1.6.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalLibraries\Anchor.Core.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\FishLineMeasure.BusinessLogic\Components\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\FishLineMeasure.BusinessLogic\Components\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\FishLineMeasure.BusinessLogic\Components\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\AnchorCore\Main\Anchor.Core.Controls\Components\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BoolToRowDetailsVisibilityModeConverter.cs" />
+    <Compile Include="Converters\IntToCodeFromDictionaryConverter.cs" />
+    <Compile Include="Converters\MessageBoxButtonToVisibilityConverter.cs" />
+    <Compile Include="Converters\MyAlternationEqualityConverter.cs" />
+    <Compile Include="Converters\RowToIndexConverter.cs" />
+    <Compile Include="Converters\StringContainsToBoolConverter.cs" />
+    <Compile Include="Converters\StringHideOnContainsToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringShowOnContainsToVisibilityConverter.cs" />
+    <Compile Include="Converters\ValidationErrorsIsWarningConverter.cs" />
+    <Compile Include="Converters\ValidationErrorsToStringConverter.cs" />
+    <Compile Include="Converters\ValidationErrorToStringConverter.cs" />
+    <Compile Include="Converters\ValidationHasErrorsConverter.cs" />
+    <Compile Include="Converters\VisibilityToBooleanConverter.cs" />
+    <Compile Include="Infrastructure\Behaviors\DataGrid\BindableColumnIsReadOnly.cs" />
+    <Compile Include="Infrastructure\Behaviors\DataGrid\DataGridColumnsBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\DialogActivationBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\InputBindingsManager.cs" />
+    <Compile Include="Infrastructure\Behaviors\IWindow.cs" />
+    <Compile Include="Infrastructure\Behaviors\RegionPopupBehaviors.cs" />
+    <Compile Include="Infrastructure\Behaviors\SelectionChangedBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviors\TakeFocusAndSelectTextOnVisibleBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\WindowDialogActivationBehavior.Desktop.cs" />
+    <Compile Include="Infrastructure\Behaviors\WindowWrapper.Desktop.cs" />
+    <Compile Include="Infrastructure\BindingProxy.cs" />
+    <Compile Include="Infrastructure\DataGrid\DoubleColumnHeader.cs" />
+    <Compile Include="Infrastructure\ExtensionMethods.cs" />
+    <Compile Include="Infrastructure\IInvalidatable.cs" />
+    <Compile Include="Infrastructure\Regions\ContentControlRegionAdapter.cs" />
+    <Compile Include="Views\CustomControls\BoxCatagoryControlView.xaml.cs">
+      <DependentUpon>BoxCatagoryControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CheckBoxControlView.xaml.cs">
+      <DependentUpon>CheckBoxControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Export\ExportView.xaml.cs">
+      <DependentUpon>ExportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Export\FishLineExportView.xaml.cs">
+      <DependentUpon>FishLineExportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Export\FishLineLoginView.xaml.cs">
+      <DependentUpon>FishLineLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Export\SelectSpeciesListView.xaml.cs">
+      <DependentUpon>SelectSpeciesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lenghts\AddOrderClassGroupView.xaml.cs">
+      <DependentUpon>AddOrderClassGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lookups\LookupsView.xaml.cs">
+      <DependentUpon>LookupsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\BluetoothControlsView.xaml.cs">
+      <DependentUpon>BluetoothControlsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\BluetoothHelperView.xaml.cs">
+      <DependentUpon>BluetoothHelperView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\ConnectingView.xaml.cs">
+      <DependentUpon>ConnectingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\TopMenuView.xaml.cs">
+      <DependentUpon>TopMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lenghts\AddRowView.xaml.cs">
+      <DependentUpon>AddRowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Overview\AddAndEditStationView.xaml.cs">
+      <DependentUpon>AddAndEditStationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Overview\AddAndEditTripView.xaml.cs">
+      <DependentUpon>AddAndEditTripView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lenghts\LenghtView.xaml.cs">
+      <DependentUpon>LenghtView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Lenghts\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Overview\OverviewView.xaml.cs">
+      <DependentUpon>OverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\BluetoothSettingsView.xaml.cs">
+      <DependentUpon>BluetoothSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\FrequencySettingsView.xaml.cs">
+      <DependentUpon>FrequencySettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\GeneralSettingsView.xaml.cs">
+      <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Styles\DataGridStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\GeneralStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\GreenRedCheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\GreenRedRadioButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\HeaderButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\InputStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\MenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\SplitterStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ThumbStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\WindowRegionResource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ZoomSliderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Templates\ArrowHeads.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Templates\GeneralTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\BoxCatagoryControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CheckBoxControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Export\ExportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Export\FishLineExportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Export\FishLineLoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Export\SelectSpeciesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Lenghts\AddOrderClassGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Lookups\LookupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\BluetoothControlsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\BluetoothHelperView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\ConnectingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\TopMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Lenghts\AddRowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Overview\AddAndEditStationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Overview\AddAndEditTripView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Lenghts\LenghtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Lenghts\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Overview\OverviewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\BluetoothSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\FrequencySettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\GeneralSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LoadingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppRegionManager.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Windows\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\MessageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\AnchorLab_15_05_2019.pfx" />
+    <None Include="Resources\Images\Common\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BabelfiskReboot\Babelfisk.Entities\Babelfisk.Entities.csproj">
+      <Project>{bbcbbcbc-5bd8-43ea-be7a-1b6c977208aa}</Project>
+      <Name>Babelfisk.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FishLineMeasure.BusinessLogic\FishLineMeasure.BusinessLogic.csproj">
+      <Project>{101b8d35-1c9b-4a28-998a-94f8356c8d26}</Project>
+      <Name>FishLineMeasure.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FishLineMeasure.ViewModels\FishLineMeasure.ViewModels.csproj">
+      <Project>{c22f1177-d674-4559-a419-0a06f1f536f5}</Project>
+      <Name>FishLineMeasure.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Checkbox\checked-green.ico" />
+    <Resource Include="Resources\Images\Checkbox\checked.ico" />
+    <Resource Include="Resources\Images\Checkbox\checked2.ico" />
+    <Resource Include="Resources\Images\Checkbox\unchecked-orange.ico" />
+    <Resource Include="Resources\Images\Checkbox\unchecked-red.ico" />
+    <Resource Include="Resources\Images\Checkbox\unchecked.ico" />
+    <Resource Include="Resources\Images\Common\Add.ico" />
+    <Resource Include="Resources\Images\Common\ArrowRightGray.ico" />
+    <Resource Include="Resources\Images\Common\ArrowRightOrange.ico" />
+    <Resource Include="Resources\Images\Common\BackupFile.ico" />
+    <Resource Include="Resources\Images\Common\Connected.ico" />
+    <Resource Include="Resources\Images\Common\Copy.ico" />
+    <Resource Include="Resources\Images\Common\CopyToClipboard.ico" />
+    <Resource Include="Resources\Images\Common\Disconnected.ico" />
+    <Resource Include="Resources\Images\Common\Down.ico" />
+    <Resource Include="Resources\Images\Common\DownArrow.ico" />
+    <Resource Include="Resources\Images\Common\DTU.png" />
+    <Resource Include="Resources\Images\Common\EditKeyValues.ico" />
+    <Resource Include="Resources\Images\Common\EditPen.ico" />
+    <Resource Include="Resources\Images\Common\ExportData.ico" />
+    <Resource Include="Resources\Images\Common\GetPdf.ico" />
+    <Resource Include="Resources\Images\Common\GetWord.ico" />
+    <Resource Include="Resources\Images\Common\GoTo.ico" />
+    <Resource Include="Resources\Images\Common\Image.ico" />
+    <Resource Include="Resources\Images\Common\KeyValues.ico" />
+    <Resource Include="Resources\Images\Common\LeftArrow.ico" />
+    <Resource Include="Resources\Images\Common\Link.ico" />
+    <Resource Include="Resources\Images\Common\Offline.ico" />
+    <Resource Include="Resources\Images\Common\Online.ico" />
+    <Resource Include="Resources\Images\Common\Pdf.ico" />
+    <Resource Include="Resources\Images\Common\Print.ico" />
+    <Resource Include="Resources\Images\Common\Refresh.ico" />
+    <Resource Include="Resources\Images\Common\Remove.ico" />
+    <Resource Include="Resources\Images\Common\Reset.ico" />
+    <Resource Include="Resources\Images\Common\RightArrow.ico" />
+    <Resource Include="Resources\Images\Common\RightArrow.png" />
+    <Resource Include="Resources\Images\Common\Save.ico" />
+    <Resource Include="Resources\Images\Common\Save2.ico" />
+    <Resource Include="Resources\Images\Common\SaveAll.ico" />
+    <Resource Include="Resources\Images\Common\Settings.ico" />
+    <Resource Include="Resources\Images\Common\Up.ico" />
+    <Resource Include="Resources\Images\Common\UpArrow.ico" />
+    <Resource Include="Resources\Images\Common\Upload.ico" />
+    <Resource Include="Resources\Images\Common\Word.ico" />
+    <Resource Include="Resources\Images\DataGrid\Error.ico" />
+    <Resource Include="Resources\Images\DataGrid\Warning.ico" />
+    <Resource Include="Resources\Images\Radiobutton\checked-green.ico" />
+    <Resource Include="Resources\Images\Radiobutton\checked.ico" />
+    <Resource Include="Resources\Images\Radiobutton\unchecked.ico" />
+    <Resource Include="Resources\Images\Treeview\animal.ico" />
+    <Resource Include="Resources\Images\Treeview\DeleteFolder.ico" />
+    <Resource Include="Resources\Images\Treeview\DeleteReport.ico" />
+    <Resource Include="Resources\Images\Treeview\EditFolder.ico" />
+    <Resource Include="Resources\Images\Treeview\EditReport.ico" />
+    <Resource Include="Resources\Images\Treeview\FishCod.ico" />
+    <Resource Include="Resources\Images\Treeview\Folder.ico" />
+    <Resource Include="Resources\Images\Treeview\Hook.ico" />
+    <Resource Include="Resources\Images\Treeview\HookArea.ico" />
+    <Resource Include="Resources\Images\Treeview\HookAreaInv.ico" />
+    <Resource Include="Resources\Images\Treeview\HookHarbour.ico" />
+    <Resource Include="Resources\Images\Treeview\HookHarbourInv.ico" />
+    <Resource Include="Resources\Images\Treeview\HookVessel.ico" />
+    <Resource Include="Resources\Images\Treeview\HookVesselInv.ico" />
+    <Resource Include="Resources\Images\Treeview\hvn.ico" />
+    <Resource Include="Resources\Images\Treeview\hvn.png" />
+    <Resource Include="Resources\Images\Treeview\importCSV.ico" />
+    <Resource Include="Resources\Images\Treeview\law.ico" />
+    <Resource Include="Resources\Images\Treeview\law.png" />
+    <Resource Include="Resources\Images\Treeview\Minus1.ico" />
+    <Resource Include="Resources\Images\Treeview\Minus10.ico" />
+    <Resource Include="Resources\Images\Treeview\Minus2.ico" />
+    <Resource Include="Resources\Images\Treeview\NewFolder.ico" />
+    <Resource Include="Resources\Images\Treeview\NewReport.ico" />
+    <Resource Include="Resources\Images\Treeview\Pencil_blue.ico" />
+    <Resource Include="Resources\Images\Treeview\Pencil_yellow.ico" />
+    <Resource Include="Resources\Images\Treeview\Plus1.ico" />
+    <Resource Include="Resources\Images\Treeview\Plus10.ico" />
+    <Resource Include="Resources\Images\Treeview\Plus2.ico" />
+    <Resource Include="Resources\Images\Treeview\sample.png" />
+    <Resource Include="Resources\Images\Treeview\sampleImport.png" />
+    <Resource Include="Resources\Images\Treeview\singlefish.png" />
+    <Resource Include="Resources\Images\Treeview\singlefishO.png" />
+    <Resource Include="Resources\Images\Treeview\specieslist.ico" />
+    <Resource Include="Resources\Images\Treeview\søs.png" />
+    <Resource Include="Resources\Images\Treeview\Vessel.ico" />
+    <Resource Include="Resources\Images\Treeview\vid.png" />
+    <Resource Include="Resources\Images\Treeview\Year.ico" />
+    <Resource Include="Resources\Images\Treeview\Year1.ico" />
+    <Resource Include="Resources\Images\Treeview\Year2.ico" />
+    <Resource Include="Resources\Images\Treeview\Year3.ico" />
+    <Resource Include="Resources\Images\Treeview\Year4.ico" />
+    <Resource Include="Resources\Images\Window\closehot_n.PNG" />
+    <Resource Include="Resources\Images\Window\closepressed_n.PNG" />
+    <Resource Include="Resources\Images\Window\close_n.PNG" />
+    <Resource Include="Resources\Images\Window\fonfile.ico" />
+    <Resource Include="Resources\Images\Window\max.png" />
+    <Resource Include="Resources\Images\Window\maxhot.png" />
+    <Resource Include="Resources\Images\Window\maxhot_n.png" />
+    <Resource Include="Resources\Images\Window\maxpressed.png" />
+    <Resource Include="Resources\Images\Window\maxpressed_n.PNG" />
+    <Resource Include="Resources\Images\Window\max_n.PNG" />
+    <Resource Include="Resources\Images\Window\min.png" />
+    <Resource Include="Resources\Images\Window\minhot.png" />
+    <Resource Include="Resources\Images\Window\minpressed.png" />
+    <Resource Include="Resources\Images\Window\min_n.png" />
+    <Resource Include="Resources\Images\Window\normal.PNG" />
+    <Resource Include="Resources\Images\Window\normalhot.PNG" />
+    <Resource Include="Resources\Images\Window\normalpress.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Common\Off.png" />
+    <Resource Include="Resources\Images\Common\Information.png" />
+    <Resource Include="Resources\Images\Common\Warning.png" />
+    <Resource Include="Resources\Images\Common\Failed.png" />
+    <Resource Include="Resources\Images\Common\Pass.png" />
+    <Resource Include="Resources\Images\Common\Search.png" />
+    <Resource Include="TurnOffDisplay.txt" />
+    <Resource Include="Resources\Images\Common\Screen.png" />
+    <Resource Include="Resources\Images\Common\ScreenOff.png" />
+    <Resource Include="Resources\Images\Common\Play.png" />
+    <Resource Include="Resources\Images\Common\Minus4.png" />
+    <Resource Include="Resources\Images\Common\Plus4.png" />
+    <Resource Include="Resources\Images\Common\BluetoothDisconnectIcon.png" />
+    <Resource Include="Resources\Images\Common\Minus3.png" />
+    <Resource Include="Resources\Images\Common\Plus3.png" />
+    <Resource Include="Resources\Images\Common\Minus2.ico" />
+    <Resource Include="Resources\Images\Common\Plus2.ico" />
+    <Resource Include="Resources\Images\Common\PlayButton.png" />
+    <Resource Include="AnchorLab.ico" />
+    <Content Include="Components\System.Windows.Controls.DataVisualization.Toolkit.dll" />
+    <Content Include="Components\System.Windows.Interactivity.dll" />
+    <Resource Include="Resources\Images\AnchorLab.ico" />
+    <Resource Include="Resources\Images\AnchorLabSmall.ico" />
+    <Resource Include="Resources\Images\Common\Sync.png" />
+    <Resource Include="Resources\Images\Common\Disconnect.png" />
+    <Resource Include="Resources\Images\Common\ArrowRightGrey.png" />
+    <Resource Include="Resources\Images\Common\ArrowRight.png" />
+    <Resource Include="Resources\Images\Common\ArrowDown.png" />
+    <Resource Include="Resources\Images\Common\ArrowUp.png" />
+    <Resource Include="Resources\Images\Common\QuestionMark.png" />
+    <Resource Include="Resources\Images\Common\Refresh_v2.png" />
+    <Resource Include="Resources\Images\Common\Bluetooth_Version2.png" />
+    <Resource Include="Xml\2019_søs_minidisc_1_2019-06-03 13-12-34-123.xml" />
+    <Resource Include="Resources\Images\Common\Settings2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Windows">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterCompile" Condition=" '$(Configuration)' == 'Release' ">
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\signtool.exe&quot; sign /tr http://timestamp.digicert.com /fd sha256 /td sha256 /f &quot;$(ProjectDir)\Resources\AnchorLab_15_05_2019.pfx&quot; /p al2019 /v &quot;$(ProjectDir)obj\$(ConfigurationName)\$(TargetFileName)&quot;" />
+  </Target>
+</Project>

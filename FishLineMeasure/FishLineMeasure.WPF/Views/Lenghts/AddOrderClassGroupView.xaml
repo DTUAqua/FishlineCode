@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Lenghts.AddOrderClassGroupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Lenghts"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:acdd="clr-namespace:Anchor.Core.Controls.DragDrop;assembly=Anchor.Core.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Anchor.Core.Controls;component/Themes/FlatStyleComboBox.xaml" />
+
+                <ResourceDictionary>
+
+                    <Style x:Key="sTextHeader" TargetType="{x:Type TextBlock}">
+                        <Setter Property="MinWidth" Value="200" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="0,0,10,0" />
+                        <Setter Property="FontSize" Value="30" />
+                    </Style>
+
+                    <Style x:Key="sTextValue" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ValidateElementRedBorder}">
+                        <Setter Property="Padding" Value="4,3" />
+                        <Setter Property="Margin" Value="10,0,0,0" />
+                        <Setter Property="FontSize" Value="40" />
+                    </Style>
+
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Border Background="{StaticResource ResourceKey=brushBackColor}">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" SnapsToDevicePixels="True">
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border BorderBrush="LightGray" BorderThickness="0,1,0,1" Background="White" Margin="0,0,0,8" >
+                            <DockPanel Margin="20,10,20,10" >
+                                <TextBlock VerticalAlignment="Center" Foreground="Gray" TextAlignment="Center" TextWrapping="Wrap"  Text="Gem rækkefølgen af længdefordelinger under et navn til senere brug" FontSize="20" />
+                            </DockPanel>
+
+                        </Border>
+
+                        <Border  Grid.Row="1" SnapsToDevicePixels="True" Background="White" BorderThickness="0,1,0,0" BorderBrush="LightGray">
+                            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="Navn" DockPanel.Dock="Left" MinWidth="100" Style="{StaticResource sTextHeader}" />
+                                <TextBox x:Name="tbName" MinWidth="300" Text="{Binding Path=Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource sTextValue}" />
+                            </DockPanel>
+                           
+                        </Border>
+
+
+                        <Border Grid.Row="2" Background="White">
+                            <TextBlock Text="{Binding Path=Error}" Visibility="{Binding Path=HasErrors, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" 
+                                       LineHeight="20" LineStackingStrategy="BlockLineHeight" TextAlignment="Center" Foreground="DarkRed" TextWrapping="Wrap" FontSize="20" Margin="20,2,20,4" />
+                        </Border>
+
+                      
+                    </Grid>
+
+                </Border>
+                <Border Grid.Row="0" Visibility="{Binding Path=IsLoading, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True, FallbackValue=Collapsed}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Margin="20,10">
+                        <TextBlock Text="Arbejder, vent venligst..." FontSize="20" Margin="0,0,0,4" />
+                        <ProgressBar IsIndeterminate="true" Height="10" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="1" Background="White" BorderBrush="LightGray" Margin="0,8,0,0" BorderThickness="0,1,0,0" SnapsToDevicePixels="True" IsEnabled="{Binding Path=IsLoading, Converter={StaticResource cBoolToBoolNegation}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Command="{Binding Path=OKCommand}" IsDefault="True" Style="{StaticResource GreenButtonStyle}" Margin="20" >
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="30" Margin="20,20" >
+                                <Run Text="Gem" />
+                            </TextBlock>
+                        </Button>
+
+                        <Button Command="{Binding CancelCommand}" Grid.Column="1" Style="{StaticResource BlueButtonStyle}" Margin="0,20,20,20" >
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="30" Margin="20,20">
+                                <Run Text="Fortryd" />
+                            </TextBlock>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>

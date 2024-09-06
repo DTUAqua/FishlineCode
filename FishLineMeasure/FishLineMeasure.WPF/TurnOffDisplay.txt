@@ -1,0 +1,15 @@
+﻿If the tablet does not have the option of turning of the display when power button is pressed, but only to turn of the tablet or go to sleep,
+changing the following key in registry and rebooting should add "turn of display" to the power options. This is required for the caliper
+to send measurements to the tablet with the screen off. 
+
+in path: 
+
+Computer\HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power
+
+or
+
+path: Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power
+
+Key:  CsEnabled 
+Modify from/to: "1" to "0"
+

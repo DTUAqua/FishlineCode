@@ -1,0 +1,229 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Settings.FrequencySettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Settings"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="sTextHeader" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+
+        <GroupBox DockPanel.Dock="Top" Margin="0,5,0,0" Style="{StaticResource sSettingsGroupBox}" Header="Lyd ved specifik handling">
+            <StackPanel Orientation="Vertical" Margin="0,15,0,0" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,5" FontSize="10" Foreground="Gray" Text="Frekvens" />
+
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="9,0,0,5" FontSize="10" Foreground="Gray" Text="Afspil" />
+
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="6,0,0,5" FontSize="10" ToolTip="Antal afspilningsgentagelser" Foreground="Gray" Text="Gentag" />
+
+                    <TextBlock Grid.Column="4" HorizontalAlignment="Center" Margin="11,0,0,5" FontSize="10" Foreground="Gray" ToolTip="Slå automatisk afspilning til og fra ved en specifik handling" Text="Aktiv" />
+
+                    <StackPanel Grid.Row="1" Grid.Column="0"  >
+                        <TextBlock Text="Ny længde tilføjet"  Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,5,20,0" />
+                        <TextBlock Text="Slet seneste Måling" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                        <TextBlock Text="Gå til næste station" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                        <TextBlock Text="Gå til næste længdefordeling" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <TextBox Text="{Binding NewLenghtFrequency, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt} }" Style="{StaticResource ValidateElementRedBorder}" BorderBrush="LightGray" Padding="3,0,0,2" VerticalContentAlignment="Center" Height="32" Margin="0,0,0,0" FontSize="20" Width="150"></TextBox>
+                        <TextBox Text="{Binding DeleteLastEntryFrequency, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt} }" BorderBrush="LightGray" Style="{StaticResource ValidateElementRedBorder}"  Padding="3,0,0,2" VerticalContentAlignment="Center" Height="32" Margin="0,5,0,0" FontSize="20" Width="150"></TextBox>
+                        <TextBox Text="{Binding GoToNextStationFrequency, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt}}" BorderBrush="LightGray" Style="{StaticResource ValidateElementRedBorder}"  Padding="3,0,0,2"  VerticalContentAlignment="Center" Height="32" Margin="0,5,0,0" FontSize="20" Width="150"></TextBox>
+                        <TextBox Text="{Binding GoToNextOrderFreguency, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt}}" BorderBrush="LightGray" Style="{StaticResource ValidateElementRedBorder}" Padding="3,0,0,2" VerticalContentAlignment="Center" Height="32" Margin="0,5,0,0" FontSize="20" Width="150"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="5,0,0,0">
+                        <Button Command="{Binding PlayNewLengthCommand}" Style="{StaticResource imageButtonStyle}" Padding="4" Height="32">
+                            <Image Source="pack://application:,,,/FishLineMeasure.WPF;Component/Resources/Images/Common/Play.png" Margin="3" />
+                        </Button>
+                        <Button Command="{Binding PlayDeleteLastCommand}" Style="{StaticResource imageButtonStyle}" Margin="0,5,0,0" Height="32">
+                            <Image Source="pack://application:,,,/FishLineMeasure.WPF;Component/Resources/Images/Common/Play.png" Margin="3"  />
+                        </Button>
+                        <Button Command="{Binding PlayNextStationCommand}" Style="{StaticResource imageButtonStyle}" Margin="0,5,0,0" Height="32">
+                            <Image Source="pack://application:,,,/FishLineMeasure.WPF;Component/Resources/Images/Common/Play.png"  Margin="3"  />
+                        </Button>
+                        <Button Command="{Binding PlayNextOrderCommand}" Style="{StaticResource imageButtonStyle}" Margin="0,5,0,0" Height="32">
+                            <Image Source="pack://application:,,,/FishLineMeasure.WPF;Component/Resources/Images/Common/Play.png" Margin="3"  />
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="3">
+                        <TextBox Text="{Binding RepeatNewLength, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt} }" Style="{StaticResource ValidateElementRedBorder}" BorderBrush="LightGray" Padding="0,0,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" Margin="5,0,0,0" FontSize="20" Width="32"></TextBox>
+                        <TextBox Text="{Binding RepeatDeleteLastEntry, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt} }" Style="{StaticResource ValidateElementRedBorder}" BorderBrush="LightGray" Padding="0,0,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" Margin="5,5,0,0" FontSize="20" Width="32"></TextBox>
+                        <TextBox Text="{Binding RepeatNextStation, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt}}" Style="{StaticResource ValidateElementRedBorder}" BorderBrush="LightGray" Padding="0,0,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" Margin="5,5,0,0" FontSize="20" Width="32"></TextBox>
+                        <TextBox Text="{Binding RepeatNextOrder, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, Converter={StaticResource cStringToInt}}" Style="{StaticResource ValidateElementRedBorder}" BorderBrush="LightGray" Padding="0,0,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" Margin="5,5,0,0" FontSize="20" Width="32"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="4" Margin="5,0,0,0" SnapsToDevicePixels="True">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type CheckBox}">
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Height" Value="32" />
+                                <Setter Property="SnapsToDevicePixels" Value="True" />
+                                <Setter Property="CheckBox.RenderTransform" >
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="2.55" ScaleY="2.55" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </StackPanel.Resources>
+                        <CheckBox x:Name="cbNewLengthBEepStatus" IsChecked="{Binding NewLenghtBeepStatus}" Margin="0,-2.5,0,0" >
+                           
+                        </CheckBox>
+                        <CheckBox IsChecked="{Binding DeleteLastEntryBeepStatus}" Margin="0,5,0,0" >
+                            
+                        </CheckBox>
+
+                        <CheckBox IsChecked="{Binding GoToNextStationBeepStatus}" Margin="0,5,0,0" >
+                           
+                        </CheckBox>
+
+                        <CheckBox IsChecked="{Binding GoToNextOrderBeepStatus}" Margin="0,5,0,0" >
+                           
+                        </CheckBox>
+                    </StackPanel>
+
+
+                    <Grid Grid.Row="1" Margin="0,25,0,0" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Ny længde tilføjet" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,5,20,0" />
+                            <TextBlock Text="Slet seneste måling" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                            <TextBlock Text="Gå til ny station" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                            <TextBlock Text="Gå til næste længdefordeling" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="0,10,20,0" />
+                        </StackPanel>
+                       
+                    </Grid>
+                    
+                    <StackPanel Margin="0,25,0,0" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+                        <StackPanel Grid.Column="1">
+                            <DockPanel>
+                                <CheckBox IsChecked="{Binding NewLenghtBeepStatus}" VerticalAlignment="Center">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <TextBlock Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="5,0,5,0">
+                                    <TextBlock.Style>
+                                        <Style BasedOn="{StaticResource sTextHeader}" TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Status"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=NewLenghtBeepStatus}" Value="False">
+                                                    <Setter Property="Text" Value="Deaktiveret"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=NewLenghtBeepStatus}" Value="True">
+                                                    <Setter Property="Text" Value="Aktiveret"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DockPanel>
+
+                            <DockPanel Margin="0,10,0,0">
+                                <CheckBox IsChecked="{Binding DeleteLastEntryBeepStatus}" VerticalAlignment="Center">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <TextBlock Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="5,0,5,0">
+                                    <TextBlock.Style>
+                                        <Style BasedOn="{StaticResource sTextHeader}" TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Status"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=DeleteLastEntryBeepStatus}" Value="False">
+                                                    <Setter Property="Text" Value="Deaktiveret"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=DeleteLastEntryBeepStatus}" Value="True">
+                                                    <Setter Property="Text" Value="Aktiveret"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DockPanel>
+
+                            <DockPanel Margin="0,10,0,0">
+
+                                <CheckBox IsChecked="{Binding GoToNextStationBeepStatus}" VerticalAlignment="Center">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <TextBlock Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="5,0,5,0">
+                                    <TextBlock.Style>
+                                        <Style BasedOn="{StaticResource sTextHeader}" TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Status"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=GoToNextStationBeepStatus}" Value="False">
+                                                    <Setter Property="Text" Value="Deaktiveret"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=GoToNextStationBeepStatus}" Value="True">
+                                                    <Setter Property="Text" Value="Aktiveret"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DockPanel>
+
+                            <DockPanel Margin="0,10,0,0">
+                                <CheckBox IsChecked="{Binding GoToNextOrderBeepStatus}" VerticalAlignment="Center">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <TextBlock Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="5,0,5,0">
+                                    <TextBlock.Style>
+                                        <Style BasedOn="{StaticResource sTextHeader}" TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Status"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=GoToNextOrderBeepStatus}" Value="False">
+                                                    <Setter Property="Text" Value="Deaktiveret"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=GoToNextOrderBeepStatus}" Value="True">
+                                                    <Setter Property="Text" Value="Aktiveret"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DockPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel />
+    </DockPanel>
+</UserControl>

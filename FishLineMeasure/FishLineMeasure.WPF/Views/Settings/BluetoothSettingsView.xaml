@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="FishLineMeasure.WPF.Views.Settings.BluetoothSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FishLineMeasure.WPF.Views.Settings"
+             xmlns:ancBeh="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/FishLineMeasure.WPF;Component/Resources/Styles/GreenRedCheckBoxStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+
+        <GroupBox DockPanel.Dock="Top" Margin="0,5,0,0" Style="{StaticResource sSettingsGroupBox}" Header="Forbindelse">
+            <StackPanel Orientation="Vertical" >
+                <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock DockPanel.Dock="Left" FontSize="20" Foreground="#FF494949" Margin="0,0,10,0" Text="Søg efter bluetooth enheder i" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBox Text="{Binding Path=BluetoothSearchTimeoutSeconds, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource cStringToInt}}" FontSize="20" BorderBrush="LightGray" Width="80" Padding="6,4,6,5" Foreground="#FF494949"  VerticalContentAlignment="Center" />
+
+                    <TextBlock Text="sekunder ad gangen" Foreground="#FF494949" Margin="10,0,0,0" FontSize="20" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" >
+                    <TextBlock Text="Forbind automatisk til sidstforbundne enhed ved opstart" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="-2,-2,20,0" />
+
+                    <CheckBox x:Name="cbBluetoothAutoConnect" IsChecked="{Binding Path=BluetoothAutoConnect}" Margin="-1,0,0,0" VerticalAlignment="Center">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel />
+    </DockPanel>
+</UserControl>

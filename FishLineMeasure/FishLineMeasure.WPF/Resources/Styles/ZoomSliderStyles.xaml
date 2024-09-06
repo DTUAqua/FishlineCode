@@ -1,0 +1,217 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sldrs="clr-namespace:Anchor.Core.Controls.Sliders;assembly=Anchor.Core.Controls"
+                    xmlns:ancBe="clr-namespace:Anchor.Core.Controls.Behaviors;assembly=Anchor.Core.Controls"
+                    >
+    <RadialGradientBrush x:Key="RoundButtonDefaultBrush">
+        <GradientStop Color="#FFD8D5D5" Offset="0.027"/>
+        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+        <GradientStop Color="#FFDBDBDB" Offset="0.728"/>
+    </RadialGradientBrush>
+
+    <ControlTemplate x:Key="RoundButtonTemplate" TargetType="RepeatButton">
+        <Grid>
+            <Ellipse Name="PART_Ellipse" 
+                         Width="15"
+                         Height="15" 
+                         Stroke="Gray">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFA3A3A3" Offset="0.027"/>
+                        <GradientStop Color="#FFCBCBCB" Offset="1"/>
+                        <GradientStop Color="#FFD8D8D8" Offset="0.728"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <ContentPresenter Name="PART_ContentPresenter"  ContentSource="Content" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PART_Ellipse" Property="Opacity" Value="0.6" />
+                <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="0.6" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PART_Ellipse" Property="Opacity" Value="0.3" />
+                <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="0.3" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RoundButtonStyle" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Template" Value="{StaticResource RoundButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="lightZoomSlider" TargetType="{x:Type sldrs:ZoomSlider}">
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type sldrs:ZoomSlider}">
+                    <Border Background="Transparent" KeyboardNavigation.TabNavigation="None" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="1,0,0,1">
+                                <!-- Textbox shown to the right of the slider -->
+                                <TextBox x:Name="PART_Percentage" FontStretch="Condensed" VerticalAlignment="Center" 
+                                         TextBlock.LineHeight="12" TextBlock.LineStackingStrategy="BlockLineHeight" 
+                                         BorderBrush="Transparent"
+                                         ancBe:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text"
+                                         TextAlignment="Right" Padding="0"
+                                         Text="{Binding Path=Value, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat={}{0:N0}}" 
+                                         Margin="0,2,0,0" >
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="Background" >
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="Transparent" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsFocused" Value="True" >
+                                                    <Setter Property="Background" Value="White" />
+                                                    <Setter Property="Margin" Value="0,1,1,0" />
+                                                    <Setter Property="Foreground" Value="Black" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                                <TextBlock Text="%" Margin="0,0,4,0" Foreground="White" VerticalAlignment="Center" FontSize="12"  />
+                            </StackPanel>
+
+                            <!-- Slider -->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Border x:Name="TrackBackground" BorderBrush="#FFD8D8D8" SnapsToDevicePixels="True" BorderThickness="0" CornerRadius="1"
+                                                                                     Margin="3,0" VerticalAlignment="Center" Height="3.0" Grid.Row="1" Grid.Column="1" >
+                                    <Canvas Margin="-6,-1">
+                                        <Rectangle Visibility="Hidden" x:Name="PART_SelectionRange" Height="4.0" SnapsToDevicePixels="True"
+                                                                        Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                                                        Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                                                                        StrokeThickness="1.0"/>
+                                    </Canvas>
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFC4C4C4" Offset="0" />
+                                            <GradientStop Color="#FFE2E2E2" Offset="0.746" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <TickBar x:Name="TopTick" Visibility="Collapsed" Fill="Gray" SnapsToDevicePixels="True" VerticalAlignment="Center" Margin="0,0,0,8" Placement="Top" Height="4" TickFrequency="2"  Grid.Row="1" Grid.Column="1"/>
+                                <TickBar x:Name="BottomTick" Visibility="Visible" Fill="Gray" SnapsToDevicePixels="True" VerticalAlignment="Center" Margin="0,4,0,0" Placement="Bottom" TickFrequency="{TemplateBinding TickFrequency}" Height="4" Grid.Row="1" Grid.Column="1" />
+
+                                <RepeatButton Name="PART_DecreaseRepeatButton" SnapsToDevicePixels="True" Grid.Row="1" Grid.Column="0" Style="{StaticResource RoundButtonStyle}" Command="Slider.DecreaseSmall" >
+                                    <TextBlock  Text="-" Margin="0,0,0,2" FontSize="13" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </RepeatButton>
+                                <RepeatButton Name="PART_IncreaseRepeatButton" SnapsToDevicePixels="True" Grid.Row="1" Grid.Column="2" Style="{StaticResource RoundButtonStyle}" Command="Slider.IncreaseSmall" >
+                                    <TextBlock Text="+" Margin="0,0,0,2" FontSize="13" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </RepeatButton>
+
+                                <Track x:Name="PART_Track" Grid.Row="1" Grid.Column="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" >
+                                            <RepeatButton.Style>
+                                                <Style TargetType="{x:Type RepeatButton}">
+                                                    <Setter Property="OverridesDefaultStyle" Value="true"/>
+                                                    <Setter Property="IsTabStop" Value="false"/>
+                                                    <Setter Property="Focusable" Value="false"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                <Rectangle Fill="Transparent"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </RepeatButton.Style>
+                                        </RepeatButton>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" >
+                                            <RepeatButton.Style>
+                                                <Style TargetType="{x:Type RepeatButton}">
+                                                    <Setter Property="OverridesDefaultStyle" Value="true"/>
+                                                    <Setter Property="IsTabStop" Value="false"/>
+                                                    <Setter Property="Focusable" Value="false"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                <Rectangle Fill="Transparent"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </RepeatButton.Style>
+                                        </RepeatButton>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Height="18" Width="18"  Background="Black" >
+                                            <Thumb.Style>
+                                                <Style TargetType="{x:Type Thumb}">
+                                                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                <Canvas Height="15" Width="10" VerticalAlignment="Center">
+                                                                    <Canvas.RenderTransform>
+                                                                        <ScaleTransform ScaleX="0.8" ScaleY="0.9" CenterY="7.9" CenterX="5"></ScaleTransform>
+                                                                    </Canvas.RenderTransform>
+                                                                    <Path Data="M 0,0 L 0,10 L 5,15 L 10,10 L 10,0 Z" SnapsToDevicePixels="True"  Stroke="#FF705226" StrokeThickness="1">
+                                                                        <Path.Fill>
+                                                                            <RadialGradientBrush>
+                                                                                <GradientStop Color="#FF838383" Offset="0.041"/>
+                                                                                <GradientStop Color="#FFC7C7C7" Offset="1"/>
+                                                                                <GradientStop Color="#FFC1BEBE" Offset="0.728"/>
+                                                                            </RadialGradientBrush>
+                                                                        </Path.Fill>
+                                                                    </Path>
+                                                                </Canvas>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Thumb.Style>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </Grid>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
