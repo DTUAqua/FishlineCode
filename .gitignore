@@ -1,0 +1,14 @@
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# Ignore user-specific settings
+*.user
+*.suo
+
+# Ignore .vs
+.vs/
