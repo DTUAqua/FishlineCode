@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/19/2024 08:19:57
--- Generated from EDMX file: C:\Mads\Development\TeamProjects\anchorlabcloud\Babelfisk\BabelfiskReboot\Babelfisk.Model\Sprattus.edmx
+-- Date Created: 11/18/2024 15:59:27
+-- Generated from EDMX file: C:\Code\DTUAqua\FishlineCode\BabelfiskReboot\Babelfisk.Model\Sprattus.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -1031,7 +1031,8 @@ CREATE TABLE [dbo].[AnimalInfo] (
     [netPlaceVertical] nvarchar(1)  NULL,
     [netPlaceHorisontal] nvarchar(1)  NULL,
     [remark] nvarchar(max)  NULL,
-    [parasiteId] int  NULL
+    [parasiteId] int  NULL,
+    [stomachStatusFirstEvaluationId] int  NULL
 );
 GO
 
@@ -2479,6 +2480,17 @@ CREATE TABLE [dbo].[L_LengthMeasureType] (
 );
 GO
 
+-- Creating table 'L_StomachStatus'
+CREATE TABLE [dbo].[L_StomachStatus] (
+    [L_StomachStatusId] int IDENTITY(1,1) NOT NULL,
+    [stomachStatus] nvarchar(20)  NOT NULL,
+    [description] nvarchar(500)  NULL,
+    [num] int  NULL,
+    [showInAnimal] bit  NOT NULL,
+    [showInStomach] bit  NOT NULL
+);
+GO
+
 -- Creating table 'R_ReportingTreeNodeReport'
 CREATE TABLE [dbo].[R_ReportingTreeNodeReport] (
     [Reports_reportId] int  NOT NULL,
@@ -3257,6 +3269,12 @@ GO
 ALTER TABLE [dbo].[L_LengthMeasureType]
 ADD CONSTRAINT [PK_L_LengthMeasureType]
     PRIMARY KEY CLUSTERED ([L_lengthMeasureTypeId] ASC);
+GO
+
+-- Creating primary key on [L_StomachStatusId] in table 'L_StomachStatus'
+ALTER TABLE [dbo].[L_StomachStatus]
+ADD CONSTRAINT [PK_L_StomachStatus]
+    PRIMARY KEY CLUSTERED ([L_StomachStatusId] ASC);
 GO
 
 -- Creating primary key on [Reports_reportId], [ReportingTreeNodes_reportingTreeNodeId] in table 'R_ReportingTreeNodeReport'
@@ -5985,6 +6003,21 @@ GO
 CREATE INDEX [IX_FK_L_LengthMeasureTypeL_Species]
 ON [dbo].[L_Species]
     ([standardLengthMeasureTypeId]);
+GO
+
+-- Creating foreign key on [stomachStatusFirstEvaluationId] in table 'AnimalInfo'
+ALTER TABLE [dbo].[AnimalInfo]
+ADD CONSTRAINT [FK_AnimalInfo_L_StomachStatus]
+    FOREIGN KEY ([stomachStatusFirstEvaluationId])
+    REFERENCES [dbo].[L_StomachStatus]
+        ([L_StomachStatusId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AnimalInfo_L_StomachStatus'
+CREATE INDEX [IX_FK_AnimalInfo_L_StomachStatus]
+ON [dbo].[AnimalInfo]
+    ([stomachStatusFirstEvaluationId]);
 GO
 
 -- --------------------------------------------------

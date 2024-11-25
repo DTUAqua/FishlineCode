@@ -838,6 +838,12 @@ namespace Babelfisk.Entities.Sprattus
             get { return _l_LengthMeasureType  ?? (_l_LengthMeasureType = CreateObjectSet<L_LengthMeasureType>("L_LengthMeasureType")); }
         }
         private ObjectSet<L_LengthMeasureType> _l_LengthMeasureType;
+    
+        public ObjectSet<L_StomachStatus> L_StomachStatus
+        {
+            get { return _l_StomachStatus  ?? (_l_StomachStatus = CreateObjectSet<L_StomachStatus>("L_StomachStatus")); }
+        }
+        private ObjectSet<L_StomachStatus> _l_StomachStatus;
 
         #endregion
 

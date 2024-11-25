@@ -970,6 +970,9 @@ namespace Babelfisk.Warehouse
                     aDW.fatIndexMethod = animalInfo.Fat.fatIndexMethod;
                 }
 
+                if(animalInfo.L_StomachStatusFirstEvaluation != null)
+                    aDW.stomachStatusFirstEvaluation = animalInfo.L_StomachStatusFirstEvaluation.stomachStatus;
+
                 aDW.numVertebra = animalInfo.numVertebra;
             }
 

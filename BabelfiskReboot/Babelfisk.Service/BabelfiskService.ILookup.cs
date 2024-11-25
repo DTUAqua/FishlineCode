@@ -522,6 +522,10 @@ namespace Babelfisk.Service
                     ctx.R_StockSpeciesArea.ApplyChanges(obj as R_StockSpeciesArea);
                     break;
 
+                case "L_StomachStatus":
+                    ctx.L_StomachStatus.ApplyChanges(obj as L_StomachStatus);
+                    break;
+
                 default:
                     throw new ApplicationException("BabelfiskService.ILookup->ApplyLookupChanges(): Lookup type has not been mapped.");
             }

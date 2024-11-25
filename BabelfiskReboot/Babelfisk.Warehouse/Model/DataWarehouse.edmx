@@ -104,6 +104,7 @@
           <Property Name="weightGutted" Type="numeric" Precision="10" Scale="5" />
           <Property Name="weightLiver" Type="numeric" Precision="9" Scale="5" />
           <Property Name="weightGonads" Type="numeric" Precision="9" Scale="5" />
+          <Property Name="stomachStatusFirstEvaluation" Type="nvarchar" MaxLength="20" />
           <Property Name="parasiteCode" Type="int" />
           <Property Name="fatIndex" Type="nvarchar" MaxLength="3" />
           <Property Name="fatIndexMethod" Type="nvarchar" MaxLength="1" />
@@ -741,6 +742,7 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="Decimal" Name="weightGutted" Precision="10" Scale="5" />
           <Property Type="Decimal" Name="weightLiver" Precision="9" Scale="5" />
           <Property Type="Decimal" Name="weightGonads" Precision="9" Scale="5" />
+          <Property Name="stomachStatusFirstEvaluation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="parasiteCode" />
           <Property Type="String" Name="fatIndex" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="fatIndexMethod" MaxLength="1" FixedLength="false" Unicode="true" />
@@ -1264,6 +1266,7 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="FishLineDWModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="stomachStatusFirstEvaluation" ColumnName="stomachStatusFirstEvaluation" />
                 <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="otolithFinScale" ColumnName="otolithFinScale" />
@@ -1674,7 +1677,7 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
     <Diagrams>
       <Diagram Name="DataWarehouse" ZoomLevel="76">
         <EntityTypeShape EntityType="FishLineDWModel.Age" Width="2" PointX="11.625" PointY="2.75" Height="8.7108365885416674" />
-        <EntityTypeShape EntityType="FishLineDWModel.Animal" Width="1.5" PointX="9.5" PointY="2.75" Height="10.633850911458325" />
+        <EntityTypeShape EntityType="FishLineDWModel.Animal" Width="1.75" PointX="9.5" PointY="2.75" Height="10.633850911458325" />
         <EntityTypeShape EntityType="FishLineDWModel.AnimalRaised" Width="1.5" PointX="9.5" PointY="14.625" Height="6.787822265624996" />
         <EntityTypeShape EntityType="FishLineDWModel.Cruise" Width="1.5" PointX="1.25" PointY="2.75" Height="2.749492187499996" />
         <EntityTypeShape EntityType="FishLineDWModel.R_AnimalReference" Width="1.5" PointX="11.625" PointY="13.875" Height="1.9802864583333246" />

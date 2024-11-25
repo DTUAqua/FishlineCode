@@ -23,6 +23,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(Maturity))]
     [KnownType(typeof(L_Parasite))]
     [KnownType(typeof(R_AnimalInfoReference))]
+    [KnownType(typeof(L_StomachStatus))]
     public partial class AnimalInfo: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -302,6 +303,29 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private Nullable<int> _parasiteId;
+    
+        [DataMember]
+        public Nullable<int> stomachStatusFirstEvaluationId
+        {
+            get { return _stomachStatusFirstEvaluationId; }
+            set
+            {
+                if (_stomachStatusFirstEvaluationId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("stomachStatusFirstEvaluationId", _stomachStatusFirstEvaluationId);
+                    if (!IsDeserializing)
+                    {
+                        if (L_StomachStatusFirstEvaluation != null && L_StomachStatusFirstEvaluation.L_StomachStatusId != value)
+                        {
+                            L_StomachStatusFirstEvaluation = null;
+                        }
+                    }
+                    _stomachStatusFirstEvaluationId = value;
+                    OnPropertyChanged("stomachStatusFirstEvaluationId");
+                }
+            }
+        }
+        private Nullable<int> _stomachStatusFirstEvaluationId;
 
         #endregion
 
@@ -409,6 +433,23 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private TrackableCollection<R_AnimalInfoReference> _r_AnimalInfoReference;
+    
+        [DataMember]
+        public L_StomachStatus L_StomachStatusFirstEvaluation
+        {
+            get { return _l_StomachStatusFirstEvaluation; }
+            set
+            {
+                if (!ReferenceEquals(_l_StomachStatusFirstEvaluation, value))
+                {
+                    var previousValue = _l_StomachStatusFirstEvaluation;
+                    _l_StomachStatusFirstEvaluation = value;
+                    FixupL_StomachStatusFirstEvaluation(previousValue);
+                    OnNavigationPropertyChanged("L_StomachStatusFirstEvaluation");
+                }
+            }
+        }
+        private L_StomachStatus _l_StomachStatusFirstEvaluation;
 
         #endregion
 
@@ -504,6 +545,7 @@ namespace Babelfisk.Entities.Sprattus
             Maturity = null;
             L_Parasite = null;
             R_AnimalInfoReference.Clear();
+            L_StomachStatusFirstEvaluation = null;
         }
 
         #endregion
@@ -677,6 +719,50 @@ namespace Babelfisk.Entities.Sprattus
                 if (L_Parasite != null && !L_Parasite.ChangeTracker.ChangeTrackingEnabled)
                 {
                     L_Parasite.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupL_StomachStatusFirstEvaluation(L_StomachStatus previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.AnimalInfo.Contains(this))
+            {
+                previousValue.AnimalInfo.Remove(this);
+            }
+    
+            if (L_StomachStatusFirstEvaluation != null)
+            {
+                if (!L_StomachStatusFirstEvaluation.AnimalInfo.Contains(this))
+                {
+                    L_StomachStatusFirstEvaluation.AnimalInfo.Add(this);
+                }
+    
+                stomachStatusFirstEvaluationId = L_StomachStatusFirstEvaluation.L_StomachStatusId;
+            }
+            else if (!skipKeys)
+            {
+                stomachStatusFirstEvaluationId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("L_StomachStatusFirstEvaluation")
+                    && (ChangeTracker.OriginalValues["L_StomachStatusFirstEvaluation"] == L_StomachStatusFirstEvaluation))
+                {
+                    ChangeTracker.OriginalValues.Remove("L_StomachStatusFirstEvaluation");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("L_StomachStatusFirstEvaluation", previousValue);
+                }
+                if (L_StomachStatusFirstEvaluation != null && !L_StomachStatusFirstEvaluation.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    L_StomachStatusFirstEvaluation.StartTracking();
                 }
             }
         }

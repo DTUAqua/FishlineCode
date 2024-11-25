@@ -376,6 +376,10 @@
       <Link>Sprattus\L_Stock.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\Babelfisk.Model\L_StomachStatus.cs">
+      <Link>Sprattus\L_StomachStatus.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\Babelfisk.Model\L_SubAreaType.cs">
       <Link>Sprattus\L_SubAreaType.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
@@ -683,6 +687,7 @@
     <Compile Include="SprattusEntityExtensions\L_SpeciesRegistration.cs" />
     <Compile Include="SprattusEntityExtensions\L_StatisticalRectangle.cs" />
     <Compile Include="SprattusEntityExtensions\L_Stock.cs" />
+    <Compile Include="SprattusEntityExtensions\L_StomachStatus.cs" />
     <Compile Include="SprattusEntityExtensions\L_ThermoCline.cs" />
     <Compile Include="SprattusEntityExtensions\L_TimeZone.cs" />
     <Compile Include="SprattusEntityExtensions\L_Treatment.cs" />
@@ -722,8 +727,8 @@
       <Link>Sprattus\Sprattus.tt</Link>
       <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <LastGenOutput>Sprattus.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Sprattus.cs</LastGenOutput>
     </None>
     <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.tt">
       <Link>SprattusSecurity\SprattusSecurity.tt</Link>

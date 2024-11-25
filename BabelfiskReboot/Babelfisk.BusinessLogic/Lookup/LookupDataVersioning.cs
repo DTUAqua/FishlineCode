@@ -84,6 +84,7 @@ namespace Babelfisk.BusinessLogic
                                                             typeof(L_SDOtolithDescription),
                                                             typeof(L_SDPreparationMethod),
                                                             typeof(L_Stock),
+                                                            typeof(L_StomachStatus)
 
         };
         #endregion

@@ -66,6 +66,7 @@ namespace Babelfisk.Service
     [ServiceKnownType(typeof(L_SDLightType))]
     [ServiceKnownType(typeof(L_SDOtolithDescription))]
     [ServiceKnownType(typeof(L_SDPreparationMethod))]
+    [ServiceKnownType(typeof(L_StomachStatus))]
     [ServiceContract(SessionMode = SessionMode.NotAllowed)]
     public interface IOffline
     {

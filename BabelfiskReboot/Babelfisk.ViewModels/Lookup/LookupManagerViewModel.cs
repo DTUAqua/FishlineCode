@@ -604,6 +604,14 @@ namespace Babelfisk.ViewModels.Lookup
                                     )
             });
 
+            _lstAllLookupTypes.Add(new LookupType("Maveindhold", typeof(L_StomachStatus), null, null,
+                                 LookupColumn.Create("Kode", "stomachStatus", false, new System.Windows.Controls.DataGridLength(150)),
+                                 LookupColumn.Create("Beskrivelse", "description", false, new DataGridLength(150, DataGridLengthUnitType.Star)),
+                                 LookupColumn.Create("Nummer", "num", false, new System.Windows.Controls.DataGridLength(80)),
+                                 LookupColumn.Create("Enkeltfisk", "showInAnimal", false, new DataGridLength(100), null, LookupColumn.LookupColumnType.CheckBox),
+                                 LookupColumn.Create("Mave", "showInStomach", false, new DataGridLength(100), null, LookupColumn.LookupColumnType.CheckBox)
+                                 ));
+
             #endregion
 
             //Sort the lookup types

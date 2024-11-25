@@ -73,6 +73,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\FishLine_v2.2.0.sql">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\FishLine_v2.1.0.sql">
       <SubType>Designer</SubType>
     </Content>
