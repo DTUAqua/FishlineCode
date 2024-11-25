@@ -44,6 +44,9 @@
     <Reference Include="Globe.Core">
       <HintPath>..\..\ExternalLibraries\Globe.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ProjNet">
+      <HintPath>..\..\ExternalLibraries\ProjNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
