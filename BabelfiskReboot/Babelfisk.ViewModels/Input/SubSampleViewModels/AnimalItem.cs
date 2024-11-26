@@ -846,6 +846,32 @@ namespace Babelfisk.ViewModels.Input
             }
         }
 
+        public int? StomachStatusFirstEvaluationId
+        {
+            get { return _animalInfo.stomachStatusFirstEvaluationId; }
+            set
+            {
+                _animalInfo.stomachStatusFirstEvaluationId = value;
+                IsDirty = true;
+                RaisePropertyChanged(() => StomachStatusFirstEvaluationId);
+                RaisePropertyChanged(() => StomachStatusFirstEvaluation);
+                RaisePropertyChanged(() => HasUnsavedData);
+            }
+        }
+
+
+        public string StomachStatusFirstEvaluation
+        {
+            get
+            {
+                if (!_animalInfo.stomachStatusFirstEvaluationId.HasValue)
+                    return null;
+
+                var m = _parent.Parent.StomachStatusFirstEvaluations.Where(x => x.L_StomachStatusId == _animalInfo.stomachStatusFirstEvaluationId.Value).FirstOrDefault();
+                return m == null ? null : m.stomachStatus.ToString();
+            }
+        }
+
 
         public List<L_Reference> References
         {

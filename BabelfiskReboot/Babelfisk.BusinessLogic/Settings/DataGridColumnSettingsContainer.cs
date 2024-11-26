@@ -1280,6 +1280,14 @@ namespace Babelfisk.BusinessLogic.Settings
             speciesList[name].ColumnUIName = "L-vægt (g)";
             speciesList[name].Sorting = intSorting++;
 
+            name = "StomachStatusFirstEvaluation";
+            if (!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = false;
+            speciesList[name].ColumnUIName = "Mavestatus";
+            speciesList[name].Sorting = intSorting++;
+
             name = "References";
             if (!speciesList.ContainsKey(name))
                 speciesList.Add(name, new DataGridColumnSettings(name, this));
@@ -1453,6 +1461,14 @@ namespace Babelfisk.BusinessLogic.Settings
 
             speciesList[name].DefaultIsVisible = true;
             speciesList[name].ColumnUIName = "L-vægt (g)";
+            speciesList[name].Sorting = intSorting++;
+
+            name = "StomachStatusFirstEvaluation";
+            if (!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = false;
+            speciesList[name].ColumnUIName = "Mavestatus";
             speciesList[name].Sorting = intSorting++;
 
             name = "References";

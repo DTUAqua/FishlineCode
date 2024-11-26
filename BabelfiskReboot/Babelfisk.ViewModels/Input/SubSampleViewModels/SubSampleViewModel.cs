@@ -58,6 +58,7 @@ namespace Babelfisk.ViewModels.Input
         private List<L_HatchMonthReadability> _lstHatchMonthReadabilities;
         private List<L_VisualStock> _lstVisualStocks;
         private List<L_GeneticStock> _lstGeneticStocks;
+        private List<L_StomachStatus> _lstStomachStatusFirstEvaluations;
 
         private ColumnVisibilityViewModel _vmColumnVisibility;
         private int _columnCount;
@@ -337,6 +338,17 @@ namespace Babelfisk.ViewModels.Input
             }
         }
 
+        public List<L_StomachStatus> StomachStatusFirstEvaluations
+        {
+            get { return _lstStomachStatusFirstEvaluations == null ? null : _lstStomachStatusFirstEvaluations.ToList(); }
+            private set
+            {
+                _lstStomachStatusFirstEvaluations = value;
+                RaisePropertyChanged(() => StomachStatusFirstEvaluations);
+            }
+        
+        }
+
         public int ColumnCount
         {
             get { return _columnCount; }
@@ -501,6 +513,7 @@ namespace Babelfisk.ViewModels.Input
                 List<L_HatchMonthReadability> lstHatchMonthReadabilities = null;
                 List<L_VisualStock> lstVisualStocks = null;
                 List<L_GeneticStock> lstGeneticStocks = null;
+                List<L_StomachStatus> lstStomachStatus = null;
 
                 switch (_enmSubSampleType)
                 {
@@ -521,6 +534,7 @@ namespace Babelfisk.ViewModels.Input
                         lstHatchMonthReadabilities = manLookup.GetLookups(typeof(L_HatchMonthReadability), lv).OfType<L_HatchMonthReadability>().OrderBy(x => x.UIDisplay).ToList();
                         lstVisualStocks = manLookup.GetLookups(typeof(L_VisualStock), lv).OfType<L_VisualStock>().Where(x => x.speciesCode == sl.speciesCode).OrderBy(x => x.UIDisplay).ToList();
                         lstGeneticStocks = manLookup.GetLookups(typeof(L_GeneticStock), lv).OfType<L_GeneticStock>().Where(x => x.speciesCode == sl.speciesCode).OrderBy(x => x.UIDisplay).ToList();
+                        lstStomachStatus = manLookup.GetLookups(typeof(L_StomachStatus), lv).OfType<L_StomachStatus>().Where(x => x.showInAnimal == true).OrderBy(x => x.UIDisplay).ToList();
                         break;
                 }
 
@@ -557,6 +571,7 @@ namespace Babelfisk.ViewModels.Input
                         HatchMonthReadabilities = lstHatchMonthReadabilities;
                         VisualStocks = lstVisualStocks;
                         GeneticStocks = lstGeneticStocks;
+                        StomachStatusFirstEvaluations = lstStomachStatus;
                     }
                     _blnAssigningLookups = false;
 

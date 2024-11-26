@@ -313,6 +313,7 @@ namespace Babelfisk.BusinessLogic.Export
                                               "Animal.broodingPhase", 
                                               "Animal.weightGutted",
                                               "Animal.weightLiver",
+                                              "Animal.stomachStatusFirstEvaluation",
                                               "Animal.weightGonads",
                                               "Animal.parasiteCode",
                                               "Animal.fatIndex",
@@ -400,6 +401,7 @@ namespace Babelfisk.BusinessLogic.Export
                 arr[intIndex++] = GetValue(ani.broodingPhase);
                 arr[intIndex++] = GetValue(ani.weightGutted);
                 arr[intIndex++] = GetValue(ani.weightLiver);
+                arr[intIndex++] = GetValue(ani.stomachStatusFirstEvaluation);
                 arr[intIndex++] = GetValue(ani.weightGonads);
                 arr[intIndex++] = GetValue(ani.parasiteCode);
                 arr[intIndex++] = GetValue(ani.fatIndex);
@@ -732,6 +734,7 @@ namespace Babelfisk.BusinessLogic.Export
             arr[intIndex++] = GetValue(a.broodingPhase);
             arr[intIndex++] = GetValue(a.weightGutted);
             arr[intIndex++] = GetValue(a.weightLiver);
+            arr[intIndex++] = GetValue(a.stomachStatusFirstEvaluation);
             arr[intIndex++] = GetValue(a.weightGonads);
             arr[intIndex++] = GetValue(a.parasiteCode);
             arr[intIndex++] = GetValue(a.fatIndex);
@@ -955,6 +958,7 @@ namespace Babelfisk.BusinessLogic.Export
                                           "Animal.broodingPhase",
                                           "Animal.weightGutted",
                                           "Animal.weightLiver",
+                                          "Animal.stomachStatusFirstEvaluation",
                                           "Animal.weightGonads",
                                           "Animal.parasiteCode",
                                           "Animal.fatIndex",

@@ -701,6 +701,27 @@
                         </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                     </aCtrls:AncDataGridTemplateColumn>
 
+                    <!-- Stomach Status -->
+                    <aCtrls:AncDataGridTemplateColumn SortMemberPath="StomachStatusFirstEvaluation" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85"  Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='SingleFish|StomachStatusFirstEvaluation'}">
+                        <aCtrls:AncDataGridTemplateColumn.Header>
+                            <dGrid:DoubleColumnHeader LowerHeader="Mavestatus" LowerHeaderForeground="{StaticResource ResourceKey=LowerHeaderForegroundColor}" />
+                        </aCtrls:AncDataGridTemplateColumn.Header>
+                        <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=StomachStatusFirstEvaluation, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource lblDisplay}" />
+                            </DataTemplate>
+                        </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <aCtrls:FilteredComboBox ItemsSource="{Binding Path=Data.Parent.StomachStatusFirstEvaluations, Source={StaticResource proxyContext}}" DisplayMemberPath="UIDisplay"
+                                                         TabOnEnter="False" MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"
+                                                         DropDownWidth="300" FilterFromStart="True"
+                                                         FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
+                                                         SelectedValue="{Binding Path=StomachStatusFirstEvaluationId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="L_StomachStatusId" OpenOnFocus="True" />
+                            </DataTemplate>
+                        </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
+                    </aCtrls:AncDataGridTemplateColumn>
+
                     <!-- References -->
                     <aCtrls:AncDataGridTemplateColumn HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="66" Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='SingleFish|References'}" >
                         <aCtrls:AncDataGridTemplateColumn.Header>
