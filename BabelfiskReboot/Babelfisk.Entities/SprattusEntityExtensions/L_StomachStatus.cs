@@ -39,8 +39,8 @@ namespace Babelfisk.Entities.Sprattus
 
                 str += this.stomachStatus;
 
-                if(!string.IsNullOrWhiteSpace(description))
-                    str += " - " + description;
+                //if(!string.IsNullOrWhiteSpace(description))
+                //    str += " - " + description;
 
                 return str;
             }

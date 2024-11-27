@@ -702,7 +702,7 @@
                     </aCtrls:AncDataGridTemplateColumn>
 
                     <!-- Stomach Status -->
-                    <aCtrls:AncDataGridTemplateColumn SortMemberPath="StomachStatusFirstEvaluation" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="85"  Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='SingleFish|StomachStatusFirstEvaluation'}">
+                    <aCtrls:AncDataGridTemplateColumn SortMemberPath="StomachStatusFirstEvaluation" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="75"  Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='SingleFish|StomachStatusFirstEvaluation'}">
                         <aCtrls:AncDataGridTemplateColumn.Header>
                             <dGrid:DoubleColumnHeader LowerHeader="Mavestatus" LowerHeaderForeground="{StaticResource ResourceKey=LowerHeaderForegroundColor}" />
                         </aCtrls:AncDataGridTemplateColumn.Header>
@@ -715,7 +715,7 @@
                             <DataTemplate>
                                 <aCtrls:FilteredComboBox ItemsSource="{Binding Path=Data.Parent.StomachStatusFirstEvaluations, Source={StaticResource proxyContext}}" DisplayMemberPath="UIDisplay"
                                                          TabOnEnter="False" MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"
-                                                         DropDownWidth="300" FilterFromStart="True"
+                                                         DropDownWidth="130" FilterFromStart="True" ItemToolTipDisplayMember="description" 
                                                          FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                          SelectedValue="{Binding Path=StomachStatusFirstEvaluationId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="L_StomachStatusId" OpenOnFocus="True" />
                             </DataTemplate>
