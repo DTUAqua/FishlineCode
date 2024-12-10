@@ -1231,7 +1231,7 @@ namespace Babelfisk.Service
                         var quarter = arrLine[quarterIndex].Trim() == "NA" ? "" : arrLine[quarterIndex].Trim();
 
                         var dfuArea = lstArea.Where(x => !string.IsNullOrWhiteSpace(x.areaICES) && x.areaICES.Equals(area, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                        var dfuSpecies = lstSpecies.Where(x => !string.IsNullOrWhiteSpace(x.icesCode) && x.icesCode.Equals(species, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                       // var dfuSpecies = lstSpecies.Where(x => !string.IsNullOrWhiteSpace(x.icesCode) && x.icesCode.Equals(species, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                         var dfuStock = lstStocks.Where(x => !string.IsNullOrWhiteSpace(x.stockCode) && x.stockCode.Equals(stock, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                         var dfuStat = lstRectangles.Where(x => !string.IsNullOrWhiteSpace(x.statisticalRectangle) && x.statisticalRectangle.Equals(statRect, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
 
@@ -1242,11 +1242,11 @@ namespace Babelfisk.Service
                             continue;
                         }
 
-                        if (dfuSpecies == null)
+                        /*if (dfuSpecies == null)
                         {
                             sb.Add(string.Format("Line no: {0}. Species not found in FishLine: {1}.", lineno, line));
                             continue;
-                        }
+                        }*/
 
                         if (dfuArea == null)
                         {
@@ -1269,7 +1269,7 @@ namespace Babelfisk.Service
 
                         if (lstStockSpeciesArea.Where(x => x.L_stockId == dfuStock.L_stockId &&
                                                            x.DFUArea == dfuArea.DFUArea &&
-                                                           x.speciesCode == dfuSpecies.speciesCode &&
+                                                         //  x.speciesCode == dfuSpecies.speciesCode &&
                                                            (x.statisticalRectangle ?? "").Equals(dfuStatString ?? "", StringComparison.InvariantCultureIgnoreCase) &&
                                                            (x.quarter.HasValue ? x.quarter.Value : -1) == (quarterLocal.HasValue ? quarterLocal.Value : -1)).Any())
                         {
@@ -1280,7 +1280,7 @@ namespace Babelfisk.Service
                         var r = new R_StockSpeciesArea();
                         r.L_stockId = dfuStock.L_stockId;
                         r.DFUArea = dfuArea.DFUArea;
-                        r.speciesCode = dfuSpecies.speciesCode;
+                       // r.speciesCode = dfuSpecies.speciesCode;
                         r.statisticalRectangle = dfuStatString;
                         r.quarter = quarterLocal;
 

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/18/2024 15:59:27
+-- Date Created: 12/10/2024 11:53:47
 -- Generated from EDMX file: C:\Code\DTUAqua\FishlineCode\BabelfiskReboot\Babelfisk.Model\Sprattus.edmx
 -- --------------------------------------------------
 
@@ -563,6 +563,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_L_LengthMeasureTypeL_Species]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[L_Species] DROP CONSTRAINT [FK_L_LengthMeasureTypeL_Species];
 GO
+IF OBJECT_ID(N'[dbo].[FK_AnimalInfo_L_StomachStatus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnimalInfo] DROP CONSTRAINT [FK_AnimalInfo_L_StomachStatus];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -948,6 +951,9 @@ IF OBJECT_ID(N'[dbo].[L_SelectionDeviceSource]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[L_LengthMeasureType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[L_LengthMeasureType];
+GO
+IF OBJECT_ID(N'[dbo].[L_StomachStatus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[L_StomachStatus];
 GO
 IF OBJECT_ID(N'[dbo].[R_ReportingTreeNodeReport]', 'U') IS NOT NULL
     DROP TABLE [dbo].[R_ReportingTreeNodeReport];
@@ -1582,7 +1588,6 @@ CREATE TABLE [dbo].[L_Species] (
     [ukName] nvarchar(80)  NULL,
     [nodc] nvarchar(80)  NULL,
     [latin] nvarchar(80)  NULL,
-    [icesCode] nvarchar(3)  NULL,
     [treatmentFactorGroup] nvarchar(3)  NULL,
     [dfuFisk_Code] nvarchar(3)  NULL,
     [tsn] nvarchar(6)  NULL,
@@ -1594,7 +1599,6 @@ CREATE TABLE [dbo].[L_Species] (
     [ageMax] int  NULL,
     [weightMin] int  NULL,
     [weightMax] int  NULL,
-    [speciesNES] nvarchar(3)  NULL,
     [speciesFAO] nvarchar(3)  NULL
 );
 GO

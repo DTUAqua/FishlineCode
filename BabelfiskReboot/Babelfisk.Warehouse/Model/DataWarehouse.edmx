@@ -200,7 +200,6 @@ warning 6002: The table/view 'FishLineDW.dbo.ErrorLog' does not have a primary k
           <Property Name="ukName" Type="nvarchar" MaxLength="80" />
           <Property Name="nodc" Type="nvarchar" MaxLength="80" />
           <Property Name="latin" Type="nvarchar" MaxLength="80" />
-          <Property Name="icesCode" Type="nvarchar" MaxLength="3" />
           <Property Name="treatmentFactorGroup" Type="nvarchar" MaxLength="3" />
           <Property Name="dfuFisk_Code" Type="nvarchar" MaxLength="3" />
           <Property Name="tsn" Type="nvarchar" MaxLength="6" />
@@ -211,7 +210,6 @@ warning 6002: The table/view 'FishLineDW.dbo.ErrorLog' does not have a primary k
           <Property Name="ageMax" Type="int" />
           <Property Name="weightMin" Type="int" />
           <Property Name="weightMax" Type="int" />
-          <Property Name="speciesNES" Type="nvarchar" MaxLength="3" />
           <Property Name="speciesFAO" Type="nvarchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="R_AnimalPictureReference">
@@ -1188,7 +1186,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="String" Name="ukName" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="nodc" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="latin" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="icesCode" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="treatmentFactorGroup" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="dfuFisk_Code" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="tsn" MaxLength="6" FixedLength="false" Unicode="true" />
@@ -1199,7 +1196,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="Int32" Name="ageMax" />
           <Property Type="Int32" Name="weightMin" />
           <Property Type="Int32" Name="weightMax" />
-          <Property Type="String" Name="speciesNES" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="speciesFAO" MaxLength="3" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
@@ -1632,7 +1628,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
             <EntityTypeMapping TypeName="FishLineDWModel.L_Species">
               <MappingFragment StoreEntitySet="L_Species">
                 <ScalarProperty Name="speciesFAO" ColumnName="speciesFAO" />
-                <ScalarProperty Name="speciesNES" ColumnName="speciesNES" />
                 <ScalarProperty Name="weightMax" ColumnName="weightMax" />
                 <ScalarProperty Name="weightMin" ColumnName="weightMin" />
                 <ScalarProperty Name="ageMax" ColumnName="ageMax" />
@@ -1643,7 +1638,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
                 <ScalarProperty Name="tsn" ColumnName="tsn" />
                 <ScalarProperty Name="dfuFisk_Code" ColumnName="dfuFisk_Code" />
                 <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
-                <ScalarProperty Name="icesCode" ColumnName="icesCode" />
                 <ScalarProperty Name="latin" ColumnName="latin" />
                 <ScalarProperty Name="nodc" ColumnName="nodc" />
                 <ScalarProperty Name="ukName" ColumnName="ukName" />

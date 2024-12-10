@@ -42,7 +42,14 @@ ON [dbo].[AnimalInfo]
 GO
 
 
+-- DROP columns
+ALTER TABLE [dbo].[L_Species] 
+DROP COLUMN [icesCode]
+GO
 
+ALTER TABLE [dbo].[L_Species] 
+DROP COLUMN [speciesNES]
+GO
 
 
 USE [FishLineDW]
@@ -52,3 +59,12 @@ ALTER TABLE [dbo].[Animal]
 ADD [stomachStatusFirstEvaluation] nvarchar(20) NULL
 GO
 
+
+-- DROP columns
+ALTER TABLE [dbo].[L_Species] 
+DROP COLUMN [icesCode]
+GO
+
+ALTER TABLE [dbo].[L_Species] 
+DROP COLUMN [speciesNES]
+GO

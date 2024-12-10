@@ -1509,7 +1509,6 @@
     <Property Name="ukName" Type="nvarchar" Nullable="true" MaxLength="80" />
     <Property Name="nodc" Type="nvarchar" Nullable="true" MaxLength="80" />
     <Property Name="latin" Type="nvarchar" Nullable="true" MaxLength="80" />
-    <Property Name="icesCode" Type="nvarchar" Nullable="true" MaxLength="3" />
     <Property Name="treatmentFactorGroup" Type="nvarchar" Nullable="true" MaxLength="3" />
     <Property Name="dfuFisk_Code" Type="nvarchar" Nullable="true" MaxLength="3" />
     <Property Name="tsn" Type="nvarchar" Nullable="true" MaxLength="6" />
@@ -1521,7 +1520,6 @@
     <Property Name="ageMax" Type="int" Nullable="true" />
     <Property Name="weightMin" Type="int" Nullable="true" />
     <Property Name="weightMax" Type="int" Nullable="true" />
-    <Property Name="speciesNES" Type="nvarchar" Nullable="true" MaxLength="3" />
     <Property Name="speciesFAO" Type="nvarchar" Nullable="true" MaxLength="3" />
   </EntityType>
   <EntityType Name="L_SpeciesRegistration">
@@ -6354,7 +6352,6 @@
           <Property Name="ukName" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="nodc" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="latin" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
-          <Property Name="icesCode" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
           <Property Name="treatmentFactorGroup" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
           <Property Name="dfuFisk_Code" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
           <Property Name="tsn" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
@@ -6371,7 +6368,6 @@
           <NavigationProperty Name="R_TargetSpecies" Relationship="Babelfisk.Entities.FK_R_targetSpecies_L_Species" FromRole="L_Species" ToRole="R_TargetSpecies" />
           <NavigationProperty Name="R_TargetSpecies1" Relationship="Babelfisk.Entities.FK_R_targetSpecies_L_Species1" FromRole="L_Species" ToRole="R_TargetSpecies" />
           <NavigationProperty Name="SpeciesList" Relationship="Babelfisk.Entities.FK_SpeciesList_L_Species" FromRole="L_Species" ToRole="SpeciesList" />
-          <Property Type="String" Name="speciesNES" Nullable="true" Unicode="true" FixedLength="false" MaxLength="3" />
           <Property Type="String" Name="speciesFAO" FixedLength="false" MaxLength="3" Unicode="true" Nullable="true" />
           <NavigationProperty Name="R_StockSpeciesArea" Relationship="Babelfisk.Entities.FK_R_StockSpeciesArea_L_Species" FromRole="L_Species" ToRole="R_StockSpeciesArea" />
           <NavigationProperty Name="R_SDReader" Relationship="Babelfisk.Entities.FK_R_SDReader_L_Species" FromRole="L_Species" ToRole="R_SDReader" />
@@ -10394,7 +10390,6 @@
           <ScalarProperty Name="ukName" ColumnName="ukName" />
           <ScalarProperty Name="nodc" ColumnName="nodc" />
           <ScalarProperty Name="latin" ColumnName="latin" />
-          <ScalarProperty Name="icesCode" ColumnName="icesCode" />
           <ScalarProperty Name="treatmentFactorGroup" ColumnName="treatmentFactorGroup" />
           <ScalarProperty Name="dfuFisk_Code" ColumnName="dfuFisk_Code" />
           <ScalarProperty Name="tsn" ColumnName="tsn" />
@@ -10406,7 +10401,6 @@
           <ScalarProperty Name="ageMax" ColumnName="ageMax" />
           <ScalarProperty Name="weightMin" ColumnName="weightMin" />
           <ScalarProperty Name="weightMax" ColumnName="weightMax" />
-          <ScalarProperty Name="speciesNES" ColumnName="speciesNES" />
           <ScalarProperty Name="speciesFAO" ColumnName="speciesFAO" />
         </MappingFragment>
       </EntityTypeMapping>

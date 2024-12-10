@@ -727,8 +727,8 @@
       <Link>Sprattus\Sprattus.tt</Link>
       <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Sprattus.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.tt">
       <Link>SprattusSecurity\SprattusSecurity.tt</Link>

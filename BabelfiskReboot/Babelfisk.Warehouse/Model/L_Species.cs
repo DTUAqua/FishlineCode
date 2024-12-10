@@ -117,21 +117,6 @@ namespace Babelfisk.Warehouse.Model
         private string _latin;
     
         [DataMember]
-        public string icesCode
-        {
-            get { return _icesCode; }
-            set
-            {
-                if (_icesCode != value)
-                {
-                    _icesCode = value;
-                    OnPropertyChanged("icesCode");
-                }
-            }
-        }
-        private string _icesCode;
-    
-        [DataMember]
         public string treatmentFactorGroup
         {
             get { return _treatmentFactorGroup; }
@@ -280,21 +265,6 @@ namespace Babelfisk.Warehouse.Model
             }
         }
         private Nullable<int> _weightMax;
-    
-        [DataMember]
-        public string speciesNES
-        {
-            get { return _speciesNES; }
-            set
-            {
-                if (_speciesNES != value)
-                {
-                    _speciesNES = value;
-                    OnPropertyChanged("speciesNES");
-                }
-            }
-        }
-        private string _speciesNES;
     
         [DataMember]
         public string speciesFAO
