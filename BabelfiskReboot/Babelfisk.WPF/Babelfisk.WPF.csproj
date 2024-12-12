@@ -74,7 +74,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F08CA6153DA8B8EDB272E153D4140548509FA614</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E9783B3293EEDCBEE5F4B070468C47F66E29782D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
