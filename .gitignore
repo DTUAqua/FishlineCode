@@ -16,3 +16,9 @@ obj/
 # Ignore packages folders, since they are downloaded automatically from NuGet
 packages/
 /BabelfiskReboot/Babelfisk.Service/Data/LookupVersions.xml
+/AquaDots/.vs/DTUAqua.SmartDots.WebAPI/config/applicationhost.config
+/AquaDots/.vs/DTUAqua.SmartDots.WebAPI/v17/.suo
+/AquaDots/SmartDots.Service/SmartDots.Service.csproj.user
+/BabelfiskReboot/Babelfisk.OtolithFileService/Babelfisk.OtolithFileService.csproj.user
+/BabelfiskReboot/Babelfisk.WPF/Babelfisk.WPF.csproj.user
+/BabelfiskReboot/Babelfisk.Service/Babelfisk.Service.csproj.user
