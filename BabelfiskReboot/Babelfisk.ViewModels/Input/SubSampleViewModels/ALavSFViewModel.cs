@@ -469,7 +469,7 @@ namespace Babelfisk.ViewModels.Input
 
         }
 
-        public void SetMeasurementUnit()
+        public void SetLengthMeasurementUnit()
         {
             if(_strLastLengthMeasureUnit != null && _strLastLengthMeasureUnit != null)
             {
