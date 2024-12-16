@@ -469,6 +469,17 @@ namespace Babelfisk.ViewModels.Input
 
         }
 
+        public void SetMeasurementUnit()
+        {
+            if(_strLastLengthMeasureUnit != null && _strLastLengthMeasureUnit != null)
+            {
+                var res = _parent.LengthMeasureUnits.FirstOrDefault(x => x.lengthMeasureUnit == _strLastLengthMeasureUnit);
+                if(res != null)
+                    LengthMeasureUnit = res.lengthMeasureUnit;
+
+            }
+        }
+
         protected virtual void Initializing(List<AnimalItem> lst)
         {
 

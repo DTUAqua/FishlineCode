@@ -579,7 +579,11 @@ namespace Babelfisk.ViewModels.Input
 
 
                     if (_aLavSFViewModel != null)
+                    {
                         _aLavSFViewModel.SetDefaultLengthMeasureType();
+                        _aLavSFViewModel.SetMeasurementUnit();
+                    }
+                        
 
                     RaisePropertyChanged(() => LavSFViewModel);
 
