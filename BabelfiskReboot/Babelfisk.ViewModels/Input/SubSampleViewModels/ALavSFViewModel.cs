@@ -475,7 +475,10 @@ namespace Babelfisk.ViewModels.Input
             {
                 var res = _parent.LengthMeasureUnits.FirstOrDefault(x => x.lengthMeasureUnit == _strLastLengthMeasureUnit);
                 if(res != null)
-                    LengthMeasureUnit = res.lengthMeasureUnit;
+                {
+                    _strLengthMeasureUnit = res.lengthMeasureUnit;
+                    RaisePropertyChanged(() => LengthMeasureUnit);
+                }
 
             }
         }
