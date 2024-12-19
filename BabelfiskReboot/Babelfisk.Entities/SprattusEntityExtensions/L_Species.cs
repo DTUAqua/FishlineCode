@@ -42,9 +42,8 @@ namespace Babelfisk.Entities.Sprattus
         {
             get
             {
-                return String.Format("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}",   this.speciesCode, this.dkName, this.ukName, this.nodc, this.latin, 
-                                                                                  this.L_TreatmentFactorGroup != null ? L_TreatmentFactorGroup.UIDisplay : "", 
-                                                                                  this.dfuFisk_Code, this.tsn, this.aphiaID); }
+                return String.Format("{0} {1} {2} {3} {4} {5} {6}", this.speciesCode, this.dkName, this.ukName, this.latin, this.speciesFAO,
+                                                                    this.L_TreatmentFactorGroup != null ? L_TreatmentFactorGroup.UIDisplay : "", this.aphiaID); }
         }
 
         public string treatmentFactorGroupUI
@@ -157,14 +156,8 @@ namespace Babelfisk.Entities.Sprattus
             if (latin != null && latin.Length > 80)
                 return "Latinske navn må kun bestå af 80 tegn.";
 
-            //if (icesCode != null && icesCode.Length > 3)
-            //    return "ICES kode må kun bestå af 3 tegn.";
-
             if (dfuFisk_Code != null && dfuFisk_Code.Length > 3)
                 return "Aqua-base kode må kun bestå af 3 tegn.";
-
-            //if(speciesNES != null && speciesNES.Length > 3)
-            //    return "NES kode må kun bestå af 3 tegn.";
 
             if (speciesFAO != null && speciesFAO.Length > 3)
                 return "FAO kode må kun bestå af 3 tegn.";
