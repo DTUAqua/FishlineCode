@@ -274,7 +274,7 @@ namespace Babelfisk.ViewModels.Input
                 if (!_animalInfo.maturityId.HasValue)
                     return null;
 
-                var m = _parent.Parent.MaturityList.Where(x => x.maturityId == _animalInfo.maturityId.Value).FirstOrDefault();
+                var m = _parent.Parent?.MaturityList?.Where(x => x.maturityId == _animalInfo.maturityId.Value).FirstOrDefault();
                 return m == null ? null : m.maturityIndex.ToString();
             }
         }
@@ -322,7 +322,7 @@ namespace Babelfisk.ViewModels.Input
                 if (a == null || !a.otolithReadingRemarkId.HasValue)
                     return null;
 
-                var m = _parent.Parent.OtolithReadingRemarks.Where(x => x.L_OtolithReadingRemarkID == a.otolithReadingRemarkId.Value).FirstOrDefault();
+                var m = _parent?.Parent?.OtolithReadingRemarks?.Where(x => x.L_OtolithReadingRemarkID == a.otolithReadingRemarkId.Value).FirstOrDefault();
                 return m == null ? null : m.otolithReadingRemark;
             }
         }
@@ -357,7 +357,7 @@ namespace Babelfisk.ViewModels.Input
                 if (a == null || !a.hatchMonthReadabilityId.HasValue)
                     return null;
 
-                var m = _parent.Parent.HatchMonthReadabilities.Where(x => x.L_HatchMonthReadabilityId == a.hatchMonthReadabilityId.Value).FirstOrDefault();
+                var m = _parent.Parent?.HatchMonthReadabilities?.Where(x => x.L_HatchMonthReadabilityId == a.hatchMonthReadabilityId.Value).FirstOrDefault();
                 return m == null ? null : m.hatchMonthRemark;
             }
         }
@@ -393,7 +393,7 @@ namespace Babelfisk.ViewModels.Input
                 if (a == null || !a.visualStockId.HasValue)
                     return null;
 
-                var m = _parent.Parent.VisualStocks.Where(x => x.L_visualStockId == a.visualStockId.Value).FirstOrDefault();
+                var m = _parent.Parent?.VisualStocks?.Where(x => x.L_visualStockId == a.visualStockId.Value).FirstOrDefault();
                 return m == null ? null : m.visualStock;
             }
         }
@@ -429,7 +429,7 @@ namespace Babelfisk.ViewModels.Input
                 if (a == null || !a.geneticStockId.HasValue)
                     return null;
 
-                var m = _parent.Parent.GeneticStocks.Where(x => x.L_geneticStockId == a.geneticStockId.Value).FirstOrDefault();
+                var m = _parent.Parent?.GeneticStocks?.Where(x => x.L_geneticStockId == a.geneticStockId.Value).FirstOrDefault();
                 return m == null ? null : m.geneticStock;
             }
         }
@@ -457,7 +457,7 @@ namespace Babelfisk.ViewModels.Input
                 if (a == null || _lstAges.First().ChangeTracker.State == ObjectState.Deleted || a.genetics == null)
                     return null;
 
-                var g = _lstGenetics.Where(x => x.Value == a.genetics.Value).FirstOrDefault();
+                var g = _lstGenetics?.Where(x => x.Value == a.genetics.Value).FirstOrDefault();
                 return g;
             }
             set
