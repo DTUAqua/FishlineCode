@@ -1406,7 +1406,7 @@
                                 </Label>
 
                                 <TextBox x:Name="tbHaulSpeedWat" KeyboardNavigation.TabIndex="52" ancBe:SelectTextOnFocus.Active="True" VerticalAlignment="Center"
-                                     Text="{Binding Path=HaulSpeedWat, Mode=TwoWay, Converter={StaticResource cStringToDecimal}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                     Text="{Binding Path=HaulSpeedWat, Mode=TwoWay, Converter={StaticResource cStringToDecimal}, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"
                                      Style="{StaticResource ResourceKey=txtValue}"   />
                             </DockPanel>
 
@@ -1468,7 +1468,7 @@
                                 </Label>
 
                                 <TextBox x:Name="tbNetOpening" KeyboardNavigation.TabIndex="55" ancBe:SelectTextOnFocus.Active="True" VerticalAlignment="Center"
-                                     Text="{Binding Path=NetOpening, Mode=TwoWay, Converter={StaticResource cStringToDecimal}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                     Text="{Binding Path=NetOpening, Mode=TwoWay, Converter={StaticResource cStringToDecimal}, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"
                                      Style="{StaticResource ResourceKey=txtValue}"   />
                             </DockPanel>
 
@@ -1493,7 +1493,7 @@
                                 </Label>
 
                                 <TextBox x:Name="tbShovelDist" KeyboardNavigation.TabIndex="56" ancBe:SelectTextOnFocus.Active="True" VerticalAlignment="Center"
-                                     Text="{Binding Path=ShovelDist, Converter={StaticResource cStringToDecimal}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                     Text="{Binding Path=ShovelDist, Converter={StaticResource cStringToDecimal}, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"
                                      Style="{StaticResource ResourceKey=txtValue}"   />
                             </DockPanel>
 
@@ -1568,7 +1568,7 @@
                                 </Label>
 
                                 <TextBox x:Name="tbWingSpread" KeyboardNavigation.TabIndex="59" ancBe:SelectTextOnFocus.Active="True" VerticalAlignment="Center"
-                                     Text="{Binding Path=WingSpread, Converter={StaticResource cStringToDecimal}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                     Text="{Binding Path=WingSpread, Converter={StaticResource cStringToDecimal}, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}"
                                      Style="{StaticResource ResourceKey=txtValue}"   />
                             </DockPanel>
 

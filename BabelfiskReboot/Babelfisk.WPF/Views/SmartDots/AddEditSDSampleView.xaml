@@ -274,7 +274,7 @@
                         <DockPanel DockPanel.Dock="Top" Margin="0,5,0,0"  >
                             <Label Content="{lan:Translate Section=SDSampleView, Key=ColumnWeight, UIDesignerValue='Weight'}" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=sViewHeaderStyle}" ToolTip="{lan:Translate Section=SDSampleView, Key=ColumnWeight, UIDesignerValue='Weight'}" />
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Text="{Binding Path=WeightG, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue='', Converter={StaticResource ResourceKey=cStringToDecimal}, ConverterParameter=4}" IsEnabled="{Binding Path=ReadOnly, Converter={StaticResource cBoolToBoolNegation}}"
+                                <TextBox Text="{Binding Path=WeightG, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, TargetNullValue='', Converter={StaticResource ResourceKey=cStringToDecimal}, ConverterParameter=4}" IsEnabled="{Binding Path=ReadOnly, Converter={StaticResource cBoolToBoolNegation}}"
                              Style="{StaticResource ResourceKey=sViewTextBoxStyle}" />
                                 <Grid HorizontalAlignment="Left">
                                     <TextBlock Style="{StaticResource txtMandatoryField}" Visibility="Collapsed" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="1,5,-10,0"  />
