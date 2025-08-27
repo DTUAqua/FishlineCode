@@ -1715,7 +1715,8 @@ CREATE TABLE [dbo].[Maturity] (
     [maturityId] int IDENTITY(1,1) NOT NULL,
     [maturityIndex] int  NOT NULL,
     [maturityIndexMethod] nvarchar(1)  NOT NULL,
-    [description] nvarchar(80)  NULL
+    [description] nvarchar(80)  NULL,
+    [maturitySMSF] nvarchar(3) NULL
 );
 GO
 

@@ -48,7 +48,7 @@ namespace Babelfisk.Entities.Sprattus
         {
             get
             {
-                return String.Format("{0} {1} {2}", L_MaturityIndexMethodUIDisplay, maturityIndex, description);
+                return String.Format("{0} {1} {2} {3}", L_MaturityIndexMethodUIDisplay, maturityIndex, description, maturitySMSF);
             }
         }
 
@@ -84,6 +84,9 @@ namespace Babelfisk.Entities.Sprattus
                 if(!string.IsNullOrWhiteSpace(description))
                     str += " - " + description;
 
+                if(!string.IsNullOrWhiteSpace(maturitySMSF))
+                    str += " - " + maturitySMSF;
+
                 return str;
             }
         }
@@ -99,7 +102,8 @@ namespace Babelfisk.Entities.Sprattus
             return (maturityId.Equals(other.maturityId)) &&
                     (maturityIndexMethod != null ? maturityIndexMethod.Equals(other.maturityIndexMethod) : other.maturityIndexMethod == null) &&
                     (maturityIndex.Equals(other.maturityIndex)) &&
-                    (description != null ? description.Equals(other.description) : other.description == null)
+                    (description != null ? description.Equals(other.description) : other.description == null) &&
+                    (maturitySMSF != null ? maturitySMSF.Equals(other.maturitySMSF) : other.maturitySMSF == null) 
                     ;
         }
 
@@ -141,6 +145,9 @@ namespace Babelfisk.Entities.Sprattus
 
             if (description != null && description.Length > 80)
                 return "Beskrivelse for alle modenhedsrækker må kun bestå af 80 tegn.";
+
+            if (maturitySMSF != null && maturitySMSF.Length > 3)
+                return "SMSF Kode for alle modenhedsrækker må kun bestå af 3 tegn.";
 
             if (lst.OfType<Maturity>().Where(x => (x.maturityId != maturityId || (this.ChangeTracker.State == ObjectState.Added && x != this)) &&
                                                           x.maturityIndex.Equals(maturityIndex) &&

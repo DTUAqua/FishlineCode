@@ -100,6 +100,7 @@
     <Content Include="Scripts\FishLine_v1.7.0.sql" />
     <Content Include="Scripts\FishLine_v1.6.sql" />
     <Content Include="Scripts\FishLine_v1.5.sql" />
+    <Content Include="Scripts\Fishline_v2.3.0.sql" />
     <Content Include="Scripts\Post_scripts_to_run_after_Alterations.sql" />
     <Content Include="Scripts\SmartDots_v1.0.sql" />
     <Content Include="Scripts\Sprattus_Alterations.sql" />
