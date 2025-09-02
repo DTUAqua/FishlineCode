@@ -203,6 +203,11 @@ namespace FishLineMeasure.ViewModels.Export
 
             et.Measurements = et.Station.GetMeasurementClasses(null, false);
 
+            var lengthMeasureTypes = GetLookups<L_LengthMeasureType>();
+            var species = GetLookups<L_Species>();
+            var defaultLengthMeasureType = lengthMeasureTypes == null ? null : lengthMeasureTypes.Where(x => "TL".Equals(x.lengthMeasureType, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            var defaultLengthMeasureTypeDVH = lengthMeasureTypes == null ? null : lengthMeasureTypes.Where(x => "CL".Equals(x.lengthMeasureType, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
             var lstMeasurementGroups = et.Measurements.Where(x => x.Lookups != null).GroupBy(x => x.Lookups.GroupString).ToList();
 
             ExportLogState checkState = ExportLogState.Passed;
@@ -216,6 +221,20 @@ namespace FishLineMeasure.ViewModels.Export
                 var sizeSortEUCode = itm.Lookups.GetLookupCode(LookupType.SizeSortingEU);
                 var sexCode = itm.Lookups.GetLookupCode(LookupType.Sex);
                 var ovigorous = itm.Lookups.GetLookupCode(LookupType.Ovigorous);
+                var lengthMeasureTypeId = itm.Lookups.GetLookupId(LookupType.LengthMeasureType);
+
+                //If length measure type is missing for the measurements (old measurements from previous version of the application), set it to the species default.
+                //If there is no species default, set it to "CL" for "DVH" and "TL" for anything else.
+                if(lengthMeasureTypeId == null)
+                {
+                    var lspecies = species.Where(x => x.speciesCode != null && x.speciesCode.Equals(speciesCode, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if(lspecies != null && lspecies.standardLengthMeasureTypeId.HasValue)
+                        lengthMeasureTypeId = lspecies.standardLengthMeasureTypeId;
+                    else if("DVH".Equals(speciesCode, StringComparison.InvariantCultureIgnoreCase) && defaultLengthMeasureTypeDVH != null)
+                        lengthMeasureTypeId = defaultLengthMeasureTypeDVH.L_lengthMeasureTypeId;
+                    else if (defaultLengthMeasureType != null)
+                        lengthMeasureTypeId = defaultLengthMeasureType.L_lengthMeasureTypeId;
+                }
 
                 if(string.IsNullOrWhiteSpace(speciesCode))
                 {
@@ -317,6 +336,7 @@ namespace FishLineMeasure.ViewModels.Export
                         if (a == null)
                         {
                             a = new Animal();
+                            a.lengthMeasureTypeId = lengthMeasureTypeId; //Only set length measure type for newly added animals, not when number is incremented.
                             a.number = 0;
                             a.individNum = null;
                             //Also add sex code to animals.

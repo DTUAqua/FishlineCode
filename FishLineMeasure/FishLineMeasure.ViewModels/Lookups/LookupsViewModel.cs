@@ -8,6 +8,7 @@ using Anchor.Core;
 using Microsoft.Practices.Prism.Commands;
 using Babelfisk.Entities;
 using FishLineMeasure.BusinessLogic.Lookups;
+using Babelfisk.Entities.Sprattus;
 
 namespace FishLineMeasure.ViewModels.Lookups
 {
@@ -99,10 +100,11 @@ namespace FishLineMeasure.ViewModels.Lookups
                 return new List<Type>()
                 {
                       GetLookupType(LookupType.Species),
+                      GetLookupType(LookupType.LengthMeasureType),
                       GetLookupType(LookupType.Sex),
                       GetLookupType(LookupType.LandingCategory),
                       GetLookupType(LookupType.SizeSortingEU),
-                      GetLookupType(LookupType.Ovigorous)
+                      GetLookupType(LookupType.Ovigorous),
                 };
             }
         }
@@ -116,7 +118,8 @@ namespace FishLineMeasure.ViewModels.Lookups
                 return string.Format("{0} - {1}", (lookup as Babelfisk.Entities.Sprattus.L_SexCode).sexCode, (lookup as Babelfisk.Entities.Sprattus.L_SexCode).description ?? "");
             else if (lookup is L_Ovigorous)
                 return string.Format("{0} - {1}", (lookup as L_Ovigorous).OvigorousCode, (lookup as L_Ovigorous).Description ?? "");
-
+            else if (lookup is Babelfisk.Entities.Sprattus.L_LengthMeasureType)
+                return string.Format("{0} - {1}", (lookup as Babelfisk.Entities.Sprattus.L_LengthMeasureType).lengthMeasureType, (lookup as Babelfisk.Entities.Sprattus.L_LengthMeasureType).description ?? "");
 
             return lookup.UIDisplay;
 
@@ -134,11 +137,18 @@ namespace FishLineMeasure.ViewModels.Lookups
                 return string.Format("{0}", (lookup as Babelfisk.Entities.Sprattus.L_SizeSortingEU).sizeSortingEU);
             else if(lookup is L_Ovigorous)
                 return string.Format("{0}", (lookup as L_Ovigorous).OvigorousCode);
+            else if (lookup is Babelfisk.Entities.Sprattus.L_LengthMeasureType)
+                return string.Format("{0}", (lookup as Babelfisk.Entities.Sprattus.L_LengthMeasureType).lengthMeasureType);
 
             return lookup.Id;
 
         }
 
+
+        public static bool IsLookupMandatory(Type t)
+        {
+            return t == typeof(L_Species) || t == typeof(L_LengthMeasureType);
+        }
 
         public static string GetLookupDisplayName(Type t)
         {
@@ -164,6 +174,9 @@ namespace FishLineMeasure.ViewModels.Lookups
 
                 case "L_Ovigorous":
                     return "Rogn";
+
+                case "L_LengthMeasureType":
+                    return "Længdemålingstype";
             }
 
             return "";
@@ -203,6 +216,9 @@ namespace FishLineMeasure.ViewModels.Lookups
 
                 case "L_Ovigorous":
                     return "Rogn";
+
+                case "L_LengthMeasureType":
+                    return "L.Typ.";
             }
 
             return "";
@@ -227,6 +243,9 @@ namespace FishLineMeasure.ViewModels.Lookups
 
                 case LookupType.Ovigorous:
                     return typeof(L_Ovigorous);
+
+                case LookupType.LengthMeasureType:
+                    return typeof(Babelfisk.Entities.Sprattus.L_LengthMeasureType);
             }
 
             throw new ApplicationException("Lookup type is undefined.");
@@ -306,7 +325,6 @@ namespace FishLineMeasure.ViewModels.Lookups
 
 
         #endregion
-
     }
 
 

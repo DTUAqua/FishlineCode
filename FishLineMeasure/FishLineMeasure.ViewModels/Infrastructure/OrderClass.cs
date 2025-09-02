@@ -1,4 +1,5 @@
-﻿using Babelfisk.Entities;
+﻿using Anchor.Core;
+using Babelfisk.Entities;
 using FishLineMeasure.ViewModels.CustomControls;
 using FishLineMeasure.ViewModels.Lookups;
 using System;
@@ -73,6 +74,20 @@ namespace FishLineMeasure.ViewModels.Infrastructure
                 res = l.Code;
 
             return res;
+        }
+
+        public int? GetLookupId(LookupType type)
+        {
+            string res = null;
+
+            var typeString = LookupsViewModel.GetLookupType(type).Name;
+            var l = Lookups.Where(x => x.Type != null && x.Type.Equals(typeString, System.StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            int id;
+            if(l != null && l.Id != null && l.Id.TryParseInt32(out id))
+                return id;
+
+            return null;
         }
 
 

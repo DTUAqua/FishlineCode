@@ -14,6 +14,7 @@ using Windows.Devices.Bluetooth;
 using System.ComponentModel;
 using System.Globalization;
 using FishLineMeasure.BusinessLogic;
+using System.Windows.Input;
 
 namespace FishLineMeasure.ViewModels.Lenghts
 {
@@ -34,6 +35,8 @@ namespace FishLineMeasure.ViewModels.Lenghts
         private OrderClass _selectedOrder;
         private XElement _xElmStation;
         private XElement _xElmMeasurements;
+
+        private bool _debug = false;
 
 
         #region Properties
@@ -217,7 +220,9 @@ namespace FishLineMeasure.ViewModels.Lenghts
 
             Main.Menu.BCWLE.OnDataValueChanged += BLE_OnDataValueChanged;
             Measurements = new ObservableCollection<MeasurementsClass>();
-            
+
+            if(_debug)
+                RegisterToKeyDown();
         }
 
 
@@ -329,6 +334,28 @@ namespace FishLineMeasure.ViewModels.Lenghts
         /// <summary>
         /// Making sure _xElmStation and _xElmMeasurements are inititalized.
         /// </summary>
+
+
+        protected override void GlobelPreviewKeyDown(KeyEventArgs e)
+        {
+            base.GlobelPreviewKeyDown(e);
+
+            try
+            {
+                if(!_debug)
+                    return;
+
+                if(e.Key == Key.B && ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control))
+                {
+                    BLE_OnDataValueChanged(null, new Random((int)DateTime.UtcNow.Ticks).NextDouble() * 10, Unit.CM);
+                }
+            }
+            catch(Exception ex)
+            {
+                LogError(ex);
+                DispatchMessageBox("En uventet fejl opstod. " + ex.Message);
+            }
+        }
 
 
         private void BLE_OnDataValueChanged(BluetoothControlsViewModel arg1, double? val, Unit unit)
@@ -479,7 +506,7 @@ namespace FishLineMeasure.ViewModels.Lenghts
 
         private OrderClass GetPrevOrder()
         {
-            if (Orders.Count <= 1)
+            if (Orders == null || Orders.Count <= 1)
                 return null;
 
             int index = Orders.IndexOf(SelectedOrder);
@@ -514,7 +541,7 @@ namespace FishLineMeasure.ViewModels.Lenghts
 
         private OrderClass GetNextOrder()
         {
-            if (Orders.Count <= 1)
+            if (Orders == null || Orders.Count <= 1)
                 return null;
 
             int index = Orders.IndexOf(SelectedOrder);
@@ -765,6 +792,8 @@ namespace FishLineMeasure.ViewModels.Lenghts
 
             //Make sure to deregister any global events, once form closes.
             Main.Menu.BCWLE.OnDataValueChanged -= BLE_OnDataValueChanged;
+
+            DeRegisterToKeyDown();
         }
     }
 }

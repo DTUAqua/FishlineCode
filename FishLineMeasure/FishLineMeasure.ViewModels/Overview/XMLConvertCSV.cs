@@ -76,10 +76,11 @@ namespace FishLineMeasure.ViewModels.Overview
                     foreach (var item in xLookups.Descendants("Lookup"))
                     {
                         var type = item.FirstAttribute.Value;
-                        var value = item.FirstAttribute.NextAttribute.Value;
+                        var value = item.Attribute("code").Value;
                         _lookups.Add(type, value);
                     }
-                    var lenght = xe.Element("Length").Value.ToDouble().ToString(nfi);
+                    var xLength = xe.Element("Length");
+                    var lenght = xLength.Value.ToDouble().ToString(nfi);
 
                     XElement xeStationNumber = null;
 
@@ -87,7 +88,6 @@ namespace FishLineMeasure.ViewModels.Overview
                     if (xeStationNumber == null)
                         xeStationNumber = newXdocument.Element("StationNumber");
 
-                    var xLength = xe.Element("Length");
                     BusinessLogic.Unit unit = BusinessLogic.Unit.MM;
 
                     var xaUnit = xLength.Attribute("unit");

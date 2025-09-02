@@ -22,7 +22,8 @@ namespace FishLineMeasure.ViewModels
         Species,
         LandingCategory,
         SizeSortingEU,
-        Ovigorous  //Rogn
+        Ovigorous,  //Rogn
+        LengthMeasureType
     }
 
 
