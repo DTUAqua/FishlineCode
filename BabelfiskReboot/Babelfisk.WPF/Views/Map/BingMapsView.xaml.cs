@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Anchor.Core;
+using Babelfisk.ViewModels.Map;
+using GeometricLibrary.Core.Vector;
+using Microsoft.Maps.MapControl.WPF;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,11 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Babelfisk.ViewModels.Map;
-using Anchor.Core;
-using Microsoft.Maps.MapControl.WPF;
-using GeometricLibrary.Core.Vector;
-using System.IO;
+using System.Xml.Serialization;
 
 namespace Babelfisk.WPF.Views.Map
 {
@@ -172,6 +175,15 @@ namespace Babelfisk.WPF.Views.Map
                 var vm = ViewModel;
 
                 ClearMap();
+
+                string geoFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
+                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ICES_areas_fiskeline_GeoJson.geojson"));
+                DrawGeoJson(features);
+
+                //ICES_areas_fiskeline_GeoJson.geojson
+                //ICES_squares_fiskeline_GeoJson.geojson
+                //ices_lines_simplified_2.geojson
+                
 
                 if (vm.Points == null || !vm.IsEnabled)
                     return;
@@ -344,7 +356,102 @@ namespace Babelfisk.WPF.Views.Map
         }
 
 
-        
+        private JToken ParseGeoJsonFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return null;
+            string json = File.ReadAllText(filePath);
+            var obj = JObject.Parse(json);
+            var features = obj["features"];
+            if (features == null) return null;
+            else return features;
+
+        }
+        private void DrawGeoJsonFeature(JToken feature)
+        {
+            var geometry = feature["geometry"];
+            if (geometry == null) return;
+            string type = geometry["type"].ToString();
+            var coordinates = geometry["coordinates"];
+            switch (type)
+            {
+                case "Point":
+                    DrawPoint(coordinates);
+                    break;
+                case "LineString":
+                    DrawLineString(coordinates);
+                    break;
+                case "Polygon":
+                    DrawPolygon(coordinates);
+                    break;
+                case "MultiPolygon":
+                    foreach (var polygon in coordinates)
+                    {
+                        DrawPolygon(polygon);
+                    }
+                    break;
+                case "MultiLineString":
+                    foreach (var line in coordinates)
+                    {
+                        DrawLineString(line);
+                    }
+                    break;
+            }
+        }
+
+        private void DrawGeoJson(JToken features)
+        {
+            foreach (var feature in features)
+            {
+                DrawGeoJsonFeature(feature);
+            }
+        }
+
+        private void DrawPoint(JToken coords)
+        {
+            double lon = coords[0].ToObject<double>();
+            double lat = coords[1].ToObject<double>();
+            var pin = new Pushpin
+            {
+                Location = new Location(lat, lon)
+            };
+            map.Children.Add(pin);
+        }
+        private void DrawLineString(JToken coords)
+        {
+            var polyline = new MapPolyline
+            {
+                Stroke = System.Windows.Media.Brushes.Red,
+                StrokeThickness = 2,
+                Locations = new LocationCollection()
+            };
+            foreach (var coord in coords)
+            {
+                double lon = coord[0].ToObject<double>();
+                double lat = coord[1].ToObject<double>();
+                polyline.Locations.Add(new Location(lat, lon));
+            }
+            map.Children.Add(polyline);
+        }
+
+        private void DrawPolygon(JToken coords)
+        {
+            var polygon = new MapPolygon
+            {
+                Stroke = System.Windows.Media.Brushes.Blue,
+                Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(80, 0, 0, 255)),
+                StrokeThickness = 2,
+                Locations = new LocationCollection()
+            };
+            foreach (var coord in coords[0])
+            {
+                double lon = coord[0].ToObject<double>();
+                double lat = coord[1].ToObject<double>();
+                polygon.Locations.Add(new Location(lat, lon));
+            }
+            map.Children.Add(polygon);
+        }
+
 
 
 
