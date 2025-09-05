@@ -95,6 +95,21 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private string _description;
+    
+        [DataMember]
+        public string maturitySMSF
+        {
+            get { return _maturitySMSF; }
+            set
+            {
+                if (_maturitySMSF != value)
+                {
+                    _maturitySMSF = value;
+                    OnPropertyChanged("maturitySMSF");
+                }
+            }
+        }
+        private string _maturitySMSF;
 
         #endregion
 
