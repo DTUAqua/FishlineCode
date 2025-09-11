@@ -174,16 +174,16 @@ namespace Babelfisk.WPF.Views.Map
             {
                 var vm = ViewModel;
 
+                //map.Mode = new AerialMode(true);
                 ClearMap();
 
                 string geoFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
-                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ICES_areas_fiskeline_GeoJson.geojson"));
+                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ices_areas.geojson"));
+                //var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ICES_areas_fiskeline_GeoJson.geojson"));
                 DrawGeoJson(features);
 
-                //ICES_areas_fiskeline_GeoJson.geojson
-                //ICES_squares_fiskeline_GeoJson.geojson
-                //ices_lines_simplified_2.geojson
-                
+
+
 
                 if (vm.Points == null || !vm.IsEnabled)
                     return;
@@ -195,7 +195,7 @@ namespace Babelfisk.WPF.Views.Map
                 if (vm.IsPointsSelected)
                 {
                     var tt = this.TryFindResource("ttPoint") as ToolTip;
-                    var pinTemplate = this.TryFindResource("pinTemplate") as ControlTemplate;
+                    var pinTemplate = this.TryFindResource("pinTemplate") as ControlTemplate; 
 
                     var groupsCount = vm.Points.GroupBy(x => x.TripName).Count();
 
@@ -354,7 +354,7 @@ namespace Babelfisk.WPF.Views.Map
                 Anchor.Core.Loggers.Logger.LogError(ex);
             }
         }
-
+       
 
         private JToken ParseGeoJsonFile(string filePath)
         {

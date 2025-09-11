@@ -755,19 +755,7 @@
     <Content Include="Resources\GeoJson\ICES_areas_fiskeline_GeoJson.geojson">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\GeoJson\ICES_areas_fiskeline_GeoJson.qmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\ICES_squares_fiskeline_GeoJson.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\ICES_squares_fiskeline_GeoJson.qmd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\testSimplified.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\testSimplified.qmd">
+    <Content Include="Resources\GeoJson\ices_areas.geojson">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
