@@ -174,12 +174,18 @@ namespace Babelfisk.WPF.Views.Map
             {
                 var vm = ViewModel;
 
-                //map.Mode = new AerialMode(true);
+                map.Mode = new AerialMode(true);                                    //    Map with labels
+                //map.Mode = new MercatorMode();                                    //    Empty map
+
                 ClearMap();
 
                 string geoFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
-                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ices_areas.geojson"));
-                //var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, "ICES_areas_fiskeline_GeoJson.geojson"));
+                string fileName = "ices_areas.geojson";                           //    Line file optimized for map integration
+                //string fileName = "icesAreas_simplified.geojson";               //    AREAS simplified by chatGPT
+                //string fileName = "ICES_areas_fiskeline_GeoJson.geojson";       //    Provided on the Q-drive
+                //string fileName = "icesAreasFromIcesWebsite.geojson";           //    Straight from the ICES website
+                //string fileName = "icesLines_with_coastLine.geojson";           //    VERY HEAVY: Has all ices areas and all coastlines
+                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, fileName));
                 DrawGeoJson(features);
 
 
