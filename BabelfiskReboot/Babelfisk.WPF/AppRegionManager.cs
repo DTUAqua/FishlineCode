@@ -333,6 +333,7 @@ namespace Babelfisk.WPF
                           TypeSwitch.Case<ViewModels.Input.SubSampleViewModel>(() => SwitchView<Views.Input.SubSampleView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
                           TypeSwitch.Case<ViewModels.Input.SpeciesListViewModel>(() => SwitchView<Views.Input.SpeciesListView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
                           TypeSwitch.Case<ViewModels.Map.MapViewModelBingControl>(() => SwitchView<Views.Map.BingMapsView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
+                          TypeSwitch.Case<ViewModels.Map.MapViewModelMapsuiControl>(() => SwitchView<Views.Map.MapsuiMapView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
                           TypeSwitch.Case<ViewModels.Map.MapViewModel>(() => SwitchView<Views.Map.MapView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
                           TypeSwitch.Case<ViewModels.Map.MapViewModelOpenLayers>(() => SwitchView<Views.Map.MapView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),
                           TypeSwitch.Case<ViewModels.Input.StationViewModel>(() => SwitchView<Views.Input.StationView>(enmRegionName, aViewModel, ref blnLoaded, blnSwitchViews, blnModal, strStyle)),

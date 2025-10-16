@@ -69,7 +69,7 @@ namespace Babelfisk.ViewModels.Input
 
         protected AInputViewModel()
         {
-            MapViewModel = new Map.MapViewModelBingControl();
+            MapViewModel = new Map.MapViewModelMapsuiControl();
         }
 
         protected void RaiseSaveSucceeded()
