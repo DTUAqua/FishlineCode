@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Xml.Linq;
 using FishLineMeasure.ViewModels.Lenghts;
 using FishLineMeasure.ViewModels.Export;
+using Babelfisk.Entities.Sprattus;
 
 namespace FishLineMeasure.ViewModels.Overview
 {
@@ -188,10 +189,21 @@ namespace FishLineMeasure.ViewModels.Overview
             }).Dispatch())
             .ContinueWith(th => new Action(() =>
             {
-                if (AppSettings.UpdateLookupsAfterStartup || !Directory.Exists(AppSettings.OfflineLookupDataPath) || Directory.GetFiles(AppSettings.OfflineLookupDataPath).Length == 0)
+                string lPath = Path.Combine(AppSettings.OfflineLookupDataPath, "L_LengthMeasureType.xml");
+
+                if (AppSettings.UpdateLookupsAfterStartup || 
+                    !Directory.Exists(AppSettings.OfflineLookupDataPath) || 
+                    Directory.GetFiles(AppSettings.OfflineLookupDataPath).Length == 0 ||
+                    !File.Exists(lPath)) //Make sure the LengthMeasureTypes are retrieved.
                 {
-                    if (!AppSettings.UpdateLookupsAfterStartup && AppRegionManager.ShowMessageBox("Programmet mangler at hente lookup-tabeller. Ønsker du at gøre dette nu (kræver en internetforbindelse)?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.No)
+                    if (!AppSettings.UpdateLookupsAfterStartup && AppRegionManager.ShowMessageBox("Programmet mangler at hente/opdatere lookup-tabeller. Ønsker du at gøre dette nu (kræver en internetforbindelse)?", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.No)
                         return;
+
+                    if(!File.Exists(lPath))
+                    {
+                        var v = AppSettings.LookupVersions;
+                        v.ResetDataVersion<L_Species>(); //Make sure species are grabbed again, if length measure types are not received yet.
+                    }
 
                     var vmLookups = new Lookups.LookupsViewModel();
                     var task = vmLookups.SyncLookupsAsync();

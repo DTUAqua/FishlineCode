@@ -241,7 +241,7 @@ namespace Babelfisk.ViewModels.Lookup
                                                          )                                      
                                   });
 
-
+            
             _lstAllLookupTypes.Add(new LookupType("Modenhedsmetoder", typeof(L_MaturityIndexMethod), null, null,
                                   LookupColumn.Create("Kode", "maturityIndexMethod", true, new System.Windows.Controls.DataGridLength(100)),
                                   LookupColumn.Create("Beskrivelse", "description", false, new DataGridLength(150, DataGridLengthUnitType.Star)))
@@ -249,9 +249,10 @@ namespace Babelfisk.ViewModels.Lookup
                                      ChildLookupType = new ChildLookupType("Modenhedsindeks", typeof(Maturity), null, LoadMaturityLists, "maturityIndexMethod", "maturityIndexMethod",
                                                          ComboboxLookupColumn.Create("Modenhedsmetode", "maturityIndexMethod", true, "MaturityIndexMethods", "UIDisplay", "maturityIndexMethod", "maturityIndexMethod", new System.Windows.Controls.DataGridLength(120, DataGridLengthUnitType.Auto), null, true),
                                                          LookupColumn.Create("Modenhedsindeks", "maturityIndex", false, new System.Windows.Controls.DataGridLength(120, DataGridLengthUnitType.Auto)),
-                                                         LookupColumn.Create("Beskrivelse", "description", false, new DataGridLength(150, DataGridLengthUnitType.Star))
-                                                         )      
-                                  }
+                                                         LookupColumn.Create("Beskrivelse", "description", false, new DataGridLength(150, DataGridLengthUnitType.Star)),
+                                                         LookupColumn.Create("SMSF kode", "maturitySMSF", false, new System.Windows.Controls.DataGridLength(120, DataGridLengthUnitType.Auto))
+                                                         )
+            }
                                   );
 
 

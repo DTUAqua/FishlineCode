@@ -51,7 +51,7 @@
                         </CheckBox.LayoutTransform>
                     </CheckBox>
 
-                    <TextBlock Text="Hvis advarsel når knappen til at slukke skærmen aktiveres" TextWrapping="Wrap" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="-2,-2,20,0" />
+                    <TextBlock Text="Vis advarsel når knappen til at slukke skærmen aktiveres" TextWrapping="Wrap" Foreground="#FF494949" FontSize="20" VerticalAlignment="Center" Margin="-2,-2,20,0" />
                 </DockPanel>
             </Grid>
 

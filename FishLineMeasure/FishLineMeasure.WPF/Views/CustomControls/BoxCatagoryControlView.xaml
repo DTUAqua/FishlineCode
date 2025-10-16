@@ -98,6 +98,7 @@
                         <TextBlock Text="{Binding Path=SelectedItem.Entity.Code, StringFormat='({0})'}"
                                    Visibility="{Binding Path=HasSelectedItem, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}"
                                    Margin="5,0,0,0"  ToolTip="{Binding DisplayName}" TextAlignment="Center" FontWeight="Bold" FontSize="24" TextTrimming="CharacterEllipsis"></TextBlock>
+                        <TextBlock Text="*" FontSize="20" Margin="2,0" Visibility="{Binding Path=IsMandatory, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" />
                     </StackPanel>
                     
                     

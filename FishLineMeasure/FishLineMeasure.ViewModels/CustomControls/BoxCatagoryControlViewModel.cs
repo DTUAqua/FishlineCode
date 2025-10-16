@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Anchor.Core;
 using FishLineMeasure.ViewModels.Infrastructure;
+using FishLineMeasure.ViewModels.Lenghts;
+using FishLineMeasure.ViewModels.Lookups;
 
 namespace FishLineMeasure.ViewModels.CustomControls
 {
@@ -13,13 +15,20 @@ namespace FishLineMeasure.ViewModels.CustomControls
     {
         private string _displayName;
         private string _search;
+        private bool _isMandatory = false;
         private CheckBoxControlViewModel<Lookups.LookupItemViewModel> _selectedItem;
 
         private List<CheckBoxControlViewModel<Lookups.LookupItemViewModel>> _lookups;
 
+        private List<CheckBoxControlViewModel<Lookups.LookupItemViewModel>> _allLookups;
+
+        private Type _lookupType;
+
+        private AddRowViewModel _vmParent;
+
+
         #region Properties
 
-        private List<CheckBoxControlViewModel<Lookups.LookupItemViewModel>> _allLookups;
 
         public List<CheckBoxControlViewModel<Lookups.LookupItemViewModel>> Lookups
         {
@@ -78,6 +87,8 @@ namespace FishLineMeasure.ViewModels.CustomControls
                 
             }
         }
+
+
         public bool HasSelectedLookup
         {
             get { return SelectedLookup != null; }
@@ -89,7 +100,13 @@ namespace FishLineMeasure.ViewModels.CustomControls
             get { return _selectedItem; }
             private set
             {
-                _selectedItem = value;
+                if(_selectedItem != value)
+                {
+                    _selectedItem = value;
+
+                    if(_vmParent != null)
+                        _vmParent.SelectedBoxCategoryItemChanged(this);
+                }
                 RaisePropertyChanged(() => SelectedItem);
                 RaisePropertyChanged(() => HasSelectedItem);
             }
@@ -102,12 +119,32 @@ namespace FishLineMeasure.ViewModels.CustomControls
         }
 
 
+        public bool IsMandatory
+        {
+            get
+            {
+                return _isMandatory;
+            }
+        }
+
+
+        public Type LookupType
+        {
+            get { return _lookupType; }
+        }
+
+
         #endregion
 
-        public BoxCatagoryControlViewModel(string displayName, List<Lookups.LookupItemViewModel> lookups)
+
+        public BoxCatagoryControlViewModel(AddRowViewModel parent, string displayName, List<Lookups.LookupItemViewModel> lookups, Type tLookup)
         {
+            _vmParent = parent;
+            _lookupType = tLookup;
             DisplayName = displayName;
             _allLookups = new List<CheckBoxControlViewModel<Lookups.LookupItemViewModel>>();
+            _isMandatory = LookupsViewModel.IsLookupMandatory(tLookup);
+
             try
             {
                 foreach (var l in lookups)
@@ -124,7 +161,7 @@ namespace FishLineMeasure.ViewModels.CustomControls
             }
         }
 
-        private void Lookup_OnCheckedChanged(CheckBoxControlViewModel<Lookups.LookupItemViewModel> item, bool oldValue, bool newValue)
+        public void Lookup_OnCheckedChanged(CheckBoxControlViewModel<Lookups.LookupItemViewModel> item, bool oldValue, bool newValue)
         {
             try
             {
@@ -135,6 +172,8 @@ namespace FishLineMeasure.ViewModels.CustomControls
                 if (newValue)
                 {
                     SelectedItem = item;
+                    if(!SelectedItem.IsChecked)
+                        SelectedItem.IsChecked = true;
                 }
                 else
                     SelectedItem = null;

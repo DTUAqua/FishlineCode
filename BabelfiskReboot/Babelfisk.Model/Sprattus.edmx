@@ -1637,6 +1637,7 @@
     <Property Name="maturityIndex" Type="int" Nullable="false" />
     <Property Name="maturityIndexMethod" Type="nvarchar" Nullable="false" MaxLength="1" />
     <Property Name="description" Type="nvarchar" Nullable="true" MaxLength="80" />
+    <Property Name="maturitySMSF" Type="nvarchar" Nullable="true" MaxLength="3" />
   </EntityType>
   <EntityType Name="NumberOfStationsPerTrip">
     <Key>
@@ -6511,7 +6512,8 @@
           <Property Name="description" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="AnimalInfo" Relationship="Babelfisk.Entities.FK_AnimalInfo_Maturity" FromRole="Maturity" ToRole="AnimalInfo" />
           <NavigationProperty Name="L_MaturityIndexMethod" Relationship="Babelfisk.Entities.FK_R_MaturityMaturityIndex_L_MaturityIndex" FromRole="Maturity" ToRole="L_MaturityIndexMethod" />
-        </EntityType>
+		  <Property Name="maturitySMSF" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+		</EntityType>
         <EntityType Name="NumberOfStationsPerTrip">
           <Key>
             <PropertyRef Name="numberOfStationsPerTripId" />
@@ -10531,6 +10533,7 @@
           <ScalarProperty Name="maturityIndex" ColumnName="maturityIndex" />
           <ScalarProperty Name="maturityIndexMethod" ColumnName="maturityIndexMethod" />
           <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="maturitySMSF" ColumnName="maturitySMSF" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

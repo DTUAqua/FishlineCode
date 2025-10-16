@@ -77,7 +77,8 @@ namespace FishLineMeasure.BusinessLogic
                                                             typeof(L_Parasite),
                                                             typeof(L_Reference), 
                                                             typeof(L_Ovigorous),
-                                                            typeof(ILocalLookupEntity)};
+                                                            typeof(ILocalLookupEntity),
+                                                            typeof(L_LengthMeasureType)};
         #endregion
 
         public LookupDataVersioning()

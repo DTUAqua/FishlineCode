@@ -72,6 +72,14 @@ namespace Babelfisk.Entities
         }
 
 
+        public void ResetDataVersion<T>() where T : ILookupEntity
+        {
+            var strType = typeof(T).Name;
+            if(_dicVersions.ContainsKey(strType))
+                _dicVersions[strType] = -1;
+        }
+
+
         public void Set(string strType, long lngVersion)
         {
             if (!_dicVersions.ContainsKey(strType))

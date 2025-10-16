@@ -8,6 +8,7 @@ using Anchor.Core;
 using System.Collections.Generic;
 using FishLineMeasure.ViewModels.Lookups;
 using System.Threading.Tasks;
+using Babelfisk.Entities.Sprattus;
 
 namespace FishLineMeasure.ViewModels.Lenghts
 {
@@ -183,7 +184,88 @@ namespace FishLineMeasure.ViewModels.Lenghts
                 LogError(e);
             }
 
+            HandleAdditionOfMandatoryLookups(lst);
+
             return lst;
+        }
+
+
+        /// <summary>
+        /// When a new lookup list is added that is mandatory, loop through existing length groups and add the mandatory lookups if they are missing.
+        /// </summary>
+        private static void HandleAdditionOfMandatoryLookups(List<OrderClassGroup> lst)
+        {
+            try
+            {
+                if(lst == null || lst.Count == 0)
+                    return;
+               
+                string lengthMeasureTypeName = typeof(L_LengthMeasureType).Name;
+                string speciesTypeName = typeof(L_Species).Name;
+                var getInfo = new BusinessLogic.LookupManager();
+                var lengthMeasureTypes = getInfo.GetLookups(typeof(L_LengthMeasureType));
+                var species = getInfo.GetLookups(typeof(L_Species));
+
+                //If no length measure types exist, don't try to set any automatically.
+                if(lengthMeasureTypes == null)
+                    return;
+
+                //CL is standard length measure type, if none has been defined for a particular species.
+                var standardLengthMeasureType = lengthMeasureTypes.OfType<L_LengthMeasureType>().Where(x => x.lengthMeasureType.Equals("CL", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+                bool save = false;
+                foreach(var oc in lst.Where(x => x.OrderClasses != null).SelectMany(x => x.OrderClasses))
+                {
+                    //If class has no lookup, ignore it.
+                    if(oc.Lookups == null || oc.Lookups.Count == 0)
+                        continue;
+
+                    //If length measure type is already defined, ignore it.
+                    if(!oc.Lookups.Where(x => x.Type != null && x.Type.Equals(lengthMeasureTypeName, StringComparison.InvariantCultureIgnoreCase)).Any())
+                    {
+                        //Get the species of the group.
+                        var speciesItem = oc.Lookups.Where(x => x.Type != null && x.Type.Equals(speciesTypeName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+                        if(speciesItem == null)
+                            continue;
+
+                        //Get the lookup for the particular species.
+                        var speciesLookup = species.Where(x => x.Id == speciesItem.Id).FirstOrDefault() as L_Species;
+
+                        if(speciesLookup == null)
+                            continue;
+
+                        var lType = standardLengthMeasureType;
+
+                        //If the species has a standard length measure type defined, use that instead of CL.
+                        if(speciesLookup.standardLengthMeasureTypeId.HasValue)
+                        {
+                            var t = lengthMeasureTypes.OfType<L_LengthMeasureType>().Where(x => x.L_lengthMeasureTypeId == speciesLookup.standardLengthMeasureTypeId.Value).FirstOrDefault();
+                            if(t != null)
+                                lType = t;
+                        }
+
+                        //If we have a length measure type, add it just after species.
+                        if(lType != null)
+                        {
+                            var t = LookupItemViewModel.Create(lType);
+                            var i = oc.Lookups.IndexOf(speciesItem);
+                            
+                            //Insert just after species.
+                            oc.Lookups.Insert(i + 1, t);
+                            save = true;
+                        }
+                    }
+                }
+
+                //Save the changes, if any length measure types were added.
+                if(save)
+                    SaveLengthGroupsCollectionToSettings(lst);
+            }
+            catch(Exception e)
+            {
+                LogError(e);
+            }
         }
 
 
