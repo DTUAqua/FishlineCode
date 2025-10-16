@@ -173,15 +173,10 @@ namespace Babelfisk.WPF.Views.Map
             try
             {
                 var vm = ViewModel;
-
-                map.Mode = new AerialMode(true);                                    //    Map with labels
-                //map.Mode = new MercatorMode();                                    //    Empty map
-
                 ClearMap();
 
                 string geoFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
-               string fileName = "ices_areas.geojson";                           //    Line file optimized for map integration
-                 //string fileName = "icesAreas_simplified.geojson";               //    AREAS simplified
+               string fileName = "ices_areas.geojson";                          
                 var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, fileName));
                 DrawGeoJson(features);
 

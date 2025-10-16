@@ -855,19 +855,7 @@
     <EmbeddedResource Include="Resources\TextDefinitions\sql.xshd" />
     <EmbeddedResource Include="Resources\TextDefinitions\r.xshd" />
     <None Include="Resources\Certificates\AnchorLab_Comodo_15_05_2019.pfx" />
-    <Content Include="Resources\GeoJson\ICES_areas_fiskeline_GeoJson.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\GeoJson\ices_areas.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\icesLines_with_coastLine.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\ices_areas_simplified.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\GeoJson\icesAreasFromIcesWebsite.geojson">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\GeoJson\icesAreas_simplified.geojson">
