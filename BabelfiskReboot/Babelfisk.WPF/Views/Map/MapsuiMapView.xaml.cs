@@ -73,6 +73,7 @@ namespace Babelfisk.WPF.Views.Map
         private Mapsui.IFeature _lastHoveredFeature;
         private List<IStyle> _lastOriginalStyles;
         private readonly string[] _hoverableLayers = { "LabelLayer", "LineLayer" };
+        private readonly string[] _drawnLayers = { "LabelLayer", "LineLayer", "BorderLayer", "PointLayer", "PolygonLayer" };
 
 
         public void InitializeHoverHandlers()
@@ -279,11 +280,12 @@ namespace Babelfisk.WPF.Views.Map
         private void RebuildMap()
         {
 
+            ClearAllDrawnLayers();
             try
-            {
+            {  
                 var vm = ViewModel;
 
-                string geoFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
+                string geoFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
 
                 /*************Line file optimized for map integration************/
                 string fileName = "ices_areas.geojson";                           
@@ -291,7 +293,7 @@ namespace Babelfisk.WPF.Views.Map
                 /*************AREAS simplified***********************************/
                 //string fileName = "icesAreas_simplified.geojson";            
 
-                var features = ParseGeoJsonFile(System.IO.Path.Combine(geoFolder, fileName));
+                var features = ParseGeoJsonFile(Path.Combine(geoFolder, fileName));
                 DrawGeoJson(features);
 
                 if (vm.Points == null || !vm.IsEnabled)
@@ -379,7 +381,7 @@ namespace Babelfisk.WPF.Views.Map
                     }).Dispatch(System.Windows.Threading.DispatcherPriority.Render);
                 }
 
-                var topLayer = map.Map.Layers.FirstOrDefault(l => l.Name == "NumberLayer");
+                var topLayer = map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer");
                 if (topLayer != null)
                 {
                     map.Map.Layers.Remove(topLayer);
@@ -395,7 +397,7 @@ namespace Babelfisk.WPF.Views.Map
         
         }
 
-        private void CenterMapToBounds(Mapsui.MRect boundingBox)
+        private void CenterMapToBounds(MRect boundingBox)
         {
             try
             {
@@ -512,7 +514,7 @@ namespace Babelfisk.WPF.Views.Map
                     Bitmap bmp = GetBrowserScreenshot();
                     var bmpSource = bmp.ToBitmapSource();
 
-                    System.Windows.Clipboard.SetImage(bmpSource);
+                    Clipboard.SetImage(bmpSource);
 
                     if (bmp != null)
                         bmp.Dispose();
@@ -534,7 +536,7 @@ namespace Babelfisk.WPF.Views.Map
 
                     Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
                     sfd.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|All Files|*.*";
-                    bool? blnRes = sfd.ShowDialog(System.Windows.Application.Current.MainWindow);
+                    bool? blnRes = sfd.ShowDialog(Application.Current.MainWindow);
 
                     if (blnRes.HasValue && blnRes.Value)
                         bmp.Save(sfd.FileName);
@@ -825,16 +827,18 @@ namespace Babelfisk.WPF.Views.Map
             var layer = map.Map.Layers.FirstOrDefault(l => l.Name == name) as MemoryLayer;
             if (layer != null)
             {
-                ((List<Mapsui.IFeature>)layer.Features).Clear();
+                ((List<IFeature>)layer.Features).Clear();
                 layer.DataHasChanged();
             }
         }
-        public void ClearAllLayers()
+        public void ClearAllDrawnLayers()
         {
             foreach (var layer in map.Map.Layers.OfType<MemoryLayer>())
             {
-                ((List<Mapsui.IFeature>)layer.Features).Clear();
-                layer.DataHasChanged();
+                if (_drawnLayers.Contains(layer.Name)){
+                    ((List<IFeature>)layer.Features).Clear();
+                    layer.DataHasChanged();
+                }
             }
         }
         #endregion
