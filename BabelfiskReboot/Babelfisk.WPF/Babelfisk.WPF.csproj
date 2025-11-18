@@ -858,9 +858,6 @@
     <Content Include="Resources\GeoJson\ices_areas.geojson">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\GeoJson\icesAreas_simplified.geojson">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

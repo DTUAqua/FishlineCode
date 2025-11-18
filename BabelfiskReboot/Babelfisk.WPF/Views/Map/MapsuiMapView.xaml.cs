@@ -1,5 +1,4 @@
 ﻿using Anchor.Core;
-using Babelfisk.Entities.Sprattus;
 using Babelfisk.ViewModels.Map;
 using BruTile.Predefined;
 using BruTile.Web;
@@ -38,7 +37,7 @@ namespace Babelfisk.WPF.Views.Map
     /// <summary>
     /// Interaction logic for MapsuiMapsView.xaml
     /// </summary>
-    public partial class MapsuiMapView : System.Windows.Controls.UserControl, IDisposable
+    public partial class MapsuiMapView : UserControl, IDisposable
     {
         public MapViewModelMapsuiControl ViewModel
         {
@@ -75,11 +74,28 @@ namespace Babelfisk.WPF.Views.Map
         private readonly string[] _hoverableLayers = { "LabelLayer", "LineLayer" };
         private readonly string[] _drawnLayers = { "LabelLayer", "LineLayer", "BorderLayer", "PointLayer", "PolygonLayer" };
 
+        private bool _hoverHandlersInitialized = false;
 
         public void InitializeHoverHandlers()
         {
+
+            if (_hoverHandlersInitialized)
+                return;
+
+
             map.MouseMove += MapControl_MouseMove;
             map.MouseLeave += MapControl_MouseLeave;
+            _hoverHandlersInitialized = true;
+        }
+
+        public void RemoveHoverHandlers()
+        {
+            if (_hoverHandlersInitialized)
+            {
+                map.MouseMove -= MapControl_MouseMove;
+                map.MouseLeave -= MapControl_MouseLeave;
+                _hoverHandlersInitialized = false;
+            }
         }
 
         private void MapControl_MouseMove(object sender, MouseEventArgs e)
@@ -87,7 +103,7 @@ namespace Babelfisk.WPF.Views.Map
             try
             {
                 var pos = e.GetPosition(map);
-                var screenPosition = new Mapsui.MPoint(pos.X, pos.Y);
+                var screenPosition = new MPoint(pos.X, pos.Y);
                 var mapInfo = map.GetMapInfo(screenPosition);
 
                 var feature = mapInfo.Feature;
@@ -192,7 +208,6 @@ namespace Babelfisk.WPF.Views.Map
             {
                 if (map != null)
                 {
-                    //3
                     if (GetZoomLevel() > 3)
                     {
                         map.Map.Navigator.ZoomOut();
@@ -209,7 +224,6 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
-                //13
                 if (GetZoomLevel() < 19)
                 {
                     map.Map.Navigator.ZoomIn();
@@ -287,11 +301,7 @@ namespace Babelfisk.WPF.Views.Map
 
                 string geoFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
 
-                /*************Line file optimized for map integration************/
-                string fileName = "ices_areas.geojson";                           
-
-                /*************AREAS simplified***********************************/
-                //string fileName = "icesAreas_simplified.geojson";            
+                string fileName = "ices_areas.geojson";                            
 
                 var features = ParseGeoJsonFile(Path.Combine(geoFolder, fileName));
                 DrawGeoJson(features);
@@ -364,21 +374,8 @@ namespace Babelfisk.WPF.Views.Map
                     }
                 }
 
-                if (vTmp != null)
-                {
-                    new Action(() =>
-                    {
-                        CenterMapToBounds(boundingBox);
-                        new Action(() =>
-                        {
-                            CenterMapToBounds(boundingBox);
-                            new Action(() =>
-                            {
-                                CenterMapToBounds(boundingBox);
-                            }).Dispatch(System.Windows.Threading.DispatcherPriority.ContextIdle);
-                        }).Dispatch(System.Windows.Threading.DispatcherPriority.ContextIdle);
-
-                    }).Dispatch(System.Windows.Threading.DispatcherPriority.Render);
+                if(boundingBox != null){
+                    CenterMapToBounds(boundingBox);
                 }
 
                 var topLayer = map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer");
@@ -401,7 +398,7 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
-                if (map.Map != null)
+                if (map.Map != null && boundingBox != null)
                 {
                     double marginFactor = 0.1;
                     double paddingX = boundingBox.Width * marginFactor;
@@ -632,21 +629,6 @@ namespace Babelfisk.WPF.Views.Map
             myMap.Layers.Add(baseLayer);
 
 
-            //MAP LABELS
-            /*
-            var labelSource = new HttpTileSource(
-                new GlobalSphericalMercator(),
-                "https://tiles.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
-                name: "Labels",
-                attribution: new BruTile.Attribution("© OpenStreetMap contributors, © CARTO", "https://carto.com/attributions")
-            );
-
-            myMap.Layers.Add(new TileLayer(labelSource)
-            {
-                Name = "Labels"
-            });
-            */
-
         }
         
         #region MapsuiDrawFunctions
@@ -775,6 +757,8 @@ namespace Babelfisk.WPF.Views.Map
         #endregion
 
         #region StyleUtils
+
+        
         public IStyle GetLabelStyle(string stationName, Color color)
         {
             return new LabelStyle
@@ -831,13 +815,19 @@ namespace Babelfisk.WPF.Views.Map
                 layer.DataHasChanged();
             }
         }
-        public void ClearAllDrawnLayers()
+        public void ClearAllDrawnLayers(bool removeLayers = false)
         {
-            foreach (var layer in map.Map.Layers.OfType<MemoryLayer>())
+            var memoryLayers = map.Map.Layers.OfType<MemoryLayer>().ToList();
+            foreach (var layer in memoryLayers)
             {
-                if (_drawnLayers.Contains(layer.Name)){
+                if (_drawnLayers.Contains(layer.Name))
+                {
                     ((List<IFeature>)layer.Features).Clear();
                     layer.DataHasChanged();
+                    if (removeLayers)
+                    {
+                        map.Map.Layers.Remove(layer);
+                    }
                 }
             }
         }
@@ -846,16 +836,25 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
+                RemoveHoverHandlers();
+
+                this.DataContextChanged -= MapView_DataContextChanged;
                 this.DataContext = null;
-                map.Map?.Layers.Clear();
+
                 if (ViewModel != null)
                     ViewModel.OnUIMessage -= MapsuiMapsView_OnUIMessage;
+
+                if (map != null)
+                {
+                    map.Map?.Layers.Clear();
+                    map.Dispose();
+                }
+
                 mapGrid.Children.Clear();
                 map.Children.Clear();
-                bdrMap.Child = null;
-                map.Map = null;
                 map = null;
-                map.Dispose();
+                GC.Collect(); //  use during diagnosis only
+                GC.WaitForPendingFinalizers();
             }
             catch (Exception ex)
             {
