@@ -50,7 +50,7 @@ namespace Babelfisk.WPF.Views.Map
 
             var myMap = new Mapsui.Map();
 
-            Build_Map(myMap);
+            BuildMapsuiBaseMap(myMap);
 
             map.Map = myMap;
 
@@ -69,7 +69,10 @@ namespace Babelfisk.WPF.Views.Map
 
         }
 
-        private Mapsui.IFeature _lastHoveredFeature;
+        #region Listeners
+
+        private DateTime _lastHoverCheck = DateTime.MinValue;
+        private IFeature _lastHoveredFeature;
         private List<IStyle> _lastOriginalStyles;
         private readonly string[] _hoverableLayers = { "LabelLayer", "LineLayer" };
         private readonly string[] _drawnLayers = { "LabelLayer", "LineLayer", "BorderLayer", "PointLayer", "PolygonLayer" };
@@ -102,6 +105,13 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
+
+                var now = DateTime.Now;
+                if ((now - _lastHoverCheck).TotalMilliseconds < 50)
+                    return;
+                _lastHoverCheck = now;
+
+
                 var pos = e.GetPosition(map);
                 var screenPosition = new MPoint(pos.X, pos.Y);
                 var mapInfo = map.GetMapInfo(screenPosition);
@@ -128,8 +138,8 @@ namespace Babelfisk.WPF.Views.Map
 
                 if (layer.Name == "LineLayer")
                 {
-                    feature.Styles.Add(GetRoundedLineStyle(7, Color.Black));
-                    feature.Styles.Add(GetRoundedLineStyle(5, Color.Yellow));
+                    feature.Styles.Add(SharedLineStyleBlack7);
+                    feature.Styles.Add(SharedLineStyle5Yellow);
                 }
                 else if (layer.Name == "LabelLayer")
                 {
@@ -202,38 +212,6 @@ namespace Babelfisk.WPF.Views.Map
                 return string.Empty;
             }
         }
-        private void ZoomOut_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (map != null)
-                {
-                    if (GetZoomLevel() > 3)
-                    {
-                        map.Map.Navigator.ZoomOut();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Anchor.Core.Loggers.Logger.LogError(ex);
-            }
-        }
-
-        private void ZoomIn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (GetZoomLevel() < 19)
-                {
-                    map.Map.Navigator.ZoomIn();
-                }
-            }
-            catch (Exception ex)
-            {
-                Anchor.Core.Loggers.Logger.LogError(ex);
-            }
-        }
 
 
         protected void MapsuiMapsView_Loaded(object sender, RoutedEventArgs e)
@@ -253,8 +231,8 @@ namespace Babelfisk.WPF.Views.Map
                     (e.OldValue as MapViewModelMapsuiControl).OnUIMessage -= MapsuiMapsView_OnUIMessage;
                 }
 
-                MapViewModelMapsuiControl mvm = null;
-                if ((mvm = e.NewValue as MapViewModelMapsuiControl) != null)
+
+                if (e.NewValue is MapViewModelMapsuiControl mvm)
                 {
                     (e.NewValue as MapViewModelMapsuiControl).OnUIMessage += MapsuiMapsView_OnUIMessage;
 
@@ -290,11 +268,16 @@ namespace Babelfisk.WPF.Views.Map
                 Anchor.Core.Loggers.Logger.LogError(ex);
             }
         }
-        
+
+        #endregion
+
+        #region MapBuild
+
         private void RebuildMap()
         {
 
             ClearAllDrawnLayers();
+            ClearTileCache();
             try
             {  
                 var vm = ViewModel;
@@ -337,7 +320,7 @@ namespace Babelfisk.WPF.Views.Map
                         vMin = VMathd.Min(vTmp.Value, vMin);
                         vMax = VMathd.Max(vTmp.Value, vMax);
 
-                        boundingBox = boundingBox == null ? new MRect(x, y, x, y) : boundingBox.Join(new MRect(x, y, x, y));
+                        boundingBox = boundingBox == null ? new MRect(x - 10, y - 10, x + 10, y + 10) : boundingBox.Join(new MRect(x, y, x, y));
                     }
                 }
                 else
@@ -400,16 +383,16 @@ namespace Babelfisk.WPF.Views.Map
             {
                 if (map.Map != null && boundingBox != null)
                 {
-                    double marginFactor = 0.1;
+                    double marginFactor = 0.2;
                     double paddingX = boundingBox.Width * marginFactor;
                     double paddingY = boundingBox.Height * marginFactor;
-                    var expandedBox = new Mapsui.MRect(
+                    var expandedBox = new MRect(
                     boundingBox.MinX - paddingX,
                     boundingBox.MinY - paddingY,
                     boundingBox.MaxX + paddingX,
                     boundingBox.MaxY + paddingY
                     );
-                    map.Map.Navigator.ZoomToBox(expandedBox, Mapsui.MBoxFit.Fit);
+                    map.Map.Navigator.ZoomToBox(expandedBox, MBoxFit.Fit);
                 }
             }
             catch (Exception ex)
@@ -419,16 +402,24 @@ namespace Babelfisk.WPF.Views.Map
         }
 
 
+        #endregion
+
         #region IcesAreasFunctions
+
+        private static JToken _cachedGeoJsonFeatures;
         private JToken ParseGeoJsonFile(string filePath)
         {
+            if (_cachedGeoJsonFeatures != null)
+                return _cachedGeoJsonFeatures;
+
             if (!File.Exists(filePath))
                 return null;
+
             string json = File.ReadAllText(filePath);
             var obj = JObject.Parse(json);
-            var features = obj["features"];
-            if (features == null) return null;
-            else return features;
+            _cachedGeoJsonFeatures = obj["features"];
+
+            return _cachedGeoJsonFeatures;
 
         }
         private void DrawGeoJsonFeature(JToken feature)
@@ -502,6 +493,42 @@ namespace Babelfisk.WPF.Views.Map
         }
         #endregion
 
+        #region UIImpl
+
+
+        private void ZoomOut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (map != null)
+                {
+                    if (GetZoomLevel() > 3)
+                    {
+                        map.Map.Navigator.ZoomOut();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
+        }
+
+        private void ZoomIn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (GetZoomLevel() < 19)
+                {
+                    map.Map.Navigator.ZoomIn();
+                }
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
+        }
+
         private void ClipboardButton_Click(object sender, RoutedEventArgs e)
         {
             new Action(() =>
@@ -513,13 +540,11 @@ namespace Babelfisk.WPF.Views.Map
 
                     Clipboard.SetImage(bmpSource);
 
-                    if (bmp != null)
-                        bmp.Dispose();
+                    bmp?.Dispose();
                 }
                 catch (Exception ex)
                 {
-                    if (ViewModel != null)
-                        ViewModel.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
+                    ViewModel?.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
                 }
             }).Dispatch();
         }
@@ -531,20 +556,20 @@ namespace Babelfisk.WPF.Views.Map
                 {
                     Bitmap bmp = GetBrowserScreenshot();
 
-                    Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
-                    sfd.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|All Files|*.*";
+                    Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog
+                    {
+                        Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|All Files|*.*"
+                    };
                     bool? blnRes = sfd.ShowDialog(Application.Current.MainWindow);
 
                     if (blnRes.HasValue && blnRes.Value)
                         bmp.Save(sfd.FileName);
 
-                    if (bmp != null)
-                        bmp.Dispose();
+                    bmp?.Dispose();
                 }
                 catch (Exception ex)
                 {
-                    if (ViewModel != null)
-                        ViewModel.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
+                    ViewModel?.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
                 }
             }).Dispatch();
         }
@@ -562,8 +587,10 @@ namespace Babelfisk.WPF.Views.Map
 
                     if (result.HasValue && result.Value)
                     {
-                        var img = new System.Windows.Controls.Image();
-                        img.Source = bmpSource;
+                        var img = new System.Windows.Controls.Image
+                        {
+                            Source = bmpSource
+                        };
 
                         img.Measure(new System.Windows.Size(dlg.PrintableAreaWidth, dlg.PrintableAreaHeight));
                         img.Arrange(new Rect(new System.Windows.Point(0, 0), img.DesiredSize));
@@ -571,19 +598,16 @@ namespace Babelfisk.WPF.Views.Map
                         dlg.PrintVisual(img, "Map");
                     }
 
-                    if (bmp != null)
-                        bmp.Dispose();
+                    bmp?.Dispose();
                 }
                 catch (Exception ex)
                 {
-                    if (ViewModel != null)
-                        ViewModel.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
+                    ViewModel?.AppRegionManager.ShowMessageBox("En uventet fejl opstod. " + ex.Message);
                 }
             }).Dispatch();
         }
         private Bitmap GetBrowserScreenshot()
         {
-            var size = map.RenderSize;
             var rtb = new RenderTargetBitmap(
                 (int)map.ActualWidth, //width 
                 (int)map.ActualHeight, //height 
@@ -601,6 +625,12 @@ namespace Babelfisk.WPF.Views.Map
             Bitmap bitmap = new Bitmap(stream);
             return bitmap;
         }
+
+
+        #endregion
+
+        #region Utils
+
         public int GetZoomLevel()
         {
             double resolution = map.Map?.Navigator?.Viewport.Resolution ?? 0;
@@ -612,7 +642,8 @@ namespace Babelfisk.WPF.Views.Map
 
             return zoom;
         }
-        private void Build_Map(Mapsui.Map myMap)
+
+        private void BuildMapsuiBaseMap(Mapsui.Map myMap)
         {
             var positronBase = new HttpTileSource(
                 new GlobalSphericalMercator(),
@@ -628,9 +659,117 @@ namespace Babelfisk.WPF.Views.Map
 
             myMap.Layers.Add(baseLayer);
 
-
         }
-        
+        public MemoryLayer GetOrCreateMemoryLayer(string name)
+        {
+            if (!(map.Map.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer))
+            {
+                layer = new MemoryLayer
+                {
+                    Name = name,
+                    Enabled = true,
+                    IsMapInfoLayer = true,
+                    Features = new List<IFeature>()
+                };
+                map.Map.Layers.Add(layer);
+            }
+            layer.Style = null;
+            return layer;
+        }
+
+        #endregion
+
+        #region SharedStyles
+
+        private static readonly SymbolStyle SharedPointStyle = new SymbolStyle
+        {
+            SymbolScale = 0.25,
+            Fill = new Brush(Color.Red),
+            Outline = new Pen(Color.Black, 0.2),
+            SymbolType = SymbolType.Ellipse
+        };
+
+
+        private static readonly LabelStyle SharedLabelStyle = new LabelStyle
+        {
+            Font = new Font { FontFamily = "Arial", Size = 17, Bold = true },
+            ForeColor = Color.Red,
+            BackColor = new Brush(Color.Transparent),
+            Halo = new Pen(Color.White, 1),
+            HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center,
+            VerticalAlignment = LabelStyle.VerticalAlignmentEnum.Bottom,
+            LabelColumn = "StationName"   // IMPORTANT
+        };
+
+        private static readonly VectorStyle SharedLineStylePurple3 = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.Purple,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 3
+            }
+        };
+
+        private static readonly VectorStyle SharedLineStyleMagenta2 = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.Magenta,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 2
+            }
+        };
+
+        private static readonly VectorStyle SharedLineStyleDarkCyan15 = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.DarkCyan,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 1.5
+            }
+        };
+
+        private static readonly VectorStyle SharedLineStyleBlack7 = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.Black,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 7
+            }
+        };
+
+        private static readonly VectorStyle SharedLineStyle5Yellow = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.Yellow,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 5
+            }
+        };
+
+        private static readonly VectorStyle SharedPolygonLineStyle = new VectorStyle
+        {
+            Line = new Pen
+            {
+                Color = Color.Magenta,
+                PenStrokeCap = PenStrokeCap.Round,
+                StrokeJoin = StrokeJoin.Round,
+                Width = 2
+            },
+            Opacity = 0.25f
+        };
+
+        #endregion
+
         #region MapsuiDrawFunctions
         public void DrawNumberAtLocation(double x, double y, string stationName)
         {
@@ -639,17 +778,17 @@ namespace Babelfisk.WPF.Views.Map
             var feature = new GeometryFeature
             {
                 Geometry = ntsPoint,
-                Styles = new List<IStyle>
-                {
-                    GetLabelStyle(stationName, Color.Red)
-                }
+                Styles = new List<IStyle> { SharedLabelStyle }
             };
 
+            feature["StationName"] = stationName;
+
             var layer = GetOrCreateMemoryLayer("LabelLayer");
-            ((List<Mapsui.IFeature>)layer.Features).Add(feature);
+            ((List<IFeature>)layer.Features).Add(feature);
             layer.DataHasChanged();
 
         }
+        
         public void DrawPoint(double x, double y)
         {
             var ntsPoint = new Point(x, y);
@@ -657,20 +796,11 @@ namespace Babelfisk.WPF.Views.Map
             var feature = new GeometryFeature
             {
                 Geometry = ntsPoint,
-                Styles = new List<IStyle>
-                {
-                    new SymbolStyle
-                    {
-                        SymbolScale = 0.25,
-                        Fill = new Brush(Color.Red),
-                        Outline = new Pen(Color.Black, 0.2),
-                        SymbolType = SymbolType.Ellipse
-                    }
-                }
+                Styles = new List<IStyle> { SharedPointStyle }
             };
 
             var layer = GetOrCreateMemoryLayer("PointLayer");
-            ((List<Mapsui.IFeature>)layer.Features).Add(feature);
+            ((List<IFeature>)layer.Features).Add(feature);
             layer.DataHasChanged();
         }
         public void DrawLineWithLabel(double x1, double y1, double x2, double y2, string labelText)
@@ -683,11 +813,11 @@ namespace Babelfisk.WPF.Views.Map
             var feature = new GeometryFeature
             {
                 Geometry = lineString,
-                Styles = new List<IStyle> { GetRoundedLineStyle(3, Color.Purple) }
+                Styles = new List<IStyle> { SharedLineStylePurple3 }
             };
 
             var lineLayer = GetOrCreateMemoryLayer("LineLayer");
-            ((List<Mapsui.IFeature>)lineLayer.Features).Add(feature);
+            ((List<IFeature>)lineLayer.Features).Add(feature);
             lineLayer.DataHasChanged();
 
 
@@ -708,11 +838,11 @@ namespace Babelfisk.WPF.Views.Map
             var feature = new GeometryFeature
             {
                 Geometry = lineString,
-                Styles = new List<IStyle> { GetRoundedLineStyle(2, Color.Magenta) }
+                Styles = new List<IStyle> { SharedLineStyleMagenta2 }
             };
 
             var lineLayer = GetOrCreateMemoryLayer("BorderLayer");
-            ((List<Mapsui.IFeature>)lineLayer.Features).Add(feature);
+            ((List<IFeature>)lineLayer.Features).Add(feature);
             lineLayer.DataHasChanged();
         }
 
@@ -726,11 +856,11 @@ namespace Babelfisk.WPF.Views.Map
             var feature = new GeometryFeature
             {
                 Geometry = lineString,
-                Styles = new List<IStyle> { GetRoundedLineStyle(1.5, Color.DarkCyan) }
+                Styles = new List<IStyle> { SharedLineStyleDarkCyan15 }
             };
 
             var lineLayer = GetOrCreateMemoryLayer("BorderLayer");
-            ((List<Mapsui.IFeature>)lineLayer.Features).Add(feature);
+            ((List<IFeature>)lineLayer.Features).Add(feature);
             lineLayer.DataHasChanged();
 
         }
@@ -740,98 +870,54 @@ namespace Babelfisk.WPF.Views.Map
             if (!coordinates[0].Equals2D(coordinates[coordinates.Count - 1]))
             {
                 coordinates.Add(new Coordinate(coordinates[0].X, coordinates[0].Y));
-            } //close the polygon
+            } 
                 
             LineString lineString = new LineString(coordinates.Select(v => SphericalMercator.FromLonLat(v.X, v.Y).ToCoordinate()).ToArray());
 
             var feature = new GeometryFeature
             {
                 Geometry = lineString,
-                Styles = new List<IStyle> { GetRoundedLineStyle(2, Color.Magenta, 0.25f) }
+                Styles = new List<IStyle> { SharedPolygonLineStyle }
             };
 
             var polygonLayer = GetOrCreateMemoryLayer("PolygonLayer");
-            ((List<Mapsui.IFeature>)polygonLayer.Features).Add(feature);
+            ((List<IFeature>)polygonLayer.Features).Add(feature);
             polygonLayer.DataHasChanged();
         }
         #endregion
 
-        #region StyleUtils
+        #region MapDispose
 
-        
-        public IStyle GetLabelStyle(string stationName, Color color)
-        {
-            return new LabelStyle
-            {
-                Text = stationName,
-                Font = new Font { FontFamily = "Arial", Size = 17, Bold = true },
-                ForeColor = Color.Red,
-                BackColor = new Brush(Color.Transparent),
-                Halo = new Pen(Color.White, 1),
-                HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center,
-                VerticalAlignment = LabelStyle.VerticalAlignmentEnum.Bottom
-            };
-        }
-        public MemoryLayer GetOrCreateMemoryLayer(string name)
-        {
-            var layer = map.Map.Layers.FirstOrDefault(l => l.Name == name) as MemoryLayer;
-            if (layer == null)
-            {
-                layer = new MemoryLayer
-                {
-                    Name = name,
-                    Enabled = true,
-                    IsMapInfoLayer = true,
-                    Features = new List<Mapsui.IFeature>()
-                };
-                map.Map.Layers.Add(layer);
-            }
-            layer.Style = null;
-            return layer;
-        }
-        public IStyle GetRoundedLineStyle(double width, Color color, float opacity = 1, PenStyle penStyle = PenStyle.Solid, double minVisible = 0, double maxVisible = double.MaxValue)
-        {
-            return new VectorStyle
-            {
-                Line = new Pen
-                {
-                    Color = color,
-                    PenStrokeCap = PenStrokeCap.Round,
-                    StrokeJoin = StrokeJoin.Round,
-                    PenStyle = penStyle,
-                    Width = width
-                },
-                MinVisible = minVisible,
-                MaxVisible = maxVisible,
-                Opacity = opacity
-            };
-        }
         public void ClearLayer(string name)
         {
-            var layer = map.Map.Layers.FirstOrDefault(l => l.Name == name) as MemoryLayer;
-            if (layer != null)
+            if (map.Map.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer)
             {
                 ((List<IFeature>)layer.Features).Clear();
                 layer.DataHasChanged();
             }
         }
-        public void ClearAllDrawnLayers(bool removeLayers = false)
+        public void ClearAllDrawnLayers()
         {
-            var memoryLayers = map.Map.Layers.OfType<MemoryLayer>().ToList();
-            foreach (var layer in memoryLayers)
+            foreach (var layer in map.Map.Layers.OfType<MemoryLayer>().ToList())
             {
                 if (_drawnLayers.Contains(layer.Name))
                 {
                     ((List<IFeature>)layer.Features).Clear();
-                    layer.DataHasChanged();
-                    if (removeLayers)
-                    {
-                        map.Map.Layers.Remove(layer);
-                    }
+                    layer.Dispose();
+                    map.Map.Layers.Remove(layer);
                 }
             }
+            map.RefreshGraphics();
         }
-        #endregion
+
+        public void ClearTileCache()
+        {
+            foreach (var tileLayer in map.Map.Layers.OfType<TileLayer>())
+            {
+                tileLayer.ClearCache();
+            }
+        }
+        
         public void Dispose()
         {
             try
@@ -841,25 +927,31 @@ namespace Babelfisk.WPF.Views.Map
                 this.DataContextChanged -= MapView_DataContextChanged;
                 this.DataContext = null;
 
+                map.Loaded -= MapsuiMapsView_Loaded;
+
                 if (ViewModel != null)
                     ViewModel.OnUIMessage -= MapsuiMapsView_OnUIMessage;
 
                 if (map != null)
                 {
                     map.Map?.Layers.Clear();
-                    map.Dispose();
+                    map.Map.Dispose();
                 }
 
+                ClearAllDrawnLayers();
+
+                map.Dispose();
                 mapGrid.Children.Clear();
                 map.Children.Clear();
                 map = null;
-                GC.Collect(); //  use during diagnosis only
-                GC.WaitForPendingFinalizers();
+
+                this.DataContext = null;
             }
             catch (Exception ex)
             {
                 Anchor.Core.Loggers.Logger.LogError(ex);
             }
         }
+        #endregion
     }
 }
