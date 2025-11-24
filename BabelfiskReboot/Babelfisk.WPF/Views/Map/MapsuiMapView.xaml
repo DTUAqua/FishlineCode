@@ -116,72 +116,6 @@
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
 
-
-                    <ToolTip x:Key="ttPolyline" Padding="0" DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}" >
-                        <Border BorderBrush="LightGray" BorderThickness="1" SnapsToDevicePixels="True">
-                            <StackPanel Orientation="Vertical" Margin="6,5" TextBlock.FontSize="14">
-                                <DockPanel>
-                                    <TextBlock Text="Tur nr.:" Width="95" />
-                                    <TextBlock Text="{Binding Path=TripName, FallbackValue=1}" FontWeight="Bold" />
-                                </DockPanel>
-
-                                <DockPanel>
-                                    <TextBlock Text="Stations nr.:" Width="95" />
-                                    <TextBlock Text="{Binding Path=StationName, FallbackValue=22}" FontWeight="Bold" />
-                                </DockPanel>
-
-                                <DockPanel>
-                                    <TextBlock Text="Start (lat, lon):" Width="95" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="(" />
-                                        <TextBlock Text="{Binding Path=LatitudeStartDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=",  " />
-                                        <TextBlock Text="{Binding Path=LongitudeStartDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=")" />
-                                    </StackPanel>
-                                </DockPanel>
-
-                                <DockPanel>
-                                    <TextBlock Text="Stop (lat, lon):" Width="95" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="(" />
-                                        <TextBlock Text="{Binding Path=LatitudeStopDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=",  " />
-                                        <TextBlock Text="{Binding Path=LongitudeStopDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=")" />
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
-                        </Border>
-                    </ToolTip>
-
-                    <ToolTip x:Key="ttPoint" Padding="0" DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}" >
-                        <Border BorderBrush="LightGray" BorderThickness="1" SnapsToDevicePixels="True">
-                            <StackPanel Orientation="Vertical" Margin="6,5" TextBlock.FontSize="14">
-                                <DockPanel>
-                                    <TextBlock Text="Tur nr.:" Width="115" />
-                                    <TextBlock Text="{Binding Path=TripName}" FontWeight="Bold" />
-                                </DockPanel>
-
-                                <DockPanel>
-                                    <TextBlock Text="Stations nr.:" Width="115" />
-                                    <TextBlock Text="{Binding Path=StationName}" FontWeight="Bold" />
-                                </DockPanel>
-
-                                <DockPanel>
-                                    <TextBlock Text="Position (lat, lon):" Width="115" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="(" />
-                                        <TextBlock Text="{Binding Path=LatitudeStopDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=",  " />
-                                        <TextBlock Text="{Binding Path=LongitudeStopDegreeMinutes}" FontWeight="Bold" />
-                                        <TextBlock Text=")" />
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
-                        </Border>
-                    </ToolTip>
-
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -306,6 +240,138 @@
                         >
                     <TextBlock Text="Ingen internetforbindelse fundet" TextWrapping="Wrap" FontSize="12" Foreground="Gray" />
                 </Border>
+
+                <Popup x:Name="pointFeaturePopup"
+                    DataContext="{x:Null}"
+                    Placement="Relative"
+                    StaysOpen="False"
+                    AllowsTransparency="True"
+                    Visibility="Collapsed">
+                    <Border Background="#FAFFFFFF"
+                        BorderBrush="#CCCCCC"
+                        BorderThickness="1"
+                        Padding="8"
+                        CornerRadius="6"
+                        SnapsToDevicePixels="True">
+
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black"
+                              BlurRadius="8"
+                              ShadowDepth="2"
+                              Opacity="0.35"/>
+                        </Border.Effect>
+
+                        <StackPanel Margin="2" Orientation="Vertical">
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Tur number.:" Width="115"
+                           Foreground="#666" FontSize="13"/>
+                                <TextBlock Text="{Binding TripName, FallbackValue=''}"
+                           FontSize="14" FontWeight="Bold"
+                           Foreground="#222"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Stations number.:" Width="115"
+                           Foreground="#666" FontSize="13"/>
+                                <TextBlock Text="{Binding StationName, FallbackValue=''}"
+                           FontSize="14" FontWeight="Bold"
+                           Foreground="#222"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Position (lat, lon):" Width="115"
+                           Foreground="#666" FontSize="13"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="(" Foreground="#222"/>
+                                    <TextBlock Text="{Binding LatitudeStopDegreeMinutes, FallbackValue=''}"
+                               FontSize="14" FontWeight="Bold"
+                               Foreground="#222"/>
+                                    <TextBlock Text=", " Foreground="#222"/>
+                                    <TextBlock Text="{Binding LongitudeStopDegreeMinutes, FallbackValue=''}"
+                               FontSize="14" FontWeight="Bold"
+                               Foreground="#222"/>
+                                    <TextBlock Text=")" Foreground="#222"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
+                <Popup x:Name="lineFeaturePopup"
+                    DataContext="{x:Null}"
+                    Placement="Relative"
+                    StaysOpen="False"
+                    AllowsTransparency="True"
+                    Visibility="Collapsed">
+                    <Border Background="#FAFFFFFF"
+                        BorderBrush="#CCCCCC"
+                        BorderThickness="1"
+                        Padding="8"
+                        CornerRadius="6"
+                        SnapsToDevicePixels="True">
+
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black"
+                              BlurRadius="8"
+                              ShadowDepth="2"
+                              Opacity="0.35"/>
+                        </Border.Effect>
+
+                        <StackPanel Margin="2" Orientation="Vertical">
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Tur number.:" Width="115"
+                                    Foreground="#666" FontSize="13"/>
+                                <TextBlock Text="{Binding TripName, FallbackValue=''}"
+                                   FontSize="14" FontWeight="Bold"
+                                   Foreground="#222"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Stations number.:" Width="115"
+                                    Foreground="#666" FontSize="13"/>
+                                <TextBlock Text="{Binding StationName, FallbackValue=''}"
+                                   FontSize="14" FontWeight="Bold"
+                                   Foreground="#222"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Start (lat, lon):" Width="115"
+                                    Foreground="#666" FontSize="13"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="(" Foreground="#222"/>
+                                    <TextBlock Text="{Binding LatitudeStartDegreeMinutes, FallbackValue=''}"
+                                       FontSize="14" FontWeight="Bold"
+                                       Foreground="#222"/>
+                                    <TextBlock Text=", " Foreground="#222"/>
+                                    <TextBlock Text="{Binding LongitudeStartDegreeMinutes, FallbackValue=''}"
+                                       FontSize="14" FontWeight="Bold"
+                                       Foreground="#222"/>
+                                    <TextBlock Text=")" Foreground="#222"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="Stop (lat, lon):" Width="115"
+                                    Foreground="#666" FontSize="13"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="(" Foreground="#222"/>
+                                    <TextBlock Text="{Binding LatitudeStopDegreeMinutes, FallbackValue=''}"
+                                       FontSize="14" FontWeight="Bold"
+                                       Foreground="#222"/>
+                                    <TextBlock Text=", " Foreground="#222"/>
+                                    <TextBlock Text="{Binding LongitudeStopDegreeMinutes, FallbackValue=''}"
+                                       FontSize="14" FontWeight="Bold"
+                                       Foreground="#222"/>
+                                    <TextBlock Text=")" Foreground="#222"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
             </Grid>
         </ContentControl>
     </Grid>

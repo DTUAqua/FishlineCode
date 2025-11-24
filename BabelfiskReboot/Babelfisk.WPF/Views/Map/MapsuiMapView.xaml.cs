@@ -1,4 +1,5 @@
 ﻿using Anchor.Core;
+using Babelfisk.Entities.Sprattus;
 using Babelfisk.ViewModels.Map;
 using BruTile.Predefined;
 using BruTile.Web;
@@ -71,146 +72,105 @@ namespace Babelfisk.WPF.Views.Map
 
         #region Listeners
 
-        private DateTime _lastHoverCheck = DateTime.MinValue;
-        private IFeature _lastHoveredFeature;
-        private List<IStyle> _lastOriginalStyles;
-        private readonly string[] _hoverableLayers = { "LabelLayer", "LineLayer" };
         private readonly string[] _drawnLayers = { "LabelLayer", "LineLayer", "BorderLayer", "PointLayer", "PolygonLayer" };
 
-        private bool _hoverHandlersInitialized = false;
+        private bool _hoverInitialized = false;
+
+        private IFeature _activeFeature = null;
+
 
         public void InitializeHoverHandlers()
         {
-
-            if (_hoverHandlersInitialized)
+            if (_hoverInitialized)
                 return;
 
+            _hoverInitialized = true;
 
             map.MouseMove += MapControl_MouseMove;
             map.MouseLeave += MapControl_MouseLeave;
-            _hoverHandlersInitialized = true;
         }
 
         public void RemoveHoverHandlers()
         {
-            if (_hoverHandlersInitialized)
+            if (map != null)
             {
                 map.MouseMove -= MapControl_MouseMove;
                 map.MouseLeave -= MapControl_MouseLeave;
-                _hoverHandlersInitialized = false;
             }
         }
 
+        private void ShowPopup(IFeature feature, System.Windows.Point mousePos)
+        {
+            bool isPoint = feature["IsPoint"] is bool b && b; ;
+
+            var context = new
+            {
+                TripName = feature["TripName"],
+                StationName = feature["StationName"],
+                LatitudeStartDegreeMinutes = feature["LatitudeStartDegreeMinutes"],
+                LongitudeStartDegreeMinutes = feature["LongitudeStartDegreeMinutes"],
+                LatitudeStopDegreeMinutes = feature["LatitudeStopDegreeMinutes"],
+                LongitudeStopDegreeMinutes = feature["LongitudeStopDegreeMinutes"]
+            };
+
+            double offsetX = mousePos.X + 12;
+            double offsetY = mousePos.Y + 12;
+
+            if (isPoint)
+            {
+                pointFeaturePopup.DataContext = context;
+                pointFeaturePopup.HorizontalOffset = offsetX;
+                pointFeaturePopup.VerticalOffset = offsetY;
+
+                lineFeaturePopup.IsOpen = false;
+                pointFeaturePopup.IsOpen = true;
+            }
+            else
+            {
+                lineFeaturePopup.DataContext = context;
+                lineFeaturePopup.HorizontalOffset = offsetX;
+                lineFeaturePopup.VerticalOffset = offsetY;
+
+                pointFeaturePopup.IsOpen = false;
+                lineFeaturePopup.IsOpen = true;
+            }
+        }
+
+
         private void MapControl_MouseMove(object sender, MouseEventArgs e)
         {
-            try
+
+            var pos = e.GetPosition(map);
+            var mapPos = new MPoint(pos.X, pos.Y);
+
+            var info = map.GetMapInfo(mapPos);
+            var feature = info?.Feature;
+
+            if (feature == _activeFeature)
+                return;
+
+            if (!(map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer") is MemoryLayer labelLayer) ||
+                !labelLayer.Features.Contains(feature))
             {
-
-                var now = DateTime.Now;
-                if ((now - _lastHoverCheck).TotalMilliseconds < 50)
-                    return;
-                _lastHoverCheck = now;
-
-
-                var pos = e.GetPosition(map);
-                var screenPosition = new MPoint(pos.X, pos.Y);
-                var mapInfo = map.GetMapInfo(screenPosition);
-
-                var feature = mapInfo.Feature;
-                var layer = map.Map.Layers
-                    .OfType<MemoryLayer>()
-                    .FirstOrDefault(l => l.Features.Contains(feature));
-
-                if (feature == null || layer == null || !_hoverableLayers.Contains(layer.Name))
-                {
-                    ResetHoverState();
-                    return;
-                }
-
-                if (ReferenceEquals(feature, _lastHoveredFeature))
-                    return;
-
-                ResetHoverState();
-
-                _lastOriginalStyles = feature.Styles?.ToList() ?? new List<IStyle>();
-                _lastHoveredFeature = feature;
-                feature.Styles.Clear();
-
-                if (layer.Name == "LineLayer")
-                {
-                    feature.Styles.Add(SharedLineStyleBlack7);
-                    feature.Styles.Add(SharedLineStyle5Yellow);
-                }
-                else if (layer.Name == "LabelLayer")
-                {
-                    var label = _lastOriginalStyles.OfType<LabelStyle>().FirstOrDefault();
-                    if (label != null)
-                    {
-                        var hoverLabel = new LabelStyle
-                        {
-                            Text = GetLabelText(label),
-                            LabelColumn = label.LabelColumn,
-                            Font = label.Font,
-                            ForeColor = Color.Yellow,
-                            BackColor = new Brush(Color.Black),
-                            HorizontalAlignment = label.HorizontalAlignment,
-                            VerticalAlignment = label.VerticalAlignment
-                        };
-                        feature.Styles.Add(hoverLabel);
-                    }
-                }
-
-                layer.DataHasChanged();
+                HidePopup();
+                return;
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"MapControl_MouseMove error: {ex}");
-            }
+
+
+            _activeFeature = feature;
+
+            ShowPopup(feature, pos);
+        }
+        private void HidePopup()
+        {
+            _activeFeature = null;
+            pointFeaturePopup.IsOpen = false;
+            lineFeaturePopup.IsOpen = false;
         }
 
         private void MapControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            ResetHoverState();
-        }
-
-        private void ResetHoverState()
-        {
-            try
-            {
-                if (_lastHoveredFeature == null)
-                    return;
-
-                _lastHoveredFeature.Styles.Clear();
-                foreach (var style in _lastOriginalStyles)
-                    _lastHoveredFeature.Styles.Add(style);
-
-                var layer = map.Map.Layers
-                    .OfType<MemoryLayer>()
-                    .FirstOrDefault(l => l.Features.Contains(_lastHoveredFeature));
-                layer?.DataHasChanged();
-
-                _lastHoveredFeature = null;
-                _lastOriginalStyles = null;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"ResetHoverState error: {ex}");
-            }
-        }
-        private string GetLabelText(LabelStyle labelStyle)
-        {
-            try
-            {
-                var prop = typeof(LabelStyle).GetProperty("Text",
-                    System.Reflection.BindingFlags.NonPublic |
-                    System.Reflection.BindingFlags.Public |
-                    System.Reflection.BindingFlags.Instance);
-                return prop?.GetValue(labelStyle) as string ?? string.Empty;
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            HidePopup();
         }
 
 
@@ -279,12 +239,12 @@ namespace Babelfisk.WPF.Views.Map
             ClearAllDrawnLayers();
             ClearTileCache();
             try
-            {  
+            {
                 var vm = ViewModel;
 
                 string geoFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
 
-                string fileName = "ices_areas.geojson";                            
+                string fileName = "ices_areas.geojson";
 
                 var features = ParseGeoJsonFile(Path.Combine(geoFolder, fileName));
                 DrawGeoJson(features);
@@ -314,7 +274,7 @@ namespace Babelfisk.WPF.Views.Map
                         var lonStop = MapViewModel.ConvertPositionFromDegreesToDouble(p.LongitudeStop ?? "00.00.000 E");
                         var (x, y) = SphericalMercator.FromLonLat(lonStop, latStop);
 
-                        DrawNumberAtLocation(x, y, p.StationName);
+                        DrawNumberAtLocation(x, y, p, true);
 
                         vTmp = new Vec2d(latStop, lonStop);
                         vMin = VMathd.Min(vTmp.Value, vMin);
@@ -344,7 +304,7 @@ namespace Babelfisk.WPF.Views.Map
                                 lonStop += 0.0001;
                             }
 
-                            DrawLineWithLabel(x1, y1, x2, y2, point.StationName);
+                            DrawLineWithLabel(x1, y1, x2, y2, point);
 
                             vTmp = new Vec2d(latStart, lonStart);
                             vMin = VMathd.Min(vTmp.Value, vMin);
@@ -357,7 +317,8 @@ namespace Babelfisk.WPF.Views.Map
                     }
                 }
 
-                if(boundingBox != null){
+                if (boundingBox != null)
+                {
                     CenterMapToBounds(boundingBox);
                 }
 
@@ -374,7 +335,7 @@ namespace Babelfisk.WPF.Views.Map
             {
                 Anchor.Core.Loggers.Logger.LogError(e);
             }
-        
+
         }
 
         private void CenterMapToBounds(MRect boundingBox)
@@ -393,6 +354,11 @@ namespace Babelfisk.WPF.Views.Map
                     boundingBox.MaxY + paddingY
                     );
                     map.Map.Navigator.ZoomToBox(expandedBox, MBoxFit.Fit);
+
+                    if (GetZoomLevel() > 15)
+                    {
+                        map.Map.Navigator.ZoomTo(15);
+                    }
                 }
             }
             catch (Exception ex)
@@ -466,7 +432,7 @@ namespace Babelfisk.WPF.Views.Map
         {
             double lon = coords[0].ToObject<double>();
             double lat = coords[1].ToObject<double>();
-            DrawPoint(lon, lat);    
+            DrawPoint(lon, lat);
         }
         private void DrawLineString(JToken coords)
         {
@@ -518,7 +484,7 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
-                if (GetZoomLevel() < 19)
+                if (GetZoomLevel() < 15)
                 {
                     map.Map.Navigator.ZoomIn();
                 }
@@ -694,11 +660,11 @@ namespace Babelfisk.WPF.Views.Map
         {
             Font = new Font { FontFamily = "Arial", Size = 17, Bold = true },
             ForeColor = Color.Red,
-            BackColor = new Brush(Color.Transparent),
-            Halo = new Pen(Color.White, 1),
+            BackColor = new Brush(Color.White),
+            Halo = new Pen(Color.Transparent, 0),
             HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center,
             VerticalAlignment = LabelStyle.VerticalAlignmentEnum.Bottom,
-            LabelColumn = "StationName"   // IMPORTANT
+            LabelColumn = "StationName"
         };
 
         private static readonly VectorStyle SharedLineStylePurple3 = new VectorStyle
@@ -734,28 +700,6 @@ namespace Babelfisk.WPF.Views.Map
             }
         };
 
-        private static readonly VectorStyle SharedLineStyleBlack7 = new VectorStyle
-        {
-            Line = new Pen
-            {
-                Color = Color.Black,
-                PenStrokeCap = PenStrokeCap.Round,
-                StrokeJoin = StrokeJoin.Round,
-                Width = 7
-            }
-        };
-
-        private static readonly VectorStyle SharedLineStyle5Yellow = new VectorStyle
-        {
-            Line = new Pen
-            {
-                Color = Color.Yellow,
-                PenStrokeCap = PenStrokeCap.Round,
-                StrokeJoin = StrokeJoin.Round,
-                Width = 5
-            }
-        };
-
         private static readonly VectorStyle SharedPolygonLineStyle = new VectorStyle
         {
             Line = new Pen
@@ -771,7 +715,7 @@ namespace Babelfisk.WPF.Views.Map
         #endregion
 
         #region MapsuiDrawFunctions
-        public void DrawNumberAtLocation(double x, double y, string stationName)
+        public void DrawNumberAtLocation(double x, double y, MapPoint p, bool point)
         {
             var ntsPoint = new Point(x, y);
 
@@ -781,14 +725,21 @@ namespace Babelfisk.WPF.Views.Map
                 Styles = new List<IStyle> { SharedLabelStyle }
             };
 
-            feature["StationName"] = stationName;
+            feature["StationName"] = p.StationName;
+            feature["TripName"] = p.TripName;
+            feature["LatitudeStartDegreeMinutes"] = p.LatitudeStartDegreeMinutes;
+            feature["LongitudeStartDegreeMinutes"] = p.LongitudeStartDegreeMinutes;
+            feature["LatitudeStopDegreeMinutes"] = p.LatitudeStopDegreeMinutes;
+            feature["LongitudeStopDegreeMinutes"] = p.LongitudeStopDegreeMinutes;
+            if (point) feature["IsPoint"] = true;
+            else feature["IsPoint"] = false;
 
             var layer = GetOrCreateMemoryLayer("LabelLayer");
             ((List<IFeature>)layer.Features).Add(feature);
             layer.DataHasChanged();
 
         }
-        
+
         public void DrawPoint(double x, double y)
         {
             var ntsPoint = new Point(x, y);
@@ -803,7 +754,7 @@ namespace Babelfisk.WPF.Views.Map
             ((List<IFeature>)layer.Features).Add(feature);
             layer.DataHasChanged();
         }
-        public void DrawLineWithLabel(double x1, double y1, double x2, double y2, string labelText)
+        public void DrawLineWithLabel(double x1, double y1, double x2, double y2, MapPoint p)
         {
 
             List<Coordinate> coordinates = new List<Coordinate> { new Coordinate(x1, y1), new Coordinate(x2, y2) };
@@ -824,7 +775,7 @@ namespace Babelfisk.WPF.Views.Map
             double midX = (x1 + x2) / 2;
             double midY = (y1 + y2) / 2;
 
-            DrawNumberAtLocation(midX, midY, labelText);
+            DrawNumberAtLocation(midX, midY, p, false);
 
         }
 
@@ -870,8 +821,8 @@ namespace Babelfisk.WPF.Views.Map
             if (!coordinates[0].Equals2D(coordinates[coordinates.Count - 1]))
             {
                 coordinates.Add(new Coordinate(coordinates[0].X, coordinates[0].Y));
-            } 
-                
+            }
+
             LineString lineString = new LineString(coordinates.Select(v => SphericalMercator.FromLonLat(v.X, v.Y).ToCoordinate()).ToArray());
 
             var feature = new GeometryFeature
@@ -903,7 +854,6 @@ namespace Babelfisk.WPF.Views.Map
                 if (_drawnLayers.Contains(layer.Name))
                 {
                     ((List<IFeature>)layer.Features).Clear();
-                    layer.Dispose();
                     map.Map.Layers.Remove(layer);
                 }
             }
@@ -917,7 +867,7 @@ namespace Babelfisk.WPF.Views.Map
                 tileLayer.ClearCache();
             }
         }
-        
+
         public void Dispose()
         {
             try
@@ -925,8 +875,6 @@ namespace Babelfisk.WPF.Views.Map
                 RemoveHoverHandlers();
 
                 this.DataContextChanged -= MapView_DataContextChanged;
-                this.DataContext = null;
-
                 map.Loaded -= MapsuiMapsView_Loaded;
 
                 if (ViewModel != null)
@@ -935,16 +883,12 @@ namespace Babelfisk.WPF.Views.Map
                 if (map != null)
                 {
                     map.Map?.Layers.Clear();
-                    map.Map.Dispose();
+                    map.Map?.Dispose();
+                    map.Dispose();
                 }
 
-                ClearAllDrawnLayers();
-
-                map.Dispose();
                 mapGrid.Children.Clear();
-                map.Children.Clear();
                 map = null;
-
                 this.DataContext = null;
             }
             catch (Exception ex)
