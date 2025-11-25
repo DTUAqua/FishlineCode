@@ -78,6 +78,9 @@ namespace Babelfisk.WPF.Views.Map
 
         private IFeature _activeFeature = null;
 
+        private DateTime _lastScrollTime = DateTime.MinValue;
+        private const int ScrollCooldownMs = 200;
+
 
         public void InitializeHoverHandlers()
         {
@@ -88,6 +91,10 @@ namespace Babelfisk.WPF.Views.Map
 
             map.MouseMove += MapControl_MouseMove;
             map.MouseLeave += MapControl_MouseLeave;
+
+            pointFeaturePopup.PreviewMouseWheel += Popup_PreviewMouseWheel;
+            lineFeaturePopup.PreviewMouseWheel += Popup_PreviewMouseWheel;
+
         }
 
         public void RemoveHoverHandlers()
@@ -96,6 +103,10 @@ namespace Babelfisk.WPF.Views.Map
             {
                 map.MouseMove -= MapControl_MouseMove;
                 map.MouseLeave -= MapControl_MouseLeave;
+
+                pointFeaturePopup.PreviewMouseWheel -= Popup_PreviewMouseWheel;
+                lineFeaturePopup.PreviewMouseWheel -= Popup_PreviewMouseWheel;
+
             }
         }
 
@@ -136,6 +147,12 @@ namespace Babelfisk.WPF.Views.Map
             }
         }
 
+        private void Popup_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            _lastScrollTime = DateTime.Now;
+            HidePopup();
+            e.Handled = true;
+        }
 
         private void MapControl_MouseMove(object sender, MouseEventArgs e)
         {
@@ -148,6 +165,11 @@ namespace Babelfisk.WPF.Views.Map
 
             if (feature == _activeFeature)
                 return;
+
+            if ((DateTime.Now - _lastScrollTime).TotalMilliseconds < ScrollCooldownMs)
+            {
+                return;
+            }
 
             if (!(map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer") is MemoryLayer labelLayer) ||
                 !labelLayer.Features.Contains(feature))
@@ -270,8 +292,8 @@ namespace Babelfisk.WPF.Views.Map
                         if (p.LatitudeStart == null || p.LongitudeStop == null)
                             continue;
 
-                        var latStop = MapViewModel.ConvertPositionFromDegreesToDouble(p.LatitudeStop ?? "00.00.000 N");
-                        var lonStop = MapViewModel.ConvertPositionFromDegreesToDouble(p.LongitudeStop ?? "00.00.000 E");
+                        var latStop = MapViewModel.ConvertPositionFromDegreesToDouble(p.LatitudeStart ?? "00.00.000 N");
+                        var lonStop = MapViewModel.ConvertPositionFromDegreesToDouble(p.LongitudeStart ?? "00.00.000 E");
                         var (x, y) = SphericalMercator.FromLonLat(lonStop, latStop);
 
                         DrawNumberAtLocation(x, y, p, true);
@@ -660,8 +682,8 @@ namespace Babelfisk.WPF.Views.Map
         {
             Font = new Font { FontFamily = "Arial", Size = 17, Bold = true },
             ForeColor = Color.Red,
-            BackColor = new Brush(Color.White),
-            Halo = new Pen(Color.Transparent, 0),
+            BackColor = new Brush(Color.FromArgb(255, 217, 234, 237)),
+            Halo = new Pen(Color.White, 0.5),
             HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center,
             VerticalAlignment = LabelStyle.VerticalAlignmentEnum.Bottom,
             LabelColumn = "StationName"
