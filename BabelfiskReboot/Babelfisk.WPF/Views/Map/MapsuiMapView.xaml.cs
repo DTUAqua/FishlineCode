@@ -159,30 +159,37 @@ namespace Babelfisk.WPF.Views.Map
 
             var pos = e.GetPosition(map);
             var mapPos = new MPoint(pos.X, pos.Y);
-
-            var info = map.GetMapInfo(mapPos);
-            var feature = info?.Feature;
-
-            if (feature == _activeFeature)
-                return;
-
-            if ((DateTime.Now - _lastScrollTime).TotalMilliseconds < ScrollCooldownMs)
+            try
             {
-                return;
-            }
+                var info = map.GetMapInfo(mapPos);
+                var feature = info?.Feature;
 
-            if (!(map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer") is MemoryLayer labelLayer) ||
-                !labelLayer.Features.Contains(feature))
+                if (feature == _activeFeature)
+                    return;
+
+                if ((DateTime.Now - _lastScrollTime).TotalMilliseconds < ScrollCooldownMs)
+                {
+                    return;
+                }
+
+                if (!(map.Map.Layers.FirstOrDefault(l => l.Name == "LabelLayer") is MemoryLayer labelLayer) ||
+                    !labelLayer.Features.Contains(feature))
+                {
+                    HidePopup();
+                    return;
+                }
+
+
+                _activeFeature = feature;
+
+                ShowPopup(feature, pos);
+            }
+            catch (Exception ex)
             {
-                HidePopup();
-                return;
+                Anchor.Core.Loggers.Logger.LogError(ex);
             }
-
-
-            _activeFeature = feature;
-
-            ShowPopup(feature, pos);
         }
+
         private void HidePopup()
         {
             _activeFeature = null;
@@ -257,11 +264,13 @@ namespace Babelfisk.WPF.Views.Map
 
         private void RebuildMap()
         {
-
-            ClearAllDrawnLayers();
-            ClearTileCache();
             try
             {
+
+                ClearAllDrawnLayers();
+
+                ClearTileCache();
+
                 var vm = ViewModel;
 
                 string geoFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "GeoJson");
@@ -364,7 +373,7 @@ namespace Babelfisk.WPF.Views.Map
         {
             try
             {
-                if (map.Map != null && boundingBox != null)
+                if (map?.Map != null && boundingBox != null)
                 {
                     double marginFactor = 0.2;
                     double paddingX = boundingBox.Width * marginFactor;
@@ -397,18 +406,26 @@ namespace Babelfisk.WPF.Views.Map
         private static JToken _cachedGeoJsonFeatures;
         private JToken ParseGeoJsonFile(string filePath)
         {
-            if (_cachedGeoJsonFeatures != null)
+            try
+            {
+                if (_cachedGeoJsonFeatures != null)
+                    return _cachedGeoJsonFeatures;
+
+                if (!File.Exists(filePath))
+                    return null;
+
+                string json = File.ReadAllText(filePath);
+                var obj = JObject.Parse(json);
+                _cachedGeoJsonFeatures = obj["features"];
+
                 return _cachedGeoJsonFeatures;
 
-            if (!File.Exists(filePath))
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
                 return null;
-
-            string json = File.ReadAllText(filePath);
-            var obj = JObject.Parse(json);
-            _cachedGeoJsonFeatures = obj["features"];
-
-            return _cachedGeoJsonFeatures;
-
+            }
         }
         private void DrawGeoJsonFeature(JToken feature)
         {
@@ -627,30 +644,36 @@ namespace Babelfisk.WPF.Views.Map
             double zoomLevel = Math.Log(initialResolution / resolution, 2);
             int zoom = (int)Math.Round(zoomLevel);
 
-
             return zoom;
         }
 
         private void BuildMapsuiBaseMap(Mapsui.Map myMap)
         {
-            var positronBase = new HttpTileSource(
+            try
+            {
+                var positronBase = new HttpTileSource(
                 new GlobalSphericalMercator(),
                 "https://basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
                 name: "Carto Voyager No Labels",
                 attribution: new BruTile.Attribution("© OpenStreetMap, © CARTO", "https://carto.com/")
             );
 
-            var baseLayer = new TileLayer(positronBase)
+                var baseLayer = new TileLayer(positronBase)
+                {
+                    Name = "BaseLayer"
+                };
+
+                myMap.Layers.Add(baseLayer);
+
+            }
+            catch (Exception ex)
             {
-                Name = "BaseLayer"
-            };
-
-            myMap.Layers.Add(baseLayer);
-
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
         }
         public MemoryLayer GetOrCreateMemoryLayer(string name)
         {
-            if (!(map.Map.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer))
+            if (!(map.Map?.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer))
             {
                 layer = new MemoryLayer
                 {
@@ -817,6 +840,7 @@ namespace Babelfisk.WPF.Views.Map
             var lineLayer = GetOrCreateMemoryLayer("BorderLayer");
             ((List<IFeature>)lineLayer.Features).Add(feature);
             lineLayer.DataHasChanged();
+
         }
 
         public void DrawMultiLineWithoutLabel(List<Coordinate> coords)
@@ -835,6 +859,7 @@ namespace Babelfisk.WPF.Views.Map
             var lineLayer = GetOrCreateMemoryLayer("BorderLayer");
             ((List<IFeature>)lineLayer.Features).Add(feature);
             lineLayer.DataHasChanged();
+
 
         }
 
@@ -856,6 +881,7 @@ namespace Babelfisk.WPF.Views.Map
             var polygonLayer = GetOrCreateMemoryLayer("PolygonLayer");
             ((List<IFeature>)polygonLayer.Features).Add(feature);
             polygonLayer.DataHasChanged();
+
         }
         #endregion
 
@@ -871,22 +897,37 @@ namespace Babelfisk.WPF.Views.Map
         }
         public void ClearAllDrawnLayers()
         {
-            foreach (var layer in map.Map.Layers.OfType<MemoryLayer>().ToList())
+
+            try
             {
-                if (_drawnLayers.Contains(layer.Name))
+                foreach (var layer in map.Map.Layers.OfType<MemoryLayer>().ToList())
                 {
-                    ((List<IFeature>)layer.Features).Clear();
-                    map.Map.Layers.Remove(layer);
+                    if (_drawnLayers.Contains(layer.Name))
+                    {
+                        ((List<IFeature>)layer.Features).Clear();
+                        map.Map.Layers.Remove(layer);
+                    }
                 }
+                map.RefreshGraphics();
             }
-            map.RefreshGraphics();
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
         }
 
         public void ClearTileCache()
         {
-            foreach (var tileLayer in map.Map.Layers.OfType<TileLayer>())
+            try
             {
-                tileLayer.ClearCache();
+                foreach (var tileLayer in map.Map.Layers.OfType<TileLayer>())
+                {
+                    tileLayer.ClearCache();
+                }
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
             }
         }
 
@@ -897,13 +938,13 @@ namespace Babelfisk.WPF.Views.Map
                 RemoveHoverHandlers();
 
                 this.DataContextChanged -= MapView_DataContextChanged;
-                map.Loaded -= MapsuiMapsView_Loaded;
 
                 if (ViewModel != null)
                     ViewModel.OnUIMessage -= MapsuiMapsView_OnUIMessage;
 
                 if (map != null)
                 {
+                    map.Loaded -= MapsuiMapsView_Loaded;
                     map.Map?.Layers.Clear();
                     map.Map?.Dispose();
                     map.Dispose();
