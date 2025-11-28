@@ -47,16 +47,12 @@ namespace Babelfisk.WPF.Views.Map
 
         public MapsuiMapView()
         {
-            InitializeComponent();
-
-            var myMap = new Mapsui.Map();
-
-            BuildMapsuiBaseMap(myMap);
-
-            map.Map = myMap;
-
             try
             {
+                InitializeComponent();
+                var myMap = new Mapsui.Map();
+                BuildMapsuiBaseMap(myMap);
+                map.Map = myMap;
                 this.DataContextChanged += MapView_DataContextChanged;
                 map.Loaded += MapsuiMapsView_Loaded;
 
@@ -156,6 +152,8 @@ namespace Babelfisk.WPF.Views.Map
 
         private void MapControl_MouseMove(object sender, MouseEventArgs e)
         {
+            if (map == null)
+                return;
 
             var pos = e.GetPosition(map);
             var mapPos = new MPoint(pos.X, pos.Y);
@@ -638,9 +636,9 @@ namespace Babelfisk.WPF.Views.Map
 
         public int GetZoomLevel()
         {
-            double resolution = map.Map?.Navigator?.Viewport.Resolution ?? 0;
+            double resolution = map.Map?.Navigator?.Viewport.Resolution ?? 1;
 
-            const double initialResolution = 156543.03392804097; // zoom 0
+            const double initialResolution = 156543.03392804097; 
             double zoomLevel = Math.Log(initialResolution / resolution, 2);
             int zoom = (int)Math.Round(zoomLevel);
 
@@ -673,6 +671,8 @@ namespace Babelfisk.WPF.Views.Map
         }
         public MemoryLayer GetOrCreateMemoryLayer(string name)
         {
+            if (map?.Map == null) return null;
+
             if (!(map.Map?.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer))
             {
                 layer = new MemoryLayer
@@ -889,7 +889,9 @@ namespace Babelfisk.WPF.Views.Map
 
         public void ClearLayer(string name)
         {
-            if (map.Map.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer)
+            if (map?.Map == null) return;
+
+            if (map.Map?.Layers.FirstOrDefault(l => l.Name == name) is MemoryLayer layer)
             {
                 ((List<IFeature>)layer.Features).Clear();
                 layer.DataHasChanged();
