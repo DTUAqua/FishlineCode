@@ -145,11 +145,17 @@ namespace Babelfisk.WPF.Views.Map
 
         private void Popup_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            _lastScrollTime = DateTime.Now;
-            HidePopup();
-            e.Handled = true;
+            try
+            {
+                _lastScrollTime = DateTime.Now;
+                HidePopup();
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
         }
-
         private void MapControl_MouseMove(object sender, MouseEventArgs e)
         {
             if (map == null)
@@ -197,16 +203,30 @@ namespace Babelfisk.WPF.Views.Map
 
         private void MapControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            HidePopup();
+            try
+            {
+                HidePopup();
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
         }
 
 
         protected void MapsuiMapsView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (map?.Map == null)
-                return;
+            try
+            {
+                if (map?.Map == null)
+                    return;
 
-            RebuildMap();
+                RebuildMap();
+            }
+            catch (Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+            }
         }
 
         protected void MapView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -638,7 +658,7 @@ namespace Babelfisk.WPF.Views.Map
         {
             double resolution = map.Map?.Navigator?.Viewport.Resolution ?? 1;
 
-            const double initialResolution = 156543.03392804097; 
+            const double initialResolution = 156543.03392804097;
             double zoomLevel = Math.Log(initialResolution / resolution, 2);
             int zoom = (int)Math.Round(zoomLevel);
 
