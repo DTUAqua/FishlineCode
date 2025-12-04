@@ -161,10 +161,11 @@ namespace Babelfisk.WPF.Views.Map
             if (map == null)
                 return;
 
-            var pos = e.GetPosition(map);
-            var mapPos = new MPoint(pos.X, pos.Y);
             try
             {
+                var pos = e.GetPosition(map);
+                var mapPos = new MPoint(pos.X, pos.Y);
+
                 var info = map.GetMapInfo(mapPos);
                 var feature = info?.Feature;
 
