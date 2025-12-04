@@ -1671,10 +1671,10 @@
             <aCtrls:ScrollViewerStaticContent.StaticContent>
                 <Grid x:Name="gridMap">
 
-                    <map:BingMapsView DataContext="{Binding Path=MapViewModel}" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="map"
+                    <map:MapsuiMapView DataContext="{Binding Path=MapViewModel}" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="map"
                                  KeyboardNavigation.IsTabStop="False" KeyboardNavigation.TabNavigation="None" Focusable="False"
                                  MaxWidth="{Binding Path=ActualWidth, ElementName=gridMap}" MaxHeight="{Binding Path=ActualHeight, ElementName=gridMap}" />
-
+                    <!-- Previously: BingMapsView -->
                     <!-- Zoom slider -->
                     <ancSl:ZoomSlider Grid.Row="1" Margin="4,0,0,0" Value="{Binding Source={x:Static set:Settings.Instance}, Path=ZoomLevelStation}" Width="160" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
                         <ancSl:ZoomSlider.Style>

@@ -125,6 +125,7 @@
     <Compile Include="Lookup\LookupViewModel.cs" />
     <Compile Include="Map\IMapViewModel.cs" />
     <Compile Include="Map\MapViewModel.cs" />
+    <Compile Include="Map\MapViewModelMapsuiControl.cs" />
     <Compile Include="Map\MapViewModelBingControl.cs" />
     <Compile Include="Map\MapViewModelOpenLayers.cs" />
     <Compile Include="Menu\MainMenuViewModel.cs" />
