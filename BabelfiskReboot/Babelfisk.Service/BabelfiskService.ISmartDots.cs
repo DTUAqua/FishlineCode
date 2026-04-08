@@ -45,6 +45,7 @@ namespace Babelfisk.Service
                 //SynchronizeStockAreaSpecies();
                 using (var ctx = new SprattusContainer())
                 {
+                    ctx.CommandTimeout = 300; //5 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -330,6 +331,7 @@ namespace Babelfisk.Service
                 int evtId = eventId;
                 using (var ctx = new SprattusContainer())
                 {
+                    ctx.CommandTimeout = 540; //9 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -403,6 +405,7 @@ namespace Babelfisk.Service
                 int evtId = eventId;
                 using (var ctx = new SprattusContainer())
                 {
+                    ctx.CommandTimeout = 540; //9 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -507,6 +510,7 @@ namespace Babelfisk.Service
                 List<SelectionAnimal> lst = null;
                 using (var ctx = new Warehouse.Model.DataWarehouseContext())
                 {
+                    ctx.CommandTimeout = 540; //9 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -873,6 +877,7 @@ namespace Babelfisk.Service
                 {
                     using (var ctx = new SprattusContainer())
                     {
+                        ctx.CommandTimeout = 180; //3 minutes.
                         ctx.Connection.Open();
                         ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -960,6 +965,7 @@ namespace Babelfisk.Service
             {
                 using (var ctx = new SprattusContainer())
                 {
+                    ctx.CommandTimeout = 180; //3 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 
@@ -1482,6 +1488,7 @@ namespace Babelfisk.Service
                
                 using (var ctx = new SprattusContainer())
                 {
+                    ctx.CommandTimeout = 540; //9 minutes.
                     ctx.Connection.Open();
                     ctx.ApplyTransactionIsolationLevel(System.Transactions.IsolationLevel.ReadUncommitted);
 

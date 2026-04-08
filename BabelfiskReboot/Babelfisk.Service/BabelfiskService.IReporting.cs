@@ -864,6 +864,45 @@ namespace Babelfisk.Service
         }
 
 
+        /// <summary>
+        /// Kill a process and all of its children processes tree using taskkill command.
+        /// </summary>
+        private static void KillProcessTree(int pid, string strUserName, string strPassword, string strDomain)
+        {
+            try
+            {
+                using(var killer = new Process())
+                {
+                    killer.StartInfo.FileName = "taskkill.exe";
+                    killer.StartInfo.Arguments = "/PID " + pid + " /T /F";
+                    killer.StartInfo.UseShellExecute = false;
+                    killer.StartInfo.CreateNoWindow = true;
+                    killer.StartInfo.RedirectStandardOutput = true;
+                    killer.StartInfo.RedirectStandardError = true;
+
+                    if(!string.IsNullOrWhiteSpace(strUserName))
+                        killer.StartInfo.UserName = strUserName;
+
+                    if(!string.IsNullOrWhiteSpace(strPassword))
+                        killer.StartInfo.Password = GetSecureString(strPassword);
+
+                    if(!string.IsNullOrWhiteSpace(strDomain))
+                        killer.StartInfo.Domain = strDomain;
+
+                    killer.StartInfo.Verb = "runas";
+
+                    killer.Start();
+                    string output = killer.StandardOutput.ReadToEnd();
+                    string error = killer.StandardError.ReadToEnd();
+                    killer.WaitForExit(10000);
+                }
+            }catch(Exception ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex, "Failed to kill process tree with root pid: " + pid);
+            }
+        }
+
+
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.LinkDemand, Name = "FullTrust")]
         private static bool RunFromCmd(string rScriptExecutablePath, string args, string strUserName, string strPassword, string strDomain, out string result)
         {
@@ -941,10 +980,12 @@ namespace Babelfisk.Service
                     tOut.Start();
                     tError.Start();
 
+                    int pid = proc.Id;
+
                     tOut.Wait(10 * 60 * 1000);
                     tError.Wait(10 * 60 * 1000);
 
-                    proc.WaitForExit(10 * 60 * 1000);
+                    bool exited = proc.WaitForExit(10 * 60 * 1000);
 
                     result = output;
 
@@ -954,6 +995,15 @@ namespace Babelfisk.Service
 
                     if (error != null && !error.Contains("Output created:", StringComparison.InvariantCultureIgnoreCase))
                         result += error;
+
+                    if(!exited)
+                    {
+                        KillProcessTree(pid, strUserName, strPassword, strDomain);
+
+                        try { if(!proc.HasExited) proc.Kill(); } catch { }
+                        result += "Process killed after timeout.";
+                        throw new TimeoutException("R-script report timed out.");
+                    }
                     
                     int intExitcode = proc.ExitCode;
 
