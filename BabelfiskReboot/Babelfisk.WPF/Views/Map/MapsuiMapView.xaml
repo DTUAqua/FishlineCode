@@ -284,11 +284,11 @@
                            Foreground="#666" FontSize="13"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="(" Foreground="#222"/>
-                                    <TextBlock Text="{Binding LatitudeStopDegreeMinutes, FallbackValue=''}"
+                                    <TextBlock Text="{Binding LatitudeStartDegreeMinutes, FallbackValue=''}"
                                FontSize="14" FontWeight="Bold"
                                Foreground="#222"/>
                                     <TextBlock Text=", " Foreground="#222"/>
-                                    <TextBlock Text="{Binding LongitudeStopDegreeMinutes, FallbackValue=''}"
+                                    <TextBlock Text="{Binding LongitudeStartDegreeMinutes, FallbackValue=''}"
                                FontSize="14" FontWeight="Bold"
                                Foreground="#222"/>
                                     <TextBlock Text=")" Foreground="#222"/>

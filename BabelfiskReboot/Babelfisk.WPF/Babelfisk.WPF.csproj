@@ -4,7 +4,7 @@
     <GenerateManifests>true</GenerateManifests>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>C:\inetpub\wwwroot\BabelfiskInstall\</PublishUrl>
+    <PublishUrl>C:\Users\muhaadu\Desktop\publishFiskline\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>

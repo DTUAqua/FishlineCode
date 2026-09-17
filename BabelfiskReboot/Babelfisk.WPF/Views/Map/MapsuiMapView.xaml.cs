@@ -672,9 +672,9 @@ namespace Babelfisk.WPF.Views.Map
             {
                 var positronBase = new HttpTileSource(
                 new GlobalSphericalMercator(),
-                "https://basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
-                name: "Carto Voyager No Labels",
-                attribution: new BruTile.Attribution("© OpenStreetMap, © CARTO", "https://carto.com/")
+               "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                name: "Esri Light Gray",
+                attribution: new BruTile.Attribution("Tiles © Esri — Esri, DeLorme, NAVTEQ", "https://www.esri.com/")
             );
 
                 var baseLayer = new TileLayer(positronBase)
