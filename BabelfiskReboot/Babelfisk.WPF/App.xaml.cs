@@ -20,9 +20,22 @@ namespace Babelfisk.WPF
 
         private Mutex _mutex;
 
+        #region pinvoke
+
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_RESTORE = 9;
+
+
+        #endregion
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -47,12 +60,22 @@ namespace Babelfisk.WPF
 
         private void RunInReleaseMode()
         {
-            bool blnCreatedNew = true;
-            _mutex = new Mutex(true, "FishLineApp", out blnCreatedNew);
+            AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
 
+            bool blnCreatedNew = true;
+
+            try
+            {
+                _mutex = new Mutex(true, @"Global\FishLineApp", out blnCreatedNew);
+            }
+            catch(UnauthorizedAccessException ex)
+            {
+                Anchor.Core.Loggers.Logger.LogError(ex);
+                return;
+            }
+           
             if (blnCreatedNew)
             {
-                AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
                 try
                 {
                     _bootStrapper = new Bootstrapper();
@@ -65,25 +88,29 @@ namespace Babelfisk.WPF
             }
             else
             {
-                MessageBox.Show("Fiskeline kører allerede (du kan kun have én instans af programmet kørende ad gangen).");
+                MessageBox.Show("Fishline is already running. You can only have once instance of Fishline running at the same time.");
 
                 try
                 {
                     Process curProcess = Process.GetCurrentProcess();
-                    foreach (Process process in Process.GetProcessesByName(curProcess.ProcessName))
+                    foreach(Process process in Process.GetProcessesByName(curProcess.ProcessName))
                     {
-                        if (process.Id != curProcess.Id)
+                        if(process.Id != curProcess.Id)
                         {
+                            ShowWindow(process.MainWindowHandle, SW_RESTORE);
                             SetForegroundWindow(process.MainWindowHandle);
                             break;
                         }
                     }
                 }
                 catch { }
-
-                Application.Current.Shutdown();
+                finally
+                {
+                    Application.Current.Shutdown();
+                }
             }
         }
+
 
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -96,19 +123,34 @@ namespace Babelfisk.WPF
             if (ex == null)
                 return;
 
-            MessageBox.Show("An unexpected exception occured. " + ex.Message);
-            Anchor.Core.Loggers.Logger.LogError(ex);
-            Environment.Exit(1);
+            Anchor.Core.Loggers.Logger.LogError(ex, "App->HandleException().");
+
+            var val = MessageBox.Show("An unexpected exception occurred. " + ex.Message, "Error", MessageBoxButton.OK);
+
+            // Environment.Exit(1);
+
+            // Allow OnExit to execute before terminating
+            Application.Current?.Shutdown(1);
         }
 
 
 
         protected override void OnExit(ExitEventArgs e)
         {
+            ReleaseMutex();
             base.OnExit(e);
+        }
 
-            if (_mutex != null)
-                _mutex.Dispose();
+        private void ReleaseMutex()
+        {
+            if(_mutex != null)
+            {
+                try
+                {
+                    _mutex.Dispose();
+                }
+                catch { }
+            }
         }
 
     }

@@ -21,7 +21,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.3.2.0</ApplicationVersion>
+    <ApplicationVersion>2.3.3.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -92,7 +92,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>E9783B3293EEDCBEE5F4B070468C47F66E29782D</ManifestCertificateThumbprint>
@@ -1131,10 +1131,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <!--
-  <Target Name="AfterCompile" Condition="'$(Configuration)' == 'Release' ">
+  
+  <!--<Target Name="AfterCompile" Condition="'$(Configuration)' == 'Release' ">
     <Exec Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\signtool.exe&quot; sign /tr http://timestamp.digicert.com /fd sha256 /td sha256 /n &quot;Anchor Lab K/S&quot; /a &quot;$(ProjectDir)obj\$(ConfigurationName)\$(TargetFileName)&quot;" />
-  </Target>  -->
+  </Target>-->
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
