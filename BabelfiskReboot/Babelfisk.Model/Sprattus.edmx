@@ -134,6 +134,9 @@
     <EntitySet Name="L_SelectionDeviceSource" EntityType="Babelfisk.Entities.Store.L_SelectionDeviceSource" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="L_LengthMeasureType" EntityType="Babelfisk.Entities.Store.L_LengthMeasureType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="L_StomachStatus" EntityType="Babelfisk.Entities.Store.L_StomachStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="L_SpeciesGroup" EntityType="Babelfisk.Entities.Store.L_SpeciesGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="L_DigestionStage" EntityType="Babelfisk.Entities.Store.L_DigestionStage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Stomach" EntityType="Babelfisk.Entities.Store.Stomach" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="R_ReportingTreeNodeReport" EntityType="Babelfisk.Entities.Store.R_ReportingTreeNodeReport" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="R_SDEventDFUArea" EntityType="Babelfisk.Entities.Store.R_SDEventDFUArea" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Age_Animal" Association="Babelfisk.Entities.Store.FK_Age_Animal">
@@ -868,6 +871,42 @@
       <End Role="AnimalInfo" EntitySet="AnimalInfo" />
       <End Role="L_StomachStatus" EntitySet="L_StomachStatus" />
     </AssociationSet>
+    <AssociationSet Name="L_SpeciesGroupL_Species" Association="Babelfisk.Entities.Store.L_SpeciesGroupL_Species">
+      <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
+      <End Role="L_Species" EntitySet="L_Species" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalInfoL_StomachStatus" Association="Babelfisk.Entities.Store.AnimalInfoL_StomachStatus">
+      <End Role="AnimalInfo" EntitySet="AnimalInfo" />
+      <End Role="L_StomachStatus" EntitySet="L_StomachStatus" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalInfoDFUPerson" Association="Babelfisk.Entities.Store.AnimalInfoDFUPerson">
+      <End Role="AnimalInfo" EntitySet="AnimalInfo" />
+      <End Role="DFUPerson" EntitySet="DFUPerson" />
+    </AssociationSet>
+    <AssociationSet Name="StomachAnimal" Association="Babelfisk.Entities.Store.StomachAnimal">
+      <End Role="Stomach" EntitySet="Stomach" />
+      <End Role="Animal" EntitySet="Animal" />
+    </AssociationSet>
+    <AssociationSet Name="StomachL_Species" Association="Babelfisk.Entities.Store.StomachL_Species">
+      <End Role="Stomach" EntitySet="Stomach" />
+      <End Role="L_Species" EntitySet="L_Species" />
+    </AssociationSet>
+    <AssociationSet Name="StomachL_DigestionStage" Association="Babelfisk.Entities.Store.StomachL_DigestionStage">
+      <End Role="Stomach" EntitySet="Stomach" />
+      <End Role="L_DigestionStage" EntitySet="L_DigestionStage" />
+    </AssociationSet>
+    <AssociationSet Name="StomachL_LengthMeasureUnit" Association="Babelfisk.Entities.Store.StomachL_LengthMeasureUnit">
+      <End Role="Stomach" EntitySet="Stomach" />
+      <End Role="L_LengthMeasureUnit" EntitySet="L_LengthMeasureUnit" />
+    </AssociationSet>
+    <AssociationSet Name="StomachL_LengthMeasureType" Association="Babelfisk.Entities.Store.StomachL_LengthMeasureType">
+      <End Role="Stomach" EntitySet="Stomach" />
+      <End Role="L_LengthMeasureType" EntitySet="L_LengthMeasureType" />
+    </AssociationSet>
+    <AssociationSet Name="L_SpeciesL_SpeciesGroup" Association="Babelfisk.Entities.Store.L_SpeciesL_SpeciesGroup">
+      <End Role="L_Species" EntitySet="L_Species" />
+      <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActivityLog">
     <Key>
@@ -944,6 +983,8 @@
     <Property Name="remark" Type="nvarchar(max)" Nullable="true" />
     <Property Name="parasiteId" Type="int" Nullable="true" />
     <Property Name="stomachStatusFirstEvaluationId" Type="int" Nullable="true" />
+    <Property Name="stomachStatusSecondEvaluationId" Type="int" Nullable="true" />
+    <Property Name="stomachHandlerId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Cruise">
     <Key>
@@ -1521,6 +1562,8 @@
     <Property Name="weightMin" Type="int" Nullable="true" />
     <Property Name="weightMax" Type="int" Nullable="true" />
     <Property Name="speciesFAO" Type="nvarchar" Nullable="true" MaxLength="3" />
+    <Property Name="speciesGroupId" Type="int" Nullable="true" />
+    <Property Name="preySpeciesGroupId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="L_SpeciesRegistration">
     <Key>
@@ -2427,6 +2470,40 @@
     <Property Name="num" Type="int" Nullable="true" />
     <Property Name="showInAnimal" Type="bit" Nullable="false" />
     <Property Name="showInStomach" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="L_SpeciesGroup">
+    <Key>
+      <PropertyRef Name="L_speciesGroupId" />
+    </Key>
+    <Property Name="L_speciesGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="speciesGroup" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="nvarchar" Nullable="true" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="L_DigestionStage">
+    <Key>
+      <PropertyRef Name="L_digestionStageId" />
+    </Key>
+    <Property Name="L_digestionStageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="digestionStage" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="num" Type="int" Nullable="true" />
+    <Property Name="digestionStageICES" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Stomach">
+    <Key>
+      <PropertyRef Name="stomachId" />
+    </Key>
+    <Property Name="stomachId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="animalId" Type="int" Nullable="false" />
+    <Property Name="preyNum" Type="int" Nullable="false" />
+    <Property Name="preySpeciesCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="preyDigestionStageId" Type="int" Nullable="true" />
+    <Property Name="preyNumber" Type="int" Nullable="true" />
+    <Property Name="preyWeight" Type="decimal" Nullable="true" Precision="10" Scale="5" />
+    <Property Name="preyLength" Type="int" Nullable="true" />
+    <Property Name="preyLengthMeasureUnit" Type="nvarchar" Nullable="true" MaxLength="2" />
+    <Property Name="preyLengthMeasureTypeId" Type="int" Nullable="true" />
+    <Property Name="stomachRemark" Type="nvarchar" Nullable="true" MaxLength="250" />
   </EntityType>
   <EntityType Name="R_ReportingTreeNodeReport">
     <Key>
@@ -4674,6 +4751,114 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="L_SpeciesGroupL_Species">
+    <End Role="L_SpeciesGroup" Type="Babelfisk.Entities.Store.L_SpeciesGroup" Multiplicity="0..1" />
+    <End Role="L_Species" Type="Babelfisk.Entities.Store.L_Species" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_SpeciesGroup">
+        <PropertyRef Name="L_speciesGroupId" />
+      </Principal>
+      <Dependent Role="L_Species">
+        <PropertyRef Name="speciesGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalInfoL_StomachStatus">
+    <End Role="AnimalInfo" Type="Babelfisk.Entities.Store.AnimalInfo" Multiplicity="*" />
+    <End Role="L_StomachStatus" Type="Babelfisk.Entities.Store.L_StomachStatus" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="L_StomachStatus">
+        <PropertyRef Name="L_StomachStatusId" />
+      </Principal>
+      <Dependent Role="AnimalInfo">
+        <PropertyRef Name="stomachStatusSecondEvaluationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalInfoDFUPerson">
+    <End Role="AnimalInfo" Type="Babelfisk.Entities.Store.AnimalInfo" Multiplicity="*" />
+    <End Role="DFUPerson" Type="Babelfisk.Entities.Store.DFUPerson" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DFUPerson">
+        <PropertyRef Name="dfuPersonId" />
+      </Principal>
+      <Dependent Role="AnimalInfo">
+        <PropertyRef Name="stomachHandlerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StomachAnimal">
+    <End Role="Stomach" Type="Babelfisk.Entities.Store.Stomach" Multiplicity="*" />
+    <End Role="Animal" Type="Babelfisk.Entities.Store.Animal" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="animalId" />
+      </Principal>
+      <Dependent Role="Stomach">
+        <PropertyRef Name="animalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StomachL_Species">
+    <End Role="Stomach" Type="Babelfisk.Entities.Store.Stomach" Multiplicity="*" />
+    <End Role="L_Species" Type="Babelfisk.Entities.Store.L_Species" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="L_Species">
+        <PropertyRef Name="speciesCode" />
+      </Principal>
+      <Dependent Role="Stomach">
+        <PropertyRef Name="preySpeciesCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StomachL_DigestionStage">
+    <End Role="Stomach" Type="Babelfisk.Entities.Store.Stomach" Multiplicity="*" />
+    <End Role="L_DigestionStage" Type="Babelfisk.Entities.Store.L_DigestionStage" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="L_DigestionStage">
+        <PropertyRef Name="L_digestionStageId" />
+      </Principal>
+      <Dependent Role="Stomach">
+        <PropertyRef Name="preyDigestionStageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StomachL_LengthMeasureUnit">
+    <End Role="Stomach" Type="Babelfisk.Entities.Store.Stomach" Multiplicity="*" />
+    <End Role="L_LengthMeasureUnit" Type="Babelfisk.Entities.Store.L_LengthMeasureUnit" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="L_LengthMeasureUnit">
+        <PropertyRef Name="lengthMeasureUnit" />
+      </Principal>
+      <Dependent Role="Stomach">
+        <PropertyRef Name="preyLengthMeasureUnit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StomachL_LengthMeasureType">
+    <End Role="Stomach" Type="Babelfisk.Entities.Store.Stomach" Multiplicity="*" />
+    <End Role="L_LengthMeasureType" Type="Babelfisk.Entities.Store.L_LengthMeasureType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="L_LengthMeasureType">
+        <PropertyRef Name="L_lengthMeasureTypeId" />
+      </Principal>
+      <Dependent Role="Stomach">
+        <PropertyRef Name="preyLengthMeasureTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="L_SpeciesL_SpeciesGroup">
+    <End Role="L_Species" Type="Babelfisk.Entities.Store.L_Species" Multiplicity="*" />
+    <End Role="L_SpeciesGroup" Type="Babelfisk.Entities.Store.L_SpeciesGroup" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="L_SpeciesGroup">
+        <PropertyRef Name="L_speciesGroupId" />
+      </Principal>
+      <Dependent Role="L_Species">
+        <PropertyRef Name="preySpeciesGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_R_ReportingTreeNodeReport_Report">
     <End Role="Report" Type="Babelfisk.Entities.Store.Report" Multiplicity="1" />
     <End Role="R_ReportingTreeNodeReport" Type="Babelfisk.Entities.Store.R_ReportingTreeNodeReport" Multiplicity="*" />
@@ -5582,6 +5767,45 @@
             <End Role="AnimalInfo" EntitySet="AnimalInfo" />
             <End Role="L_StomachStatus" EntitySet="L_StomachStatus" />
           </AssociationSet>
+          <EntitySet Name="L_SpeciesGroup" EntityType="Babelfisk.Entities.L_SpeciesGroup" />
+          <AssociationSet Name="L_SpeciesGroupL_Species" Association="Babelfisk.Entities.L_SpeciesGroupL_Species">
+            <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
+            <End Role="L_Species" EntitySet="L_Species" />
+          </AssociationSet>
+          <EntitySet Name="L_DigestionStage" EntityType="Babelfisk.Entities.L_DigestionStage" />
+          <AssociationSet Name="AnimalInfoL_StomachStatus" Association="Babelfisk.Entities.AnimalInfoL_StomachStatus">
+            <End Role="AnimalInfo" EntitySet="AnimalInfo" />
+            <End Role="L_StomachStatus" EntitySet="L_StomachStatus" />
+          </AssociationSet>
+          <AssociationSet Name="AnimalInfoDFUPerson" Association="Babelfisk.Entities.AnimalInfoDFUPerson">
+            <End Role="AnimalInfo" EntitySet="AnimalInfo" />
+            <End Role="DFUPerson" EntitySet="DFUPerson" />
+          </AssociationSet>
+          <EntitySet Name="Stomach" EntityType="Babelfisk.Entities.Stomach" />
+          <AssociationSet Name="StomachAnimal" Association="Babelfisk.Entities.StomachAnimal">
+            <End Role="Stomach" EntitySet="Stomach" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="StomachL_Species" Association="Babelfisk.Entities.StomachL_Species">
+            <End Role="Stomach" EntitySet="Stomach" />
+            <End Role="L_Species" EntitySet="L_Species" />
+          </AssociationSet>
+          <AssociationSet Name="StomachL_DigestionStage" Association="Babelfisk.Entities.StomachL_DigestionStage">
+            <End Role="Stomach" EntitySet="Stomach" />
+            <End Role="L_DigestionStage" EntitySet="L_DigestionStage" />
+          </AssociationSet>
+          <AssociationSet Name="StomachL_LengthMeasureUnit" Association="Babelfisk.Entities.StomachL_LengthMeasureUnit">
+            <End Role="Stomach" EntitySet="Stomach" />
+            <End Role="L_LengthMeasureUnit" EntitySet="L_LengthMeasureUnit" />
+          </AssociationSet>
+          <AssociationSet Name="StomachL_LengthMeasureType" Association="Babelfisk.Entities.StomachL_LengthMeasureType">
+            <End Role="Stomach" EntitySet="Stomach" />
+            <End Role="L_LengthMeasureType" EntitySet="L_LengthMeasureType" />
+          </AssociationSet>
+          <AssociationSet Name="L_SpeciesL_SpeciesGroup" Association="Babelfisk.Entities.L_SpeciesL_SpeciesGroup">
+            <End Role="L_Species" EntitySet="L_Species" />
+            <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActivityLog">
           <Key>
@@ -5653,6 +5877,7 @@
           <Property Type="Int32" Name="catchNum" Nullable="true" />
           <Property Type="Boolean" Name="otolithFinScale" Nullable="true" />
           <NavigationProperty Name="L_LengthMeasureType" Relationship="Babelfisk.Entities.L_LengthMeasureTypeAnimal" FromRole="Animal" ToRole="L_LengthMeasureType" />
+          <NavigationProperty Name="Stomachs" Relationship="Babelfisk.Entities.StomachAnimal" FromRole="Animal" ToRole="Stomach" />
         </EntityType>
         <EntityType Name="AnimalInfo">
           <Key>
@@ -5681,6 +5906,10 @@
           <NavigationProperty Name="R_AnimalInfoReference" Relationship="Babelfisk.Entities.FK_R_AnimalInfoReference_AnimalInfo" FromRole="AnimalInfo" ToRole="R_AnimalInfoReference" />
           <NavigationProperty Name="L_StomachStatusFirstEvaluation" Relationship="Babelfisk.Entities.FK_AnimalInfo_L_StomachStatus" FromRole="AnimalInfo" ToRole="L_StomachStatus" />
           <Property Name="stomachStatusFirstEvaluationId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="L_StomachStatusSecondEvaluation" Relationship="Babelfisk.Entities.AnimalInfoL_StomachStatus" FromRole="AnimalInfo" ToRole="L_StomachStatus" />
+          <Property Name="stomachStatusSecondEvaluationId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="StomachHandler" Relationship="Babelfisk.Entities.AnimalInfoDFUPerson" FromRole="AnimalInfo" ToRole="DFUPerson" />
+          <Property Name="stomachHandlerId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Cruise">
           <Key>
@@ -5738,6 +5967,7 @@
           <NavigationProperty Name="SDLine" Relationship="Babelfisk.Entities.FK_SDLine_DFUPerson" FromRole="DFUPerson" ToRole="SDLine" />
           <NavigationProperty Name="SDPoint" Relationship="Babelfisk.Entities.FK_SDPoint_DFUPerson" FromRole="DFUPerson" ToRole="SDPoint" />
           <NavigationProperty Name="SDSample" Relationship="Babelfisk.Entities.FK_SDSample_DFUPerson" FromRole="DFUPerson" ToRole="SDSample" />
+          <NavigationProperty Name="AnimalInfo" Relationship="Babelfisk.Entities.AnimalInfoDFUPerson" FromRole="DFUPerson" ToRole="AnimalInfo" />
         </EntityType>
         <EntityType Name="DFUSubArea">
           <Key>
@@ -6374,6 +6604,10 @@
           <NavigationProperty Name="R_SDReader" Relationship="Babelfisk.Entities.FK_R_SDReader_L_Species" FromRole="L_Species" ToRole="R_SDReader" />
           <NavigationProperty Name="SDSample" Relationship="Babelfisk.Entities.FK_SDSample_L_Species" FromRole="L_Species" ToRole="SDSample" />
           <NavigationProperty Name="L_StandardLengthMeasureType" Relationship="Babelfisk.Entities.L_LengthMeasureTypeL_Species" FromRole="L_Species" ToRole="L_LengthMeasureType" />
+          <NavigationProperty Name="L_SpeciesGroup" Relationship="Babelfisk.Entities.L_SpeciesGroupL_Species" FromRole="L_Species" ToRole="L_SpeciesGroup" />
+          <Property Name="speciesGroupId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="L_PreySpeciesGroup" Relationship="Babelfisk.Entities.L_SpeciesL_SpeciesGroup" FromRole="L_Species" ToRole="L_SpeciesGroup" />
+          <Property Name="preySpeciesGroupId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="L_SpeciesRegistration">
           <Key>
@@ -9708,6 +9942,153 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="L_SpeciesGroup">
+          <Key>
+            <PropertyRef Name="L_speciesGroupId" />
+          </Key>
+          <Property Name="L_speciesGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speciesGroup" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="String" Nullable="true" MaxLength="500" />
+        </EntityType>
+        <Association Name="L_SpeciesGroupL_Species">
+          <End Type="Babelfisk.Entities.L_SpeciesGroup" Role="L_SpeciesGroup" Multiplicity="0..1" />
+          <End Type="Babelfisk.Entities.L_Species" Role="L_Species" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="L_SpeciesGroup">
+              <PropertyRef Name="L_speciesGroupId" />
+            </Principal>
+            <Dependent Role="L_Species">
+              <PropertyRef Name="speciesGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="L_DigestionStage">
+          <Key>
+            <PropertyRef Name="L_digestionStageId" />
+          </Key>
+          <Property Name="L_digestionStageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="digestionStage" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="String" Nullable="true" MaxLength="500" />
+          <Property Name="num" Type="Int32" Nullable="true" />
+          <Property Name="digestionStageICES" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="AnimalInfoL_StomachStatus">
+          <End Type="Babelfisk.Entities.AnimalInfo" Role="AnimalInfo" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_StomachStatus" Role="L_StomachStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="L_StomachStatus">
+              <PropertyRef Name="L_StomachStatusId" />
+            </Principal>
+            <Dependent Role="AnimalInfo">
+              <PropertyRef Name="stomachStatusSecondEvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AnimalInfoDFUPerson">
+          <End Type="Babelfisk.Entities.AnimalInfo" Role="AnimalInfo" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.DFUPerson" Role="DFUPerson" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DFUPerson">
+              <PropertyRef Name="dfuPersonId" />
+            </Principal>
+            <Dependent Role="AnimalInfo">
+              <PropertyRef Name="stomachHandlerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Stomach">
+          <Key>
+            <PropertyRef Name="stomachId" />
+          </Key>
+          <Property Name="stomachId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Animal" Relationship="Babelfisk.Entities.StomachAnimal" FromRole="Stomach" ToRole="Animal" />
+          <Property Name="animalId" Type="Int32" Nullable="false" />
+          <Property Name="preyNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="L_PreySpecies" Relationship="Babelfisk.Entities.StomachL_Species" FromRole="Stomach" ToRole="L_Species" />
+          <Property Name="preySpeciesCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="L_PreyDigestionStage" Relationship="Babelfisk.Entities.StomachL_DigestionStage" FromRole="Stomach" ToRole="L_DigestionStage" />
+          <Property Name="preyDigestionStageId" Type="Int32" Nullable="true" />
+          <Property Name="preyNumber" Type="Int32" Nullable="true" />
+          <Property Name="preyWeight" Type="Decimal" Precision="10" Scale="5" Nullable="true" />
+          <Property Name="preyLength" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="L_PreyLengthMeasureUnit" Relationship="Babelfisk.Entities.StomachL_LengthMeasureUnit" FromRole="Stomach" ToRole="L_LengthMeasureUnit" />
+          <Property Name="preyLengthMeasureUnit" Type="String" Nullable="true" MaxLength="2" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="L_PreyLengthMeasureType" Relationship="Babelfisk.Entities.StomachL_LengthMeasureType" FromRole="Stomach" ToRole="L_LengthMeasureType" />
+          <Property Name="preyLengthMeasureTypeId" Type="Int32" Nullable="true" />
+          <Property Name="stomachRemark" Type="String" Nullable="true" MaxLength="250" />
+        </EntityType>
+        <Association Name="StomachAnimal">
+          <End Type="Babelfisk.Entities.Stomach" Role="Stomach" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.Animal" Role="Animal" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="animalId" />
+            </Principal>
+            <Dependent Role="Stomach">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StomachL_Species">
+          <End Type="Babelfisk.Entities.Stomach" Role="Stomach" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_Species" Role="L_Species" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="L_Species">
+              <PropertyRef Name="speciesCode" />
+            </Principal>
+            <Dependent Role="Stomach">
+              <PropertyRef Name="preySpeciesCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StomachL_DigestionStage">
+          <End Type="Babelfisk.Entities.Stomach" Role="Stomach" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_DigestionStage" Role="L_DigestionStage" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="L_DigestionStage">
+              <PropertyRef Name="L_digestionStageId" />
+            </Principal>
+            <Dependent Role="Stomach">
+              <PropertyRef Name="preyDigestionStageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StomachL_LengthMeasureUnit">
+          <End Type="Babelfisk.Entities.Stomach" Role="Stomach" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_LengthMeasureUnit" Role="L_LengthMeasureUnit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="L_LengthMeasureUnit">
+              <PropertyRef Name="lengthMeasureUnit" />
+            </Principal>
+            <Dependent Role="Stomach">
+              <PropertyRef Name="preyLengthMeasureUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StomachL_LengthMeasureType">
+          <End Type="Babelfisk.Entities.Stomach" Role="Stomach" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_LengthMeasureType" Role="L_LengthMeasureType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="L_LengthMeasureType">
+              <PropertyRef Name="L_lengthMeasureTypeId" />
+            </Principal>
+            <Dependent Role="Stomach">
+              <PropertyRef Name="preyLengthMeasureTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="L_SpeciesL_SpeciesGroup">
+          <End Type="Babelfisk.Entities.L_Species" Role="L_Species" Multiplicity="*" />
+          <End Type="Babelfisk.Entities.L_SpeciesGroup" Role="L_SpeciesGroup" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="L_SpeciesGroup">
+              <PropertyRef Name="L_speciesGroupId" />
+            </Principal>
+            <Dependent Role="L_Species">
+              <PropertyRef Name="preySpeciesGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9791,6 +10172,8 @@
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="parasiteId" ColumnName="parasiteId" />
           <ScalarProperty Name="stomachStatusFirstEvaluationId" ColumnName="stomachStatusFirstEvaluationId" />
+          <ScalarProperty Name="stomachStatusSecondEvaluationId" ColumnName="stomachStatusSecondEvaluationId" />
+          <ScalarProperty Name="stomachHandlerId" ColumnName="stomachHandlerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -10404,6 +10787,8 @@
           <ScalarProperty Name="weightMin" ColumnName="weightMin" />
           <ScalarProperty Name="weightMax" ColumnName="weightMax" />
           <ScalarProperty Name="speciesFAO" ColumnName="speciesFAO" />
+          <ScalarProperty Name="speciesGroupId" ColumnName="speciesGroupId" />
+          <ScalarProperty Name="preySpeciesGroupId" ColumnName="preySpeciesGroupId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -11372,6 +11757,43 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="L_SpeciesGroup">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_SpeciesGroup)">
+        <MappingFragment StoreEntitySet="L_SpeciesGroup">
+          <ScalarProperty Name="L_speciesGroupId" ColumnName="L_speciesGroupId" />
+          <ScalarProperty Name="speciesGroup" ColumnName="speciesGroup" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_DigestionStage">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_DigestionStage)">
+        <MappingFragment StoreEntitySet="L_DigestionStage">
+          <ScalarProperty Name="L_digestionStageId" ColumnName="L_digestionStageId" />
+          <ScalarProperty Name="digestionStage" ColumnName="digestionStage" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="digestionStageICES" ColumnName="digestionStageICES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stomach">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.Stomach)">
+        <MappingFragment StoreEntitySet="Stomach">
+          <ScalarProperty Name="stomachId" ColumnName="stomachId" />
+          <ScalarProperty Name="animalId" ColumnName="animalId" />
+          <ScalarProperty Name="preyNum" ColumnName="preyNum" />
+          <ScalarProperty Name="preySpeciesCode" ColumnName="preySpeciesCode" />
+          <ScalarProperty Name="preyDigestionStageId" ColumnName="preyDigestionStageId" />
+          <ScalarProperty Name="preyNumber" ColumnName="preyNumber" />
+          <ScalarProperty Name="preyWeight" ColumnName="preyWeight" />
+          <ScalarProperty Name="preyLength" ColumnName="preyLength" />
+          <ScalarProperty Name="preyLengthMeasureUnit" ColumnName="preyLengthMeasureUnit" />
+          <ScalarProperty Name="preyLengthMeasureTypeId" ColumnName="preyLengthMeasureTypeId" />
+          <ScalarProperty Name="stomachRemark" ColumnName="stomachRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="R_ReportingTreeNodeReport" TypeName="Babelfisk.Entities.R_ReportingTreeNodeReport" StoreEntitySet="R_ReportingTreeNodeReport">
       <EndProperty Name="Report">
         <ScalarProperty Name="reportId" ColumnName="reportId" />
@@ -11409,11 +11831,11 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Sprattus" ZoomLevel="93">
+      <Diagram Name="Sprattus" ZoomLevel="108">
         <EntityTypeShape EntityType="Babelfisk.Entities.ActivityLog" Width="1.5" PointX="2.125" PointY="0.875" Height="2.3648893229166665" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.Age" Width="2.25" PointX="28.5" PointY="18.875" Height="4.2879036458333353" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.Animal" Width="2" PointX="26.25" PointY="18.375" Height="5.057109375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Babelfisk.Entities.AnimalInfo" Width="2.375" PointX="31.5" PointY="18.125" Height="4.8648079427083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.AnimalInfo" Width="2.75" PointX="31.5" PointY="18.125" Height="4.8648079427083317" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.Cruise" Width="1.5" PointX="3" PointY="25.125" Height="5.6340136718750031" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.DFUPerson" Width="1.5" PointX="0.75" PointY="24.75" Height="3.7109993489583317" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.DFUSubArea" Width="1.5" PointX="16.5" PointY="0.75" Height="3.3263964843749996" IsExpanded="true" />
@@ -11465,7 +11887,7 @@
         <EntityTypeShape EntityType="Babelfisk.Entities.L_ShovelType" Width="1.5" PointX="12.75" PointY="3.75" Height="1.5956835937499818" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.L_SizeSortingDFU" Width="1.5" PointX="19.5" PointY="28" Height="1.9802864583333353" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.L_SizeSortingEU" Width="1.5" PointX="19.5" PointY="36.625" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Babelfisk.Entities.L_Species" Width="1.5" PointX="16.5" PointY="4.875" Height="5.8263151041666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.L_Species" Width="1.75" PointX="16.5" PointY="4.25" Height="5.8263151041666656" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.L_SpeciesRegistration" Width="1.5" PointX="14.25" PointY="32.125" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.L_StatisticalRectangle" Width="1.5" PointX="14.25" PointY="34.625" Height="3.9033007812499818" IsExpanded="true" />
         <EntityTypeShape EntityType="Babelfisk.Entities.L_Stock" Width="1.5" PointX="19.5" PointY="39.125" Height="1.9802864583333246" IsExpanded="true" />
@@ -13041,8 +13463,21 @@
         <EntityTypeShape EntityType="Babelfisk.Entities.L_LengthMeasureType" Width="2.25" PointX="26.375" PointY="35.625" />
         <AssociationConnector Association="Babelfisk.Entities.L_LengthMeasureTypeAnimal" />
         <AssociationConnector Association="Babelfisk.Entities.L_LengthMeasureTypeL_Species" />
-        <EntityTypeShape EntityType="Babelfisk.Entities.L_StomachStatus" Width="2.5" PointX="34.625" PointY="23.875" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.L_StomachStatus" Width="2.5" PointX="34.25" PointY="24.5" />
         <AssociationConnector Association="Babelfisk.Entities.FK_AnimalInfo_L_StomachStatus" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.L_SpeciesGroup" Width="1.5" PointX="12.125" PointY="32.5" />
+        <AssociationConnector Association="Babelfisk.Entities.L_SpeciesGroupL_Species" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.L_DigestionStage" Width="1.5" PointX="9.875" PointY="34.75" />
+        <AssociationConnector Association="Babelfisk.Entities.AnimalInfoL_StomachStatus" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Babelfisk.Entities.AnimalInfoDFUPerson" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.Stomach" Width="2.375" PointX="28.75" PointY="30.875" />
+        <AssociationConnector Association="Babelfisk.Entities.StomachAnimal" />
+        <AssociationConnector Association="Babelfisk.Entities.StomachL_Species" />
+        <AssociationConnector Association="Babelfisk.Entities.StomachL_DigestionStage" />
+        <AssociationConnector Association="Babelfisk.Entities.StomachL_LengthMeasureUnit" />
+        <AssociationConnector Association="Babelfisk.Entities.StomachL_LengthMeasureType" />
+        <AssociationConnector Association="Babelfisk.Entities.L_SpeciesL_SpeciesGroup" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -844,6 +844,24 @@ namespace Babelfisk.Entities.Sprattus
             get { return _l_StomachStatus  ?? (_l_StomachStatus = CreateObjectSet<L_StomachStatus>("L_StomachStatus")); }
         }
         private ObjectSet<L_StomachStatus> _l_StomachStatus;
+    
+        public ObjectSet<L_SpeciesGroup> L_SpeciesGroup
+        {
+            get { return _l_SpeciesGroup  ?? (_l_SpeciesGroup = CreateObjectSet<L_SpeciesGroup>("L_SpeciesGroup")); }
+        }
+        private ObjectSet<L_SpeciesGroup> _l_SpeciesGroup;
+    
+        public ObjectSet<L_DigestionStage> L_DigestionStage
+        {
+            get { return _l_DigestionStage  ?? (_l_DigestionStage = CreateObjectSet<L_DigestionStage>("L_DigestionStage")); }
+        }
+        private ObjectSet<L_DigestionStage> _l_DigestionStage;
+    
+        public ObjectSet<Stomach> Stomach
+        {
+            get { return _stomach  ?? (_stomach = CreateObjectSet<Stomach>("Stomach")); }
+        }
+        private ObjectSet<Stomach> _stomach;
 
         #endregion
 

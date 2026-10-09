@@ -682,6 +682,9 @@ namespace Babelfisk.BusinessLogic.DataInput
 
                             foreach (var age in a.Age)
                                 age.AcceptChanges();
+
+                            foreach(var sto in a.Stomachs)
+                                sto.AcceptChanges();
                            
                             a.AcceptChanges();
                         }

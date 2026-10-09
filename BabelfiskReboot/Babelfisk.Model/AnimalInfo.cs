@@ -24,6 +24,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(L_Parasite))]
     [KnownType(typeof(R_AnimalInfoReference))]
     [KnownType(typeof(L_StomachStatus))]
+    [KnownType(typeof(DFUPerson))]
     public partial class AnimalInfo: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -326,6 +327,52 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private Nullable<int> _stomachStatusFirstEvaluationId;
+    
+        [DataMember]
+        public Nullable<int> stomachStatusSecondEvaluationId
+        {
+            get { return _stomachStatusSecondEvaluationId; }
+            set
+            {
+                if (_stomachStatusSecondEvaluationId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("stomachStatusSecondEvaluationId", _stomachStatusSecondEvaluationId);
+                    if (!IsDeserializing)
+                    {
+                        if (L_StomachStatusSecondEvaluation != null && L_StomachStatusSecondEvaluation.L_StomachStatusId != value)
+                        {
+                            L_StomachStatusSecondEvaluation = null;
+                        }
+                    }
+                    _stomachStatusSecondEvaluationId = value;
+                    OnPropertyChanged("stomachStatusSecondEvaluationId");
+                }
+            }
+        }
+        private Nullable<int> _stomachStatusSecondEvaluationId;
+    
+        [DataMember]
+        public Nullable<int> stomachHandlerId
+        {
+            get { return _stomachHandlerId; }
+            set
+            {
+                if (_stomachHandlerId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("stomachHandlerId", _stomachHandlerId);
+                    if (!IsDeserializing)
+                    {
+                        if (StomachHandler != null && StomachHandler.dfuPersonId != value)
+                        {
+                            StomachHandler = null;
+                        }
+                    }
+                    _stomachHandlerId = value;
+                    OnPropertyChanged("stomachHandlerId");
+                }
+            }
+        }
+        private Nullable<int> _stomachHandlerId;
 
         #endregion
 
@@ -450,6 +497,40 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private L_StomachStatus _l_StomachStatusFirstEvaluation;
+    
+        [DataMember]
+        public L_StomachStatus L_StomachStatusSecondEvaluation
+        {
+            get { return _l_StomachStatusSecondEvaluation; }
+            set
+            {
+                if (!ReferenceEquals(_l_StomachStatusSecondEvaluation, value))
+                {
+                    var previousValue = _l_StomachStatusSecondEvaluation;
+                    _l_StomachStatusSecondEvaluation = value;
+                    FixupL_StomachStatusSecondEvaluation(previousValue);
+                    OnNavigationPropertyChanged("L_StomachStatusSecondEvaluation");
+                }
+            }
+        }
+        private L_StomachStatus _l_StomachStatusSecondEvaluation;
+    
+        [DataMember]
+        public DFUPerson StomachHandler
+        {
+            get { return _stomachHandler; }
+            set
+            {
+                if (!ReferenceEquals(_stomachHandler, value))
+                {
+                    var previousValue = _stomachHandler;
+                    _stomachHandler = value;
+                    FixupStomachHandler(previousValue);
+                    OnNavigationPropertyChanged("StomachHandler");
+                }
+            }
+        }
+        private DFUPerson _stomachHandler;
 
         #endregion
 
@@ -546,6 +627,8 @@ namespace Babelfisk.Entities.Sprattus
             L_Parasite = null;
             R_AnimalInfoReference.Clear();
             L_StomachStatusFirstEvaluation = null;
+            L_StomachStatusSecondEvaluation = null;
+            StomachHandler = null;
         }
 
         #endregion
@@ -763,6 +846,85 @@ namespace Babelfisk.Entities.Sprattus
                 if (L_StomachStatusFirstEvaluation != null && !L_StomachStatusFirstEvaluation.ChangeTracker.ChangeTrackingEnabled)
                 {
                     L_StomachStatusFirstEvaluation.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupL_StomachStatusSecondEvaluation(L_StomachStatus previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (L_StomachStatusSecondEvaluation != null)
+            {
+                stomachStatusSecondEvaluationId = L_StomachStatusSecondEvaluation.L_StomachStatusId;
+            }
+    
+            else if (!skipKeys)
+            {
+                stomachStatusSecondEvaluationId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("L_StomachStatusSecondEvaluation")
+                    && (ChangeTracker.OriginalValues["L_StomachStatusSecondEvaluation"] == L_StomachStatusSecondEvaluation))
+                {
+                    ChangeTracker.OriginalValues.Remove("L_StomachStatusSecondEvaluation");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("L_StomachStatusSecondEvaluation", previousValue);
+                }
+                if (L_StomachStatusSecondEvaluation != null && !L_StomachStatusSecondEvaluation.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    L_StomachStatusSecondEvaluation.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupStomachHandler(DFUPerson previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.AnimalInfo.Contains(this))
+            {
+                previousValue.AnimalInfo.Remove(this);
+            }
+    
+            if (StomachHandler != null)
+            {
+                if (!StomachHandler.AnimalInfo.Contains(this))
+                {
+                    StomachHandler.AnimalInfo.Add(this);
+                }
+    
+                stomachHandlerId = StomachHandler.dfuPersonId;
+            }
+            else if (!skipKeys)
+            {
+                stomachHandlerId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("StomachHandler")
+                    && (ChangeTracker.OriginalValues["StomachHandler"] == StomachHandler))
+                {
+                    ChangeTracker.OriginalValues.Remove("StomachHandler");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("StomachHandler", previousValue);
+                }
+                if (StomachHandler != null && !StomachHandler.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    StomachHandler.StartTracking();
                 }
             }
         }

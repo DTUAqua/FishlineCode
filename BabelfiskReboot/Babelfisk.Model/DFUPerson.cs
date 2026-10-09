@@ -31,6 +31,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(SDLine))]
     [KnownType(typeof(SDPoint))]
     [KnownType(typeof(SDSample))]
+    [KnownType(typeof(AnimalInfo))]
     public partial class DFUPerson: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -757,6 +758,41 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private TrackableCollection<SDSample> _sDSample;
+    
+        [DataMember]
+        public TrackableCollection<AnimalInfo> AnimalInfo
+        {
+            get
+            {
+                if (_animalInfo == null)
+                {
+                    _animalInfo = new TrackableCollection<AnimalInfo>();
+                    _animalInfo.CollectionChanged += FixupAnimalInfo;
+                }
+                return _animalInfo;
+            }
+            set
+            {
+                if (!ReferenceEquals(_animalInfo, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+                    if (_animalInfo != null)
+                    {
+                        _animalInfo.CollectionChanged -= FixupAnimalInfo;
+                    }
+                    _animalInfo = value;
+                    if (_animalInfo != null)
+                    {
+                        _animalInfo.CollectionChanged += FixupAnimalInfo;
+                    }
+                    OnNavigationPropertyChanged("AnimalInfo");
+                }
+            }
+        }
+        private TrackableCollection<AnimalInfo> _animalInfo;
 
         #endregion
 
@@ -866,6 +902,7 @@ namespace Babelfisk.Entities.Sprattus
             SDLine.Clear();
             SDPoint.Clear();
             SDSample.Clear();
+            AnimalInfo.Clear();
         }
 
         #endregion
@@ -1613,6 +1650,45 @@ namespace Babelfisk.Entities.Sprattus
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("SDSample", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupAnimalInfo(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (AnimalInfo item in e.NewItems)
+                {
+                    item.StomachHandler = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("AnimalInfo", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (AnimalInfo item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.StomachHandler, this))
+                    {
+                        item.StomachHandler = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("AnimalInfo", item);
                     }
                 }
             }

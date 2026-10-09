@@ -26,6 +26,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(AnimalInfo))]
     [KnownType(typeof(AnimalFile))]
     [KnownType(typeof(L_LengthMeasureType))]
+    [KnownType(typeof(Stomach))]
     public partial class Animal: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -528,6 +529,41 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private L_LengthMeasureType _l_LengthMeasureType;
+    
+        [DataMember]
+        public TrackableCollection<Stomach> Stomachs
+        {
+            get
+            {
+                if (_stomachs == null)
+                {
+                    _stomachs = new TrackableCollection<Stomach>();
+                    _stomachs.CollectionChanged += FixupStomachs;
+                }
+                return _stomachs;
+            }
+            set
+            {
+                if (!ReferenceEquals(_stomachs, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+                    if (_stomachs != null)
+                    {
+                        _stomachs.CollectionChanged -= FixupStomachs;
+                    }
+                    _stomachs = value;
+                    if (_stomachs != null)
+                    {
+                        _stomachs.CollectionChanged += FixupStomachs;
+                    }
+                    OnNavigationPropertyChanged("Stomachs");
+                }
+            }
+        }
+        private TrackableCollection<Stomach> _stomachs;
 
         #endregion
 
@@ -626,6 +662,7 @@ namespace Babelfisk.Entities.Sprattus
             AnimalInfo.Clear();
             AnimalFiles.Clear();
             L_LengthMeasureType = null;
+            Stomachs.Clear();
         }
 
         #endregion
@@ -969,6 +1006,45 @@ namespace Babelfisk.Entities.Sprattus
                     // This is the principal end in an association that performs cascade deletes.
                     // Remove the previous dependent from the event listener.
                     ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                }
+            }
+        }
+    
+        private void FixupStomachs(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Stomach item in e.NewItems)
+                {
+                    item.Animal = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Stomachs", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Stomach item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Animal, this))
+                    {
+                        item.Animal = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Stomachs", item);
+                    }
                 }
             }
         }

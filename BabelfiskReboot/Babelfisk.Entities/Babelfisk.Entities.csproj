@@ -164,6 +164,10 @@
       <Link>Sprattus\L_DFUDepartment.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\Babelfisk.Model\L_DigestionStage.cs">
+      <Link>Sprattus\L_DigestionStage.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\Babelfisk.Model\L_EdgeStructure.cs">
       <Link>Sprattus\L_EdgeStructure.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
@@ -364,6 +368,10 @@
       <Link>Sprattus\L_Species.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\Babelfisk.Model\L_SpeciesGroup.cs">
+      <Link>Sprattus\L_SpeciesGroup.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\Babelfisk.Model\L_SpeciesRegistration.cs">
       <Link>Sprattus\L_SpeciesRegistration.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
@@ -558,6 +566,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sprattus.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\Babelfisk.Model\Stomach.cs">
+      <Link>Sprattus\Stomach.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\Babelfisk.Model\SubSample.cs">
       <Link>Sprattus\SubSample.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
@@ -727,8 +739,8 @@
       <Link>Sprattus\Sprattus.tt</Link>
       <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <LastGenOutput>Sprattus.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Sprattus.cs</LastGenOutput>
     </None>
     <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.tt">
       <Link>SprattusSecurity\SprattusSecurity.tt</Link>

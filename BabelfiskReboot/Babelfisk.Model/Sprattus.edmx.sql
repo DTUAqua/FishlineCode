@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/10/2024 11:53:47
+-- Date Created: 10/08/2026 17:14:51
 -- Generated from EDMX file: C:\Code\DTUAqua\FishlineCode\BabelfiskReboot\Babelfisk.Model\Sprattus.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [FishLine];
+USE [FishLineStomachDev];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -566,6 +566,33 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_AnimalInfo_L_StomachStatus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AnimalInfo] DROP CONSTRAINT [FK_AnimalInfo_L_StomachStatus];
 GO
+IF OBJECT_ID(N'[dbo].[FK_L_SpeciesGroupL_Species]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[L_Species] DROP CONSTRAINT [FK_L_SpeciesGroupL_Species];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AnimalInfoL_StomachStatus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnimalInfo] DROP CONSTRAINT [FK_AnimalInfoL_StomachStatus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AnimalInfoDFUPerson]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnimalInfo] DROP CONSTRAINT [FK_AnimalInfoDFUPerson];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StomachAnimal]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Stomach] DROP CONSTRAINT [FK_StomachAnimal];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StomachL_Species]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Stomach] DROP CONSTRAINT [FK_StomachL_Species];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StomachL_DigestionStage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Stomach] DROP CONSTRAINT [FK_StomachL_DigestionStage];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StomachL_LengthMeasureUnit]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Stomach] DROP CONSTRAINT [FK_StomachL_LengthMeasureUnit];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StomachL_LengthMeasureType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Stomach] DROP CONSTRAINT [FK_StomachL_LengthMeasureType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_L_SpeciesL_SpeciesGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[L_Species] DROP CONSTRAINT [FK_L_SpeciesL_SpeciesGroup];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -955,6 +982,15 @@ GO
 IF OBJECT_ID(N'[dbo].[L_StomachStatus]', 'U') IS NOT NULL
     DROP TABLE [dbo].[L_StomachStatus];
 GO
+IF OBJECT_ID(N'[dbo].[L_SpeciesGroup]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[L_SpeciesGroup];
+GO
+IF OBJECT_ID(N'[dbo].[L_DigestionStage]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[L_DigestionStage];
+GO
+IF OBJECT_ID(N'[dbo].[Stomach]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Stomach];
+GO
 IF OBJECT_ID(N'[dbo].[R_ReportingTreeNodeReport]', 'U') IS NOT NULL
     DROP TABLE [dbo].[R_ReportingTreeNodeReport];
 GO
@@ -1038,7 +1074,9 @@ CREATE TABLE [dbo].[AnimalInfo] (
     [netPlaceHorisontal] nvarchar(1)  NULL,
     [remark] nvarchar(max)  NULL,
     [parasiteId] int  NULL,
-    [stomachStatusFirstEvaluationId] int  NULL
+    [stomachStatusFirstEvaluationId] int  NULL,
+    [stomachStatusSecondEvaluationId] int  NULL,
+    [stomachHandlerId] int  NULL
 );
 GO
 
@@ -1599,7 +1637,9 @@ CREATE TABLE [dbo].[L_Species] (
     [ageMax] int  NULL,
     [weightMin] int  NULL,
     [weightMax] int  NULL,
-    [speciesFAO] nvarchar(3)  NULL
+    [speciesFAO] nvarchar(3)  NULL,
+    [speciesGroupId] int  NULL,
+    [preySpeciesGroupId] int  NULL
 );
 GO
 
@@ -1716,7 +1756,7 @@ CREATE TABLE [dbo].[Maturity] (
     [maturityIndex] int  NOT NULL,
     [maturityIndexMethod] nvarchar(1)  NOT NULL,
     [description] nvarchar(80)  NULL,
-    [maturitySMSF] nvarchar(3) NULL
+    [maturitySMSF] nvarchar(3)  NULL
 );
 GO
 
@@ -2493,6 +2533,40 @@ CREATE TABLE [dbo].[L_StomachStatus] (
     [num] int  NULL,
     [showInAnimal] bit  NOT NULL,
     [showInStomach] bit  NOT NULL
+);
+GO
+
+-- Creating table 'L_SpeciesGroup'
+CREATE TABLE [dbo].[L_SpeciesGroup] (
+    [L_speciesGroupId] int IDENTITY(1,1) NOT NULL,
+    [speciesGroup] nvarchar(100)  NOT NULL,
+    [description] nvarchar(500)  NULL
+);
+GO
+
+-- Creating table 'L_DigestionStage'
+CREATE TABLE [dbo].[L_DigestionStage] (
+    [L_digestionStageId] int IDENTITY(1,1) NOT NULL,
+    [digestionStage] nvarchar(100)  NOT NULL,
+    [description] nvarchar(500)  NULL,
+    [num] int  NULL,
+    [digestionStageICES] int  NULL
+);
+GO
+
+-- Creating table 'Stomach'
+CREATE TABLE [dbo].[Stomach] (
+    [stomachId] int IDENTITY(1,1) NOT NULL,
+    [animalId] int  NOT NULL,
+    [preyNum] int  NOT NULL,
+    [preySpeciesCode] nvarchar(3)  NOT NULL,
+    [preyDigestionStageId] int  NULL,
+    [preyNumber] int  NULL,
+    [preyWeight] decimal(10,5)  NULL,
+    [preyLength] int  NULL,
+    [preyLengthMeasureUnit] nvarchar(2)  NULL,
+    [preyLengthMeasureTypeId] int  NULL,
+    [stomachRemark] nvarchar(250)  NULL
 );
 GO
 
@@ -3280,6 +3354,24 @@ GO
 ALTER TABLE [dbo].[L_StomachStatus]
 ADD CONSTRAINT [PK_L_StomachStatus]
     PRIMARY KEY CLUSTERED ([L_StomachStatusId] ASC);
+GO
+
+-- Creating primary key on [L_speciesGroupId] in table 'L_SpeciesGroup'
+ALTER TABLE [dbo].[L_SpeciesGroup]
+ADD CONSTRAINT [PK_L_SpeciesGroup]
+    PRIMARY KEY CLUSTERED ([L_speciesGroupId] ASC);
+GO
+
+-- Creating primary key on [L_digestionStageId] in table 'L_DigestionStage'
+ALTER TABLE [dbo].[L_DigestionStage]
+ADD CONSTRAINT [PK_L_DigestionStage]
+    PRIMARY KEY CLUSTERED ([L_digestionStageId] ASC);
+GO
+
+-- Creating primary key on [stomachId] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [PK_Stomach]
+    PRIMARY KEY CLUSTERED ([stomachId] ASC);
 GO
 
 -- Creating primary key on [Reports_reportId], [ReportingTreeNodes_reportingTreeNodeId] in table 'R_ReportingTreeNodeReport'
@@ -6023,6 +6115,141 @@ GO
 CREATE INDEX [IX_FK_AnimalInfo_L_StomachStatus]
 ON [dbo].[AnimalInfo]
     ([stomachStatusFirstEvaluationId]);
+GO
+
+-- Creating foreign key on [speciesGroupId] in table 'L_Species'
+ALTER TABLE [dbo].[L_Species]
+ADD CONSTRAINT [FK_L_SpeciesGroupL_Species]
+    FOREIGN KEY ([speciesGroupId])
+    REFERENCES [dbo].[L_SpeciesGroup]
+        ([L_speciesGroupId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_L_SpeciesGroupL_Species'
+CREATE INDEX [IX_FK_L_SpeciesGroupL_Species]
+ON [dbo].[L_Species]
+    ([speciesGroupId]);
+GO
+
+-- Creating foreign key on [stomachStatusSecondEvaluationId] in table 'AnimalInfo'
+ALTER TABLE [dbo].[AnimalInfo]
+ADD CONSTRAINT [FK_AnimalInfoL_StomachStatus]
+    FOREIGN KEY ([stomachStatusSecondEvaluationId])
+    REFERENCES [dbo].[L_StomachStatus]
+        ([L_StomachStatusId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AnimalInfoL_StomachStatus'
+CREATE INDEX [IX_FK_AnimalInfoL_StomachStatus]
+ON [dbo].[AnimalInfo]
+    ([stomachStatusSecondEvaluationId]);
+GO
+
+-- Creating foreign key on [stomachHandlerId] in table 'AnimalInfo'
+ALTER TABLE [dbo].[AnimalInfo]
+ADD CONSTRAINT [FK_AnimalInfoDFUPerson]
+    FOREIGN KEY ([stomachHandlerId])
+    REFERENCES [dbo].[DFUPerson]
+        ([dfuPersonId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AnimalInfoDFUPerson'
+CREATE INDEX [IX_FK_AnimalInfoDFUPerson]
+ON [dbo].[AnimalInfo]
+    ([stomachHandlerId]);
+GO
+
+-- Creating foreign key on [animalId] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [FK_StomachAnimal]
+    FOREIGN KEY ([animalId])
+    REFERENCES [dbo].[Animal]
+        ([animalId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StomachAnimal'
+CREATE INDEX [IX_FK_StomachAnimal]
+ON [dbo].[Stomach]
+    ([animalId]);
+GO
+
+-- Creating foreign key on [preySpeciesCode] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [FK_StomachL_Species]
+    FOREIGN KEY ([preySpeciesCode])
+    REFERENCES [dbo].[L_Species]
+        ([speciesCode])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StomachL_Species'
+CREATE INDEX [IX_FK_StomachL_Species]
+ON [dbo].[Stomach]
+    ([preySpeciesCode]);
+GO
+
+-- Creating foreign key on [preyDigestionStageId] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [FK_StomachL_DigestionStage]
+    FOREIGN KEY ([preyDigestionStageId])
+    REFERENCES [dbo].[L_DigestionStage]
+        ([L_digestionStageId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StomachL_DigestionStage'
+CREATE INDEX [IX_FK_StomachL_DigestionStage]
+ON [dbo].[Stomach]
+    ([preyDigestionStageId]);
+GO
+
+-- Creating foreign key on [preyLengthMeasureUnit] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [FK_StomachL_LengthMeasureUnit]
+    FOREIGN KEY ([preyLengthMeasureUnit])
+    REFERENCES [dbo].[L_LengthMeasureUnit]
+        ([lengthMeasureUnit])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StomachL_LengthMeasureUnit'
+CREATE INDEX [IX_FK_StomachL_LengthMeasureUnit]
+ON [dbo].[Stomach]
+    ([preyLengthMeasureUnit]);
+GO
+
+-- Creating foreign key on [preyLengthMeasureTypeId] in table 'Stomach'
+ALTER TABLE [dbo].[Stomach]
+ADD CONSTRAINT [FK_StomachL_LengthMeasureType]
+    FOREIGN KEY ([preyLengthMeasureTypeId])
+    REFERENCES [dbo].[L_LengthMeasureType]
+        ([L_lengthMeasureTypeId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StomachL_LengthMeasureType'
+CREATE INDEX [IX_FK_StomachL_LengthMeasureType]
+ON [dbo].[Stomach]
+    ([preyLengthMeasureTypeId]);
+GO
+
+-- Creating foreign key on [preySpeciesGroupId] in table 'L_Species'
+ALTER TABLE [dbo].[L_Species]
+ADD CONSTRAINT [FK_L_SpeciesL_SpeciesGroup]
+    FOREIGN KEY ([preySpeciesGroupId])
+    REFERENCES [dbo].[L_SpeciesGroup]
+        ([L_speciesGroupId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_L_SpeciesL_SpeciesGroup'
+CREATE INDEX [IX_FK_L_SpeciesL_SpeciesGroup]
+ON [dbo].[L_Species]
+    ([preySpeciesGroupId]);
 GO
 
 -- --------------------------------------------------

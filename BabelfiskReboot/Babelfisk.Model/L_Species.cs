@@ -26,6 +26,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(R_SDReader))]
     [KnownType(typeof(SDSample))]
     [KnownType(typeof(L_LengthMeasureType))]
+    [KnownType(typeof(L_SpeciesGroup))]
     public partial class L_Species: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -319,6 +320,52 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private string _speciesFAO;
+    
+        [DataMember]
+        public Nullable<int> speciesGroupId
+        {
+            get { return _speciesGroupId; }
+            set
+            {
+                if (_speciesGroupId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("speciesGroupId", _speciesGroupId);
+                    if (!IsDeserializing)
+                    {
+                        if (L_SpeciesGroup != null && L_SpeciesGroup.L_speciesGroupId != value)
+                        {
+                            L_SpeciesGroup = null;
+                        }
+                    }
+                    _speciesGroupId = value;
+                    OnPropertyChanged("speciesGroupId");
+                }
+            }
+        }
+        private Nullable<int> _speciesGroupId;
+    
+        [DataMember]
+        public Nullable<int> preySpeciesGroupId
+        {
+            get { return _preySpeciesGroupId; }
+            set
+            {
+                if (_preySpeciesGroupId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("preySpeciesGroupId", _preySpeciesGroupId);
+                    if (!IsDeserializing)
+                    {
+                        if (L_PreySpeciesGroup != null && L_PreySpeciesGroup.L_speciesGroupId != value)
+                        {
+                            L_PreySpeciesGroup = null;
+                        }
+                    }
+                    _preySpeciesGroupId = value;
+                    OnPropertyChanged("preySpeciesGroupId");
+                }
+            }
+        }
+        private Nullable<int> _preySpeciesGroupId;
 
         #endregion
 
@@ -626,6 +673,40 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private L_LengthMeasureType _l_StandardLengthMeasureType;
+    
+        [DataMember]
+        public L_SpeciesGroup L_SpeciesGroup
+        {
+            get { return _l_SpeciesGroup; }
+            set
+            {
+                if (!ReferenceEquals(_l_SpeciesGroup, value))
+                {
+                    var previousValue = _l_SpeciesGroup;
+                    _l_SpeciesGroup = value;
+                    FixupL_SpeciesGroup(previousValue);
+                    OnNavigationPropertyChanged("L_SpeciesGroup");
+                }
+            }
+        }
+        private L_SpeciesGroup _l_SpeciesGroup;
+    
+        [DataMember]
+        public L_SpeciesGroup L_PreySpeciesGroup
+        {
+            get { return _l_PreySpeciesGroup; }
+            set
+            {
+                if (!ReferenceEquals(_l_PreySpeciesGroup, value))
+                {
+                    var previousValue = _l_PreySpeciesGroup;
+                    _l_PreySpeciesGroup = value;
+                    FixupL_PreySpeciesGroup(previousValue);
+                    OnNavigationPropertyChanged("L_PreySpeciesGroup");
+                }
+            }
+        }
+        private L_SpeciesGroup _l_PreySpeciesGroup;
 
         #endregion
 
@@ -725,6 +806,8 @@ namespace Babelfisk.Entities.Sprattus
             R_SDReader.Clear();
             SDSample.Clear();
             L_StandardLengthMeasureType = null;
+            L_SpeciesGroup = null;
+            L_PreySpeciesGroup = null;
         }
 
         #endregion
@@ -806,6 +889,76 @@ namespace Babelfisk.Entities.Sprattus
                 if (L_StandardLengthMeasureType != null && !L_StandardLengthMeasureType.ChangeTracker.ChangeTrackingEnabled)
                 {
                     L_StandardLengthMeasureType.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupL_SpeciesGroup(L_SpeciesGroup previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (L_SpeciesGroup != null)
+            {
+                speciesGroupId = L_SpeciesGroup.L_speciesGroupId;
+            }
+    
+            else if (!skipKeys)
+            {
+                speciesGroupId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("L_SpeciesGroup")
+                    && (ChangeTracker.OriginalValues["L_SpeciesGroup"] == L_SpeciesGroup))
+                {
+                    ChangeTracker.OriginalValues.Remove("L_SpeciesGroup");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("L_SpeciesGroup", previousValue);
+                }
+                if (L_SpeciesGroup != null && !L_SpeciesGroup.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    L_SpeciesGroup.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupL_PreySpeciesGroup(L_SpeciesGroup previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (L_PreySpeciesGroup != null)
+            {
+                preySpeciesGroupId = L_PreySpeciesGroup.L_speciesGroupId;
+            }
+    
+            else if (!skipKeys)
+            {
+                preySpeciesGroupId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("L_PreySpeciesGroup")
+                    && (ChangeTracker.OriginalValues["L_PreySpeciesGroup"] == L_PreySpeciesGroup))
+                {
+                    ChangeTracker.OriginalValues.Remove("L_PreySpeciesGroup");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("L_PreySpeciesGroup", previousValue);
+                }
+                if (L_PreySpeciesGroup != null && !L_PreySpeciesGroup.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    L_PreySpeciesGroup.StartTracking();
                 }
             }
         }
