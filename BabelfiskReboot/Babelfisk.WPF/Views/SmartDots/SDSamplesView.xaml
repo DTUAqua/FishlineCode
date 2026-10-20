@@ -44,14 +44,15 @@
                         <Setter Property="Opacity" Value="1.0" />
                         <Setter Property="TextBlock.FontWeight" Value="Normal" />
                         <Setter Property="TextBlock.FontSize" Value="11" />
-                        <Setter Property="Padding" Value="2,0,2,0" />
+                        <Setter Property="Padding" Value="0" />
                         <Setter Property="Margin" Value="0" />
                         <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="ButtonBorderThickness" Value="0"/>
-                        <Setter Property="ButtonImageMargin" Value="3,2,3,3"/>
+                        <Setter Property="ButtonBorderThickness" Value="1,0,0,0"/>
+                        <Setter Property="ButtonImageMargin" Value="4"/>
+                        <Setter Property="TextBoxPadding" Value="4,0,0,0"/>
+                        <Setter Property="TextBoxBorderThickness" Value="0"/>
                         <Setter Property="Height" Value="28" />
                         <Setter Property="Background" Value="White" ></Setter>
-                        
                     </Style>
 
                     <Style x:Key="dateTimePickerInputStyle" TargetType="{x:Type TextBoxBase}" BasedOn="{StaticResource ValidateElementRedBorder}">
@@ -2012,8 +2013,7 @@
                                     <aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
                                             <aCtrls:DateTimePickerControl Value="{Binding Path=catchDate, Mode=TwoWay, ValidatesOnDataErrors=True}" 
-                                                                  Style="{StaticResource dateTimePickerStyle}" Format="dd-MM-yyyy HH:mm:ss" IsTimePickerVisible="True"
-                                                                  KeyboardNavigation.TabIndex="11" Padding="0,0,0,0" Margin="0" BorderBrush="Transparent" 
+                                                                  Style="{StaticResource dateTimePickerStyle}" Format="dd-MM-yyyy HH:mm:ss" IsTimePickerVisible="True" KeyboardNavigation.TabIndex="11"
                                                                   ErrorInvalidKey="Ugyldig værdi" ErrorLessThan="Værdien skal være mindre end " ErrorOverstrike="Værdier kan overskrives, ikke slettes"
                                                                   InputStyle="{StaticResource dateTimePickerInputStyle}" />
                                         </DataTemplate>
@@ -2037,7 +2037,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True" 
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedValue="{Binding Path=DFUArea}" SelectedValuePath="DFUArea"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2059,7 +2059,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedValue="{Binding Path=statisticalRectangle}" SelectedValuePath="statisticalRectangle"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2084,7 +2084,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True" 
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedValue="{Binding Path=speciesCode}" SelectedValuePath="speciesCode"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2106,7 +2106,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=L_Stock, UpdateSourceTrigger=PropertyChanged}"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2168,7 +2168,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedValue="{Binding Path=sexCode}" SelectedValuePath="sexCode"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False"
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False"
                                                                  />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
@@ -2191,7 +2191,7 @@
                                                                  DropDownWidth="420" FilterFromStart="False"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=Maturity, UpdateSourceTrigger=PropertyChanged}" 
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2215,7 +2215,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=L_OtolithReadingRemark, UpdateSourceTrigger=PropertyChanged}" 
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2237,7 +2237,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=L_SDPreparationMethod, UpdateSourceTrigger=PropertyChanged}" 
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2259,7 +2259,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=L_SDLightType, UpdateSourceTrigger=PropertyChanged}" 
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2281,7 +2281,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedItem="{Binding Path=L_SDOtolithDescription, UpdateSourceTrigger=PropertyChanged}" 
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
@@ -2305,7 +2305,7 @@
                                                                  DropDownWidth="300" FilterFromStart="True"
                                                                  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}" Initialized="FilteredComboBox_Initialized"
                                                                  SelectedValue="{Binding Path=edgeStructure}" SelectedValuePath="edgeStructure"
-                                                                 OpenDropDownOnFilter="False" OpenOnFocus="False" />
+                                                                 OpenDropDownOnFilter="True" OpenOnFocus="False" />
                                         </DataTemplate>
                                     </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                                 </aCtrls:AncDataGridTemplateColumn>
