@@ -394,6 +394,31 @@
                                 </DockPanel>
                             </DockPanel>
 
+                            <!-- gear disruption (VID) -->
+                            <DockPanel Margin="0" Visibility="{Binding Path=IsScientific, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" >
+                                <!-- Gear group -->
+                                <Label Content="Træktidsbemærkning" DockPanel.Dock="Left" Style="{StaticResource ResourceKey=txtHeader}" Background="Transparent"
+                                       ToolTip="Hvis træktiden afviger fra togt standard, skal en forklaring gives fra listen."/>
+
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" 
+                                            Command="{Binding Path=AddEditLookupsCommand}" CommandParameter="L_GearDisruption"
+                                            Template="{StaticResource ResourceKey=imageButton}" 
+                                            Style="{StaticResource ResourceKey=dropDownButton}"
+                                            ToolTip="Tilføj/Redigér træktidsbemærkninger"
+                                            KeyboardNavigation.IsTabStop="False" >
+                                        <Image Margin="5" VerticalAlignment="Center" Source="pack://application:,,,/Resources/Images/Common/EditKeyValues.ico" />
+                                    </Button>
+
+                                    <aCtrls:FilteredComboBox KeyboardNavigation.TabIndex="7" FilterFromStart="False" 
+                                           ItemsSource="{Binding Path=GearDisruptions}" 
+                                           SelectedItem="{Binding Path=SelectedGearDisruption, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                           DisplayMemberPath="UIDisplay" OpenOnFocus="False" DropDownWidth="400"
+                                           Style="{StaticResource ResourceKey=baseInputBoxStyle}"
+                                           MinimumSearchLength="1" IsEditable="True" IsTextSearchCaseSensitive="False"/>
+                                </DockPanel>
+                            </DockPanel>
+
                             <!-- CTD Station (VID) -->
                             <DockPanel Margin="0" Visibility="{Binding Path=IsScientific, Converter={StaticResource cBoolToVisibility}, ConverterParameter=True}" >
 

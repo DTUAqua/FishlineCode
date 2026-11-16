@@ -97,7 +97,7 @@ namespace Babelfisk.BusinessLogic.Export
             var lstAnimals = lstSpeciesLists.SelectMany(x => x.Animals).ToList();
             WriteEntitiesToFile<Animal>(strDestinationPath, strFilePrefix, blnFirstFile, lstAnimals, null, GetExtraAnimalHeaders, GetExtraAnimalData, null, "SpeciesList", "R_AnimalReference", "R_AnimalPictureReference", "Ages", "ChangeTracker");
             var lstAges = lstAnimals.SelectMany(x => x.Ages).ToList();
-            WriteEntitiesToFile<Age>(strDestinationPath, strFilePrefix, blnFirstFile, lstAges, null, null, null, null, "Animal", "ChangeTracker");
+            WriteEntitiesToFile<Age>(strDestinationPath, strFilePrefix, blnFirstFile, lstAges, new Dictionary<string, string>() { { "age1", "age" } }, null, null, null, "Animal", "ChangeTracker");
 
             //Write raised tables
             var lstSLRaised = lstSamples.SelectMany(x => x.SpeciesListRaiseds).ToList();
@@ -315,6 +315,8 @@ namespace Babelfisk.BusinessLogic.Export
                                               "Animal.weightLiver",
                                               "Animal.stomachStatusFirstEvaluation",
                                               "Animal.weightGonads",
+                                              "Animal.genetics",
+                                              "Animal.geneticsId",
                                               "Animal.parasiteCode",
                                               "Animal.fatIndex",
                                               "Animal.fatIndexMethod",
@@ -343,7 +345,7 @@ namespace Babelfisk.BusinessLogic.Export
                                               "Age.hatchMonthReaderId",
                                               "Age.hatchMonthReaderName",
                                               "Age.remark",
-                                              "Age.genetics",
+                                            //  "Age.genetics",
                                               "Age.visualStock",
                                               "Age.geneticStock",
                                               "Age.sdAgeInfoUpdated",
@@ -403,6 +405,8 @@ namespace Babelfisk.BusinessLogic.Export
                 arr[intIndex++] = GetValue(ani.weightLiver);
                 arr[intIndex++] = GetValue(ani.stomachStatusFirstEvaluation);
                 arr[intIndex++] = GetValue(ani.weightGonads);
+                arr[intIndex++] = GetValue(ani.genetics);
+                arr[intIndex++] = GetValue(ani.geneticsId);
                 arr[intIndex++] = GetValue(ani.parasiteCode);
                 arr[intIndex++] = GetValue(ani.fatIndex);
                 arr[intIndex++] = GetValue(ani.fatIndexMethod);
@@ -438,7 +442,7 @@ namespace Babelfisk.BusinessLogic.Export
                         arr[intIndex++] = GetValue(age.hatchMonthReaderId);
                         arr[intIndex++] = GetValue(age.hatchMonthReaderName);
                         arr[intIndex++] = GetValue(age.remark);
-                        arr[intIndex++] = GetValue(age.genetics);
+                       // arr[intIndex++] = GetValue(age.genetics);
                         arr[intIndex++] = GetValue(age.visualStock);
                         arr[intIndex++] = GetValue(age.geneticStock);
                         arr[intIndex++] = GetValue(age.sdAgeInfoUpdated);
@@ -566,6 +570,7 @@ namespace Babelfisk.BusinessLogic.Export
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.distancePositions);
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.distanceBottom);
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.courseTrack);
+            arrRaised[intIndex] = arr[intIndex++] = GetValue(s.gearDisruption);
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.targetSpecies1);
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.targetSpecies2);
             arrRaised[intIndex] = arr[intIndex++] = GetValue(s.targetSpecies3);
@@ -736,6 +741,8 @@ namespace Babelfisk.BusinessLogic.Export
             arr[intIndex++] = GetValue(a.weightLiver);
             arr[intIndex++] = GetValue(a.stomachStatusFirstEvaluation);
             arr[intIndex++] = GetValue(a.weightGonads);
+            arr[intIndex++] = GetValue(a.genetics);
+            arr[intIndex++] = GetValue(a.geneticsId);
             arr[intIndex++] = GetValue(a.parasiteCode);
             arr[intIndex++] = GetValue(a.fatIndex);
             arr[intIndex++] = GetValue(a.fatIndexMethod);
@@ -776,7 +783,7 @@ namespace Babelfisk.BusinessLogic.Export
             arr[intIndex++] = GetValue(a.hatchMonthReaderId);
             arr[intIndex++] = GetValue(a.hatchMonthReaderName);
             arr[intIndex++] = GetValue(a.remark);
-            arr[intIndex++] = GetValue(a.genetics);
+           // arr[intIndex++] = GetValue(a.genetics);
             arr[intIndex++] = GetValue(a.visualStock);
             arr[intIndex++] = GetValue(a.geneticStock);
             arr[intIndex++] = GetValue(a.sdAgeInfoUpdated);
@@ -862,6 +869,7 @@ namespace Babelfisk.BusinessLogic.Export
                                           "Sample.distancePositions",
                                           "Sample.distanceBottom",
                                           "Sample.courseTrack",
+                                          "Sample.gearDisruption",
                                           "Sample.targetSpecies1",
                                           "Sample.targetSpecies2",
                                           "Sample.targetSpecies3",
@@ -960,6 +968,8 @@ namespace Babelfisk.BusinessLogic.Export
                                           "Animal.weightLiver",
                                           "Animal.stomachStatusFirstEvaluation",
                                           "Animal.weightGonads",
+                                          "Animal.genetics",
+                                          "Animal.geneticsId",
                                           "Animal.parasiteCode",
                                           "Animal.fatIndex",
                                           "Animal.fatIndexMethod",
@@ -988,7 +998,7 @@ namespace Babelfisk.BusinessLogic.Export
                                           "Age.hatchMonthReaderId",
                                           "Age.hatchMonthReaderName",
                                           "Age.remark", 
-                                          "Age.genetics",
+                                        //  "Age.genetics",
                                           "Age.visualStock",
                                           "Age.geneticStock",
                                           "Age.sdAgeInfoUpdated",
@@ -1082,6 +1092,7 @@ namespace Babelfisk.BusinessLogic.Export
                                           "Sample.distancePositions",
                                           "Sample.distanceBottom",
                                           "Sample.courseTrack",
+                                          "Sample.gearDisruption",
                                           "Sample.targetSpecies1",
                                           "Sample.targetSpecies2",
                                           "Sample.targetSpecies3",

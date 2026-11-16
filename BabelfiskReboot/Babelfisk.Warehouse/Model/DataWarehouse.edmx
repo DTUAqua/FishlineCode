@@ -51,7 +51,6 @@
           <Property Name="hatchMonthReaderId" Type="int" />
           <Property Name="hatchMonthReaderName" Type="nvarchar" MaxLength="80" />
           <Property Name="remark" Type="ntext" />
-          <Property Name="genetics" Type="bit" />
           <Property Name="visualStock" Type="nvarchar" MaxLength="50" />
           <Property Name="geneticStock" Type="nvarchar" MaxLength="50" />
           <Property Name="sdAgeInfoUpdated" Type="bit" />
@@ -104,6 +103,8 @@
           <Property Name="weightGutted" Type="numeric" Precision="10" Scale="5" />
           <Property Name="weightLiver" Type="numeric" Precision="9" Scale="5" />
           <Property Name="weightGonads" Type="numeric" Precision="9" Scale="5" />
+          <Property Name="genetics" Type="bit" />
+          <Property Name="geneticsId" Type="nvarchar" MaxLength="12" />
           <Property Name="stomachStatusFirstEvaluation" Type="nvarchar" MaxLength="20" />
           <Property Name="parasiteCode" Type="int" />
           <Property Name="fatIndex" Type="nvarchar" MaxLength="3" />
@@ -174,7 +175,7 @@
           <Property Name="addedDateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'FishLineDW.dbo.ErrorLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FishLineDWStomachDev.dbo.ErrorLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ErrorLog">
           <Key>
             <PropertyRef Name="transferErrorId" />
@@ -265,6 +266,7 @@ warning 6002: The table/view 'FishLineDW.dbo.ErrorLog' does not have a primary k
           <Property Name="distancePositions" Type="numeric" Precision="6" Scale="3" />
           <Property Name="distanceBottom" Type="numeric" Precision="6" Scale="3" />
           <Property Name="courseTrack" Type="int" />
+          <Property Name="gearDisruption" Type="nvarchar" MaxLength="200" />
           <Property Name="targetSpecies1" Type="nvarchar" MaxLength="3" />
           <Property Name="targetSpecies2" Type="nvarchar" MaxLength="3" />
           <Property Name="targetSpecies3" Type="nvarchar" MaxLength="3" />
@@ -687,7 +689,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="String" Name="hatchMonthReaderName" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="remark" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Animal" Relationship="FishLineDWModel.FK_Age_Animal" FromRole="Age" ToRole="Animal" />
-          <Property Type="Boolean" Name="genetics" Nullable="true" />
           <Property Type="String" Name="visualStock" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="geneticStock" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sdAgeInfoUpdated" Type="Boolean" />
@@ -740,6 +741,8 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="Decimal" Name="weightGutted" Precision="10" Scale="5" />
           <Property Type="Decimal" Name="weightLiver" Precision="9" Scale="5" />
           <Property Type="Decimal" Name="weightGonads" Precision="9" Scale="5" />
+          <Property Name="genetics" Type="Boolean" />
+          <Property Name="geneticsId" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="stomachStatusFirstEvaluation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="parasiteCode" />
           <Property Type="String" Name="fatIndex" MaxLength="3" FixedLength="false" Unicode="true" />
@@ -853,6 +856,7 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <Property Type="Decimal" Name="distancePositions" Precision="6" Scale="3" />
           <Property Type="Decimal" Name="distanceBottom" Precision="6" Scale="3" />
           <Property Type="Int32" Name="courseTrack" />
+          <Property Name="gearDisruption" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="targetSpecies1" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="targetSpecies2" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="targetSpecies3" MaxLength="3" FixedLength="false" Unicode="true" />
@@ -1216,7 +1220,6 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
                 <ScalarProperty Name="geneticStock" ColumnName="geneticStock" />
                 <ScalarProperty Name="visualStock" ColumnName="visualStock" />
                 <ScalarProperty Name="hatchMonthRemark" ColumnName="hatchMonthRemark" />
-                <ScalarProperty Name="genetics" ColumnName="genetics" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="hatchMonthReaderName" ColumnName="hatchMonthReaderName" />
                 <ScalarProperty Name="hatchMonthReaderId" ColumnName="hatchMonthReaderId" />
@@ -1262,6 +1265,8 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="FishLineDWModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="geneticsId" ColumnName="geneticsId" />
+                <ScalarProperty Name="genetics" ColumnName="genetics" />
                 <ScalarProperty Name="stomachStatusFirstEvaluation" ColumnName="stomachStatusFirstEvaluation" />
                 <ScalarProperty Name="lengthMeasureType" ColumnName="lengthMeasureType" />
                 <ScalarProperty Name="stock" ColumnName="stock" />
@@ -1381,6 +1386,7 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
           <EntitySetMapping Name="Samples">
             <EntityTypeMapping TypeName="FishLineDWModel.Sample">
               <MappingFragment StoreEntitySet="Sample">
+                <ScalarProperty Name="gearDisruption" ColumnName="gearDisruption" />
                 <ScalarProperty Name="selectionDeviceSource" ColumnName="selectionDeviceSource" />
                 <ScalarProperty Name="weekdayWeekend" ColumnName="weekdayWeekend" />
                 <ScalarProperty Name="sgId" ColumnName="sgId" />
@@ -1669,15 +1675,15 @@ FROM [dbo].[ErrorLog] AS [ErrorLog]</DefiningQuery>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="DataWarehouse" ZoomLevel="76">
+      <Diagram Name="DataWarehouse" ZoomLevel="132">
         <EntityTypeShape EntityType="FishLineDWModel.Age" Width="2" PointX="11.625" PointY="2.75" Height="8.7108365885416674" />
         <EntityTypeShape EntityType="FishLineDWModel.Animal" Width="1.75" PointX="9.5" PointY="2.75" Height="10.633850911458325" />
-        <EntityTypeShape EntityType="FishLineDWModel.AnimalRaised" Width="1.5" PointX="9.5" PointY="14.625" Height="6.787822265624996" />
+        <EntityTypeShape EntityType="FishLineDWModel.AnimalRaised" Width="1.5" PointX="9.5" PointY="15.125" Height="6.787822265624996" />
         <EntityTypeShape EntityType="FishLineDWModel.Cruise" Width="1.5" PointX="1.25" PointY="2.75" Height="2.749492187499996" />
         <EntityTypeShape EntityType="FishLineDWModel.R_AnimalReference" Width="1.5" PointX="11.625" PointY="13.875" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="FishLineDWModel.Sample" Width="1.875" PointX="5.25" PointY="2.75" Height="16.979798177083325" />
         <EntityTypeShape EntityType="FishLineDWModel.SpeciesList" Width="1.5" PointX="7.625" PointY="2.75" Height="8.51853515625001" />
-        <EntityTypeShape EntityType="FishLineDWModel.SpeciesListRaised" Width="1.5" PointX="7.5" PointY="14.625" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="FishLineDWModel.SpeciesListRaised" Width="1.5" PointX="7.625" PointY="15.125" Height="6.4032194010416674" />
         <EntityTypeShape EntityType="FishLineDWModel.Trip" Width="1.5" PointX="3.25" PointY="2.75" Height="6.5955208333333388" />
         <AssociationConnector Association="FishLineDWModel.FK_Age_Animal" >
           <ConnectorPoint PointX="11" PointY="7.1054182942708337" />

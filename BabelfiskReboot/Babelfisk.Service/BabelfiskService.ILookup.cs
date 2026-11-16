@@ -526,6 +526,10 @@ namespace Babelfisk.Service
                     ctx.L_StomachStatus.ApplyChanges(obj as L_StomachStatus);
                     break;
 
+                case "L_GearDisruption":
+                    ctx.L_GearDisruption.ApplyChanges(obj as L_GearDisruption);
+                    break;
+
                 default:
                     throw new ApplicationException("BabelfiskService.ILookup->ApplyLookupChanges(): Lookup type has not been mapped.");
             }

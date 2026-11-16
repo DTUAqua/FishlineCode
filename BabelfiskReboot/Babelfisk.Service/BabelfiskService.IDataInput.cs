@@ -844,6 +844,9 @@ namespace Babelfisk.Service
             if (sEdit.weekdayWeekend != s.weekdayWeekend)
                 sEdit.weekdayWeekend = s.weekdayWeekend;
 
+            if(sEdit.gearDisruptionId != s.gearDisruptionId)
+                sEdit.gearDisruptionId = s.gearDisruptionId;
+
             HandleSampleTargetSpecies(ctx, s);
 
             if (s.R_TargetSpecies.Count > 0 && s.R_TargetSpecies.First().ChangeTracker.State == ObjectState.Added)

@@ -218,21 +218,6 @@ namespace Babelfisk.Entities.Sprattus
         private string _edgeStructure;
     
         [DataMember]
-        public Nullable<bool> genetics
-        {
-            get { return _genetics; }
-            set
-            {
-                if (_genetics != value)
-                {
-                    _genetics = value;
-                    OnPropertyChanged("genetics");
-                }
-            }
-        }
-        private Nullable<bool> _genetics;
-    
-        [DataMember]
         public Nullable<int> hatchMonthReadabilityId
         {
             get { return _hatchMonthReadabilityId; }

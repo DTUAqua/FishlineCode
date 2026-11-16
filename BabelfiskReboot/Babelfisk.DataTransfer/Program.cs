@@ -65,6 +65,7 @@ namespace Babelfisk.DataTransfer
             var dicSelectionDeviceSource = datMan.GetLookups<L_SelectionDeviceSource>().ToDictionary(x => x.L_selectionDeviceSourceId);
             var dicLengthMeasureType = datMan.GetLookups<L_LengthMeasureType>().ToDictionary(x => x.L_lengthMeasureTypeId);
             var dicStomachStatus = datMan.GetLookups<L_StomachStatus>().ToDictionary(x => x.L_StomachStatusId);
+            var dicGearDisruptions = datMan.GetLookups<L_GearDisruption>().ToDictionary(x => x.L_gearDisruptionId);
 
             if (dicSpecies == null || dicSpecies.Count == 0)
             {
@@ -149,7 +150,8 @@ namespace Babelfisk.DataTransfer
                                                                                  dicGeneticStocks,
                                                                                  dicSelectionDeviceSource,
                                                                                  dicLengthMeasureType,
-                                                                                 dicStomachStatus);
+                                                                                 dicStomachStatus,
+                                                                                 dicGearDisruptions);
 
                 Console.WriteLine("   > Raising cruise.");
 

@@ -862,6 +862,12 @@ namespace Babelfisk.Entities.Sprattus
             get { return _stomach  ?? (_stomach = CreateObjectSet<Stomach>("Stomach")); }
         }
         private ObjectSet<Stomach> _stomach;
+    
+        public ObjectSet<L_GearDisruption> L_GearDisruption
+        {
+            get { return _l_GearDisruption  ?? (_l_GearDisruption = CreateObjectSet<L_GearDisruption>("L_GearDisruption")); }
+        }
+        private ObjectSet<L_GearDisruption> _l_GearDisruption;
 
         #endregion
 

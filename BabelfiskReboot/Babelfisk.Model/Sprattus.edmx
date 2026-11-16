@@ -137,6 +137,7 @@
     <EntitySet Name="L_SpeciesGroup" EntityType="Babelfisk.Entities.Store.L_SpeciesGroup" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="L_DigestionStage" EntityType="Babelfisk.Entities.Store.L_DigestionStage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stomach" EntityType="Babelfisk.Entities.Store.Stomach" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="L_GearDisruption" EntityType="Babelfisk.Entities.Store.L_GearDisruption" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="R_ReportingTreeNodeReport" EntityType="Babelfisk.Entities.Store.R_ReportingTreeNodeReport" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="R_SDEventDFUArea" EntityType="Babelfisk.Entities.Store.R_SDEventDFUArea" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Age_Animal" Association="Babelfisk.Entities.Store.FK_Age_Animal">
@@ -907,6 +908,10 @@
       <End Role="L_Species" EntitySet="L_Species" />
       <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
     </AssociationSet>
+    <AssociationSet Name="L_GearDisruptionSample" Association="Babelfisk.Entities.Store.L_GearDisruptionSample">
+      <End Role="L_GearDisruption" EntitySet="L_GearDisruption" />
+      <End Role="Sample" EntitySet="Sample" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActivityLog">
     <Key>
@@ -934,7 +939,6 @@
     <Property Name="otolithWeight" Type="decimal" Nullable="true" Precision="7" Scale="5" />
     <Property Name="remark" Type="nvarchar(max)" Nullable="true" />
     <Property Name="edgeStructure" Type="nvarchar" Nullable="true" MaxLength="5" />
-    <Property Name="genetics" Type="bit" Nullable="true" />
     <Property Name="hatchMonthReadabilityId" Type="int" Nullable="true" />
     <Property Name="visualStockId" Type="int" Nullable="true" />
     <Property Name="geneticStockId" Type="int" Nullable="true" />
@@ -977,6 +981,8 @@
     <Property Name="weightGutted" Type="decimal" Nullable="true" Precision="10" Scale="5" />
     <Property Name="weightLiver" Type="decimal" Nullable="true" Precision="9" Scale="5" />
     <Property Name="weightGonads" Type="decimal" Nullable="true" Precision="9" Scale="5" />
+    <Property Name="genetics" Type="bit" Nullable="true" />
+    <Property Name="geneticsId" Type="nvarchar" Nullable="true" MaxLength="20" />
     <Property Name="pictureReference" Type="nvarchar" Nullable="true" MaxLength="80" />
     <Property Name="netPlaceVertical" Type="nvarchar" Nullable="true" MaxLength="1" />
     <Property Name="netPlaceHorisontal" Type="nvarchar" Nullable="true" MaxLength="1" />
@@ -1860,6 +1866,7 @@
     <Property Name="endlog" Type="int" Nullable="true" />
     <Property Name="datahandlerId" Type="int" Nullable="true" />
     <Property Name="gearQuality" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="gearDisruptionId" Type="int" Nullable="true" />
     <Property Name="numNets" Type="int" Nullable="true" />
     <Property Name="lostNets" Type="int" Nullable="true" />
     <Property Name="tidTamp" Type="int" Nullable="true" />
@@ -2504,6 +2511,16 @@
     <Property Name="preyLengthMeasureUnit" Type="nvarchar" Nullable="true" MaxLength="2" />
     <Property Name="preyLengthMeasureTypeId" Type="int" Nullable="true" />
     <Property Name="stomachRemark" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="L_GearDisruption">
+    <Key>
+      <PropertyRef Name="L_gearDisruptionId" />
+    </Key>
+    <Property Name="L_gearDisruptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gearDisruption" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="codeICES" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="description" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="num" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="R_ReportingTreeNodeReport">
     <Key>
@@ -4859,6 +4876,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="L_GearDisruptionSample">
+    <End Role="L_GearDisruption" Type="Babelfisk.Entities.Store.L_GearDisruption" Multiplicity="0..1" />
+    <End Role="Sample" Type="Babelfisk.Entities.Store.Sample" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="L_GearDisruption">
+        <PropertyRef Name="L_gearDisruptionId" />
+      </Principal>
+      <Dependent Role="Sample">
+        <PropertyRef Name="gearDisruptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_R_ReportingTreeNodeReport_Report">
     <End Role="Report" Type="Babelfisk.Entities.Store.Report" Multiplicity="1" />
     <End Role="R_ReportingTreeNodeReport" Type="Babelfisk.Entities.Store.R_ReportingTreeNodeReport" Multiplicity="*" />
@@ -5806,6 +5835,11 @@
             <End Role="L_Species" EntitySet="L_Species" />
             <End Role="L_SpeciesGroup" EntitySet="L_SpeciesGroup" />
           </AssociationSet>
+          <EntitySet Name="L_GearDisruption" EntityType="Babelfisk.Entities.L_GearDisruption" />
+          <AssociationSet Name="L_GearDisruptionSample" Association="Babelfisk.Entities.L_GearDisruptionSample">
+            <End Role="L_GearDisruption" EntitySet="L_GearDisruption" />
+            <End Role="Sample" EntitySet="Sample" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActivityLog">
           <Key>
@@ -5837,7 +5871,6 @@
           <NavigationProperty Name="L_OtolithReadingRemark" Relationship="Babelfisk.Entities.FK_Age_L_OtolithReadingRemark" FromRole="Age" ToRole="L_OtolithReadingRemark" />
           <Property Type="String" Name="edgeStructure" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="L_EdgeStructure" Relationship="Babelfisk.Entities.FK_Age_L_EdgeStructure" FromRole="Age" ToRole="L_EdgeStructure" />
-          <Property Type="Boolean" Name="genetics" Nullable="true" />
           <NavigationProperty Name="L_HatchMonthReadability" Relationship="Babelfisk.Entities.L_HatchMonthReadabilityAge" FromRole="Age" ToRole="L_HatchMonthReadability" />
           <Property Type="Int32" Name="hatchMonthReadabilityId" Nullable="true" />
           <NavigationProperty Name="L_VisualStock" Relationship="Babelfisk.Entities.FK_Age_L_VisualStock" FromRole="Age" ToRole="L_VisualStock" />
@@ -5894,6 +5927,8 @@
           <Property Name="weightGutted" Type="Decimal" Precision="10" Scale="5" />
           <Property Name="weightLiver" Type="Decimal" Precision="9" Scale="5" />
           <Property Name="weightGonads" Type="Decimal" Precision="9" Scale="5" />
+          <Property Name="genetics" Type="Boolean" Nullable="true" />
+          <Property Name="geneticsId" Type="String" Nullable="true" MaxLength="20" />
           <Property Name="pictureReference" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="netPlaceVertical" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
           <Property Name="netPlaceHorisontal" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
@@ -6944,6 +6979,7 @@
           <Property Name="endlog" Type="Int32" />
           <Property Name="datahandlerId" Type="Int32" />
           <Property Name="gearQuality" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+          <Property Name="gearDisruptionId" Type="Int32" Nullable="true" />
           <Property Name="numNets" Type="Int32" />
           <Property Name="lostNets" Type="Int32" />
           <Property Name="tidTamp" Type="Int32" />
@@ -7023,6 +7059,7 @@
           <Property Type="String" Name="sgId" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Type="String" Name="weekdayWeekend" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="L_SelectionDeviceSource" Relationship="Babelfisk.Entities.L_SelectionDeviceSourceSample" FromRole="Sample" ToRole="L_SelectionDeviceSource" />
+          <NavigationProperty Name="L_GearDisruption" Relationship="Babelfisk.Entities.L_GearDisruptionSample" FromRole="Sample" ToRole="L_GearDisruption" />
         </EntityType>
         <EntityType Name="SpeciesList">
           <Key>
@@ -10089,6 +10126,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="L_GearDisruption">
+          <Key>
+            <PropertyRef Name="L_gearDisruptionId" />
+          </Key>
+          <Property Name="L_gearDisruptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gearDisruption" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="codeICES" Type="String" Nullable="true" MaxLength="50" />
+          <Property Name="description" Type="String" Nullable="true" MaxLength="500" />
+          <Property Name="num" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="L_GearDisruptionSample">
+          <End Type="Babelfisk.Entities.L_GearDisruption" Role="L_GearDisruption" Multiplicity="0..1" />
+          <End Type="Babelfisk.Entities.Sample" Role="Sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="L_GearDisruption">
+              <PropertyRef Name="L_gearDisruptionId" />
+            </Principal>
+            <Dependent Role="Sample">
+              <PropertyRef Name="gearDisruptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10121,7 +10180,6 @@
           <ScalarProperty Name="otolithWeight" ColumnName="otolithWeight" />
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="edgeStructure" ColumnName="edgeStructure" />
-          <ScalarProperty Name="genetics" ColumnName="genetics" />
           <ScalarProperty Name="hatchMonthReadabilityId" ColumnName="hatchMonthReadabilityId" />
           <ScalarProperty Name="visualStockId" ColumnName="visualStockId" />
           <ScalarProperty Name="geneticStockId" ColumnName="geneticStockId" />
@@ -10166,6 +10224,8 @@
           <ScalarProperty Name="weightGutted" ColumnName="weightGutted" />
           <ScalarProperty Name="weightLiver" ColumnName="weightLiver" />
           <ScalarProperty Name="weightGonads" ColumnName="weightGonads" />
+          <ScalarProperty Name="genetics" ColumnName="genetics" />
+          <ScalarProperty Name="geneticsId" ColumnName="geneticsId" />
           <ScalarProperty Name="pictureReference" ColumnName="pictureReference" />
           <ScalarProperty Name="netPlaceVertical" ColumnName="netPlaceVertical" />
           <ScalarProperty Name="netPlaceHorisontal" ColumnName="netPlaceHorisontal" />
@@ -11102,6 +11162,7 @@
           <ScalarProperty Name="endlog" ColumnName="endlog" />
           <ScalarProperty Name="datahandlerId" ColumnName="datahandlerId" />
           <ScalarProperty Name="gearQuality" ColumnName="gearQuality" />
+          <ScalarProperty Name="gearDisruptionId" ColumnName="gearDisruptionId" />
           <ScalarProperty Name="numNets" ColumnName="numNets" />
           <ScalarProperty Name="lostNets" ColumnName="lostNets" />
           <ScalarProperty Name="tidTamp" ColumnName="tidTamp" />
@@ -11791,6 +11852,17 @@
           <ScalarProperty Name="preyLengthMeasureUnit" ColumnName="preyLengthMeasureUnit" />
           <ScalarProperty Name="preyLengthMeasureTypeId" ColumnName="preyLengthMeasureTypeId" />
           <ScalarProperty Name="stomachRemark" ColumnName="stomachRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="L_GearDisruption">
+      <EntityTypeMapping TypeName="IsTypeOf(Babelfisk.Entities.L_GearDisruption)">
+        <MappingFragment StoreEntitySet="L_GearDisruption">
+          <ScalarProperty Name="L_gearDisruptionId" ColumnName="L_gearDisruptionId" />
+          <ScalarProperty Name="gearDisruption" ColumnName="gearDisruption" />
+          <ScalarProperty Name="codeICES" ColumnName="codeICES" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num" ColumnName="num" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -13478,6 +13550,8 @@
         <AssociationConnector Association="Babelfisk.Entities.StomachL_LengthMeasureUnit" />
         <AssociationConnector Association="Babelfisk.Entities.StomachL_LengthMeasureType" />
         <AssociationConnector Association="Babelfisk.Entities.L_SpeciesL_SpeciesGroup" />
+        <EntityTypeShape EntityType="Babelfisk.Entities.L_GearDisruption" Width="2.125" PointX="13.625" PointY="39" />
+        <AssociationConnector Association="Babelfisk.Entities.L_GearDisruptionSample" />
       </Diagram>
     </Diagrams>
   </Designer>

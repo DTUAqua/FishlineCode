@@ -613,6 +613,13 @@ namespace Babelfisk.ViewModels.Lookup
                                  LookupColumn.Create("Mave", "showInStomach", false, new DataGridLength(100), null, LookupColumn.LookupColumnType.CheckBox)
                                  ));
 
+            _lstAllLookupTypes.Add(new LookupType("Træktidsbemærkning", typeof(L_GearDisruption), null, null,
+                             LookupColumn.Create("Træktidsbemærkning", "gearDisruption", false, new System.Windows.Controls.DataGridLength(180)),
+                             LookupColumn.Create("ICES kode", "codeICES", false, new DataGridLength(80)),
+                             LookupColumn.Create("Beskrivelse", "description", false, new DataGridLength(150, DataGridLengthUnitType.Star)),
+                             LookupColumn.Create("Nummer", "num", false, new System.Windows.Controls.DataGridLength(100), targetNullValue: "")
+                             ));
+
             #endregion
 
             //Sort the lookup types

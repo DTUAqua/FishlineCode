@@ -518,6 +518,21 @@ namespace Babelfisk.Warehouse.Model
         private Nullable<int> _courseTrack;
     
         [DataMember]
+        public string gearDisruption
+        {
+            get { return _gearDisruption; }
+            set
+            {
+                if (_gearDisruption != value)
+                {
+                    _gearDisruption = value;
+                    OnPropertyChanged("gearDisruption");
+                }
+            }
+        }
+        private string _gearDisruption;
+    
+        [DataMember]
         public string targetSpecies1
         {
             get { return _targetSpecies1; }

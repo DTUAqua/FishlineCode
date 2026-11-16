@@ -63,7 +63,7 @@ namespace Babelfisk.ViewModels.Input
                    a.otolithWeight == null && 
                    a.hatchMonth == null && 
                    a.edgeStructure == null && 
-                   (a.genetics == null || (a.genetics.HasValue && a.genetics.Value == false) &&
+                   (//a.genetics == null || (a.genetics.HasValue && a.genetics.Value == false) &&
                    a.visualStockId == null &&
                    a.geneticStockId == null);
         }
@@ -452,22 +452,21 @@ namespace Babelfisk.ViewModels.Input
         {
             get
             {
-                var a = GetFirstAge();
-
-                if (a == null || _lstAges.First().ChangeTracker.State == ObjectState.Deleted || a.genetics == null)
+                if (_animalInfo == null || _animalInfo.ChangeTracker.State == ObjectState.Deleted || _animalInfo.genetics == null)
                     return null;
 
-                var g = _lstGenetics?.Where(x => x.Value == a.genetics.Value).FirstOrDefault();
+                var g = _lstGenetics?.Where(x => x.Value == _animalInfo.genetics.Value).FirstOrDefault();
                 return g;
             }
             set
             {
-                if (_lstAges.Count == 0)
+                _animalInfo.genetics = value == null ? null : new Nullable<bool>(value.Value);
+               /* if (_lstAges.Count == 0) TODO Check
                     _lstAges.Add(new Age());
                 Age a = _lstAges.First();
                 a.genetics = value == null ? null : new Nullable<bool>(value.Value);
-                a.number = 1;
-                HandleSingleFishAgeDeletion();
+                a.number = 1;*/
+                //HandleSingleFishAgeDeletion();
 
                 IsDirty = true;
                 RaisePropertyChanged(() => SelectedGenetics);
@@ -483,6 +482,28 @@ namespace Babelfisk.ViewModels.Input
             {
                 var g = SelectedGenetics;
                 return g == null ? "" : g.Tag as string;
+            }
+        }
+
+        public string GeneticsId
+        {
+            get
+            {
+                return (_animalInfo == null || _animalInfo.ChangeTracker.State == ObjectState.Deleted) ? null : _animalInfo.geneticsId;
+            }
+            set
+            {
+                if(_animalInfo == null)
+                    return;
+
+                _animalInfo.geneticsId = value;
+                IsDirty = true;
+                RaisePropertyChanged(() => GeneticsId);
+
+                var sg = SelectedGenetics;
+                //Automatically set genetics to true, if you input something.
+                if(!string.IsNullOrWhiteSpace(value) && (sg == null || sg.Value == false))
+                    SelectedGenetics = _lstGenetics[0]; //YEs
             }
         }
 
@@ -1040,16 +1061,18 @@ namespace Babelfisk.ViewModels.Input
                 //Default genetics to false ("No" genetics) for new rows. Old row, should be allowed NULL values.
                 if (IsNew)
                 {
-                    if (_lstAges.Count == 0)
-                        _lstAges.Add(new Age());
+                    /* if (_lstAges.Count == 0)
+                         _lstAges.Add(new Age());
 
-                    Age ag = _lstAges.First();
-                    ag.genetics = false;
-                    ag.number = 1; //Set number = 1 for all single fish ages.
+                     Age ag = _lstAges.First();
+                     ag.genetics = false;
+                     ag.number = 1; //Set number = 1 for all single fish ages.*/
+                    _animalInfo.genetics = false;
                 }
 
-                if (_lstAges.Count > 0)
-                    _prevGenetics = _lstAges.First().genetics;
+                _prevGenetics = _animalInfo.genetics;
+                // if (_lstAges.Count > 0) TODO test
+                //     _prevGenetics = _lstAges.First().genetics;
             }
 
  
@@ -1067,7 +1090,7 @@ namespace Babelfisk.ViewModels.Input
             {
                 var a = _lstAges.First();
 
-                if (a.age1 == null && a.otolithReadingRemarkId == null && a.otolithWeight == null && a.hatchMonth == null && a.hatchMonthReadabilityId == null && a.edgeStructure == null && a.genetics == null && a.visualStockId == null && a.geneticStockId == null)
+                if (a.age1 == null && a.otolithReadingRemarkId == null && a.otolithWeight == null && a.hatchMonth == null && a.hatchMonthReadabilityId == null && a.edgeStructure == null && a.visualStockId == null && a.geneticStockId == null)
                 {
                     if (a.ChangeTracker.State == ObjectState.Added)
                         _lstAges.Remove(a);
@@ -1416,6 +1439,11 @@ namespace Babelfisk.ViewModels.Input
                         {
                             strError = "Vælg venligst genetik 'ja'/'nej' for rækken.";
                         }
+                        break;
+
+                    case "GeneticsId":
+                        if(!string.IsNullOrEmpty(GeneticsId) && GeneticsId.Length > 12)
+                            strError = "Genetik Id må maksimalt være på 12 karakterer.";
                         break;
                 }
 

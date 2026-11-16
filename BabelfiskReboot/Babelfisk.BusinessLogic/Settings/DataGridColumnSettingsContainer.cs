@@ -1256,6 +1256,14 @@ namespace Babelfisk.BusinessLogic.Settings
             speciesList[name].ColumnUIName = "Genetik";
             speciesList[name].Sorting = intSorting++;
 
+            name = "GeneticsId";
+            if(!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = true;
+            speciesList[name].ColumnUIName = "Genetik Id";
+            speciesList[name].Sorting = intSorting++;
+
             name = "WeightGutted";
             if (!speciesList.ContainsKey(name))
                 speciesList.Add(name, new DataGridColumnSettings(name, this));
@@ -1437,6 +1445,14 @@ namespace Babelfisk.BusinessLogic.Settings
 
             speciesList[name].DefaultIsVisible = true;
             speciesList[name].ColumnUIName = "Genetik";
+            speciesList[name].Sorting = intSorting++;
+
+            name = "GeneticsId";
+            if(!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = true;
+            speciesList[name].ColumnUIName = "Genetik Id";
             speciesList[name].Sorting = intSorting++;
 
             name = "WeightGutted";
@@ -1631,6 +1647,14 @@ namespace Babelfisk.BusinessLogic.Settings
             speciesList[name].ColumnUIName = "Genetik";
             speciesList[name].Sorting = intSorting++;
 
+            name = "GeneticsId";
+            if(!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = true;
+            speciesList[name].ColumnUIName = "Genetik Id";
+            speciesList[name].Sorting = intSorting++;
+
             name = "WeightGutted";
             if (!speciesList.ContainsKey(name))
                 speciesList.Add(name, new DataGridColumnSettings(name, this));
@@ -1796,6 +1820,14 @@ namespace Babelfisk.BusinessLogic.Settings
 
             speciesList[name].DefaultIsVisible = true;
             speciesList[name].ColumnUIName = "Genetik";
+            speciesList[name].Sorting = intSorting++;
+
+            name = "GeneticsId";
+            if(!speciesList.ContainsKey(name))
+                speciesList.Add(name, new DataGridColumnSettings(name, this));
+
+            speciesList[name].DefaultIsVisible = true;
+            speciesList[name].ColumnUIName = "Genetik Id";
             speciesList[name].Sorting = intSorting++;
 
             name = "WeightGutted";

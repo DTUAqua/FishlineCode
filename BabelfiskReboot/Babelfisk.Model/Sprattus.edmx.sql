@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2026 17:14:51
+-- Date Created: 10/26/2026 10:38:44
 -- Generated from EDMX file: C:\Code\DTUAqua\FishlineCode\BabelfiskReboot\Babelfisk.Model\Sprattus.edmx
 -- --------------------------------------------------
 
@@ -593,6 +593,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_L_SpeciesL_SpeciesGroup]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[L_Species] DROP CONSTRAINT [FK_L_SpeciesL_SpeciesGroup];
 GO
+IF OBJECT_ID(N'[dbo].[FK_L_GearDisruptionSample]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sample] DROP CONSTRAINT [FK_L_GearDisruptionSample];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -991,6 +994,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Stomach]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Stomach];
 GO
+IF OBJECT_ID(N'[dbo].[L_GearDisruptionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[L_GearDisruptionSet];
+GO
 IF OBJECT_ID(N'[dbo].[R_ReportingTreeNodeReport]', 'U') IS NOT NULL
     DROP TABLE [dbo].[R_ReportingTreeNodeReport];
 GO
@@ -1026,7 +1032,6 @@ CREATE TABLE [dbo].[Age] (
     [otolithWeight] decimal(7,5)  NULL,
     [remark] nvarchar(max)  NULL,
     [edgeStructure] nvarchar(5)  NULL,
-    [genetics] bit  NULL,
     [hatchMonthReadabilityId] int  NULL,
     [visualStockId] int  NULL,
     [geneticStockId] int  NULL,
@@ -1069,6 +1074,8 @@ CREATE TABLE [dbo].[AnimalInfo] (
     [weightGutted] decimal(10,5)  NULL,
     [weightLiver] decimal(9,5)  NULL,
     [weightGonads] decimal(9,5)  NULL,
+    [genetics] bit  NULL,
+    [geneticsId] nvarchar(12)  NULL,
     [pictureReference] nvarchar(80)  NULL,
     [netPlaceVertical] nvarchar(1)  NULL,
     [netPlaceHorisontal] nvarchar(1)  NULL,
@@ -1926,6 +1933,7 @@ CREATE TABLE [dbo].[Sample] (
     [endlog] int  NULL,
     [datahandlerId] int  NULL,
     [gearQuality] nvarchar(1)  NULL,
+    [gearDisruptionId] int  NULL,
     [numNets] int  NULL,
     [lostNets] int  NULL,
     [tidTamp] int  NULL,
@@ -2567,6 +2575,16 @@ CREATE TABLE [dbo].[Stomach] (
     [preyLengthMeasureUnit] nvarchar(2)  NULL,
     [preyLengthMeasureTypeId] int  NULL,
     [stomachRemark] nvarchar(250)  NULL
+);
+GO
+
+-- Creating table 'L_GearDisruption'
+CREATE TABLE [dbo].[L_GearDisruption] (
+    [L_gearDisruptionId] int IDENTITY(1,1) NOT NULL,
+    [gearDisruption] nvarchar(200)  NOT NULL,
+    [codeICES] nvarchar(50)  NULL,
+    [description] nvarchar(500)  NULL,
+    [num] int  NULL
 );
 GO
 
@@ -3372,6 +3390,12 @@ GO
 ALTER TABLE [dbo].[Stomach]
 ADD CONSTRAINT [PK_Stomach]
     PRIMARY KEY CLUSTERED ([stomachId] ASC);
+GO
+
+-- Creating primary key on [L_gearDisruptionId] in table 'L_GearDisruption'
+ALTER TABLE [dbo].[L_GearDisruption]
+ADD CONSTRAINT [PK_L_GearDisruption]
+    PRIMARY KEY CLUSTERED ([L_gearDisruptionId] ASC);
 GO
 
 -- Creating primary key on [Reports_reportId], [ReportingTreeNodes_reportingTreeNodeId] in table 'R_ReportingTreeNodeReport'
@@ -6250,6 +6274,21 @@ GO
 CREATE INDEX [IX_FK_L_SpeciesL_SpeciesGroup]
 ON [dbo].[L_Species]
     ([preySpeciesGroupId]);
+GO
+
+-- Creating foreign key on [gearDisruptionId] in table 'Sample'
+ALTER TABLE [dbo].[Sample]
+ADD CONSTRAINT [FK_L_GearDisruptionSample]
+    FOREIGN KEY ([gearDisruptionId])
+    REFERENCES [dbo].[L_GearDisruption]
+        ([L_gearDisruptionId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_L_GearDisruptionSample'
+CREATE INDEX [IX_FK_L_GearDisruptionSample]
+ON [dbo].[Sample]
+    ([gearDisruptionId]);
 GO
 
 -- --------------------------------------------------

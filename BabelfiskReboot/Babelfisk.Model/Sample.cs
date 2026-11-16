@@ -39,6 +39,7 @@ namespace Babelfisk.Entities.Sprattus
     [KnownType(typeof(L_TimeZone))]
     [KnownType(typeof(L_WeightEstimationMethod))]
     [KnownType(typeof(L_SelectionDeviceSource))]
+    [KnownType(typeof(L_GearDisruption))]
     public partial class Sample: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -688,6 +689,29 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private string _gearQuality;
+    
+        [DataMember]
+        public Nullable<int> gearDisruptionId
+        {
+            get { return _gearDisruptionId; }
+            set
+            {
+                if (_gearDisruptionId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("gearDisruptionId", _gearDisruptionId);
+                    if (!IsDeserializing)
+                    {
+                        if (L_GearDisruption != null && L_GearDisruption.L_gearDisruptionId != value)
+                        {
+                            L_GearDisruption = null;
+                        }
+                    }
+                    _gearDisruptionId = value;
+                    OnPropertyChanged("gearDisruptionId");
+                }
+            }
+        }
+        private Nullable<int> _gearDisruptionId;
     
         [DataMember]
         public Nullable<int> numNets
@@ -2133,6 +2157,23 @@ namespace Babelfisk.Entities.Sprattus
             }
         }
         private L_SelectionDeviceSource _l_SelectionDeviceSource;
+    
+        [DataMember]
+        public L_GearDisruption L_GearDisruption
+        {
+            get { return _l_GearDisruption; }
+            set
+            {
+                if (!ReferenceEquals(_l_GearDisruption, value))
+                {
+                    var previousValue = _l_GearDisruption;
+                    _l_GearDisruption = value;
+                    FixupL_GearDisruption(previousValue);
+                    OnNavigationPropertyChanged("L_GearDisruption");
+                }
+            }
+        }
+        private L_GearDisruption _l_GearDisruption;
 
         #endregion
 
@@ -2246,6 +2287,7 @@ namespace Babelfisk.Entities.Sprattus
             L_TimeZone = null;
             L_WeightEstimationMethod = null;
             L_SelectionDeviceSource = null;
+            L_GearDisruption = null;
         }
 
         #endregion
@@ -3026,6 +3068,41 @@ namespace Babelfisk.Entities.Sprattus
                 if (L_SelectionDeviceSource != null && !L_SelectionDeviceSource.ChangeTracker.ChangeTrackingEnabled)
                 {
                     L_SelectionDeviceSource.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupL_GearDisruption(L_GearDisruption previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (L_GearDisruption != null)
+            {
+                gearDisruptionId = L_GearDisruption.L_gearDisruptionId;
+            }
+    
+            else if (!skipKeys)
+            {
+                gearDisruptionId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("L_GearDisruption")
+                    && (ChangeTracker.OriginalValues["L_GearDisruption"] == L_GearDisruption))
+                {
+                    ChangeTracker.OriginalValues.Remove("L_GearDisruption");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("L_GearDisruption", previousValue);
+                }
+                if (L_GearDisruption != null && !L_GearDisruption.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    L_GearDisruption.StartTracking();
                 }
             }
         }

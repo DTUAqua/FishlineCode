@@ -200,6 +200,10 @@
       <Link>Sprattus\L_Gear.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\Babelfisk.Model\L_GearDisruption.cs">
+      <Link>Sprattus\L_GearDisruption.cs</Link>
+      <DependentUpon>Sprattus.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\Babelfisk.Model\L_GearInfoType.cs">
       <Link>Sprattus\L_GearInfoType.cs</Link>
       <DependentUpon>Sprattus.tt</DependentUpon>
@@ -654,6 +658,7 @@
     <Compile Include="SprattusEntityExtensions\L_CatchRegistration.cs" />
     <Compile Include="SprattusEntityExtensions\L_EdgeStructure.cs" />
     <Compile Include="SprattusEntityExtensions\L_FisheryType.cs" />
+    <Compile Include="SprattusEntityExtensions\L_GearDisruption.cs" />
     <Compile Include="SprattusEntityExtensions\L_GeneticStock.cs" />
     <Compile Include="SprattusEntityExtensions\L_HatchMonthReadability.cs" />
     <Compile Include="SprattusEntityExtensions\L_HaulType.cs" />
@@ -739,8 +744,8 @@
       <Link>Sprattus\Sprattus.tt</Link>
       <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Sprattus.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.tt">
       <Link>SprattusSecurity\SprattusSecurity.tt</Link>

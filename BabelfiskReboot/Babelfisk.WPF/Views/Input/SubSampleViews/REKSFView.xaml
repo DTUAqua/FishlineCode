@@ -652,6 +652,23 @@
                         </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
                     </aCtrls:AncDataGridTemplateColumn>
 
+                    <!-- Genetics id -->
+                    <aCtrls:AncDataGridTemplateColumn SortMemberPath="GeneticsId" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="65" Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='REKSingleFish|GeneticsId'}" >
+                        <aCtrls:AncDataGridTemplateColumn.Header>
+                            <dGrid:DoubleColumnHeader LowerHeader="Genetik id" LowerHeaderForeground="{StaticResource ResourceKey=LowerHeaderForegroundColor}" />
+                        </aCtrls:AncDataGridTemplateColumn.Header>
+                        <aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=GeneticsId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource lblDisplay}" />
+                            </DataTemplate>
+                        </aCtrls:AncDataGridTemplateColumn.CellTemplate>
+                        <aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=GeneticsId, UpdateSourceTrigger=LostFocus}" Initialized="TextBox_Initialized" VerticalContentAlignment="Center"  FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"   BorderThickness="0" Padding="0,0,0,0"  ></TextBox>
+                            </DataTemplate>
+                        </aCtrls:AncDataGridTemplateColumn.CellEditingTemplate>
+                    </aCtrls:AncDataGridTemplateColumn>
+
 
                     <!-- WeightGutted -->
                     <aCtrls:AncDataGridTemplateColumn SortMemberPath="WeightGutted" HeaderTemplate="{StaticResource ResourceKey=GridColumnHeaderDefault}" Width="65" Visibility="{Binding Path=Data.SubSampleTypeString, Source={StaticResource proxyContextSubSample}, Converter={StaticResource ResourceKey=cColumnMapToVisibility}, ConverterParameter='REKSingleFish|WeightGutted'}"

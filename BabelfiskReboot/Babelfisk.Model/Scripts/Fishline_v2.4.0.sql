@@ -211,3 +211,177 @@ GO
 CREATE NONCLUSTERED INDEX [IX_Stomach_preyDigestionStageId]
 ON [dbo].[Stomach] ([preyDigestionStageId])
 GO
+
+
+
+
+-- Handling genetics column migration from Age to AnimalInfo. This is a one-time migration script.
+
+USE [FishLine]
+GO
+
+
+/* ============================================================
+    1. Add genetics column to AnimalInfo
+    ============================================================ */
+
+ALTER TABLE dbo.AnimalInfo
+ADD genetics bit NULL;
+GO
+
+
+BEGIN TRANSACTION;
+
+BEGIN TRY
+
+    /* ============================================================
+       2. Copy genetics from Age to AnimalInfo
+       ============================================================ */
+
+    UPDATE ai
+    SET ai.genetics = a.genetics
+    FROM dbo.AnimalInfo ai
+    INNER JOIN dbo.Age a
+        ON ai.animalId = a.animalId
+    WHERE a.genetics IS NOT NULL;
+
+
+    /* ============================================================
+       3. Remove genetics column from Age
+       ============================================================ */
+
+    ALTER TABLE dbo.Age
+    DROP COLUMN genetics;
+
+
+    COMMIT TRANSACTION;
+
+END TRY
+BEGIN CATCH
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+
+    THROW;
+
+END CATCH;
+GO
+
+
+ALTER TABLE [dbo].[AnimalInfo]
+ADD
+    [geneticsId] nvarchar(20)  NULL
+GO
+
+
+ALTER TABLE [dbo].[Sample]
+ADD
+     [gearDisruptionId] int  NULL
+GO
+
+
+-- Creating table 'L_GearDisruption'
+CREATE TABLE [dbo].[L_GearDisruption] (
+    [L_gearDisruptionId] int IDENTITY(1,1) NOT NULL,
+    [gearDisruption] nvarchar(200)  NOT NULL,
+    [codeICES] nvarchar(50)  NULL,
+    [description] nvarchar(500)  NULL,
+    [num] int  NULL
+);
+GO
+
+
+-- Creating primary key on [L_gearDisruptionId] in table 'L_GearDisruption'
+ALTER TABLE [dbo].[L_GearDisruption]
+ADD CONSTRAINT [PK_L_GearDisruption]
+    PRIMARY KEY CLUSTERED ([L_gearDisruptionId] ASC);
+GO
+
+
+-- Creating foreign key on [gearDisruptionId] in table 'Sample'
+ALTER TABLE [dbo].[Sample]
+ADD CONSTRAINT [FK_L_GearDisruptionSample]
+    FOREIGN KEY ([gearDisruptionId])
+    REFERENCES [dbo].[L_GearDisruption] ([L_gearDisruptionId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_L_GearDisruptionSample'
+CREATE INDEX [IX_FK_L_GearDisruptionSample]
+ON [dbo].[Sample] ([gearDisruptionId]);
+GO
+
+
+
+
+
+
+
+
+
+USE [FishLineDW]
+GO
+
+
+
+
+ALTER TABLE dbo.Animal
+ADD genetics bit NULL;
+GO
+
+
+BEGIN TRANSACTION;
+
+BEGIN TRY
+
+    UPDATE ai
+    SET ai.genetics = a.genetics
+    FROM dbo.Animal ai
+    INNER JOIN dbo.Age a ON ai.animalId = a.animalId
+    WHERE a.genetics IS NOT NULL;
+
+    ALTER TABLE dbo.Age
+    DROP COLUMN genetics;
+
+
+    COMMIT TRANSACTION;
+
+END TRY
+BEGIN CATCH
+
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+
+    THROW;
+
+END CATCH;
+GO
+
+
+ALTER TABLE [dbo].[Animal]
+ADD
+    [geneticsId] nvarchar(20)  NULL
+GO
+
+
+ALTER TABLE [dbo].[Sample]
+ADD
+     [gearDisruption] nvarchar(200) NULL
+GO
+
+
+
+
+
+
+
+
+
+
+-- FishLine
+-- AnimalInfo table: Move genetics and geneticsId columns to after weightGonads.
+-- Sample table: Move gearDisruptionId column to after gearQuality column.
+
+-- FishLineDW
+-- Animal table: Move genetics and geneticsId columns to after weightGonads.
+-- Sample table: Move gearDisruption column to after courseTrack column.

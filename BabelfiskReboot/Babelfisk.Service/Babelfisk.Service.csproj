@@ -154,8 +154,8 @@
       <Link>Sprattus.Context.tt</Link>
       <SubType>Designer</SubType>
       <CustomToolNamespace>Babelfisk.Entities.Sprattus</CustomToolNamespace>
-      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Sprattus.Context.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Include="..\Babelfisk.SecurityModel\SprattusSecurity.Context.tt">
       <Link>SprattusSecurity.Context.tt</Link>

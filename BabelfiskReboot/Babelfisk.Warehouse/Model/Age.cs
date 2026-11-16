@@ -666,21 +666,6 @@ namespace Babelfisk.Warehouse.Model
         private string _remark;
     
         [DataMember]
-        public Nullable<bool> genetics
-        {
-            get { return _genetics; }
-            set
-            {
-                if (_genetics != value)
-                {
-                    _genetics = value;
-                    OnPropertyChanged("genetics");
-                }
-            }
-        }
-        private Nullable<bool> _genetics;
-    
-        [DataMember]
         public string visualStock
         {
             get { return _visualStock; }

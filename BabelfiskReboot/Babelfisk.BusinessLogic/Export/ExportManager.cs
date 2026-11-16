@@ -74,6 +74,7 @@ namespace Babelfisk.BusinessLogic.Export
             var dicSelectionDeviceSource = lookupMan.GetLookups(typeof(L_SelectionDeviceSource), ldv).OfType<L_SelectionDeviceSource>().ToDictionary(x => x.L_selectionDeviceSourceId);
             var dicLengthMeasureType = lookupMan.GetLookups(typeof(L_LengthMeasureType), ldv).OfType<L_LengthMeasureType>().ToDictionary(x => x.L_lengthMeasureTypeId);
             var dicStomachStatus = lookupMan.GetLookups(typeof(L_StomachStatus), ldv).OfType<L_StomachStatus>().ToDictionary(x => x.L_StomachStatusId);
+            var dicGearDisruptions = lookupMan.GetLookups(typeof(L_GearDisruption), ldv).OfType<L_GearDisruption>().ToDictionary(x => x.L_gearDisruptionId);
             LengthMeasureType = dicLengthMeasureType;
 
             foreach (var c in lst)
@@ -97,7 +98,8 @@ namespace Babelfisk.BusinessLogic.Export
                                          dicGeneticStocks,
                                          dicSelectionDeviceSource,
                                          dicLengthMeasureType,
-                                         dicStomachStatus);
+                                         dicStomachStatus,
+                                         dicGearDisruptions);
             }
         }
 
@@ -121,7 +123,8 @@ namespace Babelfisk.BusinessLogic.Export
                                                       Dictionary<int, L_GeneticStock> dicGeneticStocks,
                                                       Dictionary<int, L_SelectionDeviceSource> dicSelectionDeviceSource,
                                                       Dictionary<int, L_LengthMeasureType> dicLengthMeasureType,
-                                                      Dictionary<int, L_StomachStatus> dicStomachStatus)
+                                                      Dictionary<int, L_StomachStatus> dicStomachStatus,
+                                                      Dictionary<int, L_GearDisruption> dicGearDisruption)
         {
             if (c.responsibleId.HasValue && dicDFUPersons.ContainsKey(c.responsibleId.Value))
                 c.AssignNavigationPropertyWithoutChanges("DFUPerson1", dicDFUPersons[c.responsibleId.Value]);
@@ -174,6 +177,9 @@ namespace Babelfisk.BusinessLogic.Export
                     
                     if(s.selectionDeviceSourceId.HasValue && dicSelectionDeviceSource.ContainsKey(s.selectionDeviceSourceId.Value))
                         s.AssignNavigationPropertyWithoutChanges("L_SelectionDeviceSource", dicSelectionDeviceSource[s.selectionDeviceSourceId.Value]);
+
+                    if(s.gearDisruptionId.HasValue && dicGearDisruption.ContainsKey(s.gearDisruptionId.Value))
+                        s.AssignNavigationPropertyWithoutChanges("L_GearDisruption", dicGearDisruption[s.gearDisruptionId.Value]);
 
                     foreach (var sl in s.SpeciesList)
                     {

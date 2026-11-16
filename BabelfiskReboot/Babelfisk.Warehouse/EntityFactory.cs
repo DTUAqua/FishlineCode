@@ -505,6 +505,9 @@ namespace Babelfisk.Warehouse
             sDW.salinitySrf = s.salinitySrf;
             sDW.salinityBot = s.salinityBot;
 
+            if(s.L_GearDisruption != null)
+                sDW.gearDisruption = s.L_GearDisruption.gearDisruption;
+
             sDW.samplePersonId = s.samplePersonId;
             if (s.DFUPerson != null)
                 sDW.samplePersonName = s.DFUPerson.name;
@@ -987,8 +990,13 @@ namespace Babelfisk.Warehouse
             aDW.catchNum = a.catchNum;
             aDW.otolithFinScale = a.otolithFinScale;
 
-            if (animalInfo != null)
+            if(animalInfo != null)
+            {
                 aDW.animalInfo_remark = animalInfo.remark;
+
+                aDW.genetics = animalInfo.genetics;
+                aDW.geneticsId = animalInfo.geneticsId;
+            }
 
             foreach (var age in a.Age)
             {
@@ -1014,6 +1022,8 @@ namespace Babelfisk.Warehouse
             }
 
             aDW.stock = GetStockCode(aDW.speciesCode, aDW.dfuArea, aDW.statisticalRectangle, aDW.quarterGearStart);
+
+           
 
             RemoveCharactersFromStringProperties(aDW, _arrCharactersToRemove);
 
@@ -1090,7 +1100,7 @@ namespace Babelfisk.Warehouse
             aDW.agePlusGroup = sl.agePlusGroup;
             aDW.otolithWeight = a.otolithWeight;
             aDW.edgeStructure = a.edgeStructure;
-            aDW.genetics = a.genetics;
+           // aDW.genetics = a.genetics; TODO, move to Animal and not Age
 
             if (a.L_OtolithReadingRemark != null)
                 aDW.otolithReadingRemark = a.L_OtolithReadingRemark.otolithReadingRemark;

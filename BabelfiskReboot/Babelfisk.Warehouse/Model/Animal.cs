@@ -654,6 +654,36 @@ namespace Babelfisk.Warehouse.Model
         private Nullable<decimal> _weightGonads;
     
         [DataMember]
+        public Nullable<bool> genetics
+        {
+            get { return _genetics; }
+            set
+            {
+                if (_genetics != value)
+                {
+                    _genetics = value;
+                    OnPropertyChanged("genetics");
+                }
+            }
+        }
+        private Nullable<bool> _genetics;
+    
+        [DataMember]
+        public string geneticsId
+        {
+            get { return _geneticsId; }
+            set
+            {
+                if (_geneticsId != value)
+                {
+                    _geneticsId = value;
+                    OnPropertyChanged("geneticsId");
+                }
+            }
+        }
+        private string _geneticsId;
+    
+        [DataMember]
         public string stomachStatusFirstEvaluation
         {
             get { return _stomachStatusFirstEvaluation; }

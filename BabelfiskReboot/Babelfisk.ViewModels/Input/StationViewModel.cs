@@ -61,6 +61,8 @@ namespace Babelfisk.ViewModels.Input
         private List<L_Bottomtype> _lstBottomTypes;
         private List<DFUPerson> _lstDFUPersons;
 
+        private List<L_GearDisruption> _lstGearDisruptions;
+
 
         private bool _blnUpdatingCollections = false;
 
@@ -115,6 +117,17 @@ namespace Babelfisk.ViewModels.Input
             {
                 _lstHaulTypes = value;
                 RaisePropertyChanged(() => HaulTypes);
+            }
+        }
+
+
+        public List<L_GearDisruption> GearDisruptions
+        {
+            get { return _lstGearDisruptions; }
+            set
+            {
+                _lstGearDisruptions = value;
+                RaisePropertyChanged(() => GearDisruptions);
             }
         }
 
@@ -670,6 +683,23 @@ namespace Babelfisk.ViewModels.Input
                 }
 
                 RaisePropertyChanged(() => SelectedHaulType);
+            }
+        }
+
+
+        public L_GearDisruption SelectedGearDisruption
+        {
+            get { return (_sample == null || _lstGearDisruptions == null || _sample.gearDisruptionId == null) ? null : _lstGearDisruptions.Where(x => x.L_gearDisruptionId == _sample.gearDisruptionId.Value).FirstOrDefault(); }
+            set
+            {
+                if(!_blnUpdatingCollections)
+                {
+                    var val = (value == null ? new Nullable<int>() : value.L_gearDisruptionId);
+                    if(_sample.gearDisruptionId != val)
+                        _sample.gearDisruptionId = val;
+                }
+
+                RaisePropertyChanged(() => SelectedGearDisruption);
             }
         }
 
@@ -1468,6 +1498,7 @@ namespace Babelfisk.ViewModels.Input
                 List<L_CatchRegistration> lstCatchRegistrations = null;
                 List<L_Bottomtype> lstBottomTypes = null;
                 List<DFUPerson> lstDFUPersons = null;
+                List<L_GearDisruption> lstGearDisruptions = null;
 
                 var lv = new LookupDataVersioning();
 
@@ -1484,6 +1515,7 @@ namespace Babelfisk.ViewModels.Input
                     lstHaulTypes = lookupMan.GetLookups(typeof(L_HaulType), lv).OfType<L_HaulType>().OrderBy(x => x.UIDisplay).ToList();
                     lstThermoClines = lookupMan.GetLookups(typeof(L_ThermoCline), lv).OfType<L_ThermoCline>().OrderBy(x => x.UIDisplay).ToList();
                     lstBottomTypes = lookupMan.GetLookups(typeof(L_Bottomtype), lv).OfType<L_Bottomtype>().OrderBy(x => x.UIDisplay).ToList();
+                    lstGearDisruptions = lookupMan.GetLookups(typeof(L_GearDisruption), lv).OfType<L_GearDisruption>().OrderBy(x => x.num.HasValue ? x.num.Value : int.MaxValue).ThenBy(x => x.UIDisplay).ToList();  
                 }
                 else
                 {
@@ -1519,6 +1551,7 @@ namespace Babelfisk.ViewModels.Input
                     HaulTypes = lstHaulTypes;
                     ThermoClines = lstThermoClines;
                     BottomTypes = lstBottomTypes;
+                    GearDisruptions = lstGearDisruptions;
 
                     DFUPersons = lstDFUPersons;
 
@@ -1642,6 +1675,9 @@ namespace Babelfisk.ViewModels.Input
 
             if (_sample.haulType != null && _lstHaulTypes != null)
                 SelectedHaulType = _lstHaulTypes.Where(x => x.haulType == _sample.haulType).FirstOrDefault();
+
+            if(_sample.gearDisruptionId != null && _lstGearDisruptions != null)
+                SelectedGearDisruption = _lstGearDisruptions.Where(x => x.L_gearDisruptionId == _sample.gearDisruptionId).FirstOrDefault();
 
             if (_sample.thermoCline != null && _lstThermoClines != null)
                 SelectedThermoCline = _lstThermoClines.Where(x => x.thermoCline == _sample.thermoCline).FirstOrDefault();

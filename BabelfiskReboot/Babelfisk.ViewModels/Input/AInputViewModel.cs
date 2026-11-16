@@ -270,6 +270,10 @@ namespace Babelfisk.ViewModels.Input
                     lm = new Lookup.LookupManagerViewModel(typeof(L_EdgeStructure));
                     break;
 
+                case "L_GearDisruption":
+                    lm = new Lookup.LookupManagerViewModel(typeof(L_GearDisruption));
+                    break;
+
             }
 
             return lm;
